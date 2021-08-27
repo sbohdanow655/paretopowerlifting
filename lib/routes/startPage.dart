@@ -9,15 +9,28 @@ class StartPage extends StatelessWidget {
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Constants.marginHorizontal),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: double.infinity,
-              child: Text(Constants.headerSelectProgram, style: TextStyle(fontSize: Constants.headerFontSize), textAlign: TextAlign.center),
-            ),
-            ButtonTheme(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Constants.textPaddingHorizontal, vertical: Constants.textPaddingVertical),
+                child: Text(Constants.beginnerInfoText1, style: TextStyle(fontSize: 25))
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Constants.textPaddingHorizontal, vertical: Constants.textPaddingVertical),
+                child: Text(Constants.beginnerInfoText2, style: TextStyle(fontSize: 25))
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Constants.textPaddingHorizontal, vertical: Constants.textPaddingVertical),
+                child: Text(Constants.beginnerInfoText3, style: TextStyle(fontSize: 25)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Constants.textPaddingHorizontal, vertical: Constants.textPaddingVertical),
+                child: Text(Constants.beginnerInfoText4, style: TextStyle(fontSize: 25)),
+              ),
+              ButtonTheme(
                 minWidth: 200,
                 height: 100,
                 child: Padding(
@@ -26,42 +39,23 @@ class StartPage extends StatelessWidget {
                     width: double.infinity,
                     child: RaisedButton(
                       child: new Text(
-                        Constants.selectNovice,
+                        Constants.startJourney,
                         style: TextStyle(fontSize: Constants.buttonFontSize),
                         ),
                       color: Colors.blue,
                       textColor: Colors.white,
-                      onPressed: (){ 
-                        Presenter.selectProgram(context, Programs.novice);
-                      },                   
-                    )
-                  ),
-                ),
-            ),
-           ButtonTheme(
-                minWidth: 200,
-                height: 100,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Constants.buttonPaddingHorizontal, vertical: Constants.buttonPaddingVertical),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: RaisedButton(
-                      child: new Text(
-                        Constants.selectIntermediate,
-                        style: TextStyle(fontSize: Constants.buttonFontSize),
-                        ),
-                      color: Colors.grey,
-                      textColor: Colors.white,
                       onPressed: (){
-                        Presenter.selectProgram(context, Programs.intermediate);
+                        Presenter.navigateToMainPage(context);
                       },
                     )
                   ),
                 ),
-            ),
-          ],
-        )
-      ),
+              ),
+            ],
+          )
+        ) 
+        
+      )
     );
   }
 }

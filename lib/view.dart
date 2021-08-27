@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'assets/constants.dart';
 
+import 'routes/mainPage.dart';
 import 'routes/startPage.dart';
-import 'routes/beginnerInfo.dart';
 import 'routes/bmiSurvey.dart';
 
 
@@ -13,7 +13,8 @@ class View extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        Constants.routeBeginnerInfo : (context) => BeginnerInfo(),
+        Constants.routeMainPage : (context) => MainPage(),
+        Constants.routeStartPage : (context) => StartPage(),
         Constants.routeBMISurvey : (context) => BMISurvey(),
       },
       title: Constants.title,

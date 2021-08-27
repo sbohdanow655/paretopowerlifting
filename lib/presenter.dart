@@ -12,9 +12,8 @@ class Presenter {
     return view;
   }
 
-  static void selectProgram(context, programType) {
-    Model.saveProgram(programType);
-    Navigator.pushNamed(context, Constants.routeBMISurvey);
+  static void navigateToMainPage(context) {
+    Navigator.pushNamed(context, Constants.routeMainPage);
   }
 
   static calculateBMI(height, unitHeight, weight, unitWeight) {
