@@ -62,7 +62,7 @@ class Constants {
   static const String tabHistory = "History";
   static const String tabSettings = "Settings";
 
-  static const String useMicroplates = "Use Microplates:   ";
+  static const String useMicroplates = "Microplates for Upper Body: ";
   static const String selectWeightUnit = "Select Weight Unit:   ";
   static const String selectSquatPhase = "Select Squat Phase:   ";
   static const String selectBenchPressPhase = "Select Bench Press Phase:   ";
