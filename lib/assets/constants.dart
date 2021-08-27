@@ -14,17 +14,18 @@ enum WeightUnit {
 }
 
 class Constants {
-  static const String title = "Pareto Powerlifting";
   static const double titleFontSize = 50;
-
-  static const double buttonPaddingVertical = 10;
-  static const double buttonPaddingHorizontal = 20;
   static const double buttonFontSize = 30;
+  static const double settingsFontSize = 20;
 
   static const double marginHorizontal = 40;
 
+  static const double paddingVertical = 10;
+  static const double paddingHorizontal = 20;
+
+  static const String title = "Pareto Powerlifting";
+
   static const String routeMainPage = "/mainPage";
-  static const String routeBMISurvey = "/bmiSurvey";
   static const String routeRecoverySurvey = "/recoverySurvey";
   static const String routeStartPage = "/startPage";
   static const String routeTestWorkoutInfo = "/testWorkoutInfo";
@@ -59,4 +60,11 @@ class Constants {
 
   static const String tabNextWorkout = "Next Workout";
   static const String tabHistory = "History";
+  static const String tabSettings = "Settings";
+
+  static const String selectWeightUnit = "Select Weight Unit:   ";
+  static const String selectSquatPhase = "Select Squat Phase:   ";
+  static const String selectBenchPressPhase = "Select Bench Press Phase:   ";
+  static const String selectDeadliftPhase = "Select Deadlift Phase:   ";
+
 }

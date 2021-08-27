@@ -34,7 +34,7 @@ class StartPage extends StatelessWidget {
                 minWidth: 200,
                 height: 100,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Constants.buttonPaddingHorizontal, vertical: Constants.buttonPaddingVertical),
+                  padding: EdgeInsets.symmetric(horizontal: Constants.paddingHorizontal, vertical: Constants.paddingVertical),
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(

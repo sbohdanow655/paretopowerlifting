@@ -3,8 +3,6 @@ import 'assets/constants.dart';
 
 import 'routes/mainPage.dart';
 import 'routes/startPage.dart';
-import 'routes/bmiSurvey.dart';
-
 
 class View extends StatelessWidget {  
   // This widget is the root of your application.
@@ -13,9 +11,8 @@ class View extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        Constants.routeMainPage : (context) => MainPage(),
         Constants.routeStartPage : (context) => StartPage(),
-        Constants.routeBMISurvey : (context) => BMISurvey(),
+        Constants.routeMainPage : (context) => MainPage(),
       },
       title: Constants.title,
       theme: ThemeData(
