@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'assets/constants.dart';
 
 import 'routes/mainPage.dart';
-import 'routes/startPage.dart';
 
 class View extends StatelessWidget {  
   // This widget is the root of your application.
@@ -11,7 +10,6 @@ class View extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        Constants.routeStartPage : (context) => StartPage(),
         Constants.routeMainPage : (context) => MainPage(),
       },
       title: Constants.title,
@@ -27,13 +25,7 @@ class View extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(Constants.title),
-          titleTextStyle: TextStyle(fontSize: Constants.titleFontSize),
-        ),
-        body: StartPage()
-        )
+      home: MainPage()
     );
   }
 }
