@@ -16,7 +16,7 @@ enum WeightUnit {
 class Constants {
   static const double titleFontSize = 50;
   static const double buttonFontSize = 30;
-  static const double settingsFontSize = 20;
+  static const double settingsFontSize = 16;
 
   static const double marginHorizontal = 40;
 
