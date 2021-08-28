@@ -1,27 +1,60 @@
 import 'package:flutter/material.dart';
 import '../assets/constants.dart';
+import '../tabs/tabWorkout.dart';
+import '../tabs/tabHistory.dart';
 import '../tabs/tabSettings.dart';
 
-class MainPage extends StatelessWidget {
-  // This widget is the root of your application.
+class MainPage extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MainPageState();
+  }
+}
+
+class _MainPageState extends State<MainPage> {
+  
+  List<Widget> tabViews = [
+    Workout(),
+    History(),
+    Settings()
+  ];
+
+  int currentTabIndex = 0;
+
+  navigateToTab(int index) {
+    setState(() {
+      currentTabIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(Constants.title),
-          titleTextStyle: TextStyle(fontSize: Constants.titleFontSize),
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.fitness_center) ),
-              Tab(icon: Icon(Icons.history) ),
-              Tab(icon: Icon(Icons.settings) ),
-            ],
-          ),
-        ),
-        body: Settings()
+    return Scaffold(
+      appBar: AppBar(      
+        title: Text(Constants.title)
       ),
+      body: tabViews[currentTabIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        backgroundColor: Colors.blue,
+        currentIndex: currentTabIndex,
+        onTap: navigateToTab,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.fitness_center),
+            title: Text("Workouts")
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            title: Text("History")
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text("Settings")
+          )
+        ]
+      )
     );
   }
 }
