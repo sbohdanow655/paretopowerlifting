@@ -1,18 +1,28 @@
 class Model {
-  static void saveProgram(programType) {
+
+  static ExercisePrescription _getExercisePrescription(exerciseName) {
 
   }
 
-  static void saveHeight(val, unit, date) {
+  static bool _getPassOrFail(id) {
 
   }
-  
-  static void saveWeight(val, unit, date) {
-    
-  }
 
-  static void saveBMI(val, date) {
+  static void saveExercisePrescription(date, exercise, weight, weightUnit, numSets, numReps) {
 
   }
+
+  static ExercisePrescription getNextExercisePrescription(exerciseName) {
+    ExercisePrescription prescription = _getPreviousExerciseSubscription(exerciseName);
+    bool didPass = _getPreviousPassOrFail(prevPrescription.getId());
+    if (didPass) {
+      prescription.pass();
+    } else {
+      prescription.fail();
+    }
+
+    return prescription;
+  }
+
 
 }

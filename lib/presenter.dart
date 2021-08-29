@@ -12,36 +12,9 @@ class Presenter {
     return view;
   }
 
-  static void navigateToMainPage(context) {
-    Navigator.pushNamed(context, Constants.routeMainPage);
+  static void saveExercisePrescription(date, exercise, weight, weightUnit, numSets, numReps) {
+    Model.saveExercisePrescription(date, exercise, weight, weightUnit, numSets, numReps);
   }
 
-  static calculateBMI(height, unitHeight, weight, unitWeight) {
-    DateTime date = new DateTime.now();
-    double heightInches = unitHeight == Constants.heightUnitInches ? height : height * Constants.inchesToCm;
-    double weightLbs = unitWeight == Constants.weightUnitLbs ? weight : weight * Constants.kgToLbs;
-
-    double bmi = weightLbs / heightInches / heightInches * Constants.bmiConstant;
-    
-    Model.saveHeight(height, unitHeight, date);
-    Model.saveWeight(weight, unitWeight, date);
-    Model.saveBMI(bmi, date);
-
-    return bmi;
-  }
-
-  static getBMIMessage(bmi) {
-    if (bmi < 18.5) {
-      return Constants.bmiUnderweight;
-    }
-
-    if (bmi >= 25 && bmi <= 29.9) {
-      return Constants.bmiNormal;
-    }
-
-    if (bmi > 29.9) {
-      return Constants.bmiOverweight;
-    }
-  }
 }
 
