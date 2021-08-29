@@ -1,10 +1,12 @@
+import './classes/ExercisePrescription.dart';
+
 class Model {
 
-  static ExercisePrescription _getExercisePrescription(exerciseName) {
+  static ExercisePrescription getExercisePrescription(exerciseName) {
 
   }
 
-  static bool _getPassOrFail(id) {
+  static bool getPassOrFail(id) {
 
   }
 
@@ -12,17 +14,7 @@ class Model {
 
   }
 
-  static ExercisePrescription getNextExercisePrescription(exerciseName) {
-    ExercisePrescription prescription = _getPreviousExerciseSubscription(exerciseName);
-    bool didPass = _getPreviousPassOrFail(prevPrescription.getId());
-    if (didPass) {
-      prescription.pass();
-    } else {
-      prescription.fail();
-    }
-
-    return prescription;
-  }
+  
 
 
 }

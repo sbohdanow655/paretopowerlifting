@@ -1,6 +1,4 @@
-import '../assets/constants.dart';
-
-class ExercisePrescription {
+abstract class ExercisePrescription {
   int _id;
   String _exercise;
   int _weight;
@@ -13,7 +11,7 @@ class ExercisePrescription {
     _exercise = exercise;
     _weight = weight;
     _weightUnit = weightUnit;
-    _setNumber = setNumber;
+    _numSets = _numSets;
     _numReps = numReps;
   }
 
@@ -21,10 +19,10 @@ class ExercisePrescription {
     return _id;
   }
 
-  abstract void pass();
-  abstract void fail();
+  void pass();
+  void fail();
 
   String toString() {
-    return _exercise + " " + _weight + _weightUnit + " " + _numSets + "x" + _numReps;
+    return _exercise + " " + _weight.toString() + _weightUnit + " " + _numSets + "x" + _numReps;
   }
 }
