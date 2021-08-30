@@ -60,5 +60,12 @@ class Constants {
   static const String exercisePendlayRow = "Pendlay Row";
   static const String exerciseSkullcrusher = "Skullcrusher";
 
+  static const String monday = "Monday";
+  static const String tuesday = "Tuesday";
+  static const String wednesday = "Wednesday";
+  static const String thursday = "Thursday";
+  static const String friday = "Friday";
+  static const String saturday = "Saturday";
+  static const String sunday = "Sunday";
 
 }

@@ -9,15 +9,23 @@ class ExercisePrescription {
 
   ExercisePrescription(this._id, this._exerciseName, this._weight, this._weightUnit, this._numSets, this._numReps, this._phaseNumber);
 
-  int getId() {
+  int get id {
     return _id;
   }
 
-  String getWeightUnit() {
+  String get exerciseName {
+    return _exerciseName;
+  }
+
+  double get weight {
+    return _weight;
+  }
+
+  String get weightUnit {
     return _weightUnit;
   }
-  
-  int getPhaseNumber() {
+
+  int get phaseNumber {
     return _phaseNumber;
   }
 

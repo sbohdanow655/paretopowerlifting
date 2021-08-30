@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:collection';
-
-import 'package:pareto_powerlifting/classes/ExercisePrescription.dart';
+import '../classes/ExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
   WorkoutDay(this.prescriptionList);
