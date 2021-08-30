@@ -16,7 +16,7 @@ class WorkoutDay extends StatefulWidget {
 class _WorkoutDayState extends State<WorkoutDay> {
   _WorkoutDayState(this.prescriptionList) {
       prescriptionList.forEach((prescription) {
-        prescriptionPassMap[prescription.getId()] = false;
+        prescriptionPassMap[prescription.id] = false;
       });
   }
 
@@ -33,8 +33,8 @@ class _WorkoutDayState extends State<WorkoutDay> {
         return Row(children: [
           Text(prescription.toString()),
           Checkbox(
-            value: prescriptionPassMap[prescription.getId()],
-            onChanged: (isChecked) => (prescriptionPassMap[prescription.getId()] = isChecked ))
+            value: prescriptionPassMap[prescription.id],
+            onChanged: (isChecked) => (prescriptionPassMap[prescription.id] = isChecked ))
         ]);
       }).toList()
     );
