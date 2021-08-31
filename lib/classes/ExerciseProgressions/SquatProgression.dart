@@ -1,5 +1,3 @@
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
-
 import '../../assets/constants.dart';
 import '../ExerciseProgression.dart';
 import '../ExercisePrescription.dart';
@@ -9,17 +7,15 @@ class SquatProgression extends ExerciseProgression {
 
   int _phaseNumber;
 
-  HashMap<int, double> _weightAddMap = new HashMap<int, double>();
   HashMap<String, int> _setMap = new HashMap<String, int>();
   HashMap<String, int> _repMap = new HashMap<String, int>();
     
 
-  SquatProgression(prescription, workoutSchedule) {
+  SquatProgression(prescription) {
     this.prescription = prescription;
-    this.workoutSchedule = workoutSchedule;
   }
 
-  void updateFromWorkSchedule() {
+  void updateFromWorkSchedule(workoutSchedule) {
     _setMap = new HashMap<String, int>();
     _repMap = new HashMap<String, int>();
     
