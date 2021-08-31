@@ -17,7 +17,7 @@ class ExerciseProgressionManager {
 
   void updateFromWorkoutSchedule(workoutSchedule) {
     _observerMap.forEach((exerciseName, exercisePrescription) {
-      exercisePrescription.updateFromWorkSchedule(workoutSchedule);
+      exercisePrescription.updatePrescription(didPass, workoutSchedule)
     });
   }
 

@@ -1,3 +1,5 @@
+import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+
 import '../../assets/constants.dart';
 import '../ExerciseProgression.dart';
 import '../ExercisePrescription.dart';
@@ -43,27 +45,25 @@ class SquatProgression extends ExerciseProgression {
     }
   }
 
-  void updatePrescription(didPass) {
-    double weightToAdd;
-
+  void addWeight() {
     if (prescription.weightUnit == Constants.weightUnitLbs) {
-      weightToAdd = Constants.bigWeightIncrementLbs;
+      prescription.weight += Constants.bigWeightIncrementLbs;
     } else {
-      weightToAdd = Constants.bigWeightIncrementKg;
+      prescription.weight += Constants.bigWeightIncrementKg;
     }
-    
-
-    double weight = prescription.weight;
-    int phaseNumber = prescription.phaseNumber;
-
-    if (didPass) {
-      weight += weightToAdd;
-    } else {
-      phaseNumber++;
-    }
-
-    this.prescription = new ExercisePrescription(prescription.exerciseName, weight, prescription.weightUnit, _numSets, _numReps, phaseNumber);
-   
   }
 
+  void incrementPhase() {
+    if (prescription.phaseNumber < 3) {
+      prescription.phaseNumber++;
+    }
+  }
+
+  bool is3day() {
+    if (prescription.phaseNumber < 3) {
+      return true;
+    }
+
+    return false;
+  }
 }

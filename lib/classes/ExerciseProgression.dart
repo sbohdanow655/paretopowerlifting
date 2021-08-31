@@ -1,4 +1,5 @@
 import './ExercisePrescription.dart';
+import './WorkoutSchedule.dart';
 
 abstract class ExerciseProgression {
 
@@ -12,8 +13,20 @@ abstract class ExerciseProgression {
     _prescription = prescription;
   }
 
-  void updateFromWorkSchedule(workoutSchedule);
+  void addWeight();
 
-  void updatePrescription(didPass);
+  void incrementPhase();
+
+  bool is3day();
+
+  void updatePrescription(bool didPass, WorkoutSchedule workoutSchedule) {
+    if (didPass) {
+      addWeight();
+    } else {
+      incrementPhase();
+    }
+
+    prescription.day = workoutSchedule.getNextWorkoutDay(is3day(), prescription.day);   
+  }
 
 }
