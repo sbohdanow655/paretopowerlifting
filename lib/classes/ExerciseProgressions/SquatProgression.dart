@@ -44,30 +44,25 @@ class SquatProgression extends ExerciseProgression {
   }
 
   void updatePrescription(didPass) {
-    HashMap<int, double> _weightAddMap = new HashMap<int, double>();
+    double weightToAdd;
 
     if (prescription.weightUnit == Constants.weightUnitLbs) {
-      _weightAddMap[1] = Constants.bigWeightIncrementLbs;
-      _weightAddMap[2] = Constants.bigWeightIncrementLbs;
-      _weightAddMap[3] = Constants.bigWeightIncrementLbs;
+      weightToAdd = Constants.bigWeightIncrementLbs;
     } else {
-      _weightAddMap[1] = Constants.bigWeightIncrementKg;
-      _weightAddMap[2] = Constants.bigWeightIncrementKg;
-      _weightAddMap[3] = Constants.bigWeightIncrementKg;
+      weightToAdd = Constants.bigWeightIncrementKg;
     }
-
     
 
     double weight = prescription.weight;
     int phaseNumber = prescription.phaseNumber;
 
     if (didPass) {
-      weight += _weightAddMap[phaseNumber];
+      weight += weightToAdd;
     } else {
       phaseNumber++;
     }
 
-    this.prescription = new ExercisePrescription(prescription.exerciseName, weight, prescription.weightUnit, _numSets, _numReps, _phaseNumber)
+    this.prescription = new ExercisePrescription(prescription.exerciseName, weight, prescription.weightUnit, _numSets, _numReps, phaseNumber);
    
   }
 
