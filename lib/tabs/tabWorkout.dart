@@ -1,29 +1,37 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/DailyExercisePresciption.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
-class Workout extends StatefulWidget {
-  Workout();
+class WorkoutTab extends StatefulWidget {
+  WorkoutTab();
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutState();
+    return _WorkoutTabState();
   }
 }
 
-class _WorkoutState extends State<Workout> {
+class _WorkoutTabState extends State<WorkoutTab> {
 
   HashMap<Weekday, IDailyPrescription> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts();
 
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: Weekday.values.map((weekday) {
+    List<WorkoutDay> workoutDayList = [];
 
-      })
+    Weekday.values.forEach((weekday) {
+      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday]);
+      workoutDayList.add(workoutDay);
+    });
+
+    return Column(
+      children:
+        workoutDayList 
     );
   }
 }

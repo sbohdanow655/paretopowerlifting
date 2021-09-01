@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import '../assets/constants.dart';
-import '../presenter.dart';
 
-class History extends StatefulWidget {
+class HistoryTab extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _HistoryState();
+    return _HistoryTabState();
   }
 }
 
-class _HistoryState extends State<History> {
+class _HistoryTabState extends State<HistoryTab> {
   
   bool haveMicroplates = false;
 

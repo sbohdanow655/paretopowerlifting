@@ -15,9 +15,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   
   List<Widget> tabViews = [
-    Workout(),
-    History(),
-    Settings()
+    WorkoutTab(),
+    HistoryTab(),
+    SettingsTab()
   ];
 
   int currentTabIndex = 0;
