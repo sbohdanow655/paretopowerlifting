@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:collection';
-import '../classes/ExercisePrescription.dart';
+import '../classes/SingleExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
   WorkoutDay(this.prescriptionList);
 
-  final List<ExercisePrescription> prescriptionList;
+  final List<SingleExercisePrescription> prescriptionList;
 
   @override
   State<StatefulWidget> createState() {
@@ -16,11 +16,11 @@ class WorkoutDay extends StatefulWidget {
 class _WorkoutDayState extends State<WorkoutDay> {
   _WorkoutDayState(this.prescriptionList) {
       prescriptionList.forEach((prescription) {
-        prescriptionPassMap[prescription.exerciseName] = false;
+        prescriptionPassMap[prescription.exercise] = false;
       });
   }
 
-  final List<ExercisePrescription> prescriptionList;
+  final List<SingleExercisePrescription> prescriptionList;
 
   HashMap prescriptionPassMap = new HashMap<int, bool>();
 
@@ -33,8 +33,9 @@ class _WorkoutDayState extends State<WorkoutDay> {
         return Row(children: [
           Text(prescription.toString()),
           Checkbox(
-            value: prescriptionPassMap[prescription.exerciseName],
-            onChanged: (isChecked) => (prescriptionPassMap[prescription.exerciseName] = isChecked ))
+            value: prescriptionPassMap[prescription.exercise],
+            onChanged: (isChecked) => (prescriptionPassMap[prescription.exercise] = isChecked )
+            )
         ]);
       }).toList()
     );

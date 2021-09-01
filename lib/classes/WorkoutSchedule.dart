@@ -1,4 +1,6 @@
-import '../assets/constants.dart';
+import 'dart:collection';
+
+import './SingleExercisePrescription.dart';
 
 enum Weekday {
   Monday,
@@ -10,48 +12,42 @@ enum Weekday {
   Sunday
 }
 
+enum WorkoutType {
+  LowerBody1,
+  LowerBody2,
+  UpperBody1,
+  UpperBody2,
+  FullBody1,
+  FullBody2,
+  FullBody3
+}
+
 class WorkoutSchedule {
 
-  Map<Weekday, int> _valueByWeekday = {
-    Weekday.Monday : 0,
-    Weekday.Tuesday : 1,
-    Weekday.Wednesday : 2,
-    Weekday.Thursday : 3,
-    Weekday.Friday : 4,
-    Weekday.Saturday : 5,
-    Weekday.Sunday : 6
-  };
+  WorkoutSchedule();
 
-  List<Weekday> _weekdayList = [
-    Weekday.Monday,
-    Weekday.Tuesday,
-    Weekday.Wednesday,
-    Weekday.Thursday,
-    Weekday.Friday,
-    Weekday.Saturday,
-    Weekday.Sunday
-  ];
+  List<List<SingleExercisePrescription>> getThisWeeksWorkouts(bool is3day) {
+    HashMap<WorkoutType, List<SingleExercisePrescription>> prescriptionMap = getPrescriptions();
 
-  final Set<Weekday> _fullBodyDays;
-  final Set<Weekday> _splitDays;
-
-  WorkoutSchedule(this._fullBodyDays, this._splitDays);
-
-  List<Weekday> getThisWeeksWorkouts(bool is3day) {
-    List<Weekday> workoutDays = [];
+    List<List<SingleExercisePrescription>> prescriptionList = [];
     
     if (is3day) {
-      workoutDays = _fullBodyDays.toList();
+      prescriptionList.add(prescriptionMap[WorkoutType.FullBody1]);
+      prescriptionList.add(prescriptionMap[WorkoutType.FullBody2]);
+      prescriptionList.add(prescriptionMap[WorkoutType.FullBody3]);
+
     } else {
-      workoutDays = _splitDays.toList();
+      prescriptionList.add(prescriptionMap[WorkoutType.LowerBody1]);
+      prescriptionList.add(prescriptionMap[WorkoutType.UpperBody1]);
+      prescriptionList.add(prescriptionMap[WorkoutType.LowerBody2]);
+      prescriptionList.add(prescriptionMap[WorkoutType.UpperBody2]);
     }
 
-    workoutDays.sort((a, b) {
-      return _valueByWeekday[a] - _valueByWeekday[b];
-    });
+    return prescriptionList;
+  }
 
-    return workoutDays;
-
+  HashMap<WorkoutType, List<SingleExercisePrescription>> getPrescriptions() {
+    
   }
   
 }

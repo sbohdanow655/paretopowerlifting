@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../assets/constants.dart';
-import '../presenter.dart';
+import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class Workout extends StatefulWidget {
 
@@ -11,48 +10,17 @@ class Workout extends StatefulWidget {
 }
 
 class _WorkoutState extends State<Workout> {
-  
-  bool haveMicroplates = false;
 
-  String unitWeight = Constants.weightUnitLbs;
 
-  int squatPhase = 1;
-  int benchPressPhase = 1;
-  int deadliftPhase = 1;
-
-  void setMicroplates(val) {
-    setState(() {
-      haveMicroplates = val;
-    });
-  }
-
-  void setWeightUnit(val) {
-    setState(() {
-      unitWeight = val;
-    });
-  }
-
-  void setSquatPhase(val) {
-    setState(() {
-      squatPhase = val;
-    });
-  }
-
-  void setBenchPressPhase(val) {
-    setState(() {
-      benchPressPhase = val;
-    });
-  }
-
-  void setDeadliftPhase(val) {
-    setState(() {
-      deadliftPhase = val;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     
-    return Row();
+    return Column(
+      children: [
+        WorkoutDay(),
+        
+      ]
+    );
   }
 }

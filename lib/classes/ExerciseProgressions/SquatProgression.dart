@@ -1,4 +1,4 @@
-import 'package:pareto_powerlifting/classes/ExercisePrescriptions/SingleExercisePrescription.dart';
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 
 import '../../assets/constants.dart';
@@ -39,7 +39,7 @@ class SquatProgression extends ExerciseProgression {
     }
   }
 
-  void addWeight() {
+  double getWeightIncrement() {
     if (prescription.weightUnit == Constants.weightUnitLbs) {
       prescription.weight += Constants.bigWeightIncrementLbs;
     } else {

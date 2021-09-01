@@ -1,37 +1,21 @@
-import '../ExercisePrescriptions/SingleExercisePrescription.dart';
+import '../SingleExercisePrescription.dart';
 
 abstract class ExerciseProgression {
 
-  int _phaseNumber;
-  SingleExercisePrescription _prescription;
+  double getWeightIncrement(SingleExercisePrescription exercisePrescription);
 
-  SingleExercisePrescription get prescription {
-    return _prescription;
-  }
+  int getNextPhase(SingleExercisePrescription exercisePrescription);
 
-  set prescription(prescription) {
-    _prescription = prescription;
-  }
+  SingleExercisePrescription getPrescriptionFromWorkoutResult(SingleExercisePrescription exercisePrescription, bool wasSuccessful) {
+    double weight = exercisePrescription.weight;
+    int phaseNumber = exercisePrescription.phaseNumber;
 
-  get phaseNumber {
-    return _phaseNumber;
-  }
-
-  set phaseNumber(phaseNumber) {
-    _phaseNumber = phaseNumber;
-  }
-
-  void addWeight();
-
-  void incrementPhase();
-
-  bool is3day();
-
-  void updatePrescriptionFromWorkoutResult(bool wasSuccessful) {
     if (wasSuccessful) {
-      addWeight();
+      weight += getWeightIncrement(exercisePrescription);
     } else {
-      incrementPhase();
+      phaseNumber = getNextPhase(exercisePrescription);
     }
+
+    return new SingleExercisePrescription(exercisePrescription.exerciseName, weight, exercisePrescription.weightUnit, phaseNumber, exercisePrescription.numSets, exercisePrescription.numReps);
   }
 }
