@@ -13,7 +13,7 @@ class Workout extends StatefulWidget {
 
 class _WorkoutState extends State<Workout> {
 
-  List<List<SingleExercisePrescription>> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts(weightMap, weightUnit)
+  List<List<SingleExercisePrescription>> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts();
 
   @override
   Widget build(BuildContext context) {
