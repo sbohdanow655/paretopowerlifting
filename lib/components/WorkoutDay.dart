@@ -24,23 +24,26 @@ class _WorkoutDayState extends State<WorkoutDay> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> workoutDays = [];
+
+    _dailyPrescription.toTupleList().forEach((tuple) {    
+      if (tuple.exercise == Exercise.Rest) {
+        workoutDays.add(Text(tuple.prescriptionString));
+      } else {
+        workoutDays.add(Row(children: [
+          Text(tuple.prescriptionString),
+          Checkbox(
+            value: prescriptionPassMap[tuple.exercise],
+            onChanged: (isChecked) => (prescriptionPassMap[tuple.exercise] = isChecked )
+          )
+        ]));
+      }
+    });
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: 
-          _dailyPrescription.toTupleList().map((tuple) { 
-            if (tuple.exercise == Exercise.Rest) {
-              return Text(tuple.prescriptionString);
-            } 
-            return Row(children: [
-              Text(tuple.prescriptionString),
-              Checkbox(
-                value: prescriptionPassMap[tuple.exercise],
-                onChanged: (isChecked) => (prescriptionPassMap[tuple.exercise] = isChecked )
-              )
-            ]);
-          })
-    );
+      children: workoutDays 
+      );
 
   }
 }

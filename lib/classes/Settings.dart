@@ -18,8 +18,18 @@ class Settings {
   double _nextOverheadPressWeight = 45;
   double _nextPendlayRowWeight = 45;
   double _nextSkullcrusherWeight = 45;
-  HashMap<Weekday, WorkoutType> _fourDaySchedule;
-  HashMap<Weekday, WorkoutType> _threeDaySchedule;
+  Map<Weekday, WorkoutType> _fourDaySchedule = {
+    Weekday.Monday : WorkoutType.LowerBody1,
+    Weekday.Tuesday : WorkoutType.UpperBody1,
+    Weekday.Thursday : WorkoutType.LowerBody2,
+    Weekday.Friday : WorkoutType.UpperBody2
+  };
+
+  Map<Weekday, WorkoutType> _threeDaySchedule = {
+    Weekday.Monday : WorkoutType.FullBody1,
+    Weekday.Wednesday : WorkoutType.FullBody2,
+    Weekday.Friday : WorkoutType.FullBody3,  
+  };
 
 
   Settings() {
@@ -122,11 +132,11 @@ class Settings {
     return _nextSkullcrusherWeight;
   }
 
-  HashMap<Weekday, WorkoutType> get threeDaySchedule {
+  Map<Weekday, WorkoutType> get threeDaySchedule {
     return _threeDaySchedule;
   }
 
-  HashMap<Weekday, WorkoutType> get fourDaySchedule {
+  Map<Weekday, WorkoutType> get fourDaySchedule {
     return _fourDaySchedule;
   }
 }

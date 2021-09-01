@@ -36,7 +36,7 @@ class WorkoutSchedule {
     
     bool is3day = Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
 
-    HashMap<Weekday, WorkoutType> schedule = is3day ? Settings.state.threeDaySchedule : Settings.state.fourDaySchedule;
+    Map<Weekday, WorkoutType> schedule = is3day ? Settings.state.threeDaySchedule : Settings.state.fourDaySchedule;
 
     Weekday.values.forEach((weekday) {
       if (schedule.containsKey(weekday)) {
