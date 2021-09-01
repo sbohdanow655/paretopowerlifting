@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import '../assets/constants.dart';
+import 'WorkoutSchedule.dart';
 
 class Settings {
   
@@ -15,7 +18,10 @@ class Settings {
   double _nextOverheadPressWeight = 45;
   double _nextPendlayRowWeight = 45;
   double _nextSkullcrusherWeight = 45;
-  
+  HashMap<Weekday, WorkoutType> _fourDaySchedule;
+  HashMap<Weekday, WorkoutType> _threeDaySchedule;
+
+
   Settings() {
     state = this;
   }
@@ -64,6 +70,14 @@ class Settings {
     _nextSkullcrusherWeight = nextSkullcrusherWeight;
   }
 
+  set threeDaySchedule(threeDaySchedule) {
+    _threeDaySchedule = threeDaySchedule;
+  }
+
+  set fourDaySchedule(fourDaySchedule) {
+    _fourDaySchedule = fourDaySchedule;
+  }
+
   int get squatPhaseNumber {
     return _squatPhaseNumber;
   }
@@ -106,5 +120,13 @@ class Settings {
 
   double get nextSkullcrusherWeight {
     return _nextSkullcrusherWeight;
+  }
+
+  HashMap<Weekday, WorkoutType> get threeDaySchedule {
+    return _threeDaySchedule;
+  }
+
+  HashMap<Weekday, WorkoutType> get fourDaySchedule {
+    return _fourDaySchedule;
   }
 }

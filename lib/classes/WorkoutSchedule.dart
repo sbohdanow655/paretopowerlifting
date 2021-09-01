@@ -1,9 +1,9 @@
 import 'dart:collection';
 
 import 'package:pareto_powerlifting/classes/DailyExercisePresciption.dart';
+import 'package:pareto_powerlifting/classes/DailyRestPrescription.dart';
 import 'package:pareto_powerlifting/classes/GetDailyPrescriptions.dart';
-
-import './SingleExercisePrescription.dart';
+import 'IDailyPrescription.dart';
 import 'Settings.dart';
 
 enum Weekday {
@@ -30,25 +30,22 @@ class WorkoutSchedule {
 
   WorkoutSchedule();
 
-  static List<DailyExercisePrescription> getThisWeeksWorkouts() {
+  static HashMap<Weekday, DailyExercisePrescription> getThisWeeksWorkouts() {
 
-    List<DailyExercisePrescription> dailyPrescriptionList = [];
+    HashMap<Weekday, IDailyPrescription> dailyPrescriptionMap = new HashMap();
     
     bool is3day = Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
 
-    if (is3day) {
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody1));
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody2));
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody3));
+    HashMap<Weekday, WorkoutType> schedule = is3day ? Settings.state.threeDaySchedule : Settings.state.fourDaySchedule;
 
-    } else {
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody1));
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody1));
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody2));
-      dailyPrescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody2));
+    Weekday.values.forEach((weekday) {
+      if (schedule.containsKey(weekday)) {
+        dailyPrescriptionMap[weekday] = GetDailyPrescriptions.getDailyPrescriptions(schedule[weekday]);
+      } else {
+        dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+      }
+    });
 
-    }
-
-    return dailyPrescriptionList;
+    return dailyPrescriptionMap;
   }  
 }
