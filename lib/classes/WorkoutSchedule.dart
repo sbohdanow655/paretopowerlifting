@@ -28,30 +28,25 @@ class WorkoutSchedule {
 
   WorkoutSchedule();
 
-  List<List<SingleExercisePrescription>> getThisWeeksWorkouts(bool is3day) {
-    HashMap<WorkoutType, List<SingleExercisePrescription>> prescriptionMap = GetDailyPrescriptions.getDailyPrescriptions(workoutType, phaseNumberMap, startingWeightMap, weightUnit);
+  static List<List<SingleExercisePrescription>> getThisWeeksWorkouts(HashMap<Exercise, int> phaseNumberMap, HashMap<Exercise, double> weightMap, String weightUnit) {
 
     List<List<SingleExercisePrescription>> prescriptionList = [];
     
+    bool is3day = phaseNumberMap[Exercise.Squat] <= 2 || phaseNumberMap[Exercise.Deadlift] <= 2 || phaseNumberMap[Exercise.BenchPress] <= 2;
+
     if (is3day) {
-      prescriptionList.add(prescriptionMap[WorkoutType.FullBody1]);
-      prescriptionList.add(prescriptionMap[WorkoutType.FullBody2]);
-      prescriptionList.add(prescriptionMap[WorkoutType.FullBody3]);
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody1, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody2, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody3, phaseNumberMap, weightMap, weightUnit));
 
     } else {
-      prescriptionList.add(prescriptionMap[WorkoutType.LowerBody1]);
-      prescriptionList.add(prescriptionMap[WorkoutType.UpperBody1]);
-      prescriptionList.add(prescriptionMap[WorkoutType.LowerBody2]);
-      prescriptionList.add(prescriptionMap[WorkoutType.UpperBody2]);
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody1, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody1, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody2, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody2, phaseNumberMap, weightMap, weightUnit));
+
     }
 
     return prescriptionList;
-  }
-
-  HashMap<WorkoutType, List<SingleExercisePrescription>> getPrescriptions() {
-
-  }
-
-  HashMap<WorkoutType, List<SingleExercisePrescription>> getDailyPrescriptions() {}
-  
+  }  
 }

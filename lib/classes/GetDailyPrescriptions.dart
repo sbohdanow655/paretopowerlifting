@@ -127,5 +127,7 @@ class GetDailyPrescriptions {
               break;
           }
       }
+
+      return prescriptionList;
   }
 }

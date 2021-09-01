@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 import 'dart:collection';
 import '../classes/SingleExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
-  WorkoutDay(this.prescriptionList);
 
   final List<SingleExercisePrescription> prescriptionList;
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutDayState(this.prescriptionList);
+    return _WorkoutDayState();
   }
 }
 
 class _WorkoutDayState extends State<WorkoutDay> {
-  _WorkoutDayState(this.prescriptionList) {
-      prescriptionList.forEach((prescription) {
-        prescriptionPassMap[prescription.exercise] = false;
-      });
-  }
-
-  final List<SingleExercisePrescription> prescriptionList;
 
   HashMap prescriptionPassMap = new HashMap<int, bool>();
 
   @override
   Widget build(BuildContext context) {
-    
+    final List<List<SingleExercisePrescription>> prescriptionList = WorkoutSchedule.getThisWeeksWorkouts(phaseNumberMap, weightMap, weightUnit);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: prescriptionList.map((prescription) { 

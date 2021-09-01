@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/SettingsState.dart';
 import '../assets/constants.dart';
-import '../presenter.dart';
 
 class Settings extends StatefulWidget {
 
@@ -12,9 +12,9 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   
-  bool haveMicroplates = false;
+  bool useMicroplates = false;
 
-  String unitWeight = Constants.weightUnitLbs;
+  String weightUnit = Constants.weightUnitLbs;
 
   int squatPhase = 1;
   int benchPressPhase = 1;
@@ -22,32 +22,45 @@ class _SettingsState extends State<Settings> {
 
   void setMicroplates(val) {
     setState(() {
-      haveMicroplates = val;
+      useMicroplates = val;
     });
+
+    SettingsState.settingsState.useMicroplates = val;
   }
 
   void setWeightUnit(val) {
     setState(() {
-      unitWeight = val;
+      weightUnit = val;
     });
+
+    SettingsState.settingsState.weightUnit = val;
+
   }
 
   void setSquatPhase(val) {
     setState(() {
       squatPhase = val;
     });
+
+    SettingsState.settingsState.squatPhaseNumber = val;
   }
 
   void setBenchPressPhase(val) {
     setState(() {
       benchPressPhase = val;
     });
+    
+    SettingsState.settingsState.benchPressPhaseNumber = val;
+
   }
 
   void setDeadliftPhase(val) {
     setState(() {
       deadliftPhase = val;
     });
+
+    SettingsState.settingsState.deadliftPhaseNumber = val;
+
   }
 
   @override
@@ -91,10 +104,10 @@ class _SettingsState extends State<Settings> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith((val) => Colors.blue),
-                  value: haveMicroplates,
+                  value: useMicroplates,
                   onChanged: (bool value) {
                     setState(() {
-                      haveMicroplates = value;
+                      useMicroplates = value;
                     });
                   },
                 )
@@ -103,7 +116,7 @@ class _SettingsState extends State<Settings> {
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child:  
                 DropdownButton<String>(
-                  value: unitWeight,
+                  value: weightUnit,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
                   onChanged: (val) => setWeightUnit(val),
                   items: <String>[Constants.weightUnitLbs, Constants.weightUnitKg]
