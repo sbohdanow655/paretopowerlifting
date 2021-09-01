@@ -1,8 +1,8 @@
+import 'package:pareto_powerlifting/classes/ExercisePrescriptions/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 
 import '../../assets/constants.dart';
-import '../ExerciseProgression.dart';
-import '../ExercisePrescription.dart';
+import 'ExerciseProgression.dart';
 import 'dart:collection';
 
 class SquatProgression extends ExerciseProgression {
@@ -13,22 +13,16 @@ class SquatProgression extends ExerciseProgression {
   HashMap<String, int> _repMap = new HashMap<String, int>();
     
 
-  SquatProgression(prescription) {
+  SquatProgression(SingleExercisePrescription prescription) {
     this.prescription = prescription;
   }
 
-  void updateFromWorkSchedule(workoutSchedule) {
-    _setMap = new HashMap<String, int>();
-    _repMap = new HashMap<String, int>();
+  void updateFromWorkSchedule(WorkoutSchedule workoutSchedule) {
     
-    switch (_phaseNumber) {
+    switch (phaseNumber) {
       case 1:
-        _setMap[workoutSchedule.fullBodyDay1] = 3;
-        _repMap[workoutSchedule.fullBodyDay1] = 5;
-        _setMap[workoutSchedule.fullBodyDay2] = 3;
-        _repMap[workoutSchedule.fullBodyDay2] = 5;
-        _setMap[workoutSchedule.fullBodyDay3] = 3;
-        _repMap[workoutSchedule.fullBodyDay3] = 5;
+        prescription.numSets = 3;
+        prescription.numReps = 5;
         break;
       case 2:
         _setMap[workoutSchedule.fullBodyDay1] = 3;
@@ -54,13 +48,13 @@ class SquatProgression extends ExerciseProgression {
   }
 
   void incrementPhase() {
-    if (prescription.phaseNumber < 3) {
-      prescription.phaseNumber++;
+    if (phaseNumber < 3) {
+      phaseNumber++;
     }
   }
 
   bool is3day() {
-    if (prescription.phaseNumber < 3) {
+    if (phaseNumber < 3) {
       return true;
     }
 

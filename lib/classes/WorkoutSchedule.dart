@@ -37,29 +37,21 @@ class WorkoutSchedule {
 
   WorkoutSchedule(this._fullBodyDays, this._splitDays);
 
-  Weekday getNextWorkoutDay(bool is3day, Weekday lastWorkoutDay) {
-    int lastValue = _valueByWeekday[lastWorkoutDay];
-
-    for (int i = lastValue + 1; i <= _weekdayList.length; i++) {
-      if (i == _weekdayList.length) {
-        i = 0;
-      }
-
-      if (is3day) {
-        
-        if (_fullBodyDays.contains(_weekdayList[i])) {
-          return _weekdayList[i];
-        }
-
-      } else {
-        
-        if (_splitDays.contains(_weekdayList[i])) {
-          return _weekdayList[i];
-        }
-      }
-      
-      throw Exception("Weekday not found");
+  List<Weekday> getThisWeeksWorkouts(bool is3day) {
+    List<Weekday> workoutDays = [];
+    
+    if (is3day) {
+      workoutDays = _fullBodyDays.toList();
+    } else {
+      workoutDays = _splitDays.toList();
     }
+
+    workoutDays.sort((a, b) {
+      return _valueByWeekday[a] - _valueByWeekday[b];
+    });
+
+    return workoutDays;
+
   }
   
 }
