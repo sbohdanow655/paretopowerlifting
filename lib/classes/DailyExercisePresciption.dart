@@ -6,11 +6,13 @@ class DailyExercisePrescription extends IDailyPrescription {
   
   DailyExercisePrescription(this._prescriptionList);
 
-  List<String> toStringList() {
-    List<String> stringList = this._prescriptionList.map((prescription) {
-      return prescription.toString();
+  List<ExercisePrescriptionStringTuple> toTupleList() {
+    List<ExercisePrescriptionStringTuple> tupleList = [];
+
+    this._prescriptionList.map((singleExercisePrescription) {
+      tupleList.add(new ExercisePrescriptionStringTuple(singleExercisePrescription.exercise, singleExercisePrescription.toString()));
     });
 
-    return stringList;
+    return tupleList;
   } 
 }

@@ -5,7 +5,8 @@ enum Exercise {
   OverheadPress,
   PendlayRow,
   Skullcrushers,
-  HIITConditioning
+  HIITConditioning,
+  Rest
 }
 
 class SingleExercisePrescription {

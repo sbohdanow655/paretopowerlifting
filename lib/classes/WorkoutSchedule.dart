@@ -30,7 +30,7 @@ class WorkoutSchedule {
 
   WorkoutSchedule();
 
-  static HashMap<Weekday, DailyExercisePrescription> getThisWeeksWorkouts() {
+  static HashMap<Weekday, IDailyPrescription> getThisWeeksWorkouts() {
 
     HashMap<Weekday, IDailyPrescription> dailyPrescriptionMap = new HashMap();
     

@@ -68,4 +68,6 @@ class Constants {
   static const String saturday = "Saturday";
   static const String sunday = "Sunday";
 
+  static const String restDay = "Rest Day";
+
 }
