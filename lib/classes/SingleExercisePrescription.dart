@@ -4,18 +4,18 @@ enum Exercise {
   Deadlift,
   OverheadPress,
   PendlayRow,
-  Skullcrushers
+  Skullcrushers,
+  HIITConditioning
 }
 
 class SingleExercisePrescription {
   final Exercise _exercise;
   double _weight;
   String _weightUnit;
-  int _phaseNumber;
   int _numSets;
   int _numReps;
 
-  SingleExercisePrescription(this._exercise, this._weight, this._weightUnit, this._phaseNumber, this._numSets, this._numReps);
+  SingleExercisePrescription(this._exercise, this._weight, this._weightUnit, this._numSets, this._numReps);
 
   Exercise get exercise {
     return _exercise;
@@ -31,10 +31,6 @@ class SingleExercisePrescription {
 
   String get weightUnit {
     return _weightUnit;
-  }
-
-  int get phaseNumber {
-    return _phaseNumber;
   }
 
   int get numSets {

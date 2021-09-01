@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:pareto_powerlifting/classes/GetDailyPrescriptions.dart';
+
 import './SingleExercisePrescription.dart';
 
 enum Weekday {
@@ -27,7 +29,7 @@ class WorkoutSchedule {
   WorkoutSchedule();
 
   List<List<SingleExercisePrescription>> getThisWeeksWorkouts(bool is3day) {
-    HashMap<WorkoutType, List<SingleExercisePrescription>> prescriptionMap = getPrescriptions();
+    HashMap<WorkoutType, List<SingleExercisePrescription>> prescriptionMap = GetDailyPrescriptions.getDailyPrescriptions(workoutType, phaseNumberMap, startingWeightMap, weightUnit);
 
     List<List<SingleExercisePrescription>> prescriptionList = [];
     
@@ -47,7 +49,9 @@ class WorkoutSchedule {
   }
 
   HashMap<WorkoutType, List<SingleExercisePrescription>> getPrescriptions() {
-    
+
   }
+
+  HashMap<WorkoutType, List<SingleExercisePrescription>> getDailyPrescriptions() {}
   
 }
