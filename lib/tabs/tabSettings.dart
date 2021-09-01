@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/SettingsState.dart';
+import 'package:pareto_powerlifting/classes/Settings.dart';
 import '../assets/constants.dart';
 
-class Settings extends StatefulWidget {
+class SettingsTab extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _SettingsState();
+    return _SettingsTabState();
   }
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsTabState extends State<SettingsTab> {
   
   bool useMicroplates = false;
 
@@ -25,7 +25,7 @@ class _SettingsState extends State<Settings> {
       useMicroplates = val;
     });
 
-    SettingsState.settingsState.useMicroplates = val;
+    Settings.state.useMicroplates = val;
   }
 
   void setWeightUnit(val) {
@@ -33,7 +33,7 @@ class _SettingsState extends State<Settings> {
       weightUnit = val;
     });
 
-    SettingsState.settingsState.weightUnit = val;
+    Settings.state.weightUnit = val;
 
   }
 
@@ -42,7 +42,7 @@ class _SettingsState extends State<Settings> {
       squatPhase = val;
     });
 
-    SettingsState.settingsState.squatPhaseNumber = val;
+    Settings.state.squatPhaseNumber = val;
   }
 
   void setBenchPressPhase(val) {
@@ -50,7 +50,7 @@ class _SettingsState extends State<Settings> {
       benchPressPhase = val;
     });
     
-    SettingsState.settingsState.benchPressPhaseNumber = val;
+    Settings.state.benchPressPhaseNumber = val;
 
   }
 
@@ -59,7 +59,7 @@ class _SettingsState extends State<Settings> {
       deadliftPhase = val;
     });
 
-    SettingsState.settingsState.deadliftPhaseNumber = val;
+    Settings.state.deadliftPhaseNumber = val;
 
   }
 

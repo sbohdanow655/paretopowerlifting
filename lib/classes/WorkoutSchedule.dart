@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:pareto_powerlifting/classes/GetDailyPrescriptions.dart';
 
 import './SingleExercisePrescription.dart';
+import 'Settings.dart';
 
 enum Weekday {
   Monday,
@@ -28,22 +29,22 @@ class WorkoutSchedule {
 
   WorkoutSchedule();
 
-  static List<List<SingleExercisePrescription>> getThisWeeksWorkouts(HashMap<Exercise, int> phaseNumberMap, HashMap<Exercise, double> weightMap, String weightUnit) {
+  static List<List<SingleExercisePrescription>> getThisWeeksWorkouts() {
 
     List<List<SingleExercisePrescription>> prescriptionList = [];
     
-    bool is3day = phaseNumberMap[Exercise.Squat] <= 2 || phaseNumberMap[Exercise.Deadlift] <= 2 || phaseNumberMap[Exercise.BenchPress] <= 2;
+    bool is3day = Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
 
     if (is3day) {
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody1, phaseNumberMap, weightMap, weightUnit));
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody2, phaseNumberMap, weightMap, weightUnit));
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody3, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody1));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody2));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.FullBody3));
 
     } else {
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody1, phaseNumberMap, weightMap, weightUnit));
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody1, phaseNumberMap, weightMap, weightUnit));
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody2, phaseNumberMap, weightMap, weightUnit));
-      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody2, phaseNumberMap, weightMap, weightUnit));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody1));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody1));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.LowerBody2));
+      prescriptionList.add(GetDailyPrescriptions.getDailyPrescriptions(WorkoutType.UpperBody2));
 
     }
 
