@@ -4,23 +4,12 @@ import 'dart:collection';
 
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
-class WorkoutDay extends StatefulWidget {
+class WorkoutDay extends StatelessWidget {
   WorkoutDay(this._dailyPrescription);
-
-  final IDailyPrescription _dailyPrescription;
-
-  @override
-  State<StatefulWidget> createState() {
-    return _WorkoutDayState(this._dailyPrescription);
-  }
-}
-
-class _WorkoutDayState extends State<WorkoutDay> {
-  _WorkoutDayState(this._dailyPrescription);
   
   final IDailyPrescription _dailyPrescription;
 
-  HashMap prescriptionPassMap = new HashMap<int, bool>();
+  final HashMap prescriptionPassMap = new HashMap<int, bool>();
 
   @override
   Widget build(BuildContext context) {

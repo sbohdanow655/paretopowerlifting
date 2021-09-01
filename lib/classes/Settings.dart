@@ -18,6 +18,7 @@ class Settings {
   double _nextOverheadPressWeight = 45;
   double _nextPendlayRowWeight = 45;
   double _nextSkullcrusherWeight = 45;
+  
   Map<Weekday, WorkoutType> _fourDaySchedule = {
     Weekday.Monday : WorkoutType.LowerBody1,
     Weekday.Tuesday : WorkoutType.UpperBody1,

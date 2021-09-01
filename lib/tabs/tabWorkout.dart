@@ -17,10 +17,11 @@ class WorkoutTab extends StatefulWidget {
 
 class _WorkoutTabState extends State<WorkoutTab> {
 
-  HashMap<Weekday, IDailyPrescription> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts();
-
   @override
   Widget build(BuildContext context) {
+
+    HashMap<Weekday, IDailyPrescription> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts();
+
 
     List<WorkoutDay> workoutDayList = [];
 
