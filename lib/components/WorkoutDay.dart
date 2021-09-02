@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
   final IDailyPrescription _dailyPrescription;
@@ -21,16 +22,16 @@ class WorkoutDayState extends State<WorkoutDay> {
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
 
-  Map<String, bool> _prescriptionPassMap = {
-    Constants.exerciseSquat : false,
-    Constants.exerciseBenchPress : false,
-    Constants.exerciseDeadlift : false,
-    Constants.exerciseOverheadPress : false,
-    Constants.exercisePendlayRow : false,
-    Constants.exerciseSkullcrushers : false,
+  Map<Exercise, bool> _prescriptionPassMap = {
+    Exercise.Squat : false,
+    Exercise.BenchPress : false,
+    Exercise.Deadlift : false,
+    Exercise.OverheadPress : false,
+    Exercise.PendlayRow : false,
+    Exercise.Skullcrushers : false,
   };
 
-  void setPrescriptionPass(String exercise, bool wasPassed) {
+  void setPrescriptionPass(Exercise exercise, bool wasPassed) {
     setState(() {
       _prescriptionPassMap[exercise] = wasPassed;
     });
@@ -53,7 +54,7 @@ class WorkoutDayState extends State<WorkoutDay> {
     _dailyPrescription.toTupleList().forEach((tuple) {    
       List<Widget> children = [];
       
-      if (tuple.exercise == Constants.restDay) {
+      if (tuple.exercise == Exercise.Rest) {
         columnList.add(Padding(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
           child: Row(mainAxisAlignment: MainAxisAlignment.center,
@@ -65,9 +66,18 @@ class WorkoutDayState extends State<WorkoutDay> {
       } else {
         children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.workoutTabWeekdayFontSize)));
         children.add(
-          Checkbox(
-            value: _prescriptionPassMap[tuple.exercise],
-            onChanged: (isChecked) => ( setPrescriptionPass(tuple.exercise, isChecked) ))
+          DropdownButton<String>(
+            value: _prescriptionPassMap[tuple.exercise] ? Constants.pass : Constants.fail,
+            style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
+            onChanged: (val) => setPrescriptionPass(tuple.exercise, val == Constants.pass),
+            items: <String>[Constants.fail, Constants.pass]
+              .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value.toString())
+                );
+              }).toList()
+          )
         );
       }
       

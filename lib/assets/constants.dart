@@ -34,6 +34,9 @@ class Constants {
 
   static const String title = "Pareto Powerlifting";
 
+  static const String pass = "PASS";
+  static const String fail = "FAIL";
+
   static const String routeMainPage = "/mainPage";
   static const String routeRecoverySurvey = "/recoverySurvey";
   static const String routeStartPage = "/startPage";

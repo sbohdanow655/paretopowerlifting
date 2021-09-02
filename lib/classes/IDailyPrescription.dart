@@ -1,14 +1,16 @@
+import 'SingleExercisePrescription.dart';
+
 abstract class IDailyPrescription {
   List<ExercisePrescriptionStringTuple> toTupleList();
 }
 
 class ExercisePrescriptionStringTuple {
-  String _exercise;
+  Exercise _exercise;
   String _prescriptionString;
   
   ExercisePrescriptionStringTuple(this._exercise, this._prescriptionString);
 
-  String get exercise {
+  Exercise get exercise {
     return _exercise;
   }
 
