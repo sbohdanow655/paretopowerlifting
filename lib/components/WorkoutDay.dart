@@ -79,10 +79,13 @@ class WorkoutDayState extends State<WorkoutDay> {
       );
     });
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: columnList
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),  
+        child: Column(children: columnList)
+      )
     ); 
       
 
