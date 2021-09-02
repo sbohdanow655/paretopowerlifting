@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:pareto_powerlifting/classes/DailyExercisePresciption.dart';
 import 'package:pareto_powerlifting/classes/DailyRestPrescription.dart';
 import 'package:pareto_powerlifting/classes/GetDailyPrescriptions.dart';
+import 'package:pareto_powerlifting/tabs/tabWorkout.dart';
 import 'IDailyPrescription.dart';
 import 'Settings.dart';
 
@@ -23,7 +24,8 @@ enum WorkoutType {
   UpperBody2,
   FullBody1,
   FullBody2,
-  FullBody3
+  FullBody3,
+  RestDay
 }
 
 class WorkoutSchedule {
@@ -34,16 +36,23 @@ class WorkoutSchedule {
 
     HashMap<Weekday, IDailyPrescription> dailyPrescriptionMap = new HashMap();
     
-    bool is3day = Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
-
-    Map<Weekday, WorkoutType> schedule = is3day ? Settings.state.threeDaySchedule : Settings.state.fourDaySchedule;
+    bool is3day = Settings.state.is3day();
 
     Weekday.values.forEach((weekday) {
-      if (schedule.containsKey(weekday)) {
-        dailyPrescriptionMap[weekday] = GetDailyPrescriptions.getDailyPrescriptions(schedule[weekday]);
+      if (is3day) {
+        if (Settings.state.threeDayScheduleContainsWeekday(weekday)) {
+          dailyPrescriptionMap[weekday] = GetDailyPrescriptions.getDailyPrescriptions(Settings.state.getThreeDayWorkoutTypeFromWeekday(weekday));
+        } else {
+          dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+        }
       } else {
-        dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+        if (Settings.state.fourDayScheduleContainsWeekday(weekday)) {
+          dailyPrescriptionMap[weekday] = GetDailyPrescriptions.getDailyPrescriptions(Settings.state.getFourDayWorkoutTypeFromWeekday(weekday));
+        } else {
+          dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+        }
       }
+
     });
 
     return dailyPrescriptionMap;

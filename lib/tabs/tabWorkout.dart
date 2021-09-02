@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/DailyExercisePresciption.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
+import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
@@ -26,7 +26,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     List<WorkoutDay> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday], weekday);
+      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday],  weekday);
       workoutDayList.add(workoutDay);
     });
 

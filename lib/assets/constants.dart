@@ -102,6 +102,16 @@ class Constants {
     Weekday.Sunday : sunday
   };
 
+  static const Map<Weekday, int> weekdayValues = {
+    Weekday.Monday : 0,
+    Weekday.Tuesday : 1,
+    Weekday.Wednesday : 2,
+    Weekday.Thursday : 3,
+    Weekday.Friday : 4,
+    Weekday.Saturday : 5,
+    Weekday.Sunday : 6
+  };
+
   static const Map<Exercise, String> exerciseStrings = {
     Exercise.Squat : exerciseSquat,
     Exercise.BenchPress : exerciseBenchPress,
@@ -112,4 +122,5 @@ class Constants {
     Exercise.HIITConditioning : exerciseHIIT,
     Exercise.Rest : exerciseRest
   };
+
 }

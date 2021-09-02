@@ -18,18 +18,18 @@ class Settings {
   double _nextOverheadPressWeight = 45;
   double _nextPendlayRowWeight = 45;
   double _nextSkullcrusherWeight = 45;
-  
-  Map<Weekday, WorkoutType> _fourDaySchedule = {
-    Weekday.Monday : WorkoutType.LowerBody1,
-    Weekday.Tuesday : WorkoutType.UpperBody1,
-    Weekday.Thursday : WorkoutType.LowerBody2,
-    Weekday.Friday : WorkoutType.UpperBody2
+
+  Map<WorkoutType, Weekday> _fourDaySchedule = {
+    WorkoutType.LowerBody1 : Weekday.Monday,
+    WorkoutType.UpperBody1 : Weekday.Tuesday,
+    WorkoutType.LowerBody2 : Weekday.Thursday,
+    WorkoutType.UpperBody2 : Weekday.Friday
   };
 
-  Map<Weekday, WorkoutType> _threeDaySchedule = {
-    Weekday.Monday : WorkoutType.FullBody1,
-    Weekday.Wednesday : WorkoutType.FullBody2,
-    Weekday.Friday : WorkoutType.FullBody3,  
+  Map<WorkoutType, Weekday> _threeDaySchedule = {
+    WorkoutType.FullBody1 : Weekday.Monday,
+    WorkoutType.FullBody2 : Weekday.Wednesday,
+    WorkoutType.FullBody3 : Weekday.Friday
   };
 
 
@@ -133,11 +133,47 @@ class Settings {
     return _nextSkullcrusherWeight;
   }
 
-  Map<Weekday, WorkoutType> get threeDaySchedule {
-    return _threeDaySchedule;
+  bool fourDayScheduleContainsWeekday(Weekday weekday) {
+    return _fourDaySchedule.containsValue(weekday);
   }
 
-  Map<Weekday, WorkoutType> get fourDaySchedule {
-    return _fourDaySchedule;
+  bool threeDayScheduleContainsWeekday(Weekday weekday) {
+    return _threeDaySchedule.containsValue(weekday);
   }
+
+  WorkoutType getFourDayWorkoutTypeFromWeekday(Weekday weekday) {
+    WorkoutType workoutTypeFromWeekday;
+    
+    _fourDaySchedule.keys.forEach((workoutType) {
+      if (_fourDaySchedule[workoutType] == weekday) {
+        workoutTypeFromWeekday = workoutType;
+      }
+    });
+
+    return workoutTypeFromWeekday;
+  }
+
+  WorkoutType getThreeDayWorkoutTypeFromWeekday(Weekday weekday) {
+    WorkoutType workoutTypeFromWeekday;
+    
+    _threeDaySchedule.keys.forEach((workoutType) {
+      if (_threeDaySchedule[workoutType] == weekday) {
+        workoutTypeFromWeekday = workoutType;
+      }
+    });
+
+    return workoutTypeFromWeekday;
+  }
+
+  void addDayToFourDaySchedule(Weekday weekday, WorkoutType workoutType) {
+    _fourDaySchedule[workoutType] = weekday;
+  }
+
+  void addDayToThreeDaySchedule(Weekday weekday, WorkoutType workoutType) {
+    _threeDaySchedule[workoutType] = weekday;
+  }
+
+  bool is3day() {
+    return Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
+  } 
 }

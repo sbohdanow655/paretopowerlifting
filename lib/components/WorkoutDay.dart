@@ -54,6 +54,7 @@ class WorkoutDayState extends State<WorkoutDay> {
       if (tuple.exercise != Constants.exerciseRest) {
         rightColumnList.add(Row(
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Checkbox(
               value: _prescriptionPassMap[tuple.exercise],
@@ -69,7 +70,8 @@ class WorkoutDayState extends State<WorkoutDay> {
         Column(
           children: leftColumnList
         ),
-        Column(children: rightColumnList
+        Column(
+          children: rightColumnList
         )
       ]
     );

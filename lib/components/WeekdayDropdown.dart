@@ -24,20 +24,25 @@ class WeekdayDropdownState extends State<WeekdayDropdown> {
   Weekday _selectedWeekday;
 
   void setSelectedWeekday(Weekday weekday) {
-    setState(() {
-      _selectedWeekday = weekday;
-    });
-
+    
     switch(_workoutType) {
       case WorkoutType.FullBody1:
       case WorkoutType.FullBody2:
       case WorkoutType.FullBody3:
-        Settings.state.threeDaySchedule[weekday] = _workoutType;
+
+        Settings.state.addDayToThreeDaySchedule(weekday, _workoutType);
+
         break;
       default:
-        Settings.state.fourDaySchedule[weekday] = _workoutType;
-        break;
+
+        Settings.state.addDayToFourDaySchedule(weekday, _workoutType);
+
+       break;
     }
+    
+    setState(() {
+      _selectedWeekday = weekday;
+    });
 
   }
 

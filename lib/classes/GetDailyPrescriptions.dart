@@ -1,11 +1,13 @@
 import 'package:pareto_powerlifting/classes/DailyExercisePresciption.dart';
+import 'package:pareto_powerlifting/classes/DailyRestPrescription.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
+import 'IDailyPrescription.dart';
 import 'Settings.dart';
 import 'WorkoutSchedule.dart';
 
 class GetDailyPrescriptions {
 
-  static DailyExercisePrescription getDailyPrescriptions(WorkoutType workoutType) {
+  static IDailyPrescription getDailyPrescriptions(WorkoutType workoutType) {
     List<SingleExercisePrescription> prescriptionList = [];
     
       switch(workoutType) {
@@ -16,15 +18,8 @@ class GetDailyPrescriptions {
 
           break;
         case WorkoutType.FullBody2:
-          switch(Settings.state.squatPhaseNumber) {
-            case 1:
-              prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, Settings.state.nextSquatWeight, Settings.state.weightUnit, 3, 5));
-              break;
-            default:
-              prescriptionList.add(null);
-              break;
-          }
-          
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, Settings.state.nextSquatWeight, Settings.state.weightUnit, 3, 5));
+
           switch(Settings.state.benchPressPhaseNumber) {
             case 1:
               prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, Settings.state.nextBenchPressWeight, Settings.state.weightUnit, 3, 5));
@@ -138,6 +133,12 @@ class GetDailyPrescriptions {
 
               break;
           }
+          break;
+        case WorkoutType.RestDay:
+          return DailyRestPrescription();
+          break;
+        default:
+          break;
       }
 
       return DailyExercisePrescription(prescriptionList);

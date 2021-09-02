@@ -36,7 +36,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedThreeDay1 = weekday;
     });
 
-    Settings.state.threeDaySchedule[weekday] = WorkoutType.FullBody1;
+    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody1);
   }
 
   void setSelectedThreeDay2(Weekday weekday) {
@@ -44,7 +44,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedThreeDay2 = weekday;
     });
 
-    Settings.state.threeDaySchedule[weekday] = WorkoutType.FullBody2;
+    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody2);
   }
 
   void setSelectedThreeDay3(Weekday weekday) {
@@ -52,7 +52,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedThreeDay3 = weekday;
     });
 
-    Settings.state.threeDaySchedule[weekday] = WorkoutType.FullBody3;
+    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody3);
   }
 
   void setSelectedFourDay1(Weekday weekday) {
@@ -60,7 +60,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedFourDay1 = weekday;
     });
 
-    Settings.state.fourDaySchedule[weekday] = WorkoutType.LowerBody1;
+    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.LowerBody1);
   }
   
   void setSelectedFourDay2(Weekday weekday) {
@@ -68,7 +68,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedFourDay2 = weekday;
     });
 
-    Settings.state.fourDaySchedule[weekday] = WorkoutType.UpperBody1;
+    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.UpperBody1);
   }
 
   void setSelectedFourDay3(Weekday weekday) {
@@ -76,7 +76,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedFourDay3 = weekday;
     });
 
-    Settings.state.fourDaySchedule[weekday] = WorkoutType.LowerBody2;
+    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.LowerBody2);
   }
 
   void setSelectedFourDay4(Weekday weekday) {
@@ -84,7 +84,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _selectedFourDay4 = weekday;
     });
 
-    Settings.state.fourDaySchedule[weekday] = WorkoutType.UpperBody2;
+    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.UpperBody2);
   }
 
   void setMicroplates(val) {
