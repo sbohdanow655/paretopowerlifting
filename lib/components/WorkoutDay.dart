@@ -81,7 +81,9 @@ class WorkoutDayState extends State<WorkoutDay> {
 
     return Container(
       alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      color: Colors.white,
       child: Column(children: columnList)
     ); 
       

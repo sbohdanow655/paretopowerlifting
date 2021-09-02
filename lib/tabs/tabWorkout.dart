@@ -30,8 +30,9 @@ class _WorkoutTabState extends State<WorkoutTab> {
     });
 
     return SingleChildScrollView(
-      child: Padding(
+      child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        color: const Color(0xfff5f5f5),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: workoutDayList 
