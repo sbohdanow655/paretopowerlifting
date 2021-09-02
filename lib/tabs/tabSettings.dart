@@ -76,69 +76,21 @@ class _SettingsTabState extends State<SettingsTab> {
   Widget build(BuildContext context) {
     
     return SingleChildScrollView(
-      child: Row( 
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      child:
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          child:
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
-
+          crossAxisAlignment: CrossAxisAlignment.start,
           children:[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.useMicroplates, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectWeightUnit, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectSquatPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectBenchPressPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectDeadliftPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectFullBodyWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectFullBodyWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectFullBodyWorkoutDay3, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectUpperLowerWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectUpperLowerWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectUpperLowerWorkoutDay3, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-              child: Text(Constants.selectUpperLowerWorkoutDay4, style: TextStyle(fontSize: Constants.settingsFontSize)),
-            ),
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [  
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                  child: Text(Constants.useMicroplates, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                ),
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith((val) => Colors.blue),
@@ -151,9 +103,12 @@ class _SettingsTabState extends State<SettingsTab> {
                 )
               ]
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [  
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                  child: Text(Constants.selectWeightUnit, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                ),
                 DropdownButton<String>(
                   value: _weightUnit,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
@@ -162,15 +117,17 @@ class _SettingsTabState extends State<SettingsTab> {
                     .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value)
+                        child: Text(value.toString())
                       );
                     }).toList()
                 ),
-              ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [  
+              ]),
+             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                  child: Text(Constants.selectSquatPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                ),
                 DropdownButton<int>(
                   value: _squatPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
@@ -183,11 +140,13 @@ class _SettingsTabState extends State<SettingsTab> {
                       );
                     }).toList()
                 ),
-              ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [ 
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                  child: Text(Constants.selectBenchPressPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                ),
                 DropdownButton<int>(
                   value: _benchPressPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
@@ -200,11 +159,13 @@ class _SettingsTabState extends State<SettingsTab> {
                       );
                     }).toList()
                 ),
-              ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                  child: Text(Constants.selectDeadliftPhase, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                ),
                 DropdownButton<int>(
                   value: _deadliftPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
@@ -217,53 +178,73 @@ class _SettingsTabState extends State<SettingsTab> {
                       );
                     }).toList()
                 ),
-              ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.FullBody1)
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectFullBodyWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.FullBody1)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.FullBody2)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectFullBodyWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.FullBody2)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.FullBody3)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectFullBodyWorkoutDay3, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.FullBody3)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.LowerBody1)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectUpperLowerWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.LowerBody1)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.UpperBody1)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectUpperLowerWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.UpperBody1)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.LowerBody2)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectUpperLowerWorkoutDay3, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.LowerBody2)
                 ]
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                WeekdayDropdown(WorkoutType.UpperBody2)
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    child: Text(Constants.selectUpperLowerWorkoutDay4, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                  ),
+                  WeekdayDropdown(WorkoutType.UpperBody2)
                 ]
-            ),
+              ),
+            //TextField(maxLength: 4, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Squat, val)) 
           ]
         )
-      ]
       )
     );
   }

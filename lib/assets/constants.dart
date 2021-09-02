@@ -84,6 +84,13 @@ class Constants {
   static const String selectUpperLowerWorkoutDay3 = "Upper/Lower Workout Day 3";
   static const String selectUpperLowerWorkoutDay4 = "Upper/Lower Workout Day 4";
 
+  static const String enterWeightSquat = "Next Squat Weight";
+  static const String enterWeightBenchPress = "Next Bench Press Weight";
+  static const String enterWeightDeadlift = "Next Deadlift Weight";
+  static const String enterWeightOverheadPress = "Next Overhead Press Weight";
+  static const String enterWeightPendlayRow = "Enter Next Pendlay Row Weight";
+  static const String enterWeightSkullcrushers = "Next Skullscrushers Weight";
+
   static const String exerciseSquat = "Squat";
   static const String exerciseBenchPress = "Bench Press";
   static const String exerciseOverheadPress = "Overhead Press";
