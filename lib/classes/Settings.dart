@@ -51,6 +51,10 @@ class Settings {
     _weightMap[exercise] = double.parse(nextWeight);
   }
 
+  String getNextWeight(Exercise exercise) {
+    return _weightMap[exercise].toString();
+  }
+
   set useMicroplates(val) {
     _useMicroplates = val;
   }

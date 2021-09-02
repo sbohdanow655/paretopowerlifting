@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
@@ -21,12 +22,26 @@ class _SettingsTabState extends State<SettingsTab> {
   int _benchPressPhase;
   int _deadliftPhase;
 
+  TextEditingController _txtSquat = TextEditingController();
+  TextEditingController _txtBenchPress = TextEditingController();
+  TextEditingController _txtDeadlift = TextEditingController();
+  TextEditingController _txtOverheadPress = TextEditingController();
+  TextEditingController _txtPendlay = TextEditingController();
+  TextEditingController _txtSkullcrushers = TextEditingController();
+
+
   _SettingsTabState() {
     _useMicroplates = Settings.getInstance().useMicroplates;
     _weightUnit = Settings.getInstance().weightUnit;
     _squatPhase = Settings.getInstance().squatPhase;
     _benchPressPhase = Settings.getInstance().benchPressPhase;
     _deadliftPhase = Settings.getInstance().deadliftPhase;
+    _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
+    _txtBenchPress.text = Settings.getInstance().getNextWeight(Exercise.BenchPress);
+    _txtDeadlift.text = Settings.getInstance().getNextWeight(Exercise.Deadlift);
+    _txtOverheadPress.text = Settings.getInstance().getNextWeight(Exercise.OverheadPress);
+    _txtPendlay.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
+    _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);
   }
 
   void setMicroplates(val) {
@@ -242,7 +257,31 @@ class _SettingsTabState extends State<SettingsTab> {
                   WeekdayDropdown(WorkoutType.UpperBody2)
                 ]
               ),
-            //TextField(maxLength: 4, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Squat, val)) 
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtSquat, decoration: InputDecoration(labelText: Constants.enterWeightSquat), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Squat, val)) 
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtBenchPress, decoration: InputDecoration(labelText: Constants.enterWeightBenchPress), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.BenchPress, val)) 
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtDeadlift, decoration: InputDecoration(labelText: Constants.enterWeightDeadlift), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Deadlift, val)) 
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtOverheadPress, decoration: InputDecoration(labelText: Constants.enterWeightOverheadPress), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.OverheadPress, val)) 
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtPendlay, decoration: InputDecoration(labelText: Constants.enterWeightPendlayRow), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.PendlayRow, val)) 
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                child: TextField(controller: _txtSkullcrushers, decoration: InputDecoration(labelText: Constants.enterWeightSkullcrushers), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Skullcrushers, val)) 
+              ),
+
           ]
         )
       )

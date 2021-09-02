@@ -88,8 +88,8 @@ class Constants {
   static const String enterWeightBenchPress = "Next Bench Press Weight";
   static const String enterWeightDeadlift = "Next Deadlift Weight";
   static const String enterWeightOverheadPress = "Next Overhead Press Weight";
-  static const String enterWeightPendlayRow = "Enter Next Pendlay Row Weight";
-  static const String enterWeightSkullcrushers = "Next Skullscrushers Weight";
+  static const String enterWeightPendlayRow = "Next Pendlay Row Weight";
+  static const String enterWeightSkullcrushers = "Next Skullcrushers Weight";
 
   static const String exerciseSquat = "Squat";
   static const String exerciseBenchPress = "Bench Press";
