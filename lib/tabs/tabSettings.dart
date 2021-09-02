@@ -18,9 +18,9 @@ class _SettingsTabState extends State<SettingsTab> {
 
   String weightUnit = Constants.weightUnitLbs;
 
-  int squatPhase = 1;
-  int benchPressPhase = 1;
-  int deadliftPhase = 1;
+  int _squatPhase = 1;
+  int _benchPressPhase = 1;
+  int _deadliftPhase = 1;
 
   Weekday _selectedThreeDay1;
   Weekday _selectedThreeDay2;
@@ -106,7 +106,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   void setSquatPhase(val) {
     setState(() {
-      squatPhase = val;
+      _squatPhase = val;
     });
 
     Settings.state.squatPhaseNumber = val;
@@ -114,7 +114,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   void setBenchPressPhase(val) {
     setState(() {
-      benchPressPhase = val;
+      _benchPressPhase = val;
     });
     
     Settings.state.benchPressPhaseNumber = val;
@@ -123,7 +123,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   void setDeadliftPhase(val) {
     setState(() {
-      deadliftPhase = val;
+      _deadliftPhase = val;
     });
 
     Settings.state.deadliftPhaseNumber = val;
@@ -230,7 +230,7 @@ class _SettingsTabState extends State<SettingsTab> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [  
                 DropdownButton<int>(
-                  value: squatPhase,
+                  value: _squatPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
                   onChanged: (val) => setSquatPhase(val),
                   items: <int>[1, 2, 3]
@@ -247,7 +247,7 @@ class _SettingsTabState extends State<SettingsTab> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [ 
                 DropdownButton<int>(
-                  value: benchPressPhase,
+                  value: _benchPressPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
                   onChanged: (val) => setBenchPressPhase(val),
                   items: <int>[1, 2, 3, 4]
@@ -264,7 +264,7 @@ class _SettingsTabState extends State<SettingsTab> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 DropdownButton<int>(
-                  value: deadliftPhase,
+                  value: _deadliftPhase,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
                   onChanged: (val) => setDeadliftPhase(val),
                   items: <int>[1, 2, 3]

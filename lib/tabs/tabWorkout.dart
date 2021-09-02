@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
@@ -31,12 +30,12 @@ class _WorkoutTabState extends State<WorkoutTab> {
     });
 
     return SingleChildScrollView(
-      child: Row(
-        children: [
-          Column(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: workoutDayList 
           )
-        ]
       )
     );
   }

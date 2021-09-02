@@ -38,43 +38,44 @@ class WorkoutDayState extends State<WorkoutDay> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> leftColumnList = [];
-    List<Widget> rightColumnList = [];
+    List<Widget> columnList = [];
 
-    leftColumnList.add(
-        Text(Constants.weekdayStrings[_weekday], style: TextStyle(fontSize: Constants.settingsFontSize))
+    columnList.add(
+        Text(Constants.weekdayStrings[_weekday], style: TextStyle(decoration: TextDecoration.underline, fontSize: Constants.workoutTabWeekdayFontSize))
     );
 
     _dailyPrescription.toTupleList().forEach((tuple) {    
-      leftColumnList.add(
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-          child: Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.settingsFontSize)),
-        ),);
-      if (tuple.exercise != Constants.exerciseRest) {
-        rightColumnList.add(Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Checkbox(
-              value: _prescriptionPassMap[tuple.exercise],
-              onChanged: (isChecked) => ( setPrescriptionPass(tuple.exercise, isChecked) )
-            )
-          ]));
+      List<Widget> children = [];
+      
+      if (tuple.exercise == Constants.restDay) {
+        children.add(Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+          child: 
+            Text(tuple.prescriptionString, style: TextStyle(fontStyle: FontStyle.italic, fontSize: Constants.workoutTabWeekdayFontSize))
+        ));
+      } else {
+        children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.workoutTabWeekdayFontSize)));
+        children.add(
+          Checkbox(
+            value: _prescriptionPassMap[tuple.exercise],
+            onChanged: (isChecked) => ( setPrescriptionPass(tuple.exercise, isChecked) ))
+        );
       }
+      
+      columnList.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: children 
+        )
+      );
     });
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Column(
-          children: leftColumnList
-        ),
-        Column(
-          children: rightColumnList
-        )
-      ]
-    );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: columnList
+    ); 
+      
 
   }
 }
