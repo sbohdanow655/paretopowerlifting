@@ -9,7 +9,7 @@ class DailyExercisePrescription extends IDailyPrescription {
   List<ExercisePrescriptionStringTuple> toTupleList() {
     List<ExercisePrescriptionStringTuple> tupleList = [];
 
-    this._prescriptionList.map((singleExercisePrescription) {
+    this._prescriptionList.forEach((singleExercisePrescription) {
       tupleList.add(new ExercisePrescriptionStringTuple(singleExercisePrescription.exercise, singleExercisePrescription.toString()));
     });
 

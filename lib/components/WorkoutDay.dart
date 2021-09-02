@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'dart:collection';
-
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
-class WorkoutDay extends StatelessWidget {
-  WorkoutDay(this._dailyPrescription);
+class WorkoutDay extends StatefulWidget {
+  IDailyPrescription _dailyPrescription;
   
+  WorkoutDay(this._dailyPrescription);
+
+  @override
+  State<StatefulWidget> createState() {
+    return WorkoutDayState(this._dailyPrescription);
+  }
+}
+
+class WorkoutDayState extends State<WorkoutDay> {
+  WorkoutDayState(this._dailyPrescription);
+
   final IDailyPrescription _dailyPrescription;
 
-  final HashMap prescriptionPassMap = new HashMap<int, bool>();
+  Map<Exercise, bool> _prescriptionPassMap = {
+    Exercise.Squat : false,
+    Exercise.BenchPress : false,
+    Exercise.Deadlift : false,
+    Exercise.OverheadPress : false,
+    Exercise.PendlayRow : false,
+    Exercise.Skullcrushers : false,
+  };
+
+  void setPrescriptionPass(Exercise exercise, bool wasPassed) {
+    setState(() {
+      _prescriptionPassMap[exercise] = wasPassed;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +41,15 @@ class WorkoutDay extends StatelessWidget {
       if (tuple.exercise == Exercise.Rest) {
         workoutDays.add(Text(tuple.prescriptionString));
       } else {
-        workoutDays.add(Row(children: [
-          Text(tuple.prescriptionString),
-          Checkbox(
-            value: prescriptionPassMap[tuple.exercise],
-            onChanged: (isChecked) => (prescriptionPassMap[tuple.exercise] = isChecked )
-          )
-        ]));
+        workoutDays.add(Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(tuple.prescriptionString),
+            Checkbox(
+              value: _prescriptionPassMap[tuple.exercise],
+              onChanged: (isChecked) => ( setPrescriptionPass(tuple.exercise, isChecked) )
+            )
+          ]));
       }
     });
 

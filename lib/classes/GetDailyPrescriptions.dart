@@ -36,7 +36,7 @@ class GetDailyPrescriptions {
             
           switch(Settings.state.deadliftPhaseNumber) {
             case 1:
-              prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, Settings.state.nextDeadliftWeight, Settings.state.weightUnit, 3, 5));
+              prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, Settings.state.nextDeadliftWeight, Settings.state.weightUnit, 1, 5));
               break;
             default:
               prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, Settings.state.nextPendlayRowWeight, Settings.state.weightUnit, 3, 8));

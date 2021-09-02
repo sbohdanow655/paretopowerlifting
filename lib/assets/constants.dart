@@ -1,3 +1,5 @@
+import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+
 class Constants {
   static const double titleFontSize = 50;
   static const double buttonFontSize = 30;
@@ -47,11 +49,18 @@ class Constants {
   static const String tabHistory = "History";
   static const String tabSettings = "Settings";
 
-  static const String useMicroplates = "Microplates for Upper Body: ";
-  static const String selectWeightUnit = "Select Weight Unit:   ";
-  static const String selectSquatPhase = "Select Squat Phase:   ";
-  static const String selectBenchPressPhase = "Select Bench Press Phase:   ";
-  static const String selectDeadliftPhase = "Select Deadlift Phase:   ";
+  static const String useMicroplates = "Microplates for Upper Body";
+  static const String selectWeightUnit = "Weight Unit";
+  static const String selectSquatPhase = "Squat Phase";
+  static const String selectBenchPressPhase = "Bench Press Phase";
+  static const String selectDeadliftPhase = "Deadlift Phase";
+  static const String selectFullBodyWorkoutDay1 = "Fullbody Workout Day 1";
+  static const String selectFullBodyWorkoutDay2 = "Fullbody Workout Day 2";
+  static const String selectFullBodyWorkoutDay3 = "Fullbody Workout Day 3";
+  static const String selectUpperLowerWorkoutDay1 = "Upper/Lower Workout Day 1";
+  static const String selectUpperLowerWorkoutDay2 = "Upper/Lower Workout Day 2";
+  static const String selectUpperLowerWorkoutDay3 = "Upper/Lower Workout Day 3";
+  static const String selectUpperLowerWorkoutDay4 = "Upper/Lower Workout Day 4";
 
   static const String exerciseSquat = "Squat";
   static const String exerciseBenchPress = "Bench Press";
@@ -70,4 +79,23 @@ class Constants {
 
   static const String restDay = "Rest Day";
 
+  static const Map<String, Weekday> weekdayByString = {
+    monday : Weekday.Monday,
+    tuesday : Weekday.Tuesday,
+    wednesday: Weekday.Wednesday,
+    thursday : Weekday.Thursday,
+    friday : Weekday.Friday,
+    saturday: Weekday.Saturday,
+    sunday : Weekday.Sunday
+  };
+
+  static const Map<Weekday, String> weekdayStrings = {
+    Weekday.Monday : monday,
+    Weekday.Tuesday : tuesday,
+    Weekday.Wednesday : wednesday,
+    Weekday.Thursday : thursday,
+    Weekday.Friday : friday,
+    Weekday.Saturday : saturday,
+    Weekday.Sunday : sunday
+  };
 }

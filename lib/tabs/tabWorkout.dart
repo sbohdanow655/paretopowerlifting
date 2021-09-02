@@ -30,9 +30,10 @@ class _WorkoutTabState extends State<WorkoutTab> {
       workoutDayList.add(workoutDay);
     });
 
-    return Column(
-      children:
-        workoutDayList 
+    return SingleChildScrollView(
+      child: Column(
+        children: workoutDayList 
+      )
     );
   }
 }
