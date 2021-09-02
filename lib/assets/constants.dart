@@ -1,3 +1,4 @@
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 
 class Constants {
@@ -64,10 +65,12 @@ class Constants {
 
   static const String exerciseSquat = "Squat";
   static const String exerciseBenchPress = "Bench Press";
-  static const String exercisePress = "Overhead Press";
+  static const String exerciseOverheadPress = "Overhead Press";
   static const String exerciseDeadlift = "Deadlift";
   static const String exercisePendlayRow = "Pendlay Row";
-  static const String exerciseSkullcrusher = "Skullcrusher";
+  static const String exerciseSkullcrushers = "Skullcrushers";
+  static const String exerciseHIIT = "HIIT Conditioning";
+  static const String exerciseRest = "Rest Day";
 
   static const String monday = "Monday";
   static const String tuesday = "Tuesday";
@@ -97,5 +100,16 @@ class Constants {
     Weekday.Friday : friday,
     Weekday.Saturday : saturday,
     Weekday.Sunday : sunday
+  };
+
+  static const Map<Exercise, String> exerciseStrings = {
+    Exercise.Squat : exerciseSquat,
+    Exercise.BenchPress : exerciseBenchPress,
+    Exercise.Deadlift : exerciseDeadlift,
+    Exercise.OverheadPress : exerciseOverheadPress,
+    Exercise.PendlayRow : exercisePendlayRow,
+    Exercise.Skullcrushers : exerciseSkullcrushers,
+    Exercise.HIITConditioning : exerciseHIIT,
+    Exercise.Rest : exerciseRest
   };
 }

@@ -26,13 +26,17 @@ class _WorkoutTabState extends State<WorkoutTab> {
     List<WorkoutDay> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday]);
+      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday], weekday);
       workoutDayList.add(workoutDay);
     });
 
     return SingleChildScrollView(
-      child: Column(
-        children: workoutDayList 
+      child: Row(
+        children: [
+          Column(
+            children: workoutDayList 
+          )
+        ]
       )
     );
   }

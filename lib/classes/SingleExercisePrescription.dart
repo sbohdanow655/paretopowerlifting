@@ -1,3 +1,5 @@
+import 'package:pareto_powerlifting/assets/constants.dart';
+
 enum Exercise {
   Squat,
   BenchPress,
@@ -51,6 +53,6 @@ class SingleExercisePrescription {
   }
 
   String toString() {
-    return _exercise.toString() + " " + _weight.toString() + _weightUnit + " " + _numSets.toString() + "x" + _numReps.toString();
+    return Constants.exerciseStrings[exercise] + " " + _weight.toString() + _weightUnit + " " + _numSets.toString() + "x" + _numReps.toString();
   }
 }
