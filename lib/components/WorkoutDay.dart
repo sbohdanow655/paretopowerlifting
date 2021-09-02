@@ -41,17 +41,26 @@ class WorkoutDayState extends State<WorkoutDay> {
     List<Widget> columnList = [];
 
     columnList.add(
-        Text(Constants.weekdayStrings[_weekday], style: TextStyle(decoration: TextDecoration.underline, fontSize: Constants.workoutTabWeekdayFontSize))
+      Row(mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(Constants.weekdayStrings[_weekday],
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: Constants.workoutTabWeekdayFontSize),
+          )
+        ]
+      ) 
     );
 
     _dailyPrescription.toTupleList().forEach((tuple) {    
       List<Widget> children = [];
       
       if (tuple.exercise == Constants.restDay) {
-        children.add(Padding(
+        columnList.add(Padding(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
-          child: 
-            Text(tuple.prescriptionString, style: TextStyle(fontStyle: FontStyle.italic, fontSize: Constants.workoutTabWeekdayFontSize))
+          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(tuple.prescriptionString, style: TextStyle(fontStyle: FontStyle.italic, fontSize: Constants.workoutTabWeekdayFontSize))
+            ],
+          )
         ));
       } else {
         children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.workoutTabWeekdayFontSize)));
