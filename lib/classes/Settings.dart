@@ -95,6 +95,24 @@ class Settings {
     return _deadliftPhase;
   }
 
+  double getVolumeDayWeightFromIntesityDay(double intensityDayWeight, bool useMicroplates) {
+    double weightIncrement;
+    if (useMicroplates) {
+      if (_weightUnit == Constants.weightUnitLbs) {
+        weightIncrement = 2.5;
+      } else {
+        weightIncrement = 1;
+      }
+    } else {
+      if (_weightUnit == Constants.weightUnitLbs) {
+        weightIncrement = 5;
+      } else {
+        weightIncrement = 2;
+      }
+    }
+    return (0.8 * intensityDayWeight / weightIncrement).round() * weightIncrement;
+  }
+
   Weekday getWeekdayFromWorkoutType(WorkoutType workoutType) {
     if (_fourDaySchedule.containsKey(workoutType)) {
       return _fourDaySchedule[workoutType];
@@ -145,7 +163,7 @@ class Settings {
   }
 
   bool is3day() {
-    return _squatPhase <= 2 || _deadliftPhase <= 2 || _benchPressPhase <= 2;
+    return _squatPhase <= 2 && _deadliftPhase <= 2 && _benchPressPhase <= 2;
   } 
 
   IDailyPrescription getDailyPrescriptions(WorkoutType workoutType) {
@@ -202,7 +220,7 @@ class Settings {
             prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
             break;
           case 3:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 2, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, getVolumeDayWeightFromIntesityDay(_weightMap[Exercise.Deadlift], false), _weightUnit, 2, 5));
             break;
         }
       
@@ -223,7 +241,7 @@ class Settings {
             break;
           case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 3));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, getVolumeDayWeightFromIntesityDay(_weightMap[Exercise.OverheadPress], _useMicroplates), _weightUnit, 5, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
 
             break;
@@ -238,7 +256,7 @@ class Settings {
             prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
             break;
           case 3:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 5, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, getVolumeDayWeightFromIntesityDay(_weightMap[Exercise.Squat], false), _weightUnit, 5, 5));
         }
 
         switch(_deadliftPhase) {
@@ -269,7 +287,7 @@ class Settings {
             break;
           case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 3));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, getVolumeDayWeightFromIntesityDay(_weightMap[Exercise.BenchPress], _useMicroplates), _weightUnit, 5, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.Skullcrushers, _weightMap[Exercise.Skullcrushers], _weightUnit, 3, 8));
 
             break;
