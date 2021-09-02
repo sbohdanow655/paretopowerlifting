@@ -64,9 +64,16 @@ class _SettingsTabState extends State<SettingsTab> {
   void setSquatPhase(val) {
     setState(() {
       _squatPhase = val;
+      if (_benchPressPhase == 1 && val >= 3) {
+        _benchPressPhase = 2;
+      }
     });
 
     Settings.getInstance().squatPhase = val;
+    
+    if (_benchPressPhase == 2) {
+      Settings.getInstance().benchPressPhase = 2;
+    }
   }
 
   void setBenchPressPhase(val) {
@@ -81,10 +88,16 @@ class _SettingsTabState extends State<SettingsTab> {
   void setDeadliftPhase(val) {
     setState(() {
       _deadliftPhase = val;
+      if (_benchPressPhase == 1 && val >= 3) {
+        _benchPressPhase = 2;
+      }
     });
 
     Settings.getInstance().deadliftPhase = val;
-
+    
+    if (_benchPressPhase == 2) {
+      Settings.getInstance().benchPressPhase = 2;
+    }
   }
 
   @override

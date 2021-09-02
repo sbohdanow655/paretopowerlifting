@@ -227,19 +227,19 @@ class Settings {
         break;
       case WorkoutType.UpperBody1:
         switch(_benchPressPhase) {
-          case 1:
+          case 2:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.Deadlift], _weightUnit, 3, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.Deadlift], _weightUnit, 3, 8));
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.Deadlift], _weightUnit, 3, 5));
 
             break;
-          case 2:
+          case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 3));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 3));
 
             break;
-          case 3:
+          case 4:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 3));
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, getVolumeDayWeightFromIntesityDay(_weightMap[Exercise.OverheadPress], _useMicroplates), _weightUnit, 5, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
