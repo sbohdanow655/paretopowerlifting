@@ -1,5 +1,25 @@
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+
+enum Weekday {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
+}
+
+enum WorkoutType {
+  LowerBody1,
+  LowerBody2,
+  UpperBody1,
+  UpperBody2,
+  FullBody1,
+  FullBody2,
+  FullBody3,
+  RestDay
+}
 
 class Constants {
   static const double titleFontSize = 50;

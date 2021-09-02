@@ -1,23 +1,27 @@
-import 'dart:collection';
-
 import '../assets/constants.dart';
-import 'WorkoutSchedule.dart';
+import 'DailyExercisePresciption.dart';
+import 'DailyRestPrescription.dart';
+import 'IDailyPrescription.dart';
+import 'SingleExercisePrescription.dart';
 
 class Settings {
   
-  static Settings state;
+  static Settings _instance;
 
-  int _squatPhaseNumber = 1;
-  int _benchPressPhaseNumber = 1;
-  int _deadliftPhaseNumber = 1;
+  int _squatPhase = 1;
+  int _benchPressPhase = 1;
+  int _deadliftPhase = 1;
   String _weightUnit = Constants.weightUnitLbs;
   bool _useMicroplates = false;
-  double _nextSquatWeight = 45;
-  double _nextBenchPressWeight = 45;
-  double _nextDeadliftWeight = 45;
-  double _nextOverheadPressWeight = 45;
-  double _nextPendlayRowWeight = 45;
-  double _nextSkullcrusherWeight = 45;
+
+  Map<Exercise, double> _weightMap = {
+    Exercise.Squat : 45,
+    Exercise.BenchPress : 45,
+    Exercise.Deadlift : 45,
+    Exercise.OverheadPress : 45,
+    Exercise.PendlayRow : 45,
+    Exercise.Skullcrushers : 45,
+  };
 
   Map<WorkoutType, Weekday> _fourDaySchedule = {
     WorkoutType.LowerBody1 : Weekday.Monday,
@@ -33,104 +37,62 @@ class Settings {
   };
 
 
-  Settings() {
-    state = this;
+  Settings();
+
+  static Settings getInstance() {
+    if (_instance == null) {
+      _instance = Settings();
+    }
+
+    return _instance;
   }
 
-  set squatPhaseNumber(phaseNumber) {
-    _squatPhaseNumber = phaseNumber;
+  set useMicroplates(val) {
+    _useMicroplates = val;
   }
 
-  set benchPressPhaseNumber(phaseNumber) {
-    _benchPressPhaseNumber = phaseNumber;
+  set weightUnit(val) {
+    _weightUnit = val;
   }
 
-  set deadliftPhaseNumber(phaseNumber) {
-    _deadliftPhaseNumber = phaseNumber;
-  }
-  
-  set weightUnit(weightUnit) {
-    _weightUnit = weightUnit;
+  set squatPhase(val) {
+    _squatPhase = val;
   }
 
-  set useMicroplates(useMicroplates) {
-    _useMicroplates = useMicroplates;
+  set benchPressPhase(val) {
+    _benchPressPhase = val;
   }
 
-  set nextSquatWeight(nextSquatWeight) {
-    _nextSquatWeight = nextSquatWeight;
+  set deadliftPhase(val) {
+    _deadliftPhase = val;
   }
 
-  set nextBenchPressWeight(nextBenchPressWeight) {
-    _nextBenchPressWeight = nextBenchPressWeight;
-  }
-
-  set nextDeadliftWeight(nextDeadliftWeight) {
-    _nextDeadliftWeight = nextDeadliftWeight;
-  }
-
-  set nextOverheadPressWeight(nextOverheadPressWeight) {
-    _nextOverheadPressWeight = nextOverheadPressWeight;
-  }
-
-  set nextPendlayRowWeight(nextPendlayRowWeight) {
-    _nextPendlayRowWeight = nextPendlayRowWeight;
-  }
-
-  set nextSkullcrusherWeight(nextSkullcrusherWeight) {
-    _nextSkullcrusherWeight = nextSkullcrusherWeight;
-  }
-
-  set threeDaySchedule(threeDaySchedule) {
-    _threeDaySchedule = threeDaySchedule;
-  }
-
-  set fourDaySchedule(fourDaySchedule) {
-    _fourDaySchedule = fourDaySchedule;
-  }
-
-  int get squatPhaseNumber {
-    return _squatPhaseNumber;
-  }
-
-  int get benchPressPhaseNumber {
-    return _benchPressPhaseNumber;
-  }
-
-  int get deadliftPhaseNumber {
-    return _deadliftPhaseNumber;
-  }
-  
-  String get weightUnit {
-    return _weightUnit;
-  }
-
-  bool get useMicroplates {
+  get useMicroplates {
     return _useMicroplates;
   }
 
-  double get nextSquatWeight {
-    return _nextSquatWeight;
-  }
-  
-  double get nextBenchPressWeight {
-    return _nextBenchPressWeight;
-  }
-  
-  double get nextDeadliftWeight {
-    return _nextDeadliftWeight;
+  get weightUnit {
+    return _weightUnit;
   }
 
-  double get nextOverheadPressWeight {
-    return _nextOverheadPressWeight;
+  get squatPhase {
+    return _squatPhase;
   }
 
-  double get nextPendlayRowWeight {
-    return _nextPendlayRowWeight;
+  get benchPressPhase {
+    return _benchPressPhase;
   }
 
-  double get nextSkullcrusherWeight {
-    return _nextSkullcrusherWeight;
+  get deadliftPhase {
+    return _deadliftPhase;
+  }
+
+  Weekday getWeekdayFromWorkoutType(WorkoutType workoutType) {
+    if (_fourDaySchedule.containsKey(workoutType)) {
+      return _fourDaySchedule[workoutType];
+    }
+    
+    return _threeDaySchedule[workoutType];
   }
 
   bool fourDayScheduleContainsWeekday(Weekday weekday) {
@@ -166,6 +128,7 @@ class Settings {
   }
 
   void addDayToFourDaySchedule(Weekday weekday, WorkoutType workoutType) {
+
     _fourDaySchedule[workoutType] = weekday;
   }
 
@@ -174,6 +137,167 @@ class Settings {
   }
 
   bool is3day() {
-    return Settings.state.squatPhaseNumber <= 2 || Settings.state.deadliftPhaseNumber <= 2 || Settings.state.benchPressPhaseNumber <= 2;
+    return _squatPhase <= 2 || _deadliftPhase <= 2 || _benchPressPhase <= 2;
   } 
+
+  IDailyPrescription getDailyPrescriptions(WorkoutType workoutType) {
+    List<SingleExercisePrescription> prescriptionList = [];
+    
+    switch(workoutType) {
+      case WorkoutType.FullBody1:
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+
+        break;
+      case WorkoutType.FullBody2:
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+
+        switch(_benchPressPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
+            break;
+          default:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 5));
+            break;
+        }
+          
+        switch(_deadliftPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            break;
+          default:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
+            break;
+        }
+        break;
+      case WorkoutType.FullBody3:
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+
+        break;
+      case WorkoutType.LowerBody1:
+        switch(_squatPhase) {
+          case 1:
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 3));
+            break;
+        }
+        
+        switch(_deadliftPhase) {
+          case 1:
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 2, 5));
+            break;
+        }
+      
+        break;
+      case WorkoutType.UpperBody1:
+        switch(_benchPressPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.Deadlift], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.Deadlift], _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.Deadlift], _weightUnit, 3, 5));
+
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 3));
+
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
+
+            break;
+        }
+        break;
+      case WorkoutType.LowerBody2:
+        switch(_squatPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 5, 5));
+        }
+
+        switch(_deadliftPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 2, 3));
+        }
+
+        break;
+      case WorkoutType.UpperBody2:
+        switch(_benchPressPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 5));
+
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 3));
+
+            break;
+          case 3:
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Skullcrushers, _weightMap[Exercise.Skullcrushers], _weightUnit, 3, 8));
+
+            break;
+        }
+        break;
+      case WorkoutType.RestDay:
+        return DailyRestPrescription();
+        break;
+      default:
+        break;
+    }
+
+    return DailyExercisePrescription(prescriptionList);
+  }
+
+  Map<Weekday, IDailyPrescription> getThisWeeksWorkouts() {
+
+    Map<Weekday, IDailyPrescription> dailyPrescriptionMap = new Map();
+
+    Weekday.values.forEach((weekday) {
+      if (is3day()) {
+        if (threeDayScheduleContainsWeekday(weekday)) {
+          dailyPrescriptionMap[weekday] = getDailyPrescriptions(getThreeDayWorkoutTypeFromWeekday(weekday));
+        } else {
+          dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+        }
+      } else {
+        if (fourDayScheduleContainsWeekday(weekday)) {
+          dailyPrescriptionMap[weekday] = getDailyPrescriptions(getFourDayWorkoutTypeFromWeekday(weekday));
+        } else {
+          dailyPrescriptionMap[weekday] = new DailyRestPrescription();
+        }
+      }
+
+    });
+
+    return dailyPrescriptionMap;
+  }
 }

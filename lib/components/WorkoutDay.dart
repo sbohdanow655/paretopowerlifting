@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+import 'package:pareto_powerlifting/classes/Settings.dart';
 
 class WorkoutDay extends StatefulWidget {
   final IDailyPrescription _dailyPrescription;

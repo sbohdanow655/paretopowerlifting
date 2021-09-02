@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
@@ -14,93 +13,36 @@ class SettingsTab extends StatefulWidget {
 
 class _SettingsTabState extends State<SettingsTab> {
   
-  bool useMicroplates = false;
+  bool _useMicroplates = false;
 
-  String weightUnit = Constants.weightUnitLbs;
+  String _weightUnit = Constants.weightUnitLbs;
 
-  int _squatPhase = 1;
-  int _benchPressPhase = 1;
-  int _deadliftPhase = 1;
+  int _squatPhase;
+  int _benchPressPhase;
+  int _deadliftPhase;
 
-  Weekday _selectedThreeDay1;
-  Weekday _selectedThreeDay2;
-  Weekday _selectedThreeDay3;
-
-  Weekday _selectedFourDay1;
-  Weekday _selectedFourDay2;
-  Weekday _selectedFourDay3;
-  Weekday _selectedFourDay4;
-
-  void setSelectedThreeDay1(Weekday weekday) {
-    setState(() {
-      _selectedThreeDay1 = weekday;
-    });
-
-    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody1);
-  }
-
-  void setSelectedThreeDay2(Weekday weekday) {
-    setState(() {
-      _selectedThreeDay2 = weekday;
-    });
-
-    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody2);
-  }
-
-  void setSelectedThreeDay3(Weekday weekday) {
-    setState(() {
-      _selectedThreeDay3 = weekday;
-    });
-
-    Settings.state.addDayToThreeDaySchedule(weekday, WorkoutType.FullBody3);
-  }
-
-  void setSelectedFourDay1(Weekday weekday) {
-    setState(() {
-      _selectedFourDay1 = weekday;
-    });
-
-    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.LowerBody1);
-  }
-  
-  void setSelectedFourDay2(Weekday weekday) {
-    setState(() {
-      _selectedFourDay2 = weekday;
-    });
-
-    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.UpperBody1);
-  }
-
-  void setSelectedFourDay3(Weekday weekday) {
-    setState(() {
-      _selectedFourDay3 = weekday;
-    });
-
-    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.LowerBody2);
-  }
-
-  void setSelectedFourDay4(Weekday weekday) {
-    setState(() {
-      _selectedFourDay4 = weekday;
-    });
-
-    Settings.state.addDayToFourDaySchedule(weekday, WorkoutType.UpperBody2);
+  _SettingsTabState() {
+    _useMicroplates = Settings.getInstance().useMicroplates;
+    _weightUnit = Settings.getInstance().weightUnit;
+    _squatPhase = Settings.getInstance().squatPhase;
+    _benchPressPhase = Settings.getInstance().benchPressPhase;
+    _deadliftPhase = Settings.getInstance().deadliftPhase;
   }
 
   void setMicroplates(val) {
     setState(() {
-      useMicroplates = val;
+      _useMicroplates = val;
     });
 
-    Settings.state.useMicroplates = val;
+    Settings.getInstance().useMicroplates = val;
   }
 
   void setWeightUnit(val) {
     setState(() {
-      weightUnit = val;
+      _weightUnit = val;
     });
 
-    Settings.state.weightUnit = val;
+    Settings.getInstance().weightUnit = val;
 
   }
 
@@ -109,7 +51,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _squatPhase = val;
     });
 
-    Settings.state.squatPhaseNumber = val;
+    Settings.getInstance().squatPhase = val;
   }
 
   void setBenchPressPhase(val) {
@@ -117,7 +59,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _benchPressPhase = val;
     });
     
-    Settings.state.benchPressPhaseNumber = val;
+    Settings.getInstance().benchPressPhase = val;
 
   }
 
@@ -126,7 +68,7 @@ class _SettingsTabState extends State<SettingsTab> {
       _deadliftPhase = val;
     });
 
-    Settings.state.deadliftPhaseNumber = val;
+    Settings.getInstance().deadliftPhase = val;
 
   }
 
@@ -200,10 +142,10 @@ class _SettingsTabState extends State<SettingsTab> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith((val) => Colors.blue),
-                  value: useMicroplates,
+                  value: _useMicroplates,
                   onChanged: (bool value) {
                     setState(() {
-                      useMicroplates = value;
+                      _useMicroplates = value;
                     });
                   },
                 )
@@ -213,7 +155,7 @@ class _SettingsTabState extends State<SettingsTab> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [  
                 DropdownButton<String>(
-                  value: weightUnit,
+                  value: _weightUnit,
                   style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
                   onChanged: (val) => setWeightUnit(val),
                   items: <String>[Constants.weightUnitLbs, Constants.weightUnitKg]

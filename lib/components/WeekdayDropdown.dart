@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
 
 class WeekdayDropdown extends StatefulWidget {
   
@@ -19,9 +18,11 @@ class WeekdayDropdownState extends State<WeekdayDropdown> {
   
   final WorkoutType _workoutType;
 
-  WeekdayDropdownState(this._workoutType);
+  WeekdayDropdownState(this._workoutType) {
+    _selectedWeekday = Settings.getInstance().getWeekdayFromWorkoutType(_workoutType);
+  }
 
-  Weekday _selectedWeekday;
+  Weekday _selectedWeekday; 
 
   void setSelectedWeekday(Weekday weekday) {
     
@@ -30,12 +31,12 @@ class WeekdayDropdownState extends State<WeekdayDropdown> {
       case WorkoutType.FullBody2:
       case WorkoutType.FullBody3:
 
-        Settings.state.addDayToThreeDaySchedule(weekday, _workoutType);
+        Settings.getInstance().addDayToThreeDaySchedule(weekday, _workoutType);
 
         break;
       default:
 
-        Settings.state.addDayToFourDaySchedule(weekday, _workoutType);
+        Settings.getInstance().addDayToFourDaySchedule(weekday, _workoutType);
 
        break;
     }

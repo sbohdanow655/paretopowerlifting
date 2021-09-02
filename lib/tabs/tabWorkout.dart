@@ -1,8 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/WorkoutSchedule.dart';
+import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class WorkoutTab extends StatefulWidget {
@@ -19,7 +20,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
   @override
   Widget build(BuildContext context) {
 
-    HashMap<Weekday, IDailyPrescription> workoutPrescriptionsByDay = WorkoutSchedule.getThisWeeksWorkouts();
+    Map<Weekday, IDailyPrescription> workoutPrescriptionsByDay = Settings.getInstance().getThisWeeksWorkouts();
 
 
     List<WorkoutDay> workoutDayList = [];
