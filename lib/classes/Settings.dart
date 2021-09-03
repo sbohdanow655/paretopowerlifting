@@ -95,8 +95,11 @@ class Settings {
     return _deadliftPhase;
   }
 
-  double incrementWeight(double weight, bool useMicroplates) {
+  double incrementWeight(double weight, Exercise exercise) {
     double weightIncrement;
+    bool isUpperBody = exercise == Exercise.BenchPress || exercise == Exercise.OverheadPress || exercise == Exercise.PendlayRow || exercise == Exercise.Skullcrushers;
+    bool isBenchPressPhase3 = _benchPressPhase >= 3;
+    bool useMicroplates = _useMicroplates && isUpperBody && isBenchPressPhase3;
     if (useMicroplates) {
       if (_weightUnit == Constants.weightUnitLbs) {
         weightIncrement = 2.5;
@@ -113,6 +116,11 @@ class Settings {
 
     return weight + weightIncrement;
   }
+
+  double incrementWeightTwice(double weight, Exercise exercise) {
+    return incrementWeight(incrementWeight(weight, exercise), exercise);
+  }
+
 
   double getVolumeDayWeightFromIntensityDay(double intensityDayWeight, bool useMicroplates) {
     double weightIncrement;
@@ -196,11 +204,11 @@ class Settings {
 
         break;
       case WorkoutType.FullBody2:
-        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
 
         switch(_benchPressPhase) {
           case 1:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
             break;
           default:
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 5));
@@ -209,7 +217,7 @@ class Settings {
           
         switch(_deadliftPhase) {
           case 1:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeight(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
             break;
           default:
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
@@ -217,9 +225,9 @@ class Settings {
         }
         break;
       case WorkoutType.FullBody3:
-        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
-        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
-        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeight(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
 
         break;
       case WorkoutType.LowerBody1:
@@ -269,10 +277,10 @@ class Settings {
       case WorkoutType.LowerBody2:
         switch(_squatPhase) {
           case 1:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
             break;
           case 2:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, _weightMap[Exercise.Squat], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
             break;
           case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, getVolumeDayWeightFromIntensityDay(_weightMap[Exercise.Squat], false), _weightUnit, 5, 5));
@@ -280,10 +288,10 @@ class Settings {
 
         switch(_deadliftPhase) {
           case 1:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeight(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
             break;
           case 2:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeight(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
             break;
           case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 2, 3));
@@ -293,15 +301,15 @@ class Settings {
       case WorkoutType.UpperBody2:
         switch(_benchPressPhase) {
           case 1:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, incrementWeight(_weightMap[Exercise.PendlayRow], Exercise.PendlayRow), _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, incrementWeight(_weightMap[Exercise.OverheadPress], Exercise.OverheadPress), _weightUnit, 3, 5));
 
             break;
           case 2:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.BenchPress], _weightUnit, 5, 3));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.PendlayRow], _weightUnit, 3, 8));
-            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 5, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 5, 3));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, incrementWeight(_weightMap[Exercise.PendlayRow], Exercise.PendlayRow), _weightUnit, 3, 8));
+            prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, incrementWeight(_weightMap[Exercise.OverheadPress], Exercise.OverheadPress), _weightUnit, 5, 3));
 
             break;
           case 3:
