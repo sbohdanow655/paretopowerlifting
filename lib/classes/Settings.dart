@@ -121,29 +121,76 @@ class Settings {
     return incrementWeight(incrementWeight(weight, exercise), exercise);
   }
 
-  void finishWorkoutAndIncrementWeight(Map<Weekday, Map<Exercise, bool>> passFailWeekdayMap) {
+  Map<Weekday, IDailyPrescription> finishWorkoutAndIncrementWeight(Map<Weekday, Map<Exercise, bool>> passFailWeekdayMap) {
+    Set<Exercise> checkedExerciseSet = new Set();
     passFailWeekdayMap.forEach((weekday, passFailMap) {
       passFailMap.forEach((exercise, didPass) {
       if (didPass) {
         _weightMap[exercise] = incrementWeight(_weightMap[exercise], exercise);
-      } else {
+      } else if (!checkedExerciseSet.contains(exercise)) {
         switch(exercise) {
           case Exercise.Squat:
-            _squatPhase++;
+            switch(_squatPhase) {
+              case 1:
+                _squatPhase = 2;
+                break;
+              case 2:
+                _squatPhase = 3;
+                break;
+              default:
+                break;
+            }
             break;
           case Exercise.BenchPress:
-            _benchPressPhase++;
+            switch(_benchPressPhase) {
+              case 1:
+                _benchPressPhase = 2;
+                break;
+              case 2:
+                _benchPressPhase = 3;
+                break;
+              case 3:
+                _benchPressPhase = 4;
+                break;
+              default:
+                break;
+            }
             break;
           case Exercise.Deadlift:
-            _deadliftPhase++;
+            switch(_deadliftPhase) {
+              case 1:
+                _deadliftPhase = 2;
+                if (_benchPressPhase == 1) {
+                  _benchPressPhase = 2;
+                }
+                break;
+              case 2:
+                _deadliftPhase = 3;
+                if (_benchPressPhase == 1) {
+                  _benchPressPhase = 2;
+                }
+                break;
+              default:
+                break;
+            }
             break;
           default:
             break;
         }
       }
+      checkedExerciseSet.add(exercise);
     });
     });
     
+    passFailWeekdayMap = {};
+    Weekday.values.forEach((weekday) {
+    passFailWeekdayMap[weekday] = {};
+    Exercise.values.forEach((exercise) {
+      passFailWeekdayMap[weekday][exercise] = false;
+    });
+  });
+
+    return getThisWeeksWorkouts();
   }
 
   double getVolumeDayWeightFromIntensityDay(double intensityDayWeight, bool useMicroplates) {
@@ -306,8 +353,8 @@ class Settings {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
             break;
-          case 3:
-            prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, getVolumeDayWeightFromIntensityDay(_weightMap[Exercise.Squat], false), _weightUnit, 5, 5));
+          default:
+            break;
         }
 
         switch(_deadliftPhase) {
@@ -319,6 +366,9 @@ class Settings {
             break;
           case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, _weightMap[Exercise.Deadlift], _weightUnit, 2, 3));
+        }
+        if (_squatPhase == 3) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, getVolumeDayWeightFromIntensityDay(_weightMap[Exercise.Squat], false), _weightUnit, 5, 5));
         }
 
         break;

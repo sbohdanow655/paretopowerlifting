@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
-import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
@@ -26,22 +25,11 @@ class _SettingsTabState extends State<SettingsTab> {
   TextEditingController _txtBenchPress = TextEditingController();
   TextEditingController _txtDeadlift = TextEditingController();
   TextEditingController _txtOverheadPress = TextEditingController();
-  TextEditingController _txtPendlay = TextEditingController();
+  TextEditingController _txtPendlayRow = TextEditingController();
   TextEditingController _txtSkullcrushers = TextEditingController();
-
+  
 
   _SettingsTabState() {
-    _useMicroplates = Settings.getInstance().useMicroplates;
-    _weightUnit = Settings.getInstance().weightUnit;
-    _squatPhase = Settings.getInstance().squatPhase;
-    _benchPressPhase = Settings.getInstance().benchPressPhase;
-    _deadliftPhase = Settings.getInstance().deadliftPhase;
-    _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
-    _txtBenchPress.text = Settings.getInstance().getNextWeight(Exercise.BenchPress);
-    _txtDeadlift.text = Settings.getInstance().getNextWeight(Exercise.Deadlift);
-    _txtOverheadPress.text = Settings.getInstance().getNextWeight(Exercise.OverheadPress);
-    _txtPendlay.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
-    _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);
   }
 
   void setMicroplates(val) {
@@ -64,16 +52,9 @@ class _SettingsTabState extends State<SettingsTab> {
   void setSquatPhase(val) {
     setState(() {
       _squatPhase = val;
-      if (_benchPressPhase == 1 && val >= 3) {
-        _benchPressPhase = 2;
-      }
     });
 
     Settings.getInstance().squatPhase = val;
-    
-    if (_benchPressPhase == 2) {
-      Settings.getInstance().benchPressPhase = 2;
-    }
   }
 
   void setBenchPressPhase(val) {
@@ -88,21 +69,26 @@ class _SettingsTabState extends State<SettingsTab> {
   void setDeadliftPhase(val) {
     setState(() {
       _deadliftPhase = val;
-      if (_benchPressPhase == 1 && val >= 3) {
-        _benchPressPhase = 2;
-      }
     });
 
     Settings.getInstance().deadliftPhase = val;
-    
-    if (_benchPressPhase == 2) {
-      Settings.getInstance().benchPressPhase = 2;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     
+      _useMicroplates = Settings.getInstance().useMicroplates;
+      _weightUnit = Settings.getInstance().weightUnit;
+      _squatPhase = Settings.getInstance().squatPhase;
+      _benchPressPhase = Settings.getInstance().benchPressPhase;
+      _deadliftPhase = Settings.getInstance().deadliftPhase;
+      _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
+      _txtBenchPress.text = Settings.getInstance().getNextWeight(Exercise.BenchPress);
+      _txtDeadlift.text = Settings.getInstance().getNextWeight(Exercise.Deadlift);
+      _txtOverheadPress.text = Settings.getInstance().getNextWeight(Exercise.OverheadPress);
+      _txtPendlayRow.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
+      _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);  
+
     return SingleChildScrollView(
       child:
         Padding(
@@ -288,7 +274,7 @@ class _SettingsTabState extends State<SettingsTab> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                child: TextField(controller: _txtPendlay, decoration: InputDecoration(labelText: Constants.enterWeightPendlayRow), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.PendlayRow, val)) 
+                child: TextField(controller: _txtPendlayRow, decoration: InputDecoration(labelText: Constants.enterWeightPendlayRow), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.PendlayRow, val)) 
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),

@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
@@ -18,21 +16,22 @@ class WorkoutTab extends StatefulWidget {
 class _WorkoutTabState extends State<WorkoutTab> {
 
   Map<Weekday, Map<Exercise, bool>> _passFailMap = {};
+  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay = Settings.getInstance().getThisWeeksWorkouts();
 
   @override
   Widget build(BuildContext context) {
-
-    Map<Weekday, IDailyPrescription> workoutPrescriptionsByDay = Settings.getInstance().getThisWeeksWorkouts();
-
-    List<Widget> workoutDayList = [];
-
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday],  weekday, _passFailMap);
-      workoutDayList.add(workoutDay);
-      
+      _passFailMap[weekday] = {};
       Exercise.values.forEach((exercise) {
         _passFailMap[weekday][exercise] = false;
       });
+    });
+    
+    List<Widget> workoutDayList = [];
+  
+    Weekday.values.forEach((weekday) {
+      WorkoutDay workoutDay = new WorkoutDay(_workoutPrescriptionsByDay[weekday],  weekday, _passFailMap);
+      workoutDayList.add(workoutDay);
     });
 
     workoutDayList.add(
@@ -40,12 +39,15 @@ class _WorkoutTabState extends State<WorkoutTab> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           RaisedButton(
-            child: Text(Constants.finishWorkoutAndAddWeight),
+            child: Text(Constants.finishWorkoutWeek),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-            Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap);
-          })
+              setState(() {
+                _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap);
+              });
+            }
+          )
         ]
     ));
 
@@ -54,6 +56,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         color: const Color(0xfff5f5f5),
         child: Column(
+            key: UniqueKey(),
             crossAxisAlignment: CrossAxisAlignment.start,
             children: workoutDayList 
           )

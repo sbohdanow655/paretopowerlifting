@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
-import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
-  final Map<Weekday, Map<Exercise, bool>> _passFailMap;
+  Map<Weekday, Map<Exercise, bool>> _passFailMap;
 
   WorkoutDay(this._dailyPrescription, this._weekday, this._passFailMap);
 
@@ -22,7 +20,7 @@ class WorkoutDayState extends State<WorkoutDay> {
 
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
-  final Map<Weekday, Map<Exercise, bool>> _passFailMap;
+  Map<Weekday, Map<Exercise, bool>> _passFailMap;
 
   void setPrescriptionPass(Exercise exercise, bool wasPassed) {
     setState(() {
@@ -62,7 +60,9 @@ class WorkoutDayState extends State<WorkoutDay> {
           DropdownButton<String>(
             value: _passFailMap[_weekday][tuple.exercise] ? Constants.pass : Constants.fail,
             style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
-            onChanged: (val) => setPrescriptionPass(tuple.exercise, val == Constants.pass),
+            onChanged: (val) {
+              setPrescriptionPass(tuple.exercise, val == Constants.pass);
+            },
             items: <String>[Constants.fail, Constants.pass]
               .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
@@ -87,7 +87,8 @@ class WorkoutDayState extends State<WorkoutDay> {
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       color: Colors.white,
-      child: Column(children: columnList)
+      child: Column(
+        children: columnList)
     ); 
       
 
