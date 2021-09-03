@@ -121,6 +121,30 @@ class Settings {
     return incrementWeight(incrementWeight(weight, exercise), exercise);
   }
 
+  void finishWorkoutAndIncrementWeight(Map<Weekday, Map<Exercise, bool>> passFailWeekdayMap) {
+    passFailWeekdayMap.forEach((weekday, passFailMap) {
+      passFailMap.forEach((exercise, didPass) {
+      if (didPass) {
+        _weightMap[exercise] = incrementWeight(_weightMap[exercise], exercise);
+      } else {
+        switch(exercise) {
+          case Exercise.Squat:
+            _squatPhase++;
+            break;
+          case Exercise.BenchPress:
+            _benchPressPhase++;
+            break;
+          case Exercise.Deadlift:
+            _deadliftPhase++;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+    });
+    
+  }
 
   double getVolumeDayWeightFromIntensityDay(double intensityDayWeight, bool useMicroplates) {
     double weightIncrement;

@@ -1,16 +1,5 @@
 import 'package:pareto_powerlifting/assets/constants.dart';
 
-enum Exercise {
-  Squat,
-  BenchPress,
-  Deadlift,
-  OverheadPress,
-  PendlayRow,
-  Skullcrushers,
-  HIITConditioning,
-  Rest
-}
-
 class SingleExercisePrescription {
   final Exercise _exercise;
   double _weight;

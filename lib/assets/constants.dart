@@ -21,6 +21,17 @@ enum WorkoutType {
   RestDay
 }
 
+enum Exercise {
+  Squat,
+  BenchPress,
+  Deadlift,
+  OverheadPress,
+  PendlayRow,
+  Skullcrushers,
+  HIITConditioning,
+  Rest
+}
+
 class Constants {
   static const double titleFontSize = 50;
   static const double buttonFontSize = 30;
@@ -36,6 +47,8 @@ class Constants {
 
   static const String pass = "PASS";
   static const String fail = "FAIL";
+
+  static const String finishWorkoutAndAddWeight = "Finish Workout & Add Weight";
 
   static const String routeMainPage = "/mainPage";
   static const String routeRecoverySurvey = "/recoverySurvey";

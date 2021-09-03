@@ -1,4 +1,4 @@
-import 'SingleExercisePrescription.dart';
+import 'package:pareto_powerlifting/assets/constants.dart';
 
 abstract class IDailyPrescription {
   List<ExercisePrescriptionStringTuple> toTupleList();

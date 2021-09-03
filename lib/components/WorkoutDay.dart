@@ -7,33 +7,26 @@ import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 class WorkoutDay extends StatefulWidget {
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
+  final Map<Weekday, Map<Exercise, bool>> _passFailMap;
 
-  WorkoutDay(this._dailyPrescription, this._weekday);
+  WorkoutDay(this._dailyPrescription, this._weekday, this._passFailMap);
 
   @override
   State<StatefulWidget> createState() {
-    return WorkoutDayState(this._dailyPrescription, this._weekday);
+    return WorkoutDayState(this._dailyPrescription, this._weekday, this._passFailMap);
   }
 }
 
 class WorkoutDayState extends State<WorkoutDay> {
-  WorkoutDayState(this._dailyPrescription, this._weekday);
+  WorkoutDayState(this._dailyPrescription, this._weekday, this._passFailMap);
 
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
-
-  Map<Exercise, bool> _prescriptionPassMap = {
-    Exercise.Squat : false,
-    Exercise.BenchPress : false,
-    Exercise.Deadlift : false,
-    Exercise.OverheadPress : false,
-    Exercise.PendlayRow : false,
-    Exercise.Skullcrushers : false,
-  };
+  final Map<Weekday, Map<Exercise, bool>> _passFailMap;
 
   void setPrescriptionPass(Exercise exercise, bool wasPassed) {
     setState(() {
-      _prescriptionPassMap[exercise] = wasPassed;
+      _passFailMap[_weekday][exercise] = wasPassed;
     });
   }
 
@@ -67,7 +60,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.workoutTabWeekdayFontSize)));
         children.add(
           DropdownButton<String>(
-            value: _prescriptionPassMap[tuple.exercise] ? Constants.pass : Constants.fail,
+            value: _passFailMap[_weekday][tuple.exercise] ? Constants.pass : Constants.fail,
             style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
             onChanged: (val) => setPrescriptionPass(tuple.exercise, val == Constants.pass),
             items: <String>[Constants.fail, Constants.pass]

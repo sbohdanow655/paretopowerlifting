@@ -17,18 +17,37 @@ class WorkoutTab extends StatefulWidget {
 
 class _WorkoutTabState extends State<WorkoutTab> {
 
+  Map<Weekday, Map<Exercise, bool>> _passFailMap = {};
+
   @override
   Widget build(BuildContext context) {
 
     Map<Weekday, IDailyPrescription> workoutPrescriptionsByDay = Settings.getInstance().getThisWeeksWorkouts();
 
-
-    List<WorkoutDay> workoutDayList = [];
+    List<Widget> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday],  weekday);
+      WorkoutDay workoutDay = new WorkoutDay(workoutPrescriptionsByDay[weekday],  weekday, _passFailMap);
       workoutDayList.add(workoutDay);
+      
+      Exercise.values.forEach((exercise) {
+        _passFailMap[weekday][exercise] = false;
+      });
     });
+
+    workoutDayList.add(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RaisedButton(
+            child: Text(Constants.finishWorkoutAndAddWeight),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+            Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap);
+          })
+        ]
+    ));
 
     return SingleChildScrollView(
       child: Container(
