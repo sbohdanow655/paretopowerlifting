@@ -1,4 +1,5 @@
 import '../assets/constants.dart';
+import '../model.dart';
 import 'DailyExercisePresciption.dart';
 import 'DailyRestPrescription.dart';
 import 'IDailyPrescription.dart';
@@ -437,4 +438,55 @@ class Settings {
 
     return dailyPrescriptionMap;
   }
+
+  void saveSettings() {
+    Model.updateSettings(_useMicroplates, _weightUnit, _squatPhase, _benchPressPhase, _deadliftPhase, _threeDaySchedule[WorkoutType.FullBody1], _threeDaySchedule[WorkoutType.FullBody2], _threeDaySchedule[WorkoutType.FullBody3], _fourDaySchedule[WorkoutType.LowerBody1], _fourDaySchedule[WorkoutType.UpperBody1], _fourDaySchedule[WorkoutType.LowerBody2], _fourDaySchedule[WorkoutType.UpperBody2], _weightMap[Exercise.Squat], _weightMap[Exercise.BenchPress], _weightMap[Exercise.Deadlift], _weightMap[Exercise.OverheadPress], _weightMap[Exercise.PendlayRow], _weightMap[Exercise.Skullcrushers]);
+  }
+
+  void updateSettingsFromDB() async {
+    Map stringToSettingMap = {
+      'useMicroplates' : _useMicroplates,
+      'weightUnit' : _weightUnit,
+      'squatPhase' : _squatPhase,
+      'benchPressPhase' : _benchPressPhase,
+      'deadliftPhase' : _deadliftPhase,
+      'fullbody1' : _threeDaySchedule[WorkoutType.FullBody1],
+      'fullbody2' : _threeDaySchedule[WorkoutType.FullBody2],
+      'fullbody3' : _threeDaySchedule[WorkoutType.FullBody3],
+      'split1' : _threeDaySchedule[WorkoutType.LowerBody1],
+      'split2' : _threeDaySchedule[WorkoutType.UpperBody1],
+      'split3' : _threeDaySchedule[WorkoutType.LowerBody2],
+      'split4' : _threeDaySchedule[WorkoutType.LowerBody2],
+      'squatWeight' : _weightMap[Exercise.Squat],
+      'benchPressWeight' : _weightMap[Exercise.BenchPress],
+      'deadliftWeight' : _weightMap[Exercise.Deadlift],
+      'overheadPressWeight' : _weightMap[Exercise.OverheadPress],
+      'pendlayRowWeight' : _weightMap[Exercise.PendlayRow],
+      'skullcrusherWeight' : _weightMap[Exercise.Skullcrushers],
+    };
+
+    Map settingsMap = await Model.getSettings();
+    settingsMap.forEach((key, value) { 
+      switch(key) {
+        case "useMicroplates":
+          stringToSettingMap[key] = value == 1;
+          break;
+        case "fullbody1":
+        case "fullbody2":
+        case "fullbody3":
+        case "split1":
+        case "split2":
+        case "split3":
+        case "split4":
+          stringToSettingMap[key] = Constants.weekdayByString[value];
+          break;
+        default:
+          stringToSettingMap[key] = value;
+          break;
+      }
+      
+    });
+  }
 }
+    
+    

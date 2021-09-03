@@ -38,6 +38,7 @@ class _SettingsTabState extends State<SettingsTab> {
     });
 
     Settings.getInstance().useMicroplates = val;
+    Settings.getInstance().saveSettings();
   }
 
   void setWeightUnit(val) {
@@ -46,6 +47,7 @@ class _SettingsTabState extends State<SettingsTab> {
     });
 
     Settings.getInstance().weightUnit = val;
+    Settings.getInstance().saveSettings();
 
   }
 
@@ -55,6 +57,8 @@ class _SettingsTabState extends State<SettingsTab> {
     });
 
     Settings.getInstance().squatPhase = val;
+    Settings.getInstance().saveSettings();
+
   }
 
   void setBenchPressPhase(val) {
@@ -63,6 +67,7 @@ class _SettingsTabState extends State<SettingsTab> {
     });
     
     Settings.getInstance().benchPressPhase = val;
+    Settings.getInstance().saveSettings();
 
   }
 
@@ -72,22 +77,24 @@ class _SettingsTabState extends State<SettingsTab> {
     });
 
     Settings.getInstance().deadliftPhase = val;
+    Settings.getInstance().saveSettings();
+
   }
 
   @override
   Widget build(BuildContext context) {
     
-      _useMicroplates = Settings.getInstance().useMicroplates;
-      _weightUnit = Settings.getInstance().weightUnit;
-      _squatPhase = Settings.getInstance().squatPhase;
-      _benchPressPhase = Settings.getInstance().benchPressPhase;
-      _deadliftPhase = Settings.getInstance().deadliftPhase;
-      _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
-      _txtBenchPress.text = Settings.getInstance().getNextWeight(Exercise.BenchPress);
-      _txtDeadlift.text = Settings.getInstance().getNextWeight(Exercise.Deadlift);
-      _txtOverheadPress.text = Settings.getInstance().getNextWeight(Exercise.OverheadPress);
-      _txtPendlayRow.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
-      _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);  
+    _useMicroplates = Settings.getInstance().useMicroplates;
+    _weightUnit = Settings.getInstance().weightUnit;
+    _squatPhase = Settings.getInstance().squatPhase;
+    _benchPressPhase = Settings.getInstance().benchPressPhase;
+    _deadliftPhase = Settings.getInstance().deadliftPhase;
+    _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
+    _txtBenchPress.text = Settings.getInstance().getNextWeight(Exercise.BenchPress);
+    _txtDeadlift.text = Settings.getInstance().getNextWeight(Exercise.Deadlift);
+    _txtOverheadPress.text = Settings.getInstance().getNextWeight(Exercise.OverheadPress);
+    _txtPendlayRow.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
+    _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);  
 
     return SingleChildScrollView(
       child:

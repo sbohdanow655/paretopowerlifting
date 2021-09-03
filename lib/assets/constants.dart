@@ -1,5 +1,3 @@
-import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
-
 enum Weekday {
   Monday,
   Tuesday,
@@ -41,7 +39,7 @@ class Constants {
   static const double titleFontSize = 50;
   static const double buttonFontSize = 30;
   static const double settingsFontSize = 16;
-  static const double workoutTabWeekdayFontSize = 18;
+  static const double workoutTabWeekdayFontSize = 15;
 
   static const double marginHorizontal = 40;
 
@@ -172,5 +170,4 @@ class Constants {
     Exercise.HIITConditioning : exerciseHIIT,
     Exercise.Rest : exerciseRest
   };
-
 }

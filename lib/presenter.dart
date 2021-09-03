@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import './view.dart';
-import './model.dart';
-import './assets/constants.dart';
 
 class Presenter {
 

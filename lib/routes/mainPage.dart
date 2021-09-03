@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/Settings.dart';
 import '../assets/constants.dart';
+import '../model.dart';
 import '../tabs/tabWorkout.dart';
 import '../tabs/tabHistory.dart';
 import '../tabs/tabSettings.dart';
@@ -26,6 +28,12 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       currentTabIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    Settings.getInstance().updateSettingsFromDB();
+    super.initState();
   }
 
   @override
