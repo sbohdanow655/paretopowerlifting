@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   
   List<Widget> tabViews = [
     WorkoutTab(),
-    HistoryTab(),
+    // HistoryTab(),
     SettingsTab()
   ];
 
@@ -45,10 +45,10 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.fitness_center),
             title: Text("Workouts")
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            title: Text("History")
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.history),
+          //   title: Text("History")
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             title: Text("Settings")

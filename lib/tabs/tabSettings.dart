@@ -109,11 +109,7 @@ class _SettingsTabState extends State<SettingsTab> {
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith((val) => Colors.blue),
                   value: _useMicroplates,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _useMicroplates = value;
-                    });
-                  },
+                  onChanged: (bool value) => setMicroplates(value)
                 )
               ]
             ),
