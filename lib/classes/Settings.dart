@@ -121,7 +121,13 @@ class Settings {
     return incrementWeight(incrementWeight(weight, exercise), exercise);
   }
 
-  Map<Weekday, IDailyPrescription> finishWorkoutAndIncrementWeight(Map<Weekday, Map<Exercise, bool>> passFailWeekdayMap) {
+  void _resetExercisePhases() {
+    _squatPhase = 1;
+    _benchPressPhase = 1;
+    _deadliftPhase = 1;
+  }
+
+  Map<Weekday, IDailyPrescription> finishWorkoutAndIncrementWeight(Map<Weekday, Map<Exercise, bool>> passFailWeekdayMap, bool resetExercisePhases) {
     Set<Exercise> checkedExerciseSet = new Set();
     passFailWeekdayMap.forEach((weekday, passFailMap) {
       passFailMap.forEach((exercise, didPass) {
@@ -188,6 +194,10 @@ class Settings {
     Exercise.values.forEach((exercise) {
       passFailWeekdayMap[weekday][exercise] = false;
     });
+
+    if (resetExercisePhases) {
+      _resetExercisePhases();
+    }
   });
 
     return getThisWeeksWorkouts();
@@ -374,19 +384,19 @@ class Settings {
         break;
       case WorkoutType.UpperBody2:
         switch(_benchPressPhase) {
-          case 1:
+          case 2:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, incrementWeight(_weightMap[Exercise.PendlayRow], Exercise.PendlayRow), _weightUnit, 3, 8));
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, incrementWeight(_weightMap[Exercise.OverheadPress], Exercise.OverheadPress), _weightUnit, 3, 5));
 
             break;
-          case 2:
+          case 3:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 5, 3));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, incrementWeight(_weightMap[Exercise.PendlayRow], Exercise.PendlayRow), _weightUnit, 3, 8));
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, incrementWeight(_weightMap[Exercise.OverheadPress], Exercise.OverheadPress), _weightUnit, 5, 3));
 
             break;
-          case 3:
+          case 4:
             prescriptionList.add(new SingleExercisePrescription(Exercise.OverheadPress, _weightMap[Exercise.OverheadPress], _weightUnit, 3, 3));
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, getVolumeDayWeightFromIntensityDay(_weightMap[Exercise.BenchPress], _useMicroplates), _weightUnit, 5, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.Skullcrushers, _weightMap[Exercise.Skullcrushers], _weightUnit, 3, 8));

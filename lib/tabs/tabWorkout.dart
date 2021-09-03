@@ -38,18 +38,34 @@ class _WorkoutTabState extends State<WorkoutTab> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          RaisedButton(
-            child: Text(Constants.finishWorkoutWeek),
-            color: Colors.blue,
-            textColor: Colors.white,
-            onPressed: () {
-              setState(() {
-                _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap);
-              });
-            }
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(
+                child: Text(Constants.finishWorkoutWeek),
+                color: Colors.blue,
+                textColor: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap, false);
+                  });
+                }
+              ),
+              RaisedButton(
+                child: Text(Constants.resetExercisePhases),
+                color: Colors.blue,
+                textColor: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap, true);
+                  });
+                }
+              )
+            ]
           )
         ]
-    ));
+      )
+    );
 
     return SingleChildScrollView(
       child: Container(

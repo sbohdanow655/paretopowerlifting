@@ -53,6 +53,7 @@ class Constants {
   static const String pass = "PASS";
   static const String fail = "FAIL";
 
+  static const String resetExercisePhases = "Reset Exercise Phases";
   static const String finishWorkoutWeek = "Finish Workout Week";
 
   static const String routeMainPage = "/mainPage";
