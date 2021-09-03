@@ -225,9 +225,9 @@ class Settings {
         }
         break;
       case WorkoutType.FullBody3:
-        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
-        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
-        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeight(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Squat, incrementWeightTwice(_weightMap[Exercise.Squat], Exercise.Squat), _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeightTwice(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
+        prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift, incrementWeightTwice(_weightMap[Exercise.Deadlift], Exercise.Deadlift), _weightUnit, 1, 5));
 
         break;
       case WorkoutType.LowerBody1:

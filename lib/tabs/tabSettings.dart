@@ -18,9 +18,9 @@ class _SettingsTabState extends State<SettingsTab> {
 
   String _weightUnit = Constants.weightUnitLbs;
 
-  int _squatPhase;
-  int _benchPressPhase;
-  int _deadliftPhase;
+  int _squatPhase = 1;
+  int _benchPressPhase = 1;
+  int _deadliftPhase = 1;
 
   TextEditingController _txtSquat = TextEditingController();
   TextEditingController _txtBenchPress = TextEditingController();
