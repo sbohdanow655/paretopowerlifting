@@ -39,7 +39,7 @@ class Constants {
   static const double titleFontSize = 50;
   static const double buttonFontSize = 30;
   static const double settingsFontSize = 16;
-  static const double workoutTabWeekdayFontSize = 15;
+  static const double workoutTabWeekdayFontSize = 13;
 
   static const double marginHorizontal = 40;
 
@@ -99,10 +99,10 @@ class Constants {
   static const String selectFullBodyWorkoutDay1 = "Fullbody Workout Day 1";
   static const String selectFullBodyWorkoutDay2 = "Fullbody Workout Day 2";
   static const String selectFullBodyWorkoutDay3 = "Fullbody Workout Day 3";
-  static const String selectUpperLowerWorkoutDay1 = "Upper/Lower Workout Day 1";
-  static const String selectUpperLowerWorkoutDay2 = "Upper/Lower Workout Day 2";
-  static const String selectUpperLowerWorkoutDay3 = "Upper/Lower Workout Day 3";
-  static const String selectUpperLowerWorkoutDay4 = "Upper/Lower Workout Day 4";
+  static const String selectLowerWorkoutDay1 = "Lower Workout Day 1";
+  static const String selectUpperWorkoutDay1 = "Upper Workout Day 1";
+  static const String selectLowerWorkoutDay2 = "Lower Workout Day 2";
+  static const String selectUpperWorkoutDay2 = "Upper Workout Day 2";
 
   static const String enterWeightSquat = "Next Squat Intensity Weight";
   static const String enterWeightBenchPress = "Next Bench Press Intensity Weight";

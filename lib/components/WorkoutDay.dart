@@ -59,7 +59,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         children.add(
           DropdownButton<String>(
             value: _passFailMap[_weekday][tuple.exercise] ? Constants.pass : Constants.fail,
-            style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
+            style: TextStyle(color: Colors.black, fontSize: Constants.workoutTabWeekdayFontSize),
             onChanged: (val) {
               setPrescriptionPass(tuple.exercise, val == Constants.pass);
             },

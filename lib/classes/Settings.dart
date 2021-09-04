@@ -50,6 +50,7 @@ class Settings {
 
   void setNextWeight(Exercise exercise, String nextWeight) {
     _weightMap[exercise] = double.parse(nextWeight);
+    saveSettings();
   }
 
   String getNextWeight(Exercise exercise) {
@@ -263,12 +264,13 @@ class Settings {
   }
 
   void addDayToFourDaySchedule(Weekday weekday, WorkoutType workoutType) {
-
     _fourDaySchedule[workoutType] = weekday;
+    saveSettings();
   }
 
   void addDayToThreeDaySchedule(Weekday weekday, WorkoutType workoutType) {
     _threeDaySchedule[workoutType] = weekday;
+    saveSettings();
   }
 
   bool is3day() {
@@ -444,47 +446,68 @@ class Settings {
   }
 
   void updateSettingsFromDB() async {
-    Map stringToSettingMap = {
-      'useMicroplates' : _useMicroplates,
-      'weightUnit' : _weightUnit,
-      'squatPhase' : _squatPhase,
-      'benchPressPhase' : _benchPressPhase,
-      'deadliftPhase' : _deadliftPhase,
-      'fullbody1' : _threeDaySchedule[WorkoutType.FullBody1],
-      'fullbody2' : _threeDaySchedule[WorkoutType.FullBody2],
-      'fullbody3' : _threeDaySchedule[WorkoutType.FullBody3],
-      'split1' : _threeDaySchedule[WorkoutType.LowerBody1],
-      'split2' : _threeDaySchedule[WorkoutType.UpperBody1],
-      'split3' : _threeDaySchedule[WorkoutType.LowerBody2],
-      'split4' : _threeDaySchedule[WorkoutType.LowerBody2],
-      'squatWeight' : _weightMap[Exercise.Squat],
-      'benchPressWeight' : _weightMap[Exercise.BenchPress],
-      'deadliftWeight' : _weightMap[Exercise.Deadlift],
-      'overheadPressWeight' : _weightMap[Exercise.OverheadPress],
-      'pendlayRowWeight' : _weightMap[Exercise.PendlayRow],
-      'skullcrusherWeight' : _weightMap[Exercise.Skullcrushers],
-    };
 
     Map settingsMap = await Model.getSettings();
     settingsMap.forEach((key, value) { 
       switch(key) {
-        case "useMicroplates":
-          stringToSettingMap[key] = value == 1;
+        case 'useMicroplates':
+          _useMicroplates = value == 1;
           break;
-        case "fullbody1":
-        case "fullbody2":
-        case "fullbody3":
-        case "split1":
-        case "split2":
-        case "split3":
-        case "split4":
-          stringToSettingMap[key] = Constants.weekdayByString[value];
+        case 'weightUnit':
+          _weightUnit = value;
+          break;
+        case 'squatPhase':
+          _squatPhase = value;
+          break;
+        case'benchPressPhase':
+          _benchPressPhase = value;
+          break;
+        case 'deadliftPhase':
+          _deadliftPhase = value;
+          break;
+        case 'fullbody1':
+          _threeDaySchedule[WorkoutType.FullBody1] = Constants.weekdayByString[value];
+          break;
+        case 'fullbody2':
+          _threeDaySchedule[WorkoutType.FullBody2] = Constants.weekdayByString[value];
+          break;
+        case 'fullbody3':
+          _threeDaySchedule[WorkoutType.FullBody3] = Constants.weekdayByString[value];
+          break;  
+        case 'split1':
+          _fourDaySchedule[WorkoutType.LowerBody1] = Constants.weekdayByString[value];
+          break;
+        case 'split2':
+          _fourDaySchedule[WorkoutType.UpperBody1] = Constants.weekdayByString[value];
+          break;
+        case 'split3':
+          _fourDaySchedule[WorkoutType.LowerBody2] = Constants.weekdayByString[value];
+          break;
+        case 'split4':
+          _fourDaySchedule[WorkoutType.LowerBody2] = Constants.weekdayByString[value];
+          break;
+        case 'squatWeight':
+          _weightMap[Exercise.Squat] = value;
+          break;
+        case 'benchPressWeight':
+          _weightMap[Exercise.BenchPress] = value;
+          break;
+        case 'deadliftWeight':
+          _weightMap[Exercise.Deadlift] = value;
+          break;
+        case 'overheadPressWeight':
+          _weightMap[Exercise.OverheadPress] = value;
+          break;
+        case 'pendlayRowWeight':
+          _weightMap[Exercise.PendlayRow] = value;
+          break;
+        case 'skullcrusherWeight':
+          _weightMap[Exercise.Skullcrushers] = value;
           break;
         default:
-          stringToSettingMap[key] = value;
           break;
       }
-      
+
     });
   }
 }

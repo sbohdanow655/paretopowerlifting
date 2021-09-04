@@ -227,7 +227,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                    child: Text(Constants.selectUpperLowerWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                    child: Text(Constants.selectLowerWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
                   ),
                   WeekdayDropdown(WorkoutType.LowerBody1)
                 ]
@@ -236,7 +236,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                    child: Text(Constants.selectUpperLowerWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                    child: Text(Constants.selectUpperWorkoutDay1, style: TextStyle(fontSize: Constants.settingsFontSize)),
                   ),
                   WeekdayDropdown(WorkoutType.UpperBody1)
                 ]
@@ -245,7 +245,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                    child: Text(Constants.selectUpperLowerWorkoutDay3, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                    child: Text(Constants.selectLowerWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
                   ),
                   WeekdayDropdown(WorkoutType.LowerBody2)
                 ]
@@ -254,7 +254,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                    child: Text(Constants.selectUpperLowerWorkoutDay4, style: TextStyle(fontSize: Constants.settingsFontSize)),
+                    child: Text(Constants.selectUpperWorkoutDay2, style: TextStyle(fontSize: Constants.settingsFontSize)),
                   ),
                   WeekdayDropdown(WorkoutType.UpperBody2)
                 ]
