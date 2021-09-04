@@ -338,6 +338,7 @@ class Settings {
         break;
       case WorkoutType.UpperBody1:
         switch(_benchPressPhase) {
+          case 1:
           case 2:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, _weightMap[Exercise.Deadlift], _weightUnit, 3, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, _weightMap[Exercise.Deadlift], _weightUnit, 3, 8));
@@ -387,6 +388,7 @@ class Settings {
         break;
       case WorkoutType.UpperBody2:
         switch(_benchPressPhase) {
+          case 1:
           case 2:
             prescriptionList.add(new SingleExercisePrescription(Exercise.BenchPress, incrementWeight(_weightMap[Exercise.BenchPress], Exercise.BenchPress), _weightUnit, 3, 5));
             prescriptionList.add(new SingleExercisePrescription(Exercise.PendlayRow, incrementWeight(_weightMap[Exercise.PendlayRow], Exercise.PendlayRow), _weightUnit, 3, 8));
