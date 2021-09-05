@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
 import '../assets/constants.dart';
-import '../model.dart';
 import '../tabs/tabWorkout.dart';
-import '../tabs/tabHistory.dart';
 import '../tabs/tabSettings.dart';
 
 class MainPage extends StatefulWidget {
@@ -40,7 +38,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(      
-        title: Text(Constants.title)
+        title: Text(Constants.TITLE)
       ),
       body: tabViews[currentTabIndex],
       bottomNavigationBar: BottomNavigationBar(

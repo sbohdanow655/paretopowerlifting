@@ -36,7 +36,7 @@ class WorkoutDayState extends State<WorkoutDay> {
       Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(Constants.weekdayStrings[_weekday],
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: Constants.workoutTabWeekdayFontSize),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
           )
         ]
       ) 
@@ -50,20 +50,20 @@ class WorkoutDayState extends State<WorkoutDay> {
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
           child: Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(tuple.prescriptionString, style: TextStyle(fontStyle: FontStyle.italic, fontSize: Constants.workoutTabWeekdayFontSize))
+              Text(tuple.prescriptionString, style: TextStyle(fontStyle: FontStyle.italic, fontSize: Constants.FONTSIZE_TAB_WORKOUTS))
             ],
           )
         ));
       } else {
-        children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.workoutTabWeekdayFontSize)));
+        children.add(Text(tuple.prescriptionString, style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
         children.add(
           DropdownButton<String>(
-            value: _passFailMap[_weekday][tuple.exercise] ? Constants.pass : Constants.fail,
-            style: TextStyle(color: Colors.black, fontSize: Constants.workoutTabWeekdayFontSize),
+            value: _passFailMap[_weekday][tuple.exercise] ? Constants.PASS : Constants.FAIL,
+            style: TextStyle(color: Colors.black, fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
             onChanged: (val) {
-              setPrescriptionPass(tuple.exercise, val == Constants.pass);
+              setPrescriptionPass(tuple.exercise, val == Constants.PASS);
             },
-            items: <String>[Constants.fail, Constants.pass]
+            items: <String>[Constants.FAIL, Constants.PASS]
               .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

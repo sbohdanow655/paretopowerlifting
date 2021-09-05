@@ -13,7 +13,7 @@ class _HistoryTabState extends State<HistoryTab> {
   
   bool haveMicroplates = false;
 
-  String unitWeight = Constants.weightUnitLbs;
+  String unitWeight = Constants.WEIGHTUNIT_LBS;
 
   int squatPhase = 1;
   int benchPressPhase = 1;

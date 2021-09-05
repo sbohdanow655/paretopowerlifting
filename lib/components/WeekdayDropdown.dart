@@ -52,7 +52,7 @@ class WeekdayDropdownState extends State<WeekdayDropdown> {
     
     return DropdownButton<String>(
       value: Constants.weekdayStrings[_selectedWeekday],
-      style: TextStyle(color: Colors.black, fontSize: Constants.settingsFontSize),
+      style: TextStyle(color: Colors.black, fontSize: Constants.FONTSIZE_TAB_SETTINGS),
       onChanged: (val) => setSelectedWeekday(Constants.weekdayByString[val]),
       items: Constants.weekdayByString.keys
         .map<DropdownMenuItem<String>>((String value) {

@@ -12,7 +12,7 @@ class Settings {
   int _squatPhase = 1;
   int _benchPressPhase = 1;
   int _deadliftPhase = 1;
-  String _weightUnit = Constants.weightUnitLbs;
+  String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _useMicroplates = false;
 
   Map<Exercise, double> _weightMap = {
@@ -103,13 +103,13 @@ class Settings {
     bool isBenchPressPhase3 = _benchPressPhase >= 3;
     bool useMicroplates = _useMicroplates && isUpperBody && isBenchPressPhase3;
     if (useMicroplates) {
-      if (_weightUnit == Constants.weightUnitLbs) {
+      if (_weightUnit == Constants.WEIGHTUNIT_LBS) {
         weightIncrement = 2.5;
       } else {
         weightIncrement = 1;
       }
     } else {
-      if (_weightUnit == Constants.weightUnitLbs) {
+      if (_weightUnit == Constants.WEIGHTUNIT_LBS) {
         weightIncrement = 5;
       } else {
         weightIncrement = 2;
@@ -208,13 +208,13 @@ class Settings {
   double getVolumeDayWeightFromIntensityDay(double intensityDayWeight, bool useMicroplates) {
     double weightIncrement;
     if (useMicroplates) {
-      if (_weightUnit == Constants.weightUnitLbs) {
+      if (_weightUnit == Constants.WEIGHTUNIT_LBS) {
         weightIncrement = 2.5;
       } else {
         weightIncrement = 1;
       }
     } else {
-      if (_weightUnit == Constants.weightUnitLbs) {
+      if (_weightUnit == Constants.WEIGHTUNIT_LBS) {
         weightIncrement = 5;
       } else {
         weightIncrement = 2;

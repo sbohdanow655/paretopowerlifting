@@ -12,9 +12,9 @@ class View extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        Constants.routeMainPage : (context) => MainPage(),
+        Constants.ROUTE_MAINPAGE : (context) => MainPage(),
       },
-      title: Constants.title,
+      title: Constants.TITLE,
       theme: ThemeData(
         // This is the theme of your application.
         //

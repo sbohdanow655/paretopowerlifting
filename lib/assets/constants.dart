@@ -36,118 +36,99 @@ class PrimitiveWrapper {
 }
 
 class Constants {
-  static const double titleFontSize = 50;
-  static const double buttonFontSize = 30;
-  static const double settingsFontSize = 16;
-  static const double workoutTabWeekdayFontSize = 13;
+  static const double FONTSIZE_TITLE = 50;
+  static const double FONTSIZE_BUTTON = 30;
+  static const double FONTSIZE_TAB_SETTINGS = 16;
+  static const double FONTSIZE_TAB_WORKOUTS = 13;
 
-  static const double marginHorizontal = 40;
+  static const double MARGIN_HORIZONTAL = 40;
 
-  static const double paddingVertical = 10;
-  static const double paddingHorizontal = 20;
+  static const double PADDING_VERTICAL = 10;
+  static const double PADDING_HORIZONTAL = 20;
 
-  static const String title = "Pareto Powerlifting";
+  static const String TITLE = "Pareto Powerlifting";
 
-  static const String pass = "PASS";
-  static const String fail = "FAIL";
+  static const String PASS = "PASS";
+  static const String FAIL = "FAIL";
 
-  static const String resetExercisePhases = "Reset Exercise Phases";
-  static const String finishWorkoutWeek = "Finish Workout Week";
+  static const String RESET_EXERCISE_PHASES = "Reset Exercise Phases";
+  static const String FINISH_WORKOUT_WEEK = "Finish Workout Week";
 
-  static const String routeMainPage = "/mainPage";
-  static const String routeRecoverySurvey = "/recoverySurvey";
-  static const String routeStartPage = "/startPage";
-  static const String routeTestWorkoutInfo = "/testWorkoutInfo";
-  static const String routeWeightsSurvey = "/weightsSurvey";
-  static const String routeWorkoutSchedule = "/workoutSchedule";
-  static const String routeWorkoutSurvey = "/workoutSurvey";
+  static const String ROUTE_MAINPAGE = "/mainPage";
 
-  static const double textPaddingVertical = 10;
-  static const double textPaddingHorizontal = 20;
+  static const double TEXTPADDING_VERTICAL = 10;
+  static const double TEXTPADDING_HORIZONTAL = 20;
 
-  static const String bmiSurveyHeaderHeight = "Height";
-  static const String bmiSurveyHeaderWeight = "Weight";
+  static const String WEIGHTUNIT_LBS = "lbs";
+  static const String WEIGHTUNIT_KG = "kg";
 
-  static const String heightUnitInches = "Inches";
-  static const String heightUnitCm = "cm";
+  static const double WEIGHTINCREMENT_LBS_BIG = 5;
+  static const double WEIGHTINCREMENT_LBS_SMALL = 2.5;
 
-  static const String weightUnitLbs = "lbs";
-  static const String weightUnitKg = "kg";
+  static const double WEIGHTINCREMENT_KG_BIG = 2;
+  static const double WEIGHTINCREMENT_KG_SMALL = 1;
 
-  static const double bigWeightIncrementLbs = 5;
-  static const double smallWeightIncrementLbs = 2.5;
+  static const String TAB_WORKOUTS = "Workouts";
+  static const String TAB_HISTORY = "History";
+  static const String TAB_SETTINGS = "Settings";
 
-  static const double bigWeightIncrementKg = 2;
-  static const double smallWeightIncrementKg = 1;
+  static const String USE_MICROPLATES = "Microplates for Upper Body";
+  static const String SELECT_WEIGHT_UNIT = "Weight Unit";
+  static const String SELECTPHASE_SQUAT = "Squat Phase";
+  static const String SELECTPHASE_BENCHPRESS = "Bench Press Phase";
+  static const String SELECTPHASE_DEADLIFT = "Deadlift Phase";
+  static const String SELECTWORKOUTDAY_FULLBODY_ONE = "Fullbody Workout Day 1";
+  static const String SELECTWORKOUTDAY_FULLBODY_TWO = "Fullbody Workout Day 2";
+  static const String SELECTWORKOUTDAY_FULLBODY_THREE = "Fullbody Workout Day 3";
+  static const String SELECTWORKOUTDAY_LOWERBODY_ONE = "Lower Workout Day 1";
+  static const String SELECTWORKOUTDAY_UPPERBODY_ONE = "Upper Workout Day 1";
+  static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Workout Day 2";
+  static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Workout Day 2";
 
-  static const double inchesToCm = 2.5;
-  static const double kgToLbs = 2.2;
-  static const double bmiConstant = 703;
-  static const String bmiUnderweight = "You are underweight. Better eat up!";
-  static const String bmiNormal = "You are a normal weight. Try eating a bit more.";
-  static const String bmiOverweight = "You are overweight. Hope you lose some!";
+  static const String ENTERWEIGHT_SQUAT = "Next Squat Intensity Weight";
+  static const String ENTERWEIGHT_BENCHPRESS = "Next Bench Press Intensity Weight";
+  static const String ENTERWEIGHT_DEADLIFT = "Next Deadlift Intensity Weight";
+  static const String ENTERWEIGHT_OVERHEADPRESS = "Next Overhead Press Intensity Weight";
+  static const String ENTERWEIGHT_PENDLAYROW = "Next Pendlay Row Weight";
+  static const String ENTERWEIGHT_SKULLCRUSHERS = "Next Skullcrushers Weight";
 
-  static const String tabNextWorkout = "Next Workout";
-  static const String tabHistory = "History";
-  static const String tabSettings = "Settings";
+  static const String EXERCISE_SQUAT = "Squat";
+  static const String EXERCISE_BENCHPRESS = "Bench Press";
+  static const String EXERCISE_OVERHEADPRESS = "Overhead Press";
+  static const String EXERCISE_DEADLIFT = "Deadlift";
+  static const String EXERCISE_PENDLAYROW = "Pendlay Row";
+  static const String EXERCISE_SKULLCRUSHERS = "Skullcrushers";
+  static const String EXERCISE_HIIT = "HIIT Conditioning";
+  static const String EXERCISE_REST = "Rest Day";
 
-  static const String useMicroplates = "Microplates for Upper Body";
-  static const String selectWeightUnit = "Weight Unit";
-  static const String selectSquatPhase = "Squat Phase";
-  static const String selectBenchPressPhase = "Bench Press Phase";
-  static const String selectDeadliftPhase = "Deadlift Phase";
-  static const String selectFullBodyWorkoutDay1 = "Fullbody Workout Day 1";
-  static const String selectFullBodyWorkoutDay2 = "Fullbody Workout Day 2";
-  static const String selectFullBodyWorkoutDay3 = "Fullbody Workout Day 3";
-  static const String selectLowerWorkoutDay1 = "Lower Workout Day 1";
-  static const String selectUpperWorkoutDay1 = "Upper Workout Day 1";
-  static const String selectLowerWorkoutDay2 = "Lower Workout Day 2";
-  static const String selectUpperWorkoutDay2 = "Upper Workout Day 2";
+  static const String MONDAY = "Monday";
+  static const String TUESDAY = "Tuesday";
+  static const String WEDNESDAY = "Wednesday";
+  static const String THURSDAY = "Thursday";
+  static const String FRIDAY = "Friday";
+  static const String SATURDAY = "Saturday";
+  static const String SUNDAY = "Sunday";
 
-  static const String enterWeightSquat = "Next Squat Intensity Weight";
-  static const String enterWeightBenchPress = "Next Bench Press Intensity Weight";
-  static const String enterWeightDeadlift = "Next Deadlift Intensity Weight";
-  static const String enterWeightOverheadPress = "Next Overhead Press Intensity Weight";
-  static const String enterWeightPendlayRow = "Next Pendlay Row Weight";
-  static const String enterWeightSkullcrushers = "Next Skullcrushers Weight";
-
-  static const String exerciseSquat = "Squat";
-  static const String exerciseBenchPress = "Bench Press";
-  static const String exerciseOverheadPress = "Overhead Press";
-  static const String exerciseDeadlift = "Deadlift";
-  static const String exercisePendlayRow = "Pendlay Row";
-  static const String exerciseSkullcrushers = "Skullcrushers";
-  static const String exerciseHIIT = "HIIT Conditioning";
-  static const String exerciseRest = "Rest Day";
-
-  static const String monday = "Monday";
-  static const String tuesday = "Tuesday";
-  static const String wednesday = "Wednesday";
-  static const String thursday = "Thursday";
-  static const String friday = "Friday";
-  static const String saturday = "Saturday";
-  static const String sunday = "Sunday";
-
-  static const String restDay = "Rest Day";
+  static const String REST_DAY = "Rest Day";
 
   static const Map<String, Weekday> weekdayByString = {
-    monday : Weekday.Monday,
-    tuesday : Weekday.Tuesday,
-    wednesday: Weekday.Wednesday,
-    thursday : Weekday.Thursday,
-    friday : Weekday.Friday,
-    saturday: Weekday.Saturday,
-    sunday : Weekday.Sunday
+    MONDAY : Weekday.Monday,
+    TUESDAY : Weekday.Tuesday,
+    WEDNESDAY: Weekday.Wednesday,
+    THURSDAY : Weekday.Thursday,
+    FRIDAY : Weekday.Friday,
+    SATURDAY : Weekday.Saturday,
+    SUNDAY : Weekday.Sunday
   };
 
   static const Map<Weekday, String> weekdayStrings = {
-    Weekday.Monday : monday,
-    Weekday.Tuesday : tuesday,
-    Weekday.Wednesday : wednesday,
-    Weekday.Thursday : thursday,
-    Weekday.Friday : friday,
-    Weekday.Saturday : saturday,
-    Weekday.Sunday : sunday
+    Weekday.Monday : MONDAY,
+    Weekday.Tuesday : TUESDAY,
+    Weekday.Wednesday : WEDNESDAY,
+    Weekday.Thursday : THURSDAY,
+    Weekday.Friday : FRIDAY,
+    Weekday.Saturday : SATURDAY,
+    Weekday.Sunday : SUNDAY
   };
 
   static const Map<Weekday, int> weekdayValues = {
@@ -161,13 +142,13 @@ class Constants {
   };
 
   static const Map<Exercise, String> exerciseStrings = {
-    Exercise.Squat : exerciseSquat,
-    Exercise.BenchPress : exerciseBenchPress,
-    Exercise.Deadlift : exerciseDeadlift,
-    Exercise.OverheadPress : exerciseOverheadPress,
-    Exercise.PendlayRow : exercisePendlayRow,
-    Exercise.Skullcrushers : exerciseSkullcrushers,
-    Exercise.HIITConditioning : exerciseHIIT,
-    Exercise.Rest : exerciseRest
+    Exercise.Squat : EXERCISE_SQUAT,
+    Exercise.BenchPress : EXERCISE_BENCHPRESS,
+    Exercise.Deadlift : EXERCISE_DEADLIFT,
+    Exercise.OverheadPress : EXERCISE_OVERHEADPRESS,
+    Exercise.PendlayRow : EXERCISE_PENDLAYROW,
+    Exercise.Skullcrushers : EXERCISE_SKULLCRUSHERS,
+    Exercise.HIITConditioning : EXERCISE_HIIT,
+    Exercise.Rest : EXERCISE_REST
   };
 }

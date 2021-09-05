@@ -42,7 +42,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RaisedButton(
-                child: Text(Constants.finishWorkoutWeek),
+                child: Text(Constants.FINISH_WORKOUT_WEEK),
                 color: Colors.blue,
                 textColor: Colors.white,
                 onPressed: () {
@@ -52,7 +52,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
                 }
               ),
               RaisedButton(
-                child: Text(Constants.resetExercisePhases),
+                child: Text(Constants.RESET_EXERCISE_PHASES),
                 color: Colors.blue,
                 textColor: Colors.white,
                 onPressed: () {
