@@ -96,8 +96,16 @@ class _SettingsTabState extends State<SettingsTab> {
     _txtPendlayRow.text = Settings.getInstance().getNextWeight(Exercise.PendlayRow);
     _txtSkullcrushers.text = Settings.getInstance().getNextWeight(Exercise.Skullcrushers);  
 
-    return SingleChildScrollView(
-      child:
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: SingleChildScrollView(
+        child:
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child:
@@ -284,7 +292,8 @@ class _SettingsTabState extends State<SettingsTab> {
                 child: TextField(controller: _txtSkullcrushers, decoration: InputDecoration(labelText: Constants.enterWeightSkullcrushers), maxLength: 6, keyboardType: TextInputType.number, onChanged: (val) => Settings.getInstance().setNextWeight(Exercise.Skullcrushers, val)) 
               ),
 
-          ]
+            ]
+        )
         )
       )
     );
