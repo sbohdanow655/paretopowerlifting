@@ -273,7 +273,7 @@ class Settings {
     saveSettings();
   }
 
-  bool is3day() {
+  bool isThreeDay() {
     return _squatPhase <= 2 && _deadliftPhase <= 2 && _benchPressPhase <= 2;
   } 
 
@@ -424,7 +424,7 @@ class Settings {
     Map<Weekday, IDailyPrescription> dailyPrescriptionMap = new Map();
 
     Weekday.values.forEach((weekday) {
-      if (is3day()) {
+      if (isThreeDay()) {
         if (threeDayScheduleContainsWeekday(weekday)) {
           dailyPrescriptionMap[weekday] = getDailyPrescriptions(getThreeDayWorkoutTypeFromWeekday(weekday));
         } else {
