@@ -151,4 +151,24 @@ class Constants {
     Exercise.HIITConditioning : EXERCISE_HIIT,
     Exercise.Rest : EXERCISE_REST
   };
+
+  static const String DB_USE_MICROPLATES = "useMicroplates";
+  static const String DB_WEIGHT_UNIT = "weightUnit";
+  static const String DB_PHASE_SQUAT = "squatPhase";
+  static const String DB_PHASE_BENCHPRESS = "benchPressPhase";
+  static const String DB_PHASE_DEADLIFT = "deadliftPhase";
+  static const String DB_FULLBODY_ONE = "fullbody1";
+  static const String DB_FULLBODY_TWO = "fullbody2";
+  static const String DB_FULLBODY_THREE = "fullbody3";
+  static const String DB_LOWERBODY_ONE = "lowerbody1";
+  static const String DB_UPPERBODY_ONE = "upperbody1";
+  static const String DB_LOWERBODY_TWO = "lowerbody2";
+  static const String DB_UPPERBODY_TWO = "upperbody2";
+  static const String DB_WEIGHT_SQUAT = "squatWeight";
+  static const String DB_WEIGHT_BENCHPRESS = "benchPressWeight";
+  static const String DB_WEIGHT_DEADLIFT = "deadliftWeight";
+  static const String DB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
+  static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
+  static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
+
 }

@@ -452,58 +452,58 @@ class Settings {
     Map settingsMap = await Model.getSettings();
     settingsMap.forEach((key, value) { 
       switch(key) {
-        case 'useMicroplates':
+        case Constants.DB_USE_MICROPLATES:
           _useMicroplates = value == 1;
           break;
-        case 'weightUnit':
+        case Constants.DB_WEIGHT_UNIT:
           _weightUnit = value;
           break;
-        case 'squatPhase':
+        case Constants.DB_PHASE_SQUAT:
           _squatPhase = value;
           break;
-        case'benchPressPhase':
+        case Constants.DB_PHASE_BENCHPRESS:
           _benchPressPhase = value;
           break;
-        case 'deadliftPhase':
+        case Constants.DB_PHASE_DEADLIFT:
           _deadliftPhase = value;
           break;
-        case 'fullbody1':
+        case Constants.DB_FULLBODY_ONE:
           _threeDaySchedule[WorkoutType.FullBody1] = Constants.weekdayByString[value];
           break;
-        case 'fullbody2':
+        case Constants.DB_FULLBODY_TWO:
           _threeDaySchedule[WorkoutType.FullBody2] = Constants.weekdayByString[value];
           break;
-        case 'fullbody3':
+        case Constants.DB_FULLBODY_THREE:
           _threeDaySchedule[WorkoutType.FullBody3] = Constants.weekdayByString[value];
           break;  
-        case 'split1':
+        case Constants.DB_LOWERBODY_ONE:
           _fourDaySchedule[WorkoutType.LowerBody1] = Constants.weekdayByString[value];
           break;
-        case 'split2':
+        case Constants.DB_UPPERBODY_ONE:
           _fourDaySchedule[WorkoutType.UpperBody1] = Constants.weekdayByString[value];
           break;
-        case 'split3':
+        case Constants.DB_LOWERBODY_TWO:
           _fourDaySchedule[WorkoutType.LowerBody2] = Constants.weekdayByString[value];
           break;
-        case 'split4':
-          _fourDaySchedule[WorkoutType.LowerBody2] = Constants.weekdayByString[value];
+        case Constants.DB_UPPERBODY_TWO:
+          _fourDaySchedule[WorkoutType.UpperBody2] = Constants.weekdayByString[value];
           break;
-        case 'squatWeight':
+        case Constants.DB_WEIGHT_SQUAT:
           _weightMap[Exercise.Squat] = value;
           break;
-        case 'benchPressWeight':
+        case Constants.DB_WEIGHT_BENCHPRESS:
           _weightMap[Exercise.BenchPress] = value;
           break;
-        case 'deadliftWeight':
+        case Constants.DB_WEIGHT_DEADLIFT:
           _weightMap[Exercise.Deadlift] = value;
           break;
-        case 'overheadPressWeight':
+        case Constants.DB_WEIGHT_OVERHEADPRESS:
           _weightMap[Exercise.OverheadPress] = value;
           break;
-        case 'pendlayRowWeight':
+        case Constants.DB_WEIGHT_PENDLAYROW:
           _weightMap[Exercise.PendlayRow] = value;
           break;
-        case 'skullcrusherWeight':
+        case Constants.DB_WEIGHT_SKULLCRUSHERS:
           _weightMap[Exercise.Skullcrushers] = value;
           break;
         default:
