@@ -14,69 +14,67 @@ class WorkoutTab extends StatefulWidget {
 }
 
 class _WorkoutTabState extends State<WorkoutTab> {
+  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay =
+      Settings.getInstance().getThisWeeksWorkouts();
 
-  Map<Weekday, Map<Exercise, bool>> _passFailMap = {};
-  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay = Settings.getInstance().getThisWeeksWorkouts();
+  Map<String, Map<String, bool>> _passFailMap;
+
+  Future _setPassFailMapFromSettings() async {
+    Map<String, Map<String, bool>> passFailMap =
+        await Settings.getInstance().getPassFailFromDB();
+    setState(() {
+      _passFailMap = passFailMap;
+    });
+  }
+
+  @override
+  void initState() {
+    _setPassFailMapFromSettings();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Weekday.values.forEach((weekday) {
-      _passFailMap[weekday] = {};
-      Exercise.values.forEach((exercise) {
-        _passFailMap[weekday][exercise] = false;
-      });
-    });
-    
     List<Widget> workoutDayList = [];
-  
+
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(_workoutPrescriptionsByDay[weekday],  weekday, _passFailMap);
+      WorkoutDay workoutDay = new WorkoutDay(
+          _workoutPrescriptionsByDay[weekday], weekday, _passFailMap);
       workoutDayList.add(workoutDay);
     });
 
-    workoutDayList.add(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                child: Text(Constants.FINISH_WORKOUT_WEEK),
-                color: Colors.blue,
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap, false);
-                  });
-                }
-              ),
-              RaisedButton(
-                child: Text(Constants.RESET_EXERCISE_PHASES),
-                color: Colors.blue,
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    _workoutPrescriptionsByDay = Settings.getInstance().finishWorkoutAndIncrementWeight(_passFailMap, true);
-                  });
-                }
-              )
-            ]
-          )
-        ]
-      )
-    );
+    workoutDayList
+        .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        RaisedButton(
+            child: Text(Constants.FINISH_WORKOUT_WEEK),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                _workoutPrescriptionsByDay =
+                    Settings.getInstance().finishWorkoutAndIncrementWeight();
+              });
+            }),
+        RaisedButton(
+            child: Text(Constants.RESET_EXERCISE_PHASES),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                Settings.getInstance().resetExercisePhases();
+              });
+            })
+      ])
+    ]));
 
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        color: const Color(0xfff5f5f5),
-        child: Column(
-            key: UniqueKey(),
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: workoutDayList 
-          )
-      )
-    );
+        child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            color: const Color(0xfff5f5f5),
+            child: Column(
+                key: UniqueKey(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: workoutDayList)));
   }
 }

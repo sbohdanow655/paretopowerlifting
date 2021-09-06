@@ -1,12 +1,4 @@
-enum Weekday {
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-  Saturday,
-  Sunday
-}
+enum Weekday { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
 enum WorkoutType {
   LowerBody1,
@@ -28,11 +20,6 @@ enum Exercise {
   Skullcrushers,
   HIITConditioning,
   Rest
-}
-
-class PrimitiveWrapper {
-  var value;
-  PrimitiveWrapper(this.value);
 }
 
 class Constants {
@@ -79,16 +66,19 @@ class Constants {
   static const String SELECTPHASE_DEADLIFT = "Deadlift Phase";
   static const String SELECTWORKOUTDAY_FULLBODY_ONE = "Fullbody Workout Day 1";
   static const String SELECTWORKOUTDAY_FULLBODY_TWO = "Fullbody Workout Day 2";
-  static const String SELECTWORKOUTDAY_FULLBODY_THREE = "Fullbody Workout Day 3";
+  static const String SELECTWORKOUTDAY_FULLBODY_THREE =
+      "Fullbody Workout Day 3";
   static const String SELECTWORKOUTDAY_LOWERBODY_ONE = "Lower Workout Day 1";
   static const String SELECTWORKOUTDAY_UPPERBODY_ONE = "Upper Workout Day 1";
   static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Workout Day 2";
   static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Workout Day 2";
 
   static const String ENTERWEIGHT_SQUAT = "Next Squat Intensity Weight";
-  static const String ENTERWEIGHT_BENCHPRESS = "Next Bench Press Intensity Weight";
+  static const String ENTERWEIGHT_BENCHPRESS =
+      "Next Bench Press Intensity Weight";
   static const String ENTERWEIGHT_DEADLIFT = "Next Deadlift Intensity Weight";
-  static const String ENTERWEIGHT_OVERHEADPRESS = "Next Overhead Press Intensity Weight";
+  static const String ENTERWEIGHT_OVERHEADPRESS =
+      "Next Overhead Press Intensity Weight";
   static const String ENTERWEIGHT_PENDLAYROW = "Next Pendlay Row Weight";
   static const String ENTERWEIGHT_SKULLCRUSHERS = "Next Skullcrushers Weight";
 
@@ -112,46 +102,58 @@ class Constants {
   static const String REST_DAY = "Rest Day";
 
   static const Map<String, Weekday> weekdayByString = {
-    MONDAY : Weekday.Monday,
-    TUESDAY : Weekday.Tuesday,
+    MONDAY: Weekday.Monday,
+    TUESDAY: Weekday.Tuesday,
     WEDNESDAY: Weekday.Wednesday,
-    THURSDAY : Weekday.Thursday,
-    FRIDAY : Weekday.Friday,
-    SATURDAY : Weekday.Saturday,
-    SUNDAY : Weekday.Sunday
+    THURSDAY: Weekday.Thursday,
+    FRIDAY: Weekday.Friday,
+    SATURDAY: Weekday.Saturday,
+    SUNDAY: Weekday.Sunday
   };
 
   static const Map<Weekday, String> weekdayStrings = {
-    Weekday.Monday : MONDAY,
-    Weekday.Tuesday : TUESDAY,
-    Weekday.Wednesday : WEDNESDAY,
-    Weekday.Thursday : THURSDAY,
-    Weekday.Friday : FRIDAY,
-    Weekday.Saturday : SATURDAY,
-    Weekday.Sunday : SUNDAY
+    Weekday.Monday: MONDAY,
+    Weekday.Tuesday: TUESDAY,
+    Weekday.Wednesday: WEDNESDAY,
+    Weekday.Thursday: THURSDAY,
+    Weekday.Friday: FRIDAY,
+    Weekday.Saturday: SATURDAY,
+    Weekday.Sunday: SUNDAY
   };
 
   static const Map<Weekday, int> weekdayValues = {
-    Weekday.Monday : 0,
-    Weekday.Tuesday : 1,
-    Weekday.Wednesday : 2,
-    Weekday.Thursday : 3,
-    Weekday.Friday : 4,
-    Weekday.Saturday : 5,
-    Weekday.Sunday : 6
+    Weekday.Monday: 0,
+    Weekday.Tuesday: 1,
+    Weekday.Wednesday: 2,
+    Weekday.Thursday: 3,
+    Weekday.Friday: 4,
+    Weekday.Saturday: 5,
+    Weekday.Sunday: 6
   };
 
   static const Map<Exercise, String> exerciseStrings = {
-    Exercise.Squat : EXERCISE_SQUAT,
-    Exercise.BenchPress : EXERCISE_BENCHPRESS,
-    Exercise.Deadlift : EXERCISE_DEADLIFT,
-    Exercise.OverheadPress : EXERCISE_OVERHEADPRESS,
-    Exercise.PendlayRow : EXERCISE_PENDLAYROW,
-    Exercise.Skullcrushers : EXERCISE_SKULLCRUSHERS,
-    Exercise.HIITConditioning : EXERCISE_HIIT,
-    Exercise.Rest : EXERCISE_REST
+    Exercise.Squat: EXERCISE_SQUAT,
+    Exercise.BenchPress: EXERCISE_BENCHPRESS,
+    Exercise.Deadlift: EXERCISE_DEADLIFT,
+    Exercise.OverheadPress: EXERCISE_OVERHEADPRESS,
+    Exercise.PendlayRow: EXERCISE_PENDLAYROW,
+    Exercise.Skullcrushers: EXERCISE_SKULLCRUSHERS,
+    Exercise.HIITConditioning: EXERCISE_HIIT,
+    Exercise.Rest: EXERCISE_REST
   };
 
+  static Map<String, Exercise> exerciseByToString = {
+    Exercise.Squat.toString(): Exercise.Squat,
+    Exercise.BenchPress.toString(): Exercise.BenchPress,
+    Exercise.Deadlift.toString(): Exercise.Deadlift,
+    Exercise.OverheadPress.toString(): Exercise.OverheadPress,
+    Exercise.PendlayRow.toString(): Exercise.PendlayRow,
+    Exercise.Skullcrushers.toString(): Exercise.Skullcrushers,
+    Exercise.HIITConditioning.toString(): Exercise.HIITConditioning,
+    Exercise.Rest.toString(): Exercise.Rest
+  };
+
+  static const String DB_PASSFAILMAP = "passFailMap";
   static const String DB_USE_MICROPLATES = "useMicroplates";
   static const String DB_WEIGHT_UNIT = "weightUnit";
   static const String DB_PHASE_SQUAT = "squatPhase";
@@ -170,5 +172,4 @@ class Constants {
   static const String DB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
   static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
   static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
-
 }
