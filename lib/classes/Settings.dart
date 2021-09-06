@@ -159,15 +159,14 @@ class Settings {
     return incrementWeight(incrementWeight(weight, exercise), exercise);
   }
 
-  Map<Weekday, IDailyPrescription> resetExercisePhases() {
+  void resetExercisePhases() {
     _squatPhase = 1;
     _benchPressPhase = 1;
     _deadliftPhase = 1;
     saveSettings();
-    return getThisWeeksWorkouts();
   }
 
-  Map<Weekday, IDailyPrescription> finishWorkoutAndIncrementWeight() {
+  void finishWorkoutAndIncrementWeight() {
     Set<Exercise> checkedExerciseSet = new Set();
     _passFailMap.forEach((weekdayString, dailyPassFailMap) {
       dailyPassFailMap.forEach((exerciseString, didPass) {
@@ -233,8 +232,6 @@ class Settings {
     _initPassFailMap();
 
     saveSettings();
-
-    return getThisWeeksWorkouts();
   }
 
   double getVolumeDayWeightFromIntensityDay(
@@ -650,7 +647,9 @@ class Settings {
     return DailyExercisePrescription(prescriptionList);
   }
 
-  Map<Weekday, IDailyPrescription> getThisWeeksWorkouts() {
+  Future<Map<Weekday, IDailyPrescription>> getThisWeeksWorkouts() async {
+    await Settings.getInstance().updateSettingsFromDB();
+
     Map<Weekday, IDailyPrescription> dailyPrescriptionMap = new Map();
 
     Weekday.values.forEach((weekday) {

@@ -14,10 +14,17 @@ class WorkoutTab extends StatefulWidget {
 }
 
 class _WorkoutTabState extends State<WorkoutTab> {
-  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay =
-      Settings.getInstance().getThisWeeksWorkouts();
+  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay;
 
   Map<String, Map<String, bool>> _passFailMap;
+
+  Future _setWorkoutPrescriptionByDayFromSettings() async {
+    Map<Weekday, IDailyPrescription> workoutPrescriptionsByDay =
+        await Settings.getInstance().getThisWeeksWorkouts();
+    setState(() {
+      _workoutPrescriptionsByDay = workoutPrescriptionsByDay;
+    });
+  }
 
   Future _setPassFailMapFromSettings() async {
     Map<String, Map<String, bool>> passFailMap =
@@ -30,6 +37,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
   @override
   void initState() {
     _setPassFailMapFromSettings();
+    _setWorkoutPrescriptionByDayFromSettings();
     super.initState();
   }
 
@@ -51,20 +59,16 @@ class _WorkoutTabState extends State<WorkoutTab> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              setState(() {
-                _workoutPrescriptionsByDay =
-                    Settings.getInstance().finishWorkoutAndIncrementWeight();
-              });
+              Settings.getInstance().finishWorkoutAndIncrementWeight();
+              _setWorkoutPrescriptionByDayFromSettings();
             }),
         RaisedButton(
             child: Text(Constants.RESET_EXERCISE_PHASES),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              setState(() {
-                _workoutPrescriptionsByDay =
-                    Settings.getInstance().resetExercisePhases();
-              });
+              Settings.getInstance().resetExercisePhases();
+              _setWorkoutPrescriptionByDayFromSettings();
             })
       ])
     ]));
