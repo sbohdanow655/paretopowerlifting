@@ -321,12 +321,18 @@ class Settings {
 
         break;
       case WorkoutType.FullBody2:
-        prescriptionList.add(new SingleExercisePrescription(
-            Exercise.Squat,
-            incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
-            _weightUnit,
-            3,
-            5));
+        switch (_squatPhase) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.Squat,
+                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                _weightUnit,
+                3,
+                5));
+            break;
+          default:
+            break;
+        }
 
         switch (_benchPressPhase) {
           case 1:
