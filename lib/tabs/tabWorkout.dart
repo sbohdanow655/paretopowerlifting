@@ -62,7 +62,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
             textColor: Colors.white,
             onPressed: () {
               setState(() {
-                Settings.getInstance().resetExercisePhases();
+                _workoutPrescriptionsByDay =
+                    Settings.getInstance().resetExercisePhases();
               });
             })
       ])

@@ -159,10 +159,12 @@ class Settings {
     return incrementWeight(incrementWeight(weight, exercise), exercise);
   }
 
-  void resetExercisePhases() {
+  Map<Weekday, IDailyPrescription> resetExercisePhases() {
     _squatPhase = 1;
     _benchPressPhase = 1;
     _deadliftPhase = 1;
+    saveSettings();
+    return getThisWeeksWorkouts();
   }
 
   Map<Weekday, IDailyPrescription> finishWorkoutAndIncrementWeight() {
@@ -229,6 +231,8 @@ class Settings {
     });
 
     _initPassFailMap();
+
+    saveSettings();
 
     return getThisWeeksWorkouts();
   }

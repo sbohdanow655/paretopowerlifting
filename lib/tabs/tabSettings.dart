@@ -97,12 +97,13 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   void initState() {
-    setSettings();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    setSettings();
+
     return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
