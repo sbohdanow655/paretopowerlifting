@@ -1,3 +1,4 @@
+import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'assets/constants.dart';
@@ -111,104 +112,79 @@ class Model {
     return null;
   }
 
-  static void updateSettings(
-      bool useMicroplates,
-      String weightUnit,
-      int squatPhase,
-      int benchPressPhase,
-      int deadliftPhase,
-      Weekday fullbody1,
-      Weekday fullbody2,
-      Weekday fullbody3,
-      Weekday split1,
-      Weekday split2,
-      Weekday split3,
-      Weekday split4,
-      double squatWeight,
-      double benchPressWeight,
-      double deadliftWeight,
-      double overheadPressWeight,
-      double pendlayRowWeight,
-      double skullcrusherWeight) async {
-    Database paretoPowerliftingDB = await openDB();
+  static String _wrapString(String str) {
+    return '"' + str + '"';
+  }
 
-    await paretoPowerliftingDB.rawUpdate('UPDATE Settings SET ' +
-        Constants.DB_PASSFAILMAP +
-        ' = \'' +
-        Settings.getInstance().getPassFailJSON() +
-        '\', ' +
-        Constants.DB_USE_MICROPLATES +
-        ' = ' +
-        (useMicroplates ? 1 : 0).toString() +
-        ', ' +
-        Constants.DB_WEIGHT_UNIT +
-        ' = "' +
-        weightUnit +
-        '", ' +
-        Constants.DB_PHASE_SQUAT +
-        ' = ' +
-        squatPhase.toString() +
-        ', ' +
-        Constants.DB_PHASE_BENCHPRESS +
-        ' = ' +
-        benchPressPhase.toString() +
-        ', ' +
-        Constants.DB_PHASE_DEADLIFT +
-        ' = ' +
-        deadliftPhase.toString() +
-        ', ' +
-        Constants.DB_FULLBODY_ONE +
-        ' = "' +
-        Constants.weekdayStrings[fullbody1] +
-        '", ' +
-        Constants.DB_FULLBODY_TWO +
-        ' = "' +
-        Constants.weekdayStrings[fullbody2] +
-        '", ' +
-        Constants.DB_FULLBODY_THREE +
-        ' = "' +
-        Constants.weekdayStrings[fullbody3] +
-        '", ' +
-        Constants.DB_LOWERBODY_ONE +
-        ' = "' +
-        Constants.weekdayStrings[split1] +
-        '", ' +
-        Constants.DB_UPPERBODY_ONE +
-        ' = "' +
-        Constants.weekdayStrings[split2] +
-        '", ' +
-        Constants.DB_LOWERBODY_TWO +
-        ' = "' +
-        Constants.weekdayStrings[split3] +
-        '", ' +
-        Constants.DB_UPPERBODY_TWO +
-        ' = "' +
-        Constants.weekdayStrings[split4] +
-        '", ' +
-        Constants.DB_WEIGHT_SQUAT +
-        ' = ' +
-        squatWeight.toString() +
-        ', ' +
-        Constants.DB_WEIGHT_BENCHPRESS +
-        ' = ' +
-        benchPressWeight.toString() +
-        ', ' +
-        Constants.DB_WEIGHT_DEADLIFT +
-        ' = ' +
-        deadliftWeight.toString() +
-        ', ' +
-        Constants.DB_WEIGHT_OVERHEADPRESS +
-        ' = ' +
-        overheadPressWeight.toString() +
-        ', ' +
-        Constants.DB_WEIGHT_PENDLAYROW +
-        ' = ' +
-        pendlayRowWeight.toString() +
-        ', ' +
-        Constants.DB_WEIGHT_SKULLCRUSHERS +
-        ' = ' +
-        skullcrusherWeight.toString() +
-        ' WHERE id = 1');
+  static void updateSetting(Settings settings, String dbColumnName) async {
+    Database paretoPowerliftingDB = await openDB();
+    String val;
+
+    switch (dbColumnName) {
+      case Constants.DB_USE_MICROPLATES:
+        val = (settings.useMicroplates ? 1 : 0).toString();
+        break;
+      case Constants.DB_WEIGHT_UNIT:
+        val = _wrapString(settings.weightUnit);
+        break;
+      case Constants.DB_PHASE_SQUAT:
+        val = settings.squatPhase.toString();
+        break;
+      case Constants.DB_PHASE_BENCHPRESS:
+        val = settings.benchPressPhase.toString();
+        break;
+      case Constants.DB_PHASE_DEADLIFT:
+        val = settings.deadliftPhase.toString();
+        break;
+      case Constants.DB_FULLBODY_ONE:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody1)]);
+        break;
+      case Constants.DB_FULLBODY_TWO:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody2)]);
+        break;
+      case Constants.DB_FULLBODY_THREE:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody3)]);
+        break;
+      case Constants.DB_LOWERBODY_ONE:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.LowerBody1)]);
+        break;
+      case Constants.DB_UPPERBODY_ONE:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.UpperBody1)]);
+        break;
+      case Constants.DB_LOWERBODY_TWO:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.LowerBody2)]);
+        break;
+      case Constants.DB_UPPERBODY_TWO:
+        val = _wrapString(Constants.weekdayStrings[
+            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.UpperBody2)]);
+        break;
+      case Constants.DB_WEIGHT_SQUAT:
+        val = settings.getNextWeight(Exercise.Squat).toString();
+        break;
+      case Constants.DB_WEIGHT_BENCHPRESS:
+        val = settings.getNextWeight(Exercise.BenchPress).toString();
+        break;
+      case Constants.DB_WEIGHT_DEADLIFT:
+        val = settings.getNextWeight(Exercise.Deadlift).toString();
+        break;
+      case Constants.DB_WEIGHT_OVERHEADPRESS:
+        val = settings.getNextWeight(Exercise.OverheadPress).toString();
+        break;
+      case Constants.DB_WEIGHT_PENDLAYROW:
+        val = settings.getNextWeight(Exercise.PendlayRow).toString();
+        break;
+      case Constants.DB_WEIGHT_SKULLCRUSHERS:
+        val = settings.getNextWeight(Exercise.Skullcrushers).toString();
+    }
+
+    await paretoPowerliftingDB.rawUpdate(
+        'UPDATE Settings SET ' + dbColumnName + ' = ' + val + ' WHERE id = 1');
   }
 
   static Future<Map> getSettings() async {
@@ -225,17 +201,29 @@ class Model {
     return {};
   }
 
-  static Future<String> getPassFailMap() async {
+  static Future<PassFail> getPassFailFromDB() async {
     Database paretoPowerliftingDB = await openDB();
-
+    PassFail passFail = PassFail();
     try {
       List<Map> settingsMapList = await paretoPowerliftingDB
           .rawQuery('SELECT ' + Constants.DB_PASSFAILMAP + ' FROM Settings');
-      return settingsMapList[0][Constants.DB_PASSFAILMAP];
+      String passFailJson = settingsMapList[0][Constants.DB_PASSFAILMAP];
+      passFail.setFromString(passFailJson);
+      return passFail;
     } catch (e) {
       print(e);
     }
 
-    return "{}";
+    return PassFail();
+  }
+
+  static void savePassFailToDB(PassFail passFail) async {
+    Database paretoPowerliftingDB = await openDB();
+
+    await paretoPowerliftingDB.rawUpdate('UPDATE Settings SET ' +
+        Constants.DB_PASSFAILMAP +
+        ' = ' +
+        _wrapString(passFail.toString()) +
+        ' WHERE id = 1');
   }
 }

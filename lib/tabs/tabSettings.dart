@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
 class SettingsTab extends StatefulWidget {
+  Settings _settings;
+
+  SettingsTab(this._settings);
+
   @override
   State<StatefulWidget> createState() {
-    return _SettingsTabState();
+    return _SettingsTabState(this._settings);
   }
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  bool _useMicroplates = false;
-
-  String _weightUnit = Constants.WEIGHTUNIT_LBS;
-
-  int _squatPhase = 1;
-  int _benchPressPhase = 1;
-  int _deadliftPhase = 1;
+  Settings _settings;
 
   TextEditingController _txtSquat = TextEditingController();
   TextEditingController _txtBenchPress = TextEditingController();
@@ -26,78 +25,64 @@ class _SettingsTabState extends State<SettingsTab> {
   TextEditingController _txtPendlayRow = TextEditingController();
   TextEditingController _txtSkullcrushers = TextEditingController();
 
-  _SettingsTabState() {}
+  _SettingsTabState(this._settings);
 
   void setMicroplates(val) {
     setState(() {
-      _useMicroplates = val;
+      _settings.useMicroplates = val;
     });
-
-    Settings.getInstance().useMicroplates = val;
-    Settings.getInstance().saveSettings();
+    DBHelper.saveSettingToDB(_settings, Constants.DB_USE_MICROPLATES);
   }
 
   void setWeightUnit(val) {
     setState(() {
-      _weightUnit = val;
+      _settings.weightUnit = val;
     });
-
-    Settings.getInstance().weightUnit = val;
-    Settings.getInstance().saveSettings();
+    DBHelper.saveSettingToDB(_settings, Constants.DB_WEIGHT_UNIT);
   }
 
   void setSquatPhase(val) {
     setState(() {
-      _squatPhase = val;
+      _settings.squatPhase = val;
     });
-
-    Settings.getInstance().squatPhase = val;
-    Settings.getInstance().saveSettings();
+    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_SQUAT);
   }
 
   void setBenchPressPhase(val) {
     setState(() {
-      _benchPressPhase = val;
+      _settings.benchPressPhase = val;
     });
-
-    Settings.getInstance().benchPressPhase = val;
-    Settings.getInstance().saveSettings();
+    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_BENCHPRESS);
   }
 
   void setDeadliftPhase(val) {
     setState(() {
-      _deadliftPhase = val;
+      _settings.deadliftPhase = val;
     });
-
-    Settings.getInstance().deadliftPhase = val;
-    Settings.getInstance().saveSettings();
+    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_DEADLIFT);
   }
 
-  Future setSettings() async {
-    await Settings.getInstance().updateSettingsFromDB();
+  Future setSettingsFromDB() async {
+    Settings settings = Settings();
+    await DBHelper.updateSettingsFromDB(settings);
     setState(() {
-      _useMicroplates = Settings.getInstance().useMicroplates;
-      _weightUnit = Settings.getInstance().weightUnit;
-      _squatPhase = Settings.getInstance().squatPhase;
-      _benchPressPhase = Settings.getInstance().benchPressPhase;
-      _deadliftPhase = Settings.getInstance().deadliftPhase;
-      _txtSquat.text = Settings.getInstance().getNextWeight(Exercise.Squat);
+      _settings = settings;
+      _txtSquat.text = settings.getNextWeight(Exercise.Squat).toString();
       _txtBenchPress.text =
-          Settings.getInstance().getNextWeight(Exercise.BenchPress);
-      _txtDeadlift.text =
-          Settings.getInstance().getNextWeight(Exercise.Deadlift);
+          settings.getNextWeight(Exercise.BenchPress).toString();
+      _txtDeadlift.text = settings.getNextWeight(Exercise.Deadlift).toString();
       _txtOverheadPress.text =
-          Settings.getInstance().getNextWeight(Exercise.OverheadPress);
+          settings.getNextWeight(Exercise.OverheadPress).toString();
       _txtPendlayRow.text =
-          Settings.getInstance().getNextWeight(Exercise.PendlayRow);
+          settings.getNextWeight(Exercise.PendlayRow).toString();
       _txtSkullcrushers.text =
-          Settings.getInstance().getNextWeight(Exercise.Skullcrushers);
+          settings.getNextWeight(Exercise.Skullcrushers).toString();
     });
   }
 
   @override
   void initState() {
-    setSettings();
+    setSettingsFromDB();
     super.initState();
   }
 
@@ -133,7 +118,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                 checkColor: Colors.white,
                                 fillColor: MaterialStateProperty.resolveWith(
                                     (val) => Colors.blue),
-                                value: _useMicroplates,
+                                value: _settings.useMicroplates,
                                 onChanged: (bool value) =>
                                     setMicroplates(value))
                           ]),
@@ -149,7 +134,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<String>(
-                                value: _weightUnit,
+                                value: _settings.weightUnit,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -175,7 +160,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _squatPhase,
+                                value: _settings.squatPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -199,7 +184,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _benchPressPhase,
+                                value: _settings.benchPressPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -223,7 +208,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _deadliftPhase,
+                                value: _settings.deadliftPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -247,7 +232,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody1)
+                            WeekdayDropdown(WorkoutType.FullBody1, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -261,7 +246,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody2)
+                            WeekdayDropdown(WorkoutType.FullBody2, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,7 +260,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody3)
+                            WeekdayDropdown(WorkoutType.FullBody3, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -289,7 +274,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.LowerBody1)
+                            WeekdayDropdown(WorkoutType.LowerBody1, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -303,7 +288,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.UpperBody1)
+                            WeekdayDropdown(WorkoutType.UpperBody1, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -317,7 +302,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.LowerBody2)
+                            WeekdayDropdown(WorkoutType.LowerBody2, _settings)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -331,7 +316,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.UpperBody2)
+                            WeekdayDropdown(WorkoutType.UpperBody2, _settings)
                           ]),
                       Padding(
                           padding:
@@ -342,8 +327,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_SQUAT),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.Squat, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.Squat, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -353,8 +338,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_BENCHPRESS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.BenchPress, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.BenchPress, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -364,8 +349,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_DEADLIFT),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.Deadlift, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.Deadlift, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -376,8 +361,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Constants.ENTERWEIGHT_OVERHEADPRESS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.OverheadPress, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.OverheadPress, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -387,8 +372,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_PENDLAYROW),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.PendlayRow, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.PendlayRow, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -399,8 +384,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Constants.ENTERWEIGHT_SKULLCRUSHERS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => Settings.getInstance()
-                                  .setNextWeight(Exercise.Skullcrushers, val))),
+                              onChanged: (val) => _settings.setNextWeight(
+                                  Exercise.Skullcrushers, val))),
                     ]))));
   }
 }

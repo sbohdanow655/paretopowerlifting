@@ -1,53 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
+import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class WorkoutTab extends StatefulWidget {
-  WorkoutTab();
+  Settings _settings;
+
+  WorkoutTab(this._settings);
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutTabState();
+    return _WorkoutTabState(this._settings);
   }
 }
 
 class _WorkoutTabState extends State<WorkoutTab> {
+  Settings _settings;
+
+  _WorkoutTabState(this._settings);
+
   Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay;
+  PassFail _passFail;
 
-  Map<String, Map<String, bool>> _passFailMap;
-
-  Future _setWorkoutPrescriptionByDayFromSettings() async {
-    Map<Weekday, IDailyPrescription> workoutPrescriptionsByDay =
-        await Settings.getInstance().getThisWeeksWorkouts();
+  Future _setWorkoutPrescriptionAndPassFailMap() async {
+    Map<Weekday, IDailyPrescription> workoutPrescription =
+        await Settings.getThisWeeksWorkouts(_settings);
+    PassFail passFail = await DBHelper.getPassFailFromDB();
     setState(() {
-      _workoutPrescriptionsByDay = workoutPrescriptionsByDay;
-    });
-  }
-
-  Future _setPassFailMapFromSettings() async {
-    Map<String, Map<String, bool>> passFailMap =
-        await Settings.getInstance().getPassFailFromDB();
-    setState(() {
-      _passFailMap = passFailMap;
+      _passFail = passFail;
+      _workoutPrescriptionsByDay = workoutPrescription;
     });
   }
 
   @override
   void initState() {
-    _setPassFailMapFromSettings();
-    _setWorkoutPrescriptionByDayFromSettings();
+    _setWorkoutPrescriptionAndPassFailMap();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_workoutPrescriptionsByDay == null || _passFail == null) {
+      return Column();
+    }
     List<Widget> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay = new WorkoutDay(
-          _workoutPrescriptionsByDay[weekday], weekday, _passFailMap);
+          _workoutPrescriptionsByDay[weekday], weekday, _passFail);
       workoutDayList.add(workoutDay);
     });
 
@@ -59,16 +62,16 @@ class _WorkoutTabState extends State<WorkoutTab> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              Settings.getInstance().finishWorkoutAndIncrementWeight();
-              _setWorkoutPrescriptionByDayFromSettings();
+              _passFail.finishWorkoutAndIncrementWeight(_settings);
+              _setWorkoutPrescriptionAndPassFailMap();
             }),
         RaisedButton(
             child: Text(Constants.RESET_EXERCISE_PHASES),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              Settings.getInstance().resetExercisePhases();
-              _setWorkoutPrescriptionByDayFromSettings();
+              _settings.resetExercisePhases();
+              _setWorkoutPrescriptionAndPassFailMap();
             })
       ])
     ]));

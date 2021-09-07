@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/PassFail.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 
 class WorkoutDay extends StatefulWidget {
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
-  final Map<String, Map<String, bool>> _passFailMap;
+  final PassFail _passFail;
 
-  WorkoutDay(this._dailyPrescription, this._weekday, this._passFailMap);
+  WorkoutDay(this._dailyPrescription, this._weekday, this._passFail);
 
   @override
   State<StatefulWidget> createState() {
     return WorkoutDayState(
-        this._dailyPrescription, this._weekday, this._passFailMap);
+        this._dailyPrescription, this._weekday, this._passFail);
   }
 }
 
 class WorkoutDayState extends State<WorkoutDay> {
-  WorkoutDayState(this._dailyPrescription, this._weekday, this._passFailMap);
+  WorkoutDayState(this._dailyPrescription, this._weekday, this._passFail);
 
   final IDailyPrescription _dailyPrescription;
   final Weekday _weekday;
-  Map<String, Map<String, bool>> _passFailMap;
+  final PassFail _passFail;
 
   void setPassFailMap(Exercise exercise, bool didPass) {
-    Settings.getInstance().setPassFail(_weekday, exercise, didPass);
-
     setState(() {
-      _passFailMap[_weekday.toString()][exercise.toString()] = didPass;
+      _passFail.setSinglePassFail(_weekday, exercise, didPass);
     });
+    DBHelper.savePassFailMapToDB(_passFail);
   }
 
   @override
@@ -64,7 +64,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         children.add(Text(tuple.prescriptionString,
             style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
         children.add(DropdownButton<String>(
-            value: _passFailMap[_weekday.toString()][tuple.exercise.toString()]
+            value: _passFail.getSinglePassFail(_weekday, tuple.exercise)
                 ? Constants.PASS
                 : Constants.FAIL,
             style: TextStyle(
