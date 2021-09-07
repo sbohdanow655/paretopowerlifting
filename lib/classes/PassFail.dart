@@ -117,5 +117,8 @@ class PassFail {
         checkedExerciseSet.add(exercise);
       });
     });
+
+    _passFailMap = _getInitialPassFailMap();
+    DBHelper.savePassFailMapToDB(this);
   }
 }

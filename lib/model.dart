@@ -113,7 +113,7 @@ class Model {
   }
 
   static String _wrapString(String str) {
-    return '"' + str + '"';
+    return '\'' + str + '\'';
   }
 
   static void updateSetting(Settings settings, String dbColumnName) async {

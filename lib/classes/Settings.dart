@@ -35,18 +35,7 @@ class Settings {
     WorkoutType.FullBody3: Weekday.Friday
   };
 
-  PassFail _passFail = PassFail();
-
   Settings();
-
-  void setPassFail(Weekday weekday, Exercise exercise, bool didPass) {
-    _passFail.setSinglePassFail(weekday, exercise, didPass);
-    DBHelper.savePassFailMapToDB(_passFail);
-  }
-
-  get passFail {
-    return _passFail;
-  }
 
   get phases {
     return _phases;
@@ -345,13 +334,14 @@ class Settings {
       case WorkoutType.FullBody3:
         prescriptionList.add(new SingleExercisePrescription(
             Exercise.Squat,
-            incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat, this),
+            incrementWeightTwice(
+                _weightMap[Exercise.Squat], Exercise.Squat, this),
             _weightUnit,
             3,
             5));
         prescriptionList.add(new SingleExercisePrescription(
             Exercise.BenchPress,
-            incrementWeight(
+            incrementWeightTwice(
                 _weightMap[Exercise.BenchPress], Exercise.BenchPress, this),
             _weightUnit,
             3,

@@ -63,10 +63,11 @@ class WorkoutDayState extends State<WorkoutDay> {
       } else {
         children.add(Text(tuple.prescriptionString,
             style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
+
+        bool didPass = _passFail.getSinglePassFail(_weekday, tuple.exercise);
+
         children.add(DropdownButton<String>(
-            value: _passFail.getSinglePassFail(_weekday, tuple.exercise)
-                ? Constants.PASS
-                : Constants.FAIL,
+            value: didPass ? Constants.PASS : Constants.FAIL,
             style: TextStyle(
                 color: Colors.black, fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
             onChanged: (val) {
