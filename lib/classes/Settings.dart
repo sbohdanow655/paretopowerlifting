@@ -46,6 +46,9 @@ class Settings {
   }
 
   void setNextWeight(Exercise exercise, String nextWeight) {
+    if (nextWeight == "") {
+      return;
+    }
     _weightMap[exercise] = Settings.getFormattedWeightString(nextWeight);
     switch (exercise) {
       case Exercise.Squat:
