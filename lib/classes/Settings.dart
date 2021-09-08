@@ -13,13 +13,13 @@ class Settings {
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
 
-  Map<Exercise, double> _weightMap = {
-    Exercise.Squat: 45,
-    Exercise.BenchPress: 45,
-    Exercise.Deadlift: 45,
-    Exercise.OverheadPress: 45,
-    Exercise.PendlayRow: 45,
-    Exercise.Skullcrushers: 45,
+  Map<Exercise, String> _weightMap = {
+    Exercise.Squat: "45",
+    Exercise.BenchPress: "45",
+    Exercise.Deadlift: "45",
+    Exercise.OverheadPress: "45",
+    Exercise.PendlayRow: "45",
+    Exercise.Skullcrushers: "45",
   };
 
   Map<WorkoutType, Weekday> _fourDaySchedule = {
@@ -46,7 +46,7 @@ class Settings {
   }
 
   void setNextWeight(Exercise exercise, String nextWeight) {
-    _weightMap[exercise] = double.parse(nextWeight);
+    _weightMap[exercise] = Settings.getFormattedWeightString(nextWeight);
     switch (exercise) {
       case Exercise.Squat:
         DBHelper.saveSettingToDB(this, Constants.DB_WEIGHT_SQUAT);
@@ -71,7 +71,7 @@ class Settings {
     }
   }
 
-  double getNextWeight(Exercise exercise) {
+  String getNextWeight(Exercise exercise) {
     return _weightMap[exercise];
   }
 
@@ -120,8 +120,8 @@ class Settings {
     return _phases.deadlift;
   }
 
-  static double incrementWeight(
-      double weight, Exercise exercise, Settings settings) {
+  static String incrementWeight(
+      String weight, Exercise exercise, Settings settings) {
     double weightIncrement;
     bool isUpperBody = exercise == Exercise.BenchPress ||
         exercise == Exercise.OverheadPress ||
@@ -144,11 +144,20 @@ class Settings {
       }
     }
 
-    return weight + weightIncrement;
+    double newWeight = double.parse(weight) + weightIncrement;
+
+    return getFormattedWeightString(newWeight.toString());
   }
 
-  static double incrementWeightTwice(
-      double weight, Exercise exercise, Settings settings) {
+  static String getFormattedWeightString(String weight) {
+    double weightAsDouble = double.parse(weight);
+    return weightAsDouble % 1 == 0
+        ? weightAsDouble.toStringAsFixed(0)
+        : weightAsDouble.toStringAsFixed(1);
+  }
+
+  static String incrementWeightTwice(
+      String weight, Exercise exercise, Settings settings) {
     return incrementWeight(
         incrementWeight(weight, exercise, settings), exercise, settings);
   }
@@ -160,8 +169,9 @@ class Settings {
     DBHelper.saveSettingToDB(this, Constants.DB_PHASE_DEADLIFT);
   }
 
-  static double getVolumeDayWeightFromIntensityDay(
-      double intensityDayWeight, bool useMicroplates, String weightUnit) {
+  static String getVolumeDayWeightFromIntensityDay(
+      String intensityDayWeight, bool useMicroplates, String weightUnit) {
+    double weight = double.parse(intensityDayWeight);
     double weightIncrement;
     if (useMicroplates) {
       if (weightUnit == Constants.WEIGHTUNIT_LBS) {
@@ -176,8 +186,9 @@ class Settings {
         weightIncrement = 2;
       }
     }
-    return (0.8 * intensityDayWeight / weightIncrement).round() *
-        weightIncrement;
+    double newWeight =
+        (0.8 * weight / weightIncrement).round() + weightIncrement;
+    return Settings.getFormattedWeightString(newWeight.toString());
   }
 
   Weekday getWeekdayFromWorkoutType(WorkoutType workoutType) {

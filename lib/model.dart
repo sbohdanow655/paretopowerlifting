@@ -42,17 +42,17 @@ class Model {
             Constants.DB_UPPERBODY_TWO +
             ' TEXT, ' +
             Constants.DB_WEIGHT_SQUAT +
-            ' REAL, ' +
+            ' TEXT, ' +
             Constants.DB_WEIGHT_BENCHPRESS +
-            ' REAL, ' +
+            ' TEXT, ' +
             Constants.DB_WEIGHT_DEADLIFT +
-            ' REAL, ' +
+            ' TEXT, ' +
             Constants.DB_WEIGHT_OVERHEADPRESS +
-            ' REAL, ' +
+            ' TEXT, ' +
             Constants.DB_WEIGHT_PENDLAYROW +
-            ' REAL, ' +
+            ' TEXT, ' +
             Constants.DB_WEIGHT_SKULLCRUSHERS +
-            ' REAL)');
+            ' TEXT)');
       });
 
       paretoPowerliftingDB.transaction((txn) async {
@@ -165,22 +165,22 @@ class Model {
             settings.getWeekdayFromFourDayWorkoutType(WorkoutType.UpperBody2)]);
         break;
       case Constants.DB_WEIGHT_SQUAT:
-        val = settings.getNextWeight(Exercise.Squat).toString();
+        val = settings.getNextWeight(Exercise.Squat);
         break;
       case Constants.DB_WEIGHT_BENCHPRESS:
-        val = settings.getNextWeight(Exercise.BenchPress).toString();
+        val = settings.getNextWeight(Exercise.BenchPress);
         break;
       case Constants.DB_WEIGHT_DEADLIFT:
-        val = settings.getNextWeight(Exercise.Deadlift).toString();
+        val = settings.getNextWeight(Exercise.Deadlift);
         break;
       case Constants.DB_WEIGHT_OVERHEADPRESS:
-        val = settings.getNextWeight(Exercise.OverheadPress).toString();
+        val = settings.getNextWeight(Exercise.OverheadPress);
         break;
       case Constants.DB_WEIGHT_PENDLAYROW:
-        val = settings.getNextWeight(Exercise.PendlayRow).toString();
+        val = settings.getNextWeight(Exercise.PendlayRow);
         break;
       case Constants.DB_WEIGHT_SKULLCRUSHERS:
-        val = settings.getNextWeight(Exercise.Skullcrushers).toString();
+        val = settings.getNextWeight(Exercise.Skullcrushers);
     }
 
     await paretoPowerliftingDB.rawUpdate(

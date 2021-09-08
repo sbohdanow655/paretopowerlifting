@@ -2,18 +2,19 @@ import 'package:pareto_powerlifting/assets/constants.dart';
 
 class SingleExercisePrescription {
   final Exercise _exercise;
-  double _weight;
+  String _weight;
   String _weightUnit;
   int _numSets;
   int _numReps;
 
-  SingleExercisePrescription(this._exercise, this._weight, this._weightUnit, this._numSets, this._numReps);
+  SingleExercisePrescription(this._exercise, this._weight, this._weightUnit,
+      this._numSets, this._numReps);
 
   Exercise get exercise {
     return _exercise;
   }
 
-  double get weight {
+  String get weight {
     return _weight;
   }
 
@@ -42,6 +43,13 @@ class SingleExercisePrescription {
   }
 
   String toString() {
-    return Constants.exerciseStrings[exercise] + " " + _weight.toString() + _weightUnit + " " + _numSets.toString() + "x" + _numReps.toString();
+    return Constants.exerciseStrings[exercise] +
+        " " +
+        weight +
+        _weightUnit +
+        " " +
+        _numSets.toString() +
+        "x" +
+        _numReps.toString();
   }
 }

@@ -55,22 +55,22 @@ class DBHelper {
               Constants.weekdayByString[value], WorkoutType.UpperBody2);
           break;
         case Constants.DB_WEIGHT_SQUAT:
-          settings.setNextWeight(Exercise.Squat, value.toString());
+          settings.setNextWeight(Exercise.Squat, value);
           break;
         case Constants.DB_WEIGHT_BENCHPRESS:
-          settings.setNextWeight(Exercise.BenchPress, value.toString());
+          settings.setNextWeight(Exercise.BenchPress, value);
           break;
         case Constants.DB_WEIGHT_DEADLIFT:
-          settings.setNextWeight(Exercise.Deadlift, value.toString());
+          settings.setNextWeight(Exercise.Deadlift, value);
           break;
         case Constants.DB_WEIGHT_OVERHEADPRESS:
-          settings.setNextWeight(Exercise.OverheadPress, value.toString());
+          settings.setNextWeight(Exercise.OverheadPress, value);
           break;
         case Constants.DB_WEIGHT_PENDLAYROW:
-          settings.setNextWeight(Exercise.PendlayRow, value.toString());
+          settings.setNextWeight(Exercise.PendlayRow, value);
           break;
         case Constants.DB_WEIGHT_SKULLCRUSHERS:
-          settings.setNextWeight(Exercise.Skullcrushers, value.toString());
+          settings.setNextWeight(Exercise.Skullcrushers, value);
           break;
         default:
           break;

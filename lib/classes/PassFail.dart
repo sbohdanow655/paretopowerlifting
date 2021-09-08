@@ -58,8 +58,7 @@ class PassFail {
           settings.setNextWeight(
               exercise,
               Settings.incrementWeight(
-                      settings.getNextWeight(exercise), exercise, settings)
-                  .toString());
+                  settings.getNextWeight(exercise), exercise, settings));
         } else if (!checkedExerciseSet.contains(exercise)) {
           switch (exercise) {
             case Exercise.Squat:

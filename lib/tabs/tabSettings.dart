@@ -67,16 +67,12 @@ class _SettingsTabState extends State<SettingsTab> {
     await DBHelper.updateSettingsFromDB(settings);
     setState(() {
       _settings = settings;
-      _txtSquat.text = settings.getNextWeight(Exercise.Squat).toString();
-      _txtBenchPress.text =
-          settings.getNextWeight(Exercise.BenchPress).toString();
-      _txtDeadlift.text = settings.getNextWeight(Exercise.Deadlift).toString();
-      _txtOverheadPress.text =
-          settings.getNextWeight(Exercise.OverheadPress).toString();
-      _txtPendlayRow.text =
-          settings.getNextWeight(Exercise.PendlayRow).toString();
-      _txtSkullcrushers.text =
-          settings.getNextWeight(Exercise.Skullcrushers).toString();
+      _txtSquat.text = settings.getNextWeight(Exercise.Squat);
+      _txtBenchPress.text = settings.getNextWeight(Exercise.BenchPress);
+      _txtDeadlift.text = settings.getNextWeight(Exercise.Deadlift);
+      _txtOverheadPress.text = settings.getNextWeight(Exercise.OverheadPress);
+      _txtPendlayRow.text = settings.getNextWeight(Exercise.PendlayRow);
+      _txtSkullcrushers.text = settings.getNextWeight(Exercise.Skullcrushers);
     });
   }
 
