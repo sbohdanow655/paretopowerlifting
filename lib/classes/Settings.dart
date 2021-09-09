@@ -363,7 +363,7 @@ class Settings {
         prescriptionList.add(new SingleExercisePrescription(
             Exercise.Deadlift,
             incrementWeightTwice(
-                _weightMap[Exercise.BenchPress], Exercise.BenchPress, this),
+                _weightMap[Exercise.Deadlift], Exercise.Deadlift, this),
             _weightUnit,
             1,
             5));
