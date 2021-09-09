@@ -410,19 +410,19 @@ class Settings {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                _weightMap[Exercise.Deadlift],
+                _weightMap[Exercise.BenchPress],
                 _weightUnit,
                 3,
                 5));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.PendlayRow,
-                _weightMap[Exercise.Deadlift],
+                _weightMap[Exercise.PendlayRow],
                 _weightUnit,
                 3,
                 8));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.OverheadPress,
-                _weightMap[Exercise.Deadlift],
+                _weightMap[Exercise.OverheadPress],
                 _weightUnit,
                 3,
                 5));
