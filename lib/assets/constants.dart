@@ -38,8 +38,8 @@ class Constants {
   static const String PASS = "PASS";
   static const String FAIL = "FAIL";
 
-  static const String RESET_EXERCISE_PHASES = "Reset Exercise Phases";
-  static const String FINISH_WORKOUT_WEEK = "Finish Workout Week";
+  static const String RESET_EXERCISE_PHASES = "Start Over";
+  static const String FINISH_WORKOUT_WEEK = "Advance to Next Week";
 
   static const String ROUTE_MAINPAGE = "/mainPage";
 

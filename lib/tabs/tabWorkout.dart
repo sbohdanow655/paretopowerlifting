@@ -71,7 +71,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             }),
         RaisedButton(
             child: Text(Constants.RESET_EXERCISE_PHASES),
-            color: Colors.blue,
+            color: Colors.red[400],
             textColor: Colors.white,
             onPressed: () {
               _settings.resetExercisePhases();
