@@ -19,6 +19,7 @@ class WorkoutTab extends StatefulWidget {
 
 class _WorkoutTabState extends State<WorkoutTab> {
   Settings _settings;
+  ScrollController _scrollController = ScrollController();
 
   _WorkoutTabState(this._settings);
 
@@ -64,6 +65,9 @@ class _WorkoutTabState extends State<WorkoutTab> {
             onPressed: () {
               _passFail.finishWorkoutAndIncrementWeight(_settings);
               _setWorkoutPrescriptionAndPassFailMap();
+              _scrollController.animateTo(0,
+                  duration: new Duration(milliseconds: 500),
+                  curve: Curves.bounceIn);
             }),
         RaisedButton(
             child: Text(Constants.RESET_EXERCISE_PHASES),
@@ -72,11 +76,15 @@ class _WorkoutTabState extends State<WorkoutTab> {
             onPressed: () {
               _settings.resetExercisePhases();
               _setWorkoutPrescriptionAndPassFailMap();
+              _scrollController.animateTo(0,
+                  duration: new Duration(milliseconds: 500),
+                  curve: Curves.bounceIn);
             })
       ])
     ]));
 
     return SingleChildScrollView(
+        controller: _scrollController,
         child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             color: const Color(0xfff5f5f5),
