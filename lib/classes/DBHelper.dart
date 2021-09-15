@@ -87,7 +87,7 @@ class DBHelper {
     Model.savePassFailToDB(passFail);
   }
 
-  static Future<PassFail> updatePassFailFromDB(PassFail passFail) async {
+  static Future updatePassFailFromDB(PassFail passFail) async {
     await Model.updatePassFailFromDB(passFail);
   }
 }
