@@ -112,6 +112,9 @@ class WeeklyExercisePrescription {
   }
 
   void setNextWeight(Exercise exercise, String weightString) {
+    if (weightString == "") {
+      return;
+    }
     _weightMap[exercise] = weightString;
     switch (exercise) {
       case Exercise.Squat:
