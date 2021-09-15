@@ -651,7 +651,7 @@ class WeeklyExercisePrescription {
       }
     }
     double newWeight =
-        (0.8 * weight / weightIncrement).round() + weightIncrement;
+        (0.8 * weight / weightIncrement).round() * weightIncrement;
     return _getFormattedWeightString(newWeight.toString());
   }
 
