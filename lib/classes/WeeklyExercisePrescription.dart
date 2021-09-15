@@ -656,11 +656,50 @@ class WeeklyExercisePrescription {
   }
 
   void _advanceWeights() {
+    bool squatWeightIncrementOnce = _phases.squat == 3;
+    bool benchPressWeightIncrementOnce = _phases.benchPress == 4;
+    bool deadliftWeightIncrementOnce = _phases.deadlift == 3;
+    bool overheadPressWeightIncrementOnce = _phases.benchPress == 4;
+
     Weekday.values.forEach((weekday) {
       Exercise.values.forEach((exercise) {
         if (_passFail.getSinglePassFail(weekday, exercise)) {
-          setNextWeight(
-              exercise, incrementWeight(_weightMap[exercise], exercise));
+          String nextWeight = _weightMap[exercise];
+          switch (exercise) {
+            case Exercise.Squat:
+              if (squatWeightIncrementOnce) {
+                squatWeightIncrementOnce = false;
+              } else {
+                nextWeight = incrementWeight(nextWeight, exercise);
+              }
+              break;
+            case Exercise.BenchPress:
+              if (benchPressWeightIncrementOnce) {
+                benchPressWeightIncrementOnce = false;
+              } else {
+                nextWeight = incrementWeight(nextWeight, exercise);
+              }
+              break;
+            case Exercise.Deadlift:
+              if (deadliftWeightIncrementOnce) {
+                deadliftWeightIncrementOnce = false;
+              } else {
+                nextWeight = incrementWeight(nextWeight, exercise);
+              }
+              break;
+            case Exercise.OverheadPress:
+              if (overheadPressWeightIncrementOnce) {
+                overheadPressWeightIncrementOnce = false;
+              } else {
+                nextWeight = incrementWeight(nextWeight, exercise);
+              }
+              break;
+            default:
+              nextWeight = incrementWeight(nextWeight, exercise);
+              break;
+          }
+
+          setNextWeight(exercise, nextWeight);
         }
       });
     });

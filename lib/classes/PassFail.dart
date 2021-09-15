@@ -27,7 +27,7 @@ class PassFail {
       return _passFailMap[weekday.toString()][exercise.toString()];
     }
 
-    return true;
+    return false;
   }
 
   void setFromString(String passFailJson) {
