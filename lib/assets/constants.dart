@@ -154,7 +154,7 @@ class Constants {
   };
 
   static const String DB_PASSFAILMAP = "passFailMap";
-  static const String DB_USE_MICROPLATES = "useMicroplates";
+  static const String DB_HAVE_MICROPLATES = "haveMicroplates";
   static const String DB_WEIGHT_UNIT = "weightUnit";
   static const String DB_PHASE_SQUAT = "squatPhase";
   static const String DB_PHASE_BENCHPRESS = "benchPressPhase";

@@ -16,7 +16,7 @@ class Model {
         await db.execute('CREATE TABLE Settings(id INTEGER PRIMARY KEY, ' +
             Constants.DB_PASSFAILMAP +
             ' TEXT, ' +
-            Constants.DB_USE_MICROPLATES +
+            Constants.DB_HAVE_MICROPLATES +
             ' BIT, ' +
             Constants.DB_WEIGHT_UNIT +
             ' TEXT, ' +
@@ -62,7 +62,7 @@ class Model {
             await txn.rawInsert('INSERT INTO Settings(' +
                 Constants.DB_PASSFAILMAP +
                 ', ' +
-                Constants.DB_USE_MICROPLATES +
+                Constants.DB_HAVE_MICROPLATES +
                 ', ' +
                 Constants.DB_WEIGHT_UNIT +
                 ', ' +
@@ -119,7 +119,7 @@ class Model {
     Database paretoPowerliftingDB = await openDB();
 
     switch (dbColumnName) {
-      case Constants.DB_USE_MICROPLATES:
+      case Constants.DB_HAVE_MICROPLATES:
         val = (val ? 1 : 0).toString();
         break;
       case Constants.DB_WEIGHT_UNIT:
@@ -137,7 +137,7 @@ class Model {
       case Constants.DB_UPPERBODY_ONE:
       case Constants.DB_LOWERBODY_TWO:
       case Constants.DB_UPPERBODY_TWO:
-        val = _wrapString(val);
+        val = _wrapString(val.toString());
         break;
       case Constants.DB_WEIGHT_SQUAT:
       case Constants.DB_WEIGHT_BENCHPRESS:

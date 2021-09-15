@@ -1,3 +1,7 @@
+import 'package:pareto_powerlifting/assets/constants.dart';
+
+import 'DBHelper.dart';
+
 class Phases {
   int _squat = 1;
   int _benchPress = 1;

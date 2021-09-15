@@ -18,4 +18,11 @@ class ExercisePrescriptionTuple {
   SingleExercisePrescription get singleExercisePrescription {
     return _singleExercisePrescription;
   }
+
+  @override
+  String toString() {
+    return _exercise == Exercise.Rest
+        ? Constants.REST_DAY
+        : _singleExercisePrescription.toString();
+  }
 }

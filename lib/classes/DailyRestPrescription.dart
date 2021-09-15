@@ -7,4 +7,9 @@ class DailyRestPrescription extends IDailyPrescription {
   List<ExercisePrescriptionTuple> toTupleList() {
     return [new ExercisePrescriptionTuple(Exercise.Rest, null)];
   }
+
+  @override
+  String toString() {
+    return Constants.REST_DAY;
+  }
 }

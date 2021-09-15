@@ -52,14 +52,14 @@ class WorkoutDayState extends State<WorkoutDay> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(tuple.singleExercisePrescription.toString(),
+                Text(tuple.toString(),
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS))
               ],
             )));
       } else {
-        children.add(Text(tuple.singleExercisePrescription.toString(),
+        children.add(Text(tuple.toString(),
             style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
 
         bool didPass = _weeklyExercisePrescription.getSinglePassFail(

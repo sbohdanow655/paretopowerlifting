@@ -10,7 +10,7 @@ class DBHelper {
     Map settingsMap = await Model.getSettings();
     settingsMap.forEach((key, value) {
       switch (key) {
-        case Constants.DB_USE_MICROPLATES:
+        case Constants.DB_HAVE_MICROPLATES:
           weeklyExercisePrescription.haveMicroplates = value == 1;
           break;
         case Constants.DB_WEIGHT_UNIT:
@@ -26,31 +26,31 @@ class DBHelper {
           weeklyExercisePrescription.deadliftPhase = value;
           break;
         case Constants.DB_FULLBODY_ONE:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.FullBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_FULLBODY_TWO:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.FullBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_FULLBODY_THREE:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.FullBody3, Constants.weekdayByString[value]);
           break;
         case Constants.DB_LOWERBODY_ONE:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.LowerBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_UPPERBODY_ONE:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.UpperBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_LOWERBODY_TWO:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.LowerBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_UPPERBODY_TWO:
-          weeklyExercisePrescription.setScheduleItem(
+          weeklyExercisePrescription.setWorkoutDay(
               WorkoutType.UpperBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_WEIGHT_SQUAT:

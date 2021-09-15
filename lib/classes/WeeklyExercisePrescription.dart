@@ -13,7 +13,7 @@ class WeeklyExercisePrescription {
 
   set squatPhase(val) {
     _phases.squat = val;
-    //DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, val);
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, val);
   }
 
   get squatPhase {
@@ -22,6 +22,7 @@ class WeeklyExercisePrescription {
 
   set benchPressPhase(val) {
     _phases.benchPress = val;
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, val);
   }
 
   get benchPressPhase {
@@ -30,6 +31,7 @@ class WeeklyExercisePrescription {
 
   set deadliftPhase(val) {
     _phases.deadlift = val;
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, val);
   }
 
   get deadliftPhase {
@@ -51,6 +53,7 @@ class WeeklyExercisePrescription {
 
   set weightUnit(val) {
     _weightUnit = val;
+    DBHelper.saveSettingToDB(Constants.DB_WEIGHT_UNIT, val);
   }
 
   get weightUnit {
@@ -59,6 +62,7 @@ class WeeklyExercisePrescription {
 
   set haveMicroplates(val) {
     _haveMicroplates = val;
+    DBHelper.saveSettingToDB(Constants.DB_HAVE_MICROPLATES, val);
   }
 
   get haveMicroplates {
@@ -67,6 +71,9 @@ class WeeklyExercisePrescription {
 
   void resetExercisePhases() {
     _phases.reset();
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, _phases.squat);
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, _phases.benchPress);
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, _phases.deadlift);
   }
 
   set passFail(val) {
@@ -88,14 +95,36 @@ class WeeklyExercisePrescription {
     WorkoutType.FullBody3: Weekday.Friday
   };
 
-  Map<WorkoutType, IDailyPrescription> _workoutTypeToPrescriptionMap = {};
-
   String getNextWeight(Exercise exercise) {
     return _weightMap[exercise];
   }
 
   void setNextWeight(Exercise exercise, String weightString) {
     _weightMap[exercise] = weightString;
+    switch (exercise) {
+      case Exercise.Squat:
+        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_SQUAT, weightString);
+        break;
+      case Exercise.BenchPress:
+        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_BENCHPRESS, weightString);
+        break;
+      case Exercise.Deadlift:
+        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_DEADLIFT, weightString);
+        break;
+      case Exercise.OverheadPress:
+        DBHelper.saveSettingToDB(
+            Constants.DB_WEIGHT_OVERHEADPRESS, weightString);
+        break;
+      case Exercise.PendlayRow:
+        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_PENDLAYROW, weightString);
+        break;
+      case Exercise.Skullcrushers:
+        DBHelper.saveSettingToDB(
+            Constants.DB_WEIGHT_SKULLCRUSHERS, weightString);
+        break;
+      default:
+        break;
+    }
   }
 
   bool getSinglePassFail(Weekday weekday, Exercise exercise) {
@@ -106,11 +135,37 @@ class WeeklyExercisePrescription {
     _passFail.setSinglePassFail(weekday, exercise, didPass);
   }
 
-  void setScheduleItem(WorkoutType workoutType, Weekday weekday) {
+  void setWorkoutDay(WorkoutType workoutType, Weekday weekday) {
     if (_phases.isThreeDay()) {
       _threeDaySchedule[workoutType] = weekday;
     } else {
       _fourDaySchedule[workoutType] = weekday;
+    }
+
+    switch (workoutType) {
+      case WorkoutType.FullBody1:
+        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_ONE, weekday);
+        break;
+      case WorkoutType.FullBody2:
+        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_TWO, weekday);
+        break;
+      case WorkoutType.FullBody3:
+        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_THREE, weekday);
+        break;
+      case WorkoutType.LowerBody1:
+        DBHelper.saveSettingToDB(Constants.DB_LOWERBODY_ONE, weekday);
+        break;
+      case WorkoutType.UpperBody1:
+        DBHelper.saveSettingToDB(Constants.DB_UPPERBODY_ONE, weekday);
+        break;
+      case WorkoutType.LowerBody2:
+        DBHelper.saveSettingToDB(Constants.DB_LOWERBODY_TWO, weekday);
+        break;
+      case WorkoutType.UpperBody2:
+        DBHelper.saveSettingToDB(Constants.DB_UPPERBODY_TWO, weekday);
+        break;
+      default:
+        break;
     }
   }
 
@@ -124,7 +179,9 @@ class WeeklyExercisePrescription {
 
   IDailyPrescription getDailyPrescriptionByWeekday(Weekday weekday) {
     WorkoutType workoutType = _getWorkoutTypeFromWeekday(weekday);
-    return _getDailyPrescription(workoutType);
+    return workoutType == null
+        ? DailyRestPrescription()
+        : _getDailyPrescription(workoutType);
   }
 
   IDailyPrescription _getDailyPrescription(WorkoutType workoutType) {
@@ -526,9 +583,27 @@ class WeeklyExercisePrescription {
     return _getFormattedWeightString(newWeight.toString());
   }
 
-  void _advancePhases() {
+  void _advanceWeights() {
     Weekday.values.forEach((weekday) {
-      if (!_passFail.getSinglePassFail(weekday, Exercise.Squat)) {
+      Exercise.values.forEach((exercise) {
+        if (_passFail.getSinglePassFail(weekday, exercise)) {
+          setNextWeight(
+              exercise, incrementWeight(_weightMap[exercise], exercise));
+        }
+      });
+    });
+  }
+
+  void _advancePhases() {
+    Set<Exercise> exerciseFailureSet = {};
+    Iterable<Weekday> weekdays = _phases.isThreeDay()
+        ? _threeDaySchedule.values
+        : _fourDaySchedule.values;
+
+    weekdays.forEach((weekday) {
+      if (!exerciseFailureSet.contains(Exercise.Squat) &&
+          !_passFail.getSinglePassFail(weekday, Exercise.Squat)) {
+        exerciseFailureSet.add(Exercise.Squat);
         switch (_phases.squat) {
           case 1:
             _phases.squat = 2;
@@ -541,7 +616,9 @@ class WeeklyExercisePrescription {
         }
       }
 
-      if (!_passFail.getSinglePassFail(weekday, Exercise.BenchPress)) {
+      if (!exerciseFailureSet.contains(Exercise.BenchPress) &&
+          !_passFail.getSinglePassFail(weekday, Exercise.BenchPress)) {
+        exerciseFailureSet.add(Exercise.BenchPress);
         switch (_phases.benchPress) {
           case 1:
             _phases.benchPress = 2;
@@ -557,7 +634,9 @@ class WeeklyExercisePrescription {
         }
       }
 
-      if (!_passFail.getSinglePassFail(weekday, Exercise.Deadlift)) {
+      if (!exerciseFailureSet.contains(Exercise.Deadlift) &&
+          !_passFail.getSinglePassFail(weekday, Exercise.Deadlift)) {
+        exerciseFailureSet.add(Exercise.Deadlift);
         switch (_phases.deadlift) {
           case 1:
             _phases.deadlift = 2;
@@ -595,47 +674,12 @@ class WeeklyExercisePrescription {
       });
     }
 
-    if (workoutType == null) {
-      throw new FormatException("There is no workout on this day");
-    }
-
     return workoutType;
   }
 
   void advanceWeek() {
     _advancePhases();
-
-    Weekday.values.forEach((weekday) {
-      WorkoutType workoutType;
-
-      try {
-        workoutType = _getWorkoutTypeFromWeekday(weekday);
-      } catch (e) {
-        return;
-      }
-
-      _workoutTypeToPrescriptionMap[workoutType] =
-          _getDailyPrescription(workoutType);
-    });
-  }
-
-  Map<Weekday, IDailyPrescription> getThisWeeksWorkouts() {
-    Map<Weekday, IDailyPrescription> thisWeeksWorkouts = {};
-
-    List<WorkoutType> workoutTypes =
-        _phases.isThreeDay() ? _threeDaySchedule.keys : _fourDaySchedule.keys;
-
-    workoutTypes.forEach((workoutType) {
-      Weekday weekday = getWeekdayFromWorkoutType(workoutType);
-      thisWeeksWorkouts[weekday] = _workoutTypeToPrescriptionMap[workoutType];
-    });
-
-    Weekday.values.forEach((weekday) {
-      if (!thisWeeksWorkouts.containsKey(weekday)) {
-        thisWeeksWorkouts[weekday] = DailyRestPrescription();
-      }
-    });
-
-    return thisWeeksWorkouts;
+    _advanceWeights();
+    _passFail.reset();
   }
 }

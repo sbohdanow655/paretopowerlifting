@@ -17,6 +17,7 @@ class PassFail {
 
   void setSinglePassFail(Weekday weekday, Exercise exercise, bool didPass) {
     _passFailMap[weekday.toString()][exercise.toString()] = didPass;
+    DBHelper.savePassFailMapToDB(this);
   }
 
   bool getSinglePassFail(Weekday weekday, Exercise exercise) {

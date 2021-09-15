@@ -27,7 +27,7 @@ class WeekdayDropdownState extends State<WeekdayDropdown> {
   Weekday _selectedWeekday;
 
   void setSelectedWeekday(Weekday weekday) {
-    _weeklyExercisePrescription.setScheduleItem(_workoutType, weekday);
+    _weeklyExercisePrescription.setWorkoutDay(_workoutType, weekday);
 
     setState(() {
       _selectedWeekday = weekday;

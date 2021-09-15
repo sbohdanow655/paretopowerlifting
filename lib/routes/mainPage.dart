@@ -28,17 +28,21 @@ class _MainPageState extends State<MainPage> {
 
   int currentTabIndex = 0;
 
-  navigateToTab(int index) {
+  void navigateToTab(int index) {
     setState(() {
       currentTabIndex = index;
     });
   }
 
-  @override
-  void initState() {
+  void fetchFromDB() async {
     DBHelper.updateWeeklyExercisePrescriptionFromDB(
         _weeklyExercisePrescription);
-    _weeklyExercisePrescription.passFail = DBHelper.getPassFailFromDB();
+    _weeklyExercisePrescription.passFail = await DBHelper.getPassFailFromDB();
+  }
+
+  @override
+  void initState() {
+    fetchFromDB();
     super.initState();
   }
 
