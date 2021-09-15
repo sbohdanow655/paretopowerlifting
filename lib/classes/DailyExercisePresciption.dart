@@ -2,17 +2,18 @@ import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
 class DailyExercisePrescription extends IDailyPrescription {
-  List<SingleExercisePrescription> _prescriptionList;
-  
-  DailyExercisePrescription(this._prescriptionList);
+  List<SingleExercisePrescription> _singleExercisePrescription;
 
-  List<ExercisePrescriptionStringTuple> toTupleList() {
-    List<ExercisePrescriptionStringTuple> tupleList = [];
+  DailyExercisePrescription(this._singleExercisePrescription);
 
-    this._prescriptionList.forEach((singleExercisePrescription) {
-      tupleList.add(new ExercisePrescriptionStringTuple(singleExercisePrescription.exercise, singleExercisePrescription.toString()));
+  List<ExercisePrescriptionTuple> toTupleList() {
+    List<ExercisePrescriptionTuple> tupleList = [];
+
+    this._singleExercisePrescription.forEach((singleExercisePrescription) {
+      tupleList.add(new ExercisePrescriptionTuple(
+          singleExercisePrescription.exercise, singleExercisePrescription));
     });
 
     return tupleList;
-  } 
+  }
 }

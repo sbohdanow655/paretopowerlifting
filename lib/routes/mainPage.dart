@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import '../assets/constants.dart';
 import '../tabs/tabWorkout.dart';
 import '../tabs/tabSettings.dart';
@@ -12,13 +12,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Settings _settings = Settings();
+  WeeklyExercisePrescription _weeklyExercisePrescription =
+      WeeklyExercisePrescription();
 
   _MainPageState() {
     tabViews = [
-      WorkoutTab(_settings),
+      WorkoutTab(_weeklyExercisePrescription),
       // HistoryTab(),
-      SettingsTab(_settings)
+      SettingsTab(_weeklyExercisePrescription)
     ];
   }
 

@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/PassFail.dart';
-import 'package:pareto_powerlifting/classes/DBHelper.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
-  final IDailyPrescription _dailyPrescription;
+  final WeeklyExercisePrescription _weeklyExercisePrescription;
   final Weekday _weekday;
-  final PassFail _passFail;
 
-  WorkoutDay(this._dailyPrescription, this._weekday, this._passFail);
+  WorkoutDay(this._weeklyExercisePrescription, this._weekday);
 
   @override
   State<StatefulWidget> createState() {
-    return WorkoutDayState(
-        this._dailyPrescription, this._weekday, this._passFail);
+    return WorkoutDayState(this._weeklyExercisePrescription, this._weekday);
   }
 }
 
 class WorkoutDayState extends State<WorkoutDay> {
-  WorkoutDayState(this._dailyPrescription, this._weekday, this._passFail);
+  WorkoutDayState(this._weeklyExercisePrescription, this._weekday);
 
-  final IDailyPrescription _dailyPrescription;
+  final WeeklyExercisePrescription _weeklyExercisePrescription;
   final Weekday _weekday;
-  final PassFail _passFail;
 
   void setPassFailMap(Exercise exercise, bool didPass) {
     setState(() {
-      _passFail.setSinglePassFail(_weekday, exercise, didPass);
+      _weeklyExercisePrescription.setSinglePassFail(
+          _weekday, exercise, didPass);
     });
-    DBHelper.savePassFailMapToDB(_passFail);
   }
 
   @override
@@ -45,7 +40,10 @@ class WorkoutDayState extends State<WorkoutDay> {
       )
     ]));
 
-    _dailyPrescription.toTupleList().forEach((tuple) {
+    _weeklyExercisePrescription
+        .getDailyPrescriptionByWeekday(_weekday)
+        .toTupleList()
+        .forEach((tuple) {
       List<Widget> children = [];
 
       if (tuple.exercise == Exercise.Rest) {
@@ -54,17 +52,18 @@ class WorkoutDayState extends State<WorkoutDay> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(tuple.prescriptionString,
+                Text(tuple.singleExercisePrescription.toString(),
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS))
               ],
             )));
       } else {
-        children.add(Text(tuple.prescriptionString,
+        children.add(Text(tuple.singleExercisePrescription.toString(),
             style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
 
-        bool didPass = _passFail.getSinglePassFail(_weekday, tuple.exercise);
+        bool didPass = _weeklyExercisePrescription.getSinglePassFail(
+            _weekday, tuple.exercise);
 
         children.add(DropdownButton<String>(
             value: didPass ? Constants.PASS : Constants.FAIL,

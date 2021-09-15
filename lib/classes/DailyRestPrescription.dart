@@ -4,8 +4,7 @@ import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
 class DailyRestPrescription extends IDailyPrescription {
   DailyRestPrescription();
 
-  List<ExercisePrescriptionStringTuple> toTupleList() {
-    return [new ExercisePrescriptionStringTuple(Exercise.Rest, Constants.REST_DAY)];
+  List<ExercisePrescriptionTuple> toTupleList() {
+    return [new ExercisePrescriptionTuple(Exercise.Rest, null)];
   }
-
 }

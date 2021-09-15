@@ -1,21 +1,21 @@
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 
 abstract class IDailyPrescription {
-  List<ExercisePrescriptionStringTuple> toTupleList();
+  List<ExercisePrescriptionTuple> toTupleList();
 }
 
-class ExercisePrescriptionStringTuple {
+class ExercisePrescriptionTuple {
   Exercise _exercise;
-  String _prescriptionString;
-  
-  ExercisePrescriptionStringTuple(this._exercise, this._prescriptionString);
+  SingleExercisePrescription _singleExercisePrescription;
+
+  ExercisePrescriptionTuple(this._exercise, this._singleExercisePrescription);
 
   Exercise get exercise {
     return _exercise;
   }
 
-  String get prescriptionString {
-    return _prescriptionString;
+  SingleExercisePrescription get singleExercisePrescription {
+    return _singleExercisePrescription;
   }
-
 }

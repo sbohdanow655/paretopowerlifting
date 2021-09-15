@@ -4,54 +4,51 @@ import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
 import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class WorkoutTab extends StatefulWidget {
-  Settings _settings;
+  WeeklyExercisePrescription _weeklyExercisePrescription;
 
-  WorkoutTab(this._settings);
+  WorkoutTab(this._weeklyExercisePrescription);
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutTabState(this._settings);
+    return _WorkoutTabState(this._weeklyExercisePrescription);
   }
 }
 
 class _WorkoutTabState extends State<WorkoutTab> {
-  Settings _settings;
+  WeeklyExercisePrescription _weeklyExercisePrescription;
+
+  _WorkoutTabState(this._weeklyExercisePrescription);
+
   ScrollController _scrollController = ScrollController();
-
-  _WorkoutTabState(this._settings);
-
   Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay;
-  PassFail _passFail;
 
-  Future _setWorkoutPrescriptionAndPassFailMap() async {
+  Future _getWorkoutPrescriptions() async {
     Map<Weekday, IDailyPrescription> workoutPrescription =
-        await Settings.getThisWeeksWorkouts(_settings);
-    PassFail passFail = await DBHelper.getPassFailFromDB();
+        await _weeklyExercisePrescription.getThisWeeksWorkouts();
     setState(() {
-      _passFail = passFail;
       _workoutPrescriptionsByDay = workoutPrescription;
     });
   }
 
   @override
   void initState() {
-    _setWorkoutPrescriptionAndPassFailMap();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_workoutPrescriptionsByDay == null || _passFail == null) {
+    if (_workoutPrescriptionsByDay == null) {
       return Column();
     }
     List<Widget> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay = new WorkoutDay(
-          _workoutPrescriptionsByDay[weekday], weekday, _passFail);
+      WorkoutDay workoutDay =
+          new WorkoutDay(_workoutPrescriptionsByDay[weekday], weekday);
       workoutDayList.add(workoutDay);
     });
 
@@ -64,7 +61,10 @@ class _WorkoutTabState extends State<WorkoutTab> {
             textColor: Colors.white,
             onPressed: () {
               _passFail.finishWorkoutAndIncrementWeight(_settings);
-              _setWorkoutPrescriptionAndPassFailMap();
+
+              setState(() {
+                _passFail.reset();
+              });
               _scrollController.animateTo(0,
                   duration: new Duration(milliseconds: 500),
                   curve: Curves.bounceIn);
@@ -74,8 +74,10 @@ class _WorkoutTabState extends State<WorkoutTab> {
             color: Colors.red[400],
             textColor: Colors.white,
             onPressed: () {
-              _settings.resetExercisePhases();
-              _setWorkoutPrescriptionAndPassFailMap();
+              setState(() {
+                _settings.resetExercisePhases();
+                _getSetWorkoutPrescription();
+              });
               _scrollController.animateTo(0,
                   duration: new Duration(milliseconds: 500),
                   curve: Curves.bounceIn);

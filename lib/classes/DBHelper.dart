@@ -4,7 +4,6 @@ import 'package:pareto_powerlifting/assets/constants.dart';
 
 import '../model.dart';
 import 'PassFail.dart';
-import 'Settings.dart';
 
 class DBHelper {
   static Future updateSettingsFromDB(Settings settings) async {

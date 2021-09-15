@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 
 class WeekdayDropdown extends StatefulWidget {
   final WorkoutType _workoutType;
-  final Settings _settings;
 
-  WeekdayDropdown(this._workoutType, this._settings);
+  WeekdayDropdown(this._workoutType);
 
   @override
   State<StatefulWidget> createState() {
-    return WeekdayDropdownState(_workoutType, _settings);
+    return WeekdayDropdownState(_workoutType);
   }
 }
 
 class WeekdayDropdownState extends State<WeekdayDropdown> {
   final WorkoutType _workoutType;
-  final Settings _settings;
 
-  WeekdayDropdownState(this._workoutType, this._settings) {
+  WeekdayDropdownState(this._workoutType) {
     _selectedWeekday = _settings.getWeekdayFromWorkoutType(_workoutType);
   }
 

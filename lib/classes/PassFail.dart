@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 
-import 'Settings.dart';
-
 class PassFail {
   Map<String, Map<String, bool>> _passFailMap = {};
 
@@ -22,7 +20,13 @@ class PassFail {
   }
 
   bool getSinglePassFail(Weekday weekday, Exercise exercise) {
-    return _passFailMap[weekday.toString()][exercise.toString()];
+    String weekdayString = weekday.toString();
+
+    if (_passFailMap.containsKey(weekdayString)) {
+      return _passFailMap[weekday.toString()][exercise.toString()];
+    }
+
+    return true;
   }
 
   void setFromString(String passFailJson) {
@@ -48,75 +52,7 @@ class PassFail {
     return passFailMap;
   }
 
-  void finishWorkoutAndIncrementWeight(Settings settings) {
-    Set<Exercise> checkedExerciseSet = new Set();
-
-    _passFailMap.forEach((weekdayString, dailyPassFailMap) {
-      dailyPassFailMap.forEach((exerciseString, didPass) {
-        Exercise exercise = Constants.exerciseByToString[exerciseString];
-        if (didPass) {
-          settings.setNextWeight(
-              exercise,
-              Settings.incrementWeight(
-                  settings.getNextWeight(exercise), exercise, settings));
-        } else if (!checkedExerciseSet.contains(exercise)) {
-          switch (exercise) {
-            case Exercise.Squat:
-              switch (settings.phases.squat) {
-                case 1:
-                  settings.phases.squat = 2;
-                  break;
-                case 2:
-                  settings.phases.squat = 3;
-                  break;
-                default:
-                  break;
-              }
-              DBHelper.saveSettingToDB(settings, Constants.DB_PHASE_SQUAT);
-              break;
-            case Exercise.BenchPress:
-              switch (settings.phases.benchPress) {
-                case 1:
-                  settings.phases.benchPress = 2;
-                  break;
-                case 2:
-                  settings.phases.benchPress = 3;
-                  break;
-                case 3:
-                  settings.phases.benchPress = 4;
-                  break;
-                default:
-                  break;
-              }
-              DBHelper.saveSettingToDB(settings, Constants.DB_PHASE_BENCHPRESS);
-              break;
-            case Exercise.Deadlift:
-              switch (settings.phases.deadlift) {
-                case 1:
-                  settings.phases.deadlift = 2;
-                  if (settings.phases.benchPress == 1) {
-                    settings.phases.benchPress = 2;
-                  }
-                  break;
-                case 2:
-                  settings.phases.deadlift = 3;
-                  if (settings.phases.benchPress == 1) {
-                    settings.phases.benchPress = 2;
-                  }
-                  break;
-                default:
-                  break;
-              }
-              DBHelper.saveSettingToDB(settings, Constants.DB_PHASE_DEADLIFT);
-              break;
-            default:
-              break;
-          }
-        }
-        checkedExerciseSet.add(exercise);
-      });
-    });
-
+  void reset() {
     _passFailMap = _getInitialPassFailMap();
     DBHelper.savePassFailMapToDB(this);
   }
