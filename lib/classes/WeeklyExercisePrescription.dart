@@ -273,26 +273,74 @@ class WeeklyExercisePrescription {
         }
         break;
       case WorkoutType.FullBody3:
-        prescriptionList.add(new SingleExercisePrescription(
-            Exercise.Squat,
-            incrementWeightTwice(_weightMap[Exercise.Squat], Exercise.Squat),
-            _weightUnit,
-            3,
-            5));
-        prescriptionList.add(new SingleExercisePrescription(
-            Exercise.BenchPress,
-            incrementWeightTwice(
-                _weightMap[Exercise.BenchPress], Exercise.BenchPress),
-            _weightUnit,
-            3,
-            5));
-        prescriptionList.add(new SingleExercisePrescription(
-            Exercise.Deadlift,
-            incrementWeightTwice(
-                _weightMap[Exercise.Deadlift], Exercise.Deadlift),
-            _weightUnit,
-            1,
-            5));
+        switch (_phases.squat) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.Squat,
+                incrementWeightTwice(
+                    _weightMap[Exercise.Squat], Exercise.Squat),
+                _weightUnit,
+                3,
+                5));
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.Squat,
+                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                _weightUnit,
+                3,
+                5));
+            break;
+          default:
+            break;
+        }
+
+        switch (_phases.benchPress) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.BenchPress,
+                incrementWeightTwice(
+                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                _weightUnit,
+                3,
+                5));
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.BenchPress,
+                incrementWeight(
+                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                _weightUnit,
+                3,
+                5));
+
+            break;
+          default:
+            break;
+        }
+
+        switch (_phases.deadlift) {
+          case 1:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.Deadlift,
+                incrementWeightTwice(
+                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                _weightUnit,
+                1,
+                5));
+            break;
+          case 2:
+            prescriptionList.add(new SingleExercisePrescription(
+                Exercise.Deadlift,
+                incrementWeight(
+                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                _weightUnit,
+                1,
+                5));
+            break;
+          default:
+            break;
+        }
 
         break;
       case WorkoutType.LowerBody1:
