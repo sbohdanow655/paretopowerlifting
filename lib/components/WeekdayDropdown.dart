@@ -1,55 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/DBHelper.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class WeekdayDropdown extends StatefulWidget {
   final WorkoutType _workoutType;
+  final WeeklyExercisePrescription _weeklyExercisePrescription;
 
-  WeekdayDropdown(this._workoutType);
+  WeekdayDropdown(this._workoutType, this._weeklyExercisePrescription);
 
   @override
   State<StatefulWidget> createState() {
-    return WeekdayDropdownState(_workoutType);
+    return WeekdayDropdownState(
+        this._workoutType, this._weeklyExercisePrescription);
   }
 }
 
 class WeekdayDropdownState extends State<WeekdayDropdown> {
   final WorkoutType _workoutType;
+  final WeeklyExercisePrescription _weeklyExercisePrescription;
 
-  WeekdayDropdownState(this._workoutType) {
-    _selectedWeekday = _settings.getWeekdayFromWorkoutType(_workoutType);
+  WeekdayDropdownState(this._workoutType, this._weeklyExercisePrescription) {
+    _selectedWeekday =
+        _weeklyExercisePrescription.getWeekdayFromWorkoutType(_workoutType);
   }
 
   Weekday _selectedWeekday;
 
   void setSelectedWeekday(Weekday weekday) {
-    _settings.addDayToSchedule(weekday, _workoutType);
-
-    switch (_workoutType) {
-      case WorkoutType.FullBody1:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_FULLBODY_ONE);
-        break;
-      case WorkoutType.FullBody2:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_FULLBODY_TWO);
-        break;
-      case WorkoutType.FullBody3:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_FULLBODY_THREE);
-        break;
-      case WorkoutType.LowerBody1:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_LOWERBODY_ONE);
-        break;
-      case WorkoutType.UpperBody1:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_UPPERBODY_ONE);
-        break;
-      case WorkoutType.LowerBody2:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_LOWERBODY_TWO);
-        break;
-      case WorkoutType.UpperBody2:
-        DBHelper.saveSettingToDB(_settings, Constants.DB_UPPERBODY_TWO);
-        break;
-      default:
-        break;
-    }
+    _weeklyExercisePrescription.setScheduleItem(_workoutType, weekday);
 
     setState(() {
       _selectedWeekday = weekday;

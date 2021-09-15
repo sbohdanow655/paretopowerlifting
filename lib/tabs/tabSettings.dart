@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
 class SettingsTab extends StatefulWidget {
-  Settings _settings;
+  WeeklyExercisePrescription _weeklyExercisePrescription;
 
-  SettingsTab(this._settings);
+  SettingsTab(this._weeklyExercisePrescription);
 
   @override
   State<StatefulWidget> createState() {
-    return _SettingsTabState(this._settings);
+    return _SettingsTabState(this._weeklyExercisePrescription);
   }
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  Settings _settings;
+  WeeklyExercisePrescription _weeklyExercisePrescription;
 
   TextEditingController _txtSquat = TextEditingController();
   TextEditingController _txtBenchPress = TextEditingController();
@@ -25,62 +25,60 @@ class _SettingsTabState extends State<SettingsTab> {
   TextEditingController _txtPendlayRow = TextEditingController();
   TextEditingController _txtSkullcrushers = TextEditingController();
 
-  _SettingsTabState(this._settings);
+  _SettingsTabState(this._weeklyExercisePrescription);
 
   void setMicroplates(val) {
     setState(() {
-      _settings.useMicroplates = val;
+      _weeklyExercisePrescription.haveMicroplates = val;
     });
-    DBHelper.saveSettingToDB(_settings, Constants.DB_USE_MICROPLATES);
   }
 
   void setWeightUnit(val) {
     setState(() {
-      _settings.weightUnit = val;
+      _weeklyExercisePrescription.weightUnit = val;
     });
-    DBHelper.saveSettingToDB(_settings, Constants.DB_WEIGHT_UNIT);
   }
 
   void setSquatPhase(val) {
     setState(() {
-      _settings.squatPhase = val;
+      _weeklyExercisePrescription.squatPhase = val;
     });
-    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_SQUAT);
   }
 
   void setBenchPressPhase(val) {
     setState(() {
-      _settings.benchPressPhase = val;
+      _weeklyExercisePrescription.benchPressPhase = val;
     });
-    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_BENCHPRESS);
   }
 
   void setDeadliftPhase(val) {
     setState(() {
-      _settings.deadliftPhase = val;
+      _weeklyExercisePrescription.deadliftPhase = val;
     });
-    DBHelper.saveSettingToDB(_settings, Constants.DB_PHASE_DEADLIFT);
   }
 
-  Future setSettingsFromDB() async {
-    Settings settings = Settings();
-    await DBHelper.updateSettingsFromDB(settings);
+  Future setWeights() async {
     if (this.widget != null) {
       setState(() {
-        _settings = settings;
-        _txtSquat.text = settings.getNextWeight(Exercise.Squat);
-        _txtBenchPress.text = settings.getNextWeight(Exercise.BenchPress);
-        _txtDeadlift.text = settings.getNextWeight(Exercise.Deadlift);
-        _txtOverheadPress.text = settings.getNextWeight(Exercise.OverheadPress);
-        _txtPendlayRow.text = settings.getNextWeight(Exercise.PendlayRow);
-        _txtSkullcrushers.text = settings.getNextWeight(Exercise.Skullcrushers);
+        _txtSquat.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.Squat);
+        _txtBenchPress.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.BenchPress);
+        _txtDeadlift.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.Deadlift);
+        _txtOverheadPress.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.OverheadPress);
+        _txtPendlayRow.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.PendlayRow);
+        _txtSkullcrushers.text =
+            _weeklyExercisePrescription.getNextWeight(Exercise.Skullcrushers);
       });
     }
   }
 
   @override
   void initState() {
-    setSettingsFromDB();
+    setWeights();
     super.initState();
   }
 
@@ -116,7 +114,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                 checkColor: Colors.white,
                                 fillColor: MaterialStateProperty.resolveWith(
                                     (val) => Colors.blue),
-                                value: _settings.useMicroplates,
+                                value:
+                                    _weeklyExercisePrescription.haveMicroplates,
                                 onChanged: (bool value) =>
                                     setMicroplates(value))
                           ]),
@@ -132,7 +131,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<String>(
-                                value: _settings.weightUnit,
+                                value: _weeklyExercisePrescription.weightUnit,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -158,7 +157,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _settings.squatPhase,
+                                value: _weeklyExercisePrescription.squatPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -182,7 +181,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _settings.benchPressPhase,
+                                value:
+                                    _weeklyExercisePrescription.benchPressPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -206,7 +206,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
                             DropdownButton<int>(
-                                value: _settings.deadliftPhase,
+                                value:
+                                    _weeklyExercisePrescription.deadliftPhase,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Constants.FONTSIZE_TAB_SETTINGS),
@@ -230,7 +231,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody1, _settings)
+                            WeekdayDropdown(WorkoutType.FullBody1,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,7 +246,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody2, _settings)
+                            WeekdayDropdown(WorkoutType.FullBody2,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -258,7 +261,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.FullBody3, _settings)
+                            WeekdayDropdown(WorkoutType.FullBody3,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,7 +276,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.LowerBody1, _settings)
+                            WeekdayDropdown(WorkoutType.LowerBody1,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -286,7 +291,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.UpperBody1, _settings)
+                            WeekdayDropdown(WorkoutType.UpperBody1,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -300,7 +306,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.LowerBody2, _settings)
+                            WeekdayDropdown(WorkoutType.LowerBody2,
+                                _weeklyExercisePrescription)
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -314,7 +321,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       fontSize:
                                           Constants.FONTSIZE_TAB_SETTINGS)),
                             ),
-                            WeekdayDropdown(WorkoutType.UpperBody2, _settings)
+                            WeekdayDropdown(WorkoutType.UpperBody2,
+                                _weeklyExercisePrescription)
                           ]),
                       Padding(
                           padding:
@@ -325,8 +333,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_SQUAT),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.Squat, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.Squat, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -336,8 +344,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_BENCHPRESS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.BenchPress, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.BenchPress, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -347,8 +355,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_DEADLIFT),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.Deadlift, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.Deadlift, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -359,8 +367,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Constants.ENTERWEIGHT_OVERHEADPRESS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.OverheadPress, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.OverheadPress, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -370,8 +378,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                   labelText: Constants.ENTERWEIGHT_PENDLAYROW),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.PendlayRow, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.PendlayRow, val))),
                       Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 5, vertical: 15),
@@ -382,8 +390,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Constants.ENTERWEIGHT_SKULLCRUSHERS),
                               maxLength: 6,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) => _settings.setNextWeight(
-                                  Exercise.Skullcrushers, val))),
+                              onChanged: (val) => _weeklyExercisePrescription
+                                  .setNextWeight(Exercise.Skullcrushers, val))),
                     ]))));
   }
 }

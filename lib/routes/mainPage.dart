@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import '../assets/constants.dart';
 import '../tabs/tabWorkout.dart';
@@ -35,6 +36,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
+    DBHelper.updateWeeklyExercisePrescriptionFromDB(
+        _weeklyExercisePrescription);
+    _weeklyExercisePrescription.passFail = DBHelper.getPassFailFromDB();
     super.initState();
   }
 

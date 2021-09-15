@@ -2,7 +2,6 @@ import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'assets/constants.dart';
-import 'classes/Settings.dart';
 
 class Model {
   static const paretoPowerliftingDBString = "paretoPowerlifting.db";
@@ -116,71 +115,37 @@ class Model {
     return '\'' + str + '\'';
   }
 
-  static void updateSetting(Settings settings, String dbColumnName) async {
+  static void updateSetting(String dbColumnName, val) async {
     Database paretoPowerliftingDB = await openDB();
-    String val;
 
     switch (dbColumnName) {
       case Constants.DB_USE_MICROPLATES:
-        val = (settings.useMicroplates ? 1 : 0).toString();
+        val = (val ? 1 : 0).toString();
         break;
       case Constants.DB_WEIGHT_UNIT:
-        val = _wrapString(settings.weightUnit);
+        val = _wrapString(val);
         break;
       case Constants.DB_PHASE_SQUAT:
-        val = settings.squatPhase.toString();
-        break;
       case Constants.DB_PHASE_BENCHPRESS:
-        val = settings.benchPressPhase.toString();
-        break;
       case Constants.DB_PHASE_DEADLIFT:
-        val = settings.deadliftPhase.toString();
+        val = val.toString();
         break;
       case Constants.DB_FULLBODY_ONE:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody1)]);
-        break;
       case Constants.DB_FULLBODY_TWO:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody2)]);
-        break;
       case Constants.DB_FULLBODY_THREE:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromThreeDayWorkoutType(WorkoutType.FullBody3)]);
-        break;
       case Constants.DB_LOWERBODY_ONE:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.LowerBody1)]);
-        break;
       case Constants.DB_UPPERBODY_ONE:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.UpperBody1)]);
-        break;
       case Constants.DB_LOWERBODY_TWO:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.LowerBody2)]);
-        break;
       case Constants.DB_UPPERBODY_TWO:
-        val = _wrapString(Constants.weekdayStrings[
-            settings.getWeekdayFromFourDayWorkoutType(WorkoutType.UpperBody2)]);
+        val = _wrapString(val);
         break;
       case Constants.DB_WEIGHT_SQUAT:
-        val = settings.getNextWeight(Exercise.Squat);
-        break;
       case Constants.DB_WEIGHT_BENCHPRESS:
-        val = settings.getNextWeight(Exercise.BenchPress);
-        break;
       case Constants.DB_WEIGHT_DEADLIFT:
-        val = settings.getNextWeight(Exercise.Deadlift);
-        break;
       case Constants.DB_WEIGHT_OVERHEADPRESS:
-        val = settings.getNextWeight(Exercise.OverheadPress);
-        break;
       case Constants.DB_WEIGHT_PENDLAYROW:
-        val = settings.getNextWeight(Exercise.PendlayRow);
-        break;
       case Constants.DB_WEIGHT_SKULLCRUSHERS:
-        val = settings.getNextWeight(Exercise.Skullcrushers);
+        break;
     }
 
     await paretoPowerliftingDB.rawUpdate(

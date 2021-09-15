@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/IDailyPrescription.dart';
-import 'package:pareto_powerlifting/classes/PassFail.dart';
-import 'package:pareto_powerlifting/classes/Settings.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
@@ -24,15 +21,6 @@ class _WorkoutTabState extends State<WorkoutTab> {
   _WorkoutTabState(this._weeklyExercisePrescription);
 
   ScrollController _scrollController = ScrollController();
-  Map<Weekday, IDailyPrescription> _workoutPrescriptionsByDay;
-
-  Future _getWorkoutPrescriptions() async {
-    Map<Weekday, IDailyPrescription> workoutPrescription =
-        await _weeklyExercisePrescription.getThisWeeksWorkouts();
-    setState(() {
-      _workoutPrescriptionsByDay = workoutPrescription;
-    });
-  }
 
   @override
   void initState() {
@@ -41,14 +29,11 @@ class _WorkoutTabState extends State<WorkoutTab> {
 
   @override
   Widget build(BuildContext context) {
-    if (_workoutPrescriptionsByDay == null) {
-      return Column();
-    }
     List<Widget> workoutDayList = [];
 
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay =
-          new WorkoutDay(_workoutPrescriptionsByDay[weekday], weekday);
+          new WorkoutDay(_weeklyExercisePrescription, weekday);
       workoutDayList.add(workoutDay);
     });
 
@@ -60,10 +45,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              _passFail.finishWorkoutAndIncrementWeight(_settings);
-
               setState(() {
-                _passFail.reset();
+                _weeklyExercisePrescription.advanceWeek();
               });
               _scrollController.animateTo(0,
                   duration: new Duration(milliseconds: 500),
@@ -75,8 +58,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             textColor: Colors.white,
             onPressed: () {
               setState(() {
-                _settings.resetExercisePhases();
-                _getSetWorkoutPrescription();
+                _weeklyExercisePrescription.resetExercisePhases();
               });
               _scrollController.animateTo(0,
                   duration: new Duration(milliseconds: 500),

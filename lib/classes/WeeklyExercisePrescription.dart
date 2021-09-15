@@ -1,4 +1,5 @@
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/Phases.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
@@ -12,14 +13,27 @@ class WeeklyExercisePrescription {
 
   set squatPhase(val) {
     _phases.squat = val;
+    //DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, val);
+  }
+
+  get squatPhase {
+    return _phases.squat;
   }
 
   set benchPressPhase(val) {
     _phases.benchPress = val;
   }
 
+  get benchPressPhase {
+    return _phases.benchPress;
+  }
+
   set deadliftPhase(val) {
     _phases.deadlift = val;
+  }
+
+  get deadliftPhase {
+    return _phases.deadlift;
   }
 
   Map<Exercise, String> _weightMap = {
@@ -39,8 +53,24 @@ class WeeklyExercisePrescription {
     _weightUnit = val;
   }
 
+  get weightUnit {
+    return _weightUnit;
+  }
+
   set haveMicroplates(val) {
     _haveMicroplates = val;
+  }
+
+  get haveMicroplates {
+    return _haveMicroplates;
+  }
+
+  void resetExercisePhases() {
+    _phases.reset();
+  }
+
+  set passFail(val) {
+    _passFail = val;
   }
 
   WeeklyExercisePrescription();
@@ -60,6 +90,14 @@ class WeeklyExercisePrescription {
 
   Map<WorkoutType, IDailyPrescription> _workoutTypeToPrescriptionMap = {};
 
+  String getNextWeight(Exercise exercise) {
+    return _weightMap[exercise];
+  }
+
+  void setNextWeight(Exercise exercise, String weightString) {
+    _weightMap[exercise] = weightString;
+  }
+
   bool getSinglePassFail(Weekday weekday, Exercise exercise) {
     return _passFail.getSinglePassFail(weekday, exercise);
   }
@@ -76,7 +114,7 @@ class WeeklyExercisePrescription {
     }
   }
 
-  Weekday _getWeekdayFromWorkoutType(WorkoutType workoutType) {
+  Weekday getWeekdayFromWorkoutType(WorkoutType workoutType) {
     if (_phases.isThreeDay()) {
       return _threeDaySchedule[workoutType];
     }
@@ -588,7 +626,7 @@ class WeeklyExercisePrescription {
         _phases.isThreeDay() ? _threeDaySchedule.keys : _fourDaySchedule.keys;
 
     workoutTypes.forEach((workoutType) {
-      Weekday weekday = _getWeekdayFromWorkoutType(workoutType);
+      Weekday weekday = getWeekdayFromWorkoutType(workoutType);
       thisWeeksWorkouts[weekday] = _workoutTypeToPrescriptionMap[workoutType];
     });
 
