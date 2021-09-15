@@ -26,31 +26,31 @@ class DBHelper {
           weeklyExercisePrescription.deadliftPhase = value;
           break;
         case Constants.DB_FULLBODY_ONE:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_FULLBODY_TWO:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_FULLBODY_THREE:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody3, Constants.weekdayByString[value]);
           break;
         case Constants.DB_LOWERBODY_ONE:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.LowerBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_UPPERBODY_ONE:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.UpperBody1, Constants.weekdayByString[value]);
           break;
         case Constants.DB_LOWERBODY_TWO:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.LowerBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_UPPERBODY_TWO:
-          weeklyExercisePrescription.setWorkoutDay(
+          weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.UpperBody2, Constants.weekdayByString[value]);
           break;
         case Constants.DB_WEIGHT_SQUAT:
@@ -87,7 +87,7 @@ class DBHelper {
     Model.savePassFailToDB(passFail);
   }
 
-  static Future<PassFail> getPassFailFromDB() async {
-    return await Model.getPassFailFromDB();
+  static Future<PassFail> updatePassFailFromDB(PassFail passFail) async {
+    await Model.updatePassFailFromDB(passFail);
   }
 }

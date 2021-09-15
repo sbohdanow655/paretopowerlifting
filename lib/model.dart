@@ -137,7 +137,7 @@ class Model {
       case Constants.DB_UPPERBODY_ONE:
       case Constants.DB_LOWERBODY_TWO:
       case Constants.DB_UPPERBODY_TWO:
-        val = _wrapString(val.toString());
+        val = _wrapString(Constants.weekdayStrings[val]);
         break;
       case Constants.DB_WEIGHT_SQUAT:
       case Constants.DB_WEIGHT_BENCHPRESS:
@@ -166,20 +166,16 @@ class Model {
     return {};
   }
 
-  static Future<PassFail> getPassFailFromDB() async {
+  static Future updatePassFailFromDB(PassFail passFail) async {
     Database paretoPowerliftingDB = await openDB();
-    PassFail passFail = PassFail();
     try {
       List<Map> settingsMapList = await paretoPowerliftingDB
           .rawQuery('SELECT ' + Constants.DB_PASSFAILMAP + ' FROM Settings');
       String passFailJson = settingsMapList[0][Constants.DB_PASSFAILMAP];
       passFail.setFromString(passFailJson);
-      return passFail;
     } catch (e) {
       print(e);
     }
-
-    return PassFail();
   }
 
   static void savePassFailToDB(PassFail passFail) async {

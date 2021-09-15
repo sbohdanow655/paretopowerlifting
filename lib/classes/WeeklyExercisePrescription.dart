@@ -80,6 +80,10 @@ class WeeklyExercisePrescription {
     _passFail = val;
   }
 
+  get passFail {
+    return _passFail;
+  }
+
   WeeklyExercisePrescription();
 
   Map<WorkoutType, Weekday> _fourDaySchedule = {
@@ -94,6 +98,14 @@ class WeeklyExercisePrescription {
     WorkoutType.FullBody2: Weekday.Wednesday,
     WorkoutType.FullBody3: Weekday.Friday
   };
+
+  bool isThreeDayWorkoutType(WorkoutType workoutType) {
+    return _threeDaySchedule.containsKey(workoutType);
+  }
+
+  bool isFourDayWorkoutType(WorkoutType workoutType) {
+    return _fourDaySchedule.containsKey(workoutType);
+  }
 
   String getNextWeight(Exercise exercise) {
     return _weightMap[exercise];
@@ -135,12 +147,8 @@ class WeeklyExercisePrescription {
     _passFail.setSinglePassFail(weekday, exercise, didPass);
   }
 
-  void setWorkoutDay(WorkoutType workoutType, Weekday weekday) {
-    if (_phases.isThreeDay()) {
-      _threeDaySchedule[workoutType] = weekday;
-    } else {
-      _fourDaySchedule[workoutType] = weekday;
-    }
+  void setThreeDayWorkoutDay(WorkoutType workoutType, Weekday weekday) {
+    _threeDaySchedule[workoutType] = weekday;
 
     switch (workoutType) {
       case WorkoutType.FullBody1:
@@ -152,6 +160,15 @@ class WeeklyExercisePrescription {
       case WorkoutType.FullBody3:
         DBHelper.saveSettingToDB(Constants.DB_FULLBODY_THREE, weekday);
         break;
+      default:
+        break;
+    }
+  }
+
+  void setFourDayWorkoutDay(WorkoutType workoutType, Weekday weekday) {
+    _fourDaySchedule[workoutType] = weekday;
+
+    switch (workoutType) {
       case WorkoutType.LowerBody1:
         DBHelper.saveSettingToDB(Constants.DB_LOWERBODY_ONE, weekday);
         break;
@@ -170,7 +187,7 @@ class WeeklyExercisePrescription {
   }
 
   Weekday getWeekdayFromWorkoutType(WorkoutType workoutType) {
-    if (_phases.isThreeDay()) {
+    if (_threeDaySchedule.containsKey(workoutType)) {
       return _threeDaySchedule[workoutType];
     }
 
@@ -179,9 +196,13 @@ class WeeklyExercisePrescription {
 
   IDailyPrescription getDailyPrescriptionByWeekday(Weekday weekday) {
     WorkoutType workoutType = _getWorkoutTypeFromWeekday(weekday);
-    return workoutType == null
-        ? DailyRestPrescription()
-        : _getDailyPrescription(workoutType);
+    bool isInSchedule = (_phases.isThreeDay() &&
+            _threeDaySchedule.containsKey(workoutType)) ||
+        (!_phases.isThreeDay() && _fourDaySchedule.containsKey(workoutType));
+
+    return isInSchedule
+        ? _getDailyPrescription(workoutType)
+        : DailyRestPrescription();
   }
 
   IDailyPrescription _getDailyPrescription(WorkoutType workoutType) {
@@ -655,6 +676,10 @@ class WeeklyExercisePrescription {
         }
       }
     });
+
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, _phases.squat);
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, _phases.benchPress);
+    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, _phases.deadlift);
   }
 
   WorkoutType _getWorkoutTypeFromWeekday(Weekday weekday) {

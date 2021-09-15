@@ -13,18 +13,11 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  WeeklyExercisePrescription _weeklyExercisePrescription =
-      WeeklyExercisePrescription();
+  WeeklyExercisePrescription _weeklyExercisePrescription;
 
-  _MainPageState() {
-    tabViews = [
-      WorkoutTab(_weeklyExercisePrescription),
-      // HistoryTab(),
-      SettingsTab(_weeklyExercisePrescription)
-    ];
-  }
+  _MainPageState();
 
-  List<Widget> tabViews;
+  List<Widget> tabViews = [];
 
   int currentTabIndex = 0;
 
@@ -35,9 +28,26 @@ class _MainPageState extends State<MainPage> {
   }
 
   void fetchFromDB() async {
-    DBHelper.updateWeeklyExercisePrescriptionFromDB(
-        _weeklyExercisePrescription);
-    _weeklyExercisePrescription.passFail = await DBHelper.getPassFailFromDB();
+    if (_weeklyExercisePrescription == null) {
+      WeeklyExercisePrescription weeklyExercisePrescription =
+          WeeklyExercisePrescription();
+      DBHelper.updateWeeklyExercisePrescriptionFromDB(
+              weeklyExercisePrescription)
+          .then((value) {
+        DBHelper.updatePassFailFromDB(weeklyExercisePrescription.passFail)
+            .then((value) {
+          tabViews = [
+            WorkoutTab(weeklyExercisePrescription),
+            // HistoryTab(),
+            SettingsTab(weeklyExercisePrescription)
+          ];
+
+          setState(() {
+            _weeklyExercisePrescription = weeklyExercisePrescription;
+          });
+        });
+      });
+    }
   }
 
   @override
@@ -48,6 +58,10 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_weeklyExercisePrescription == null) {
+      return Center();
+    }
+
     return Scaffold(
         appBar: AppBar(title: Text(Constants.TITLE)),
         body: tabViews[currentTabIndex],
