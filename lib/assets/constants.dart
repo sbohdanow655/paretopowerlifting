@@ -172,4 +172,13 @@ class Constants {
   static const String DB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
   static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
   static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
+
+  static const String WORKOUTS_HEADER_ONE =
+      "1) Set the starting weights in the Settings.";
+  static const String WORKOUTS_HEADER_TWO =
+      "2) Switch exercises from FAIL to PASS when you successfully do all the reps.";
+  static const String WORKOUTS_HEADER_THREE =
+      "3) 'Advance to Next Week' after you've attempted the week.";
+  static const String WORKOUTS_HEADER_FOUR =
+      "4) 'Start Over' if you want to reset the exercise phases.";
 }

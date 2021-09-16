@@ -31,6 +31,28 @@ class _WorkoutTabState extends State<WorkoutTab> {
   Widget build(BuildContext context) {
     List<Widget> workoutDayList = [];
 
+    Container header = Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        color: Colors.white,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.WORKOUTS_HEADER_ONE)),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.WORKOUTS_HEADER_TWO)),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.WORKOUTS_HEADER_THREE)),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.WORKOUTS_HEADER_FOUR)),
+        ]));
+
+    workoutDayList.add(header);
+
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay =
           new WorkoutDay(_weeklyExercisePrescription, weekday);
