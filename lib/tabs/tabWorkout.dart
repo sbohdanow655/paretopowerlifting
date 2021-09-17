@@ -49,6 +49,9 @@ class _WorkoutTabState extends State<WorkoutTab> {
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(Constants.WORKOUTS_HEADER_FOUR)),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.WORKOUTS_HEADER_FIVE)),
         ]));
 
     workoutDayList.add(header);
