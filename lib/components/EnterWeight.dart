@@ -16,7 +16,7 @@ class EnterWeight extends StatelessWidget {
   }
 
   bool _validate(String text) {
-    return text.isNotEmpty &&
+    return text.isEmpty ||
         RegExp(r'\d+.?\d*').stringMatch(text).length == text.length;
   }
 
