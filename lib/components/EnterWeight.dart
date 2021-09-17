@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
@@ -14,6 +15,11 @@ class EnterWeight extends StatelessWidget {
         _weeklyExercisePrescription.getNextWeight(_exercise);
   }
 
+  bool _validate(String text) {
+    return text.isNotEmpty &&
+        RegExp(r'\d+.?\d*').stringMatch(text).length == text.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -26,18 +32,23 @@ class EnterWeight extends StatelessWidget {
           width: 70,
           child: TextFormField(
               controller: _textEditingController,
-              validator: (value) {
-                if (value.isEmpty || !RegExp(r'\d+.?\d').hasMatch(value)) {
-                  return "Enter A Valid Weight";
-                } else {
-                  return null;
-                }
-              },
               decoration: InputDecoration(labelText: Constants.EMPTYSTRING),
               maxLength: 6,
-              keyboardType: TextInputType.number,
-              onChanged: (val) =>
-                  _weeklyExercisePrescription.setNextWeight(_exercise, val)))
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onChanged: (val) {
+                if (_validate(val)) {
+                  _weeklyExercisePrescription.setNextWeight(_exercise, val);
+                }
+              },
+              inputFormatters: [
+                TextInputFormatter.withFunction((oldValue, newValue) {
+                  if (_validate(newValue.text)) {
+                    return newValue;
+                  }
+
+                  return oldValue;
+                })
+              ]))
     ]);
   }
 }
