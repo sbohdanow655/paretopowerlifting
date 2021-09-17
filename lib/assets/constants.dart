@@ -23,6 +23,8 @@ enum Exercise {
 }
 
 class Constants {
+  static const String EMPTYSTRING = "";
+
   static const double FONTSIZE_TITLE = 50;
   static const double FONTSIZE_BUTTON = 30;
   static const double FONTSIZE_TAB_SETTINGS = 16;
@@ -90,6 +92,8 @@ class Constants {
   static const String EXERCISE_SKULLCRUSHERS = "Skullcrushers";
   static const String EXERCISE_HIIT = "HIIT Conditioning";
   static const String EXERCISE_REST = "Rest Day";
+
+  static const String SUFFIX_WEIGHT = " Weight";
 
   static const String MONDAY = "Monday";
   static const String TUESDAY = "Tuesday";

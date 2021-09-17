@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/components/EnterWeight.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
@@ -17,13 +18,6 @@ class SettingsTab extends StatefulWidget {
 
 class _SettingsTabState extends State<SettingsTab> {
   WeeklyExercisePrescription _weeklyExercisePrescription;
-
-  TextEditingController _txtSquat = TextEditingController();
-  TextEditingController _txtBenchPress = TextEditingController();
-  TextEditingController _txtDeadlift = TextEditingController();
-  TextEditingController _txtOverheadPress = TextEditingController();
-  TextEditingController _txtPendlayRow = TextEditingController();
-  TextEditingController _txtSkullcrushers = TextEditingController();
 
   _SettingsTabState(this._weeklyExercisePrescription);
 
@@ -57,28 +51,8 @@ class _SettingsTabState extends State<SettingsTab> {
     });
   }
 
-  Future setWeights() async {
-    if (this.widget != null) {
-      setState(() {
-        _txtSquat.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.Squat);
-        _txtBenchPress.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.BenchPress);
-        _txtDeadlift.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.Deadlift);
-        _txtOverheadPress.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.OverheadPress);
-        _txtPendlayRow.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.PendlayRow);
-        _txtSkullcrushers.text =
-            _weeklyExercisePrescription.getNextWeight(Exercise.Skullcrushers);
-      });
-    }
-  }
-
   @override
   void initState() {
-    setWeights();
     super.initState();
   }
 
@@ -324,74 +298,22 @@ class _SettingsTabState extends State<SettingsTab> {
                             WeekdayDropdown(WorkoutType.UpperBody2,
                                 _weeklyExercisePrescription)
                           ]),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtSquat,
-                              decoration: InputDecoration(
-                                  labelText: Constants.ENTERWEIGHT_SQUAT),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.Squat, val))),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtBenchPress,
-                              decoration: InputDecoration(
-                                  labelText: Constants.ENTERWEIGHT_BENCHPRESS),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.BenchPress, val))),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtDeadlift,
-                              decoration: InputDecoration(
-                                  labelText: Constants.ENTERWEIGHT_DEADLIFT),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.Deadlift, val))),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtOverheadPress,
-                              decoration: InputDecoration(
-                                  labelText:
-                                      Constants.ENTERWEIGHT_OVERHEADPRESS),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.OverheadPress, val))),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtPendlayRow,
-                              decoration: InputDecoration(
-                                  labelText: Constants.ENTERWEIGHT_PENDLAYROW),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.PendlayRow, val))),
-                      Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-                          child: TextField(
-                              controller: _txtSkullcrushers,
-                              decoration: InputDecoration(
-                                  labelText:
-                                      Constants.ENTERWEIGHT_SKULLCRUSHERS),
-                              maxLength: 6,
-                              keyboardType: TextInputType.number,
-                              onChanged: (val) => _weeklyExercisePrescription
-                                  .setNextWeight(Exercise.Skullcrushers, val))),
+                      EnterWeight(_weeklyExercisePrescription, Exercise.Squat,
+                          Constants.EXERCISE_SQUAT),
+                      EnterWeight(_weeklyExercisePrescription,
+                          Exercise.BenchPress, Constants.EXERCISE_BENCHPRESS),
+                      EnterWeight(_weeklyExercisePrescription,
+                          Exercise.Deadlift, Constants.EXERCISE_DEADLIFT),
+                      EnterWeight(
+                          _weeklyExercisePrescription,
+                          Exercise.OverheadPress,
+                          Constants.EXERCISE_OVERHEADPRESS),
+                      EnterWeight(_weeklyExercisePrescription,
+                          Exercise.PendlayRow, Constants.EXERCISE_PENDLAYROW),
+                      EnterWeight(
+                          _weeklyExercisePrescription,
+                          Exercise.Skullcrushers,
+                          Constants.EXERCISE_SKULLCRUSHERS),
                     ]))));
   }
 }

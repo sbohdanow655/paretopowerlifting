@@ -112,7 +112,7 @@ class WeeklyExercisePrescription {
   }
 
   void setNextWeight(Exercise exercise, String weightString) {
-    if (weightString == "") {
+    if (weightString.isEmpty) {
       return;
     }
     _weightMap[exercise] = weightString;
@@ -656,10 +656,10 @@ class WeeklyExercisePrescription {
   }
 
   void _advanceWeights() {
-    bool squatSkipIncrement = _phases.squat == 3;
-    bool benchPressSkipIncrement = _phases.benchPress == 4;
-    bool deadliftSkipIncrement = _phases.deadlift == 3;
-    bool overheadPressSkipIncrement = _phases.benchPress == 4;
+    bool squatWeightIncrementOnce = _phases.squat == 3;
+    bool benchPressWeightIncrementOnce = _phases.benchPress == 4;
+    bool deadliftWeightIncrementOnce = _phases.deadlift == 3;
+    bool overheadPressWeightIncrementOnce = _phases.benchPress == 4;
 
     Weekday.values.forEach((weekday) {
       Exercise.values.forEach((exercise) {
@@ -667,29 +667,29 @@ class WeeklyExercisePrescription {
           String nextWeight = _weightMap[exercise];
           switch (exercise) {
             case Exercise.Squat:
-              if (squatSkipIncrement) {
-                squatSkipIncrement = false;
+              if (squatWeightIncrementOnce) {
+                squatWeightIncrementOnce = false;
               } else {
                 nextWeight = incrementWeight(nextWeight, exercise);
               }
               break;
             case Exercise.BenchPress:
-              if (benchPressSkipIncrement) {
-                benchPressSkipIncrement = false;
+              if (benchPressWeightIncrementOnce) {
+                benchPressWeightIncrementOnce = false;
               } else {
                 nextWeight = incrementWeight(nextWeight, exercise);
               }
               break;
             case Exercise.Deadlift:
-              if (deadliftSkipIncrement) {
-                deadliftSkipIncrement = false;
+              if (deadliftWeightIncrementOnce) {
+                deadliftWeightIncrementOnce = false;
               } else {
                 nextWeight = incrementWeight(nextWeight, exercise);
               }
               break;
             case Exercise.OverheadPress:
-              if (overheadPressSkipIncrement) {
-                overheadPressSkipIncrement = false;
+              if (overheadPressWeightIncrementOnce) {
+                overheadPressWeightIncrementOnce = false;
               } else {
                 nextWeight = incrementWeight(nextWeight, exercise);
               }
