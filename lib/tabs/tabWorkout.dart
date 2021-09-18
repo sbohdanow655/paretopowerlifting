@@ -37,6 +37,19 @@ class _WorkoutTabState extends State<WorkoutTab> {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    Constants.SETTINGS_HEADER_TITLE,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+                  ))
+            ],
+          ),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(Constants.WORKOUTS_HEADER_ONE)),
