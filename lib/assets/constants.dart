@@ -204,4 +204,8 @@ class Constants {
   static const String SETTINGS_HEADER_WEIGHTS = "Weights";
 
   static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
+
+  static const String WORKOUTS_ADVANCE_INKWELL =
+      "Weights, sets, and reps updated.";
+  static const String WORKOUTS_STARTOVER_INKWELL = "Exercise phases reset.";
 }
