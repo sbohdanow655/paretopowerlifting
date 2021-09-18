@@ -74,6 +74,18 @@ class _SettingsTabState extends State<SettingsTab> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 15),
+                              child: Text(Constants.SETTINGS_HEADER_PLATES,
+                                  style: TextStyle(
+                                      fontSize:
+                                          Constants.FONTSIZE_TAB_SETTINGS)),
+                            ),
+                          ]),
+                      Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
@@ -118,6 +130,19 @@ class _SettingsTabState extends State<SettingsTab> {
                                       value: value,
                                       child: Text(value.toString()));
                                 }).toList()),
+                          ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 15),
+                              child: Text(
+                                  Constants.SETTINGS_HEADER_EXERCISEPHASES,
+                                  style: TextStyle(
+                                      fontSize:
+                                          Constants.FONTSIZE_TAB_SETTINGS)),
+                            ),
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,6 +217,18 @@ class _SettingsTabState extends State<SettingsTab> {
                                       value: value,
                                       child: Text(value.toString()));
                                 }).toList()),
+                          ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 15),
+                              child: Text(Constants.SETTINGS_HEADER_WORKOUTDAYS,
+                                  style: TextStyle(
+                                      fontSize:
+                                          Constants.FONTSIZE_TAB_SETTINGS)),
+                            ),
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -297,6 +334,18 @@ class _SettingsTabState extends State<SettingsTab> {
                             ),
                             WeekdayDropdown(WorkoutType.UpperBody2,
                                 _weeklyExercisePrescription)
+                          ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 15),
+                              child: Text(Constants.SETTINGS_HEADER_WEIGHTS,
+                                  style: TextStyle(
+                                      fontSize:
+                                          Constants.FONTSIZE_TAB_SETTINGS)),
+                            ),
                           ]),
                       EnterWeight(_weeklyExercisePrescription, Exercise.Squat,
                           Constants.EXERCISE_SQUAT),

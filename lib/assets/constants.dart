@@ -187,4 +187,9 @@ class Constants {
       "4) 'Start Over' if you want to reset the exercise phases.";
   static const String WORKOUTS_HEADER_FIVE =
       "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when one of the exercise phases in the Settings reaches 3.";
+
+  static const String SETTINGS_HEADER_PLATES = "Plates";
+  static const String SETTINGS_HEADER_EXERCISEPHASES = "Exercise Phases";
+  static const String SETTINGS_HEADER_WORKOUTDAYS = "Workout Days";
+  static const String SETTINGS_HEADER_WEIGHTS = "Weights";
 }
