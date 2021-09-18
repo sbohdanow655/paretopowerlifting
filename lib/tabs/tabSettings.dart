@@ -96,6 +96,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 Constants
                                                     .SETTINGS_HEADER_PLATES,
                                                 style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
@@ -178,6 +179,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 Constants
                                                     .SETTINGS_HEADER_EXERCISEPHASES,
                                                 style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
@@ -298,6 +300,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 Constants
                                                     .SETTINGS_HEADER_FULLBODYWORKOUTDAYS,
                                                 style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
@@ -375,6 +378,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 Constants
                                                     .SETTINGS_HEADER_UPPERLOWERWORKOUTDAYS,
                                                 style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
@@ -473,6 +477,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 Constants
                                                     .SETTINGS_HEADER_WEIGHTS,
                                                 style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
