@@ -29,7 +29,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> workoutDayList = [];
+    List<Widget> workoutTabList = [];
 
     Container header = Container(
         alignment: Alignment.center,
@@ -67,15 +67,41 @@ class _WorkoutTabState extends State<WorkoutTab> {
               child: Text(Constants.WORKOUTS_HEADER_FIVE)),
         ]));
 
-    workoutDayList.add(header);
+    workoutTabList.add(header);
+
+    Container nutritionRecommendations = Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        color: Colors.white,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    Constants.WORKOUTS_HEADER_TITLE_NUTRITION,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+                  ))
+            ],
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.NUTRITION_RECOMMOMENDATIONS)),
+        ]));
+
+    workoutTabList.add(nutritionRecommendations);
 
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay =
           new WorkoutDay(_weeklyExercisePrescription, weekday);
-      workoutDayList.add(workoutDay);
+      workoutTabList.add(workoutDay);
     });
 
-    workoutDayList
+    workoutTabList
         .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         RaisedButton(
@@ -113,6 +139,6 @@ class _WorkoutTabState extends State<WorkoutTab> {
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: workoutDayList)));
+                children: workoutTabList)));
   }
 }
