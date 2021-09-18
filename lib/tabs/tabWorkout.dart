@@ -105,31 +105,29 @@ class _WorkoutTabState extends State<WorkoutTab> {
         .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         RaisedButton(
-            child: InkWell(
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(Constants.WORKOUTS_ADVANCE_INKWELL),
-                  ));
-                  setState(() {
-                    _weeklyExercisePrescription.advanceWeek();
-                  });
-                },
-                child: Text(Constants.FINISH_WORKOUT_WEEK)),
-            disabledColor: Colors.blue,
-            disabledTextColor: Colors.white),
+            child: Text(Constants.FINISH_WORKOUT_WEEK),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text(Constants.WORKOUTS_ADVANCE_INKWELL),
+              ));
+              setState(() {
+                _weeklyExercisePrescription.advanceWeek();
+              });
+            }),
         RaisedButton(
-            child: InkWell(
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(Constants.WORKOUTS_STARTOVER_INKWELL),
-                  ));
-                  setState(() {
-                    _weeklyExercisePrescription.resetExercisePhases();
-                  });
-                },
-                child: Text(Constants.RESET_EXERCISE_PHASES)),
-            disabledColor: Colors.red[400],
-            disabledTextColor: Colors.white)
+            child: Text(Constants.RESET_EXERCISE_PHASES),
+            color: Colors.red[400],
+            textColor: Colors.white,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text(Constants.WORKOUTS_STARTOVER_INKWELL),
+              ));
+              setState(() {
+                _weeklyExercisePrescription.resetExercisePhases();
+              });
+            })
       ])
     ]));
 
