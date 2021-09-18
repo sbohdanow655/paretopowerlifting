@@ -296,7 +296,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 horizontal: 5, vertical: 15),
                                             child: Text(
                                                 Constants
-                                                    .SETTINGS_HEADER_WORKOUTDAYS,
+                                                    .SETTINGS_HEADER_FULLBODYWORKOUTDAYS,
                                                 style: TextStyle(
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
@@ -352,6 +352,32 @@ class _SettingsTabState extends State<SettingsTab> {
                                           ),
                                           WeekdayDropdown(WorkoutType.FullBody3,
                                               _weeklyExercisePrescription)
+                                        ]),
+                                  ])),
+                          Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              color: Colors.white,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants
+                                                    .SETTINGS_HEADER_UPPERLOWERWORKOUTDAYS,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
                                         ]),
                                     Row(
                                         mainAxisAlignment:
@@ -475,7 +501,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                         _weeklyExercisePrescription,
                                         Exercise.Skullcrushers,
                                         Constants.EXERCISE_SKULLCRUSHERS),
-                                  ]))
+                                  ])),
                         ])))));
   }
 }

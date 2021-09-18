@@ -68,14 +68,13 @@ class Constants {
   static const String SELECTPHASE_SQUAT = "Squat Phase";
   static const String SELECTPHASE_BENCHPRESS = "Bench Press Phase";
   static const String SELECTPHASE_DEADLIFT = "Deadlift Phase";
-  static const String SELECTWORKOUTDAY_FULLBODY_ONE = "Fullbody Workout Day 1";
-  static const String SELECTWORKOUTDAY_FULLBODY_TWO = "Fullbody Workout Day 2";
-  static const String SELECTWORKOUTDAY_FULLBODY_THREE =
-      "Fullbody Workout Day 3";
-  static const String SELECTWORKOUTDAY_LOWERBODY_ONE = "Lower Workout Day 1";
-  static const String SELECTWORKOUTDAY_UPPERBODY_ONE = "Upper Workout Day 1";
-  static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Workout Day 2";
-  static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Workout Day 2";
+  static const String SELECTWORKOUTDAY_FULLBODY_ONE = "Fullbody Day 1";
+  static const String SELECTWORKOUTDAY_FULLBODY_TWO = "Fullbody Day 2";
+  static const String SELECTWORKOUTDAY_FULLBODY_THREE = "Fullbody Day 3";
+  static const String SELECTWORKOUTDAY_LOWERBODY_ONE = "Lower Day 1";
+  static const String SELECTWORKOUTDAY_UPPERBODY_ONE = "Upper Day 1";
+  static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Day 2";
+  static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Day 2";
 
   static const String ENTERWEIGHT_SQUAT = "Next Squat Intensity Weight";
   static const String ENTERWEIGHT_BENCHPRESS =
@@ -192,7 +191,10 @@ class Constants {
 
   static const String SETTINGS_HEADER_PLATES = "Plates";
   static const String SETTINGS_HEADER_EXERCISEPHASES = "Exercise Phases";
-  static const String SETTINGS_HEADER_WORKOUTDAYS = "Workout Days";
+  static const String SETTINGS_HEADER_FULLBODYWORKOUTDAYS =
+      "Fullbody Workout Days";
+  static const String SETTINGS_HEADER_UPPERLOWERWORKOUTDAYS =
+      "Upper/Lower Workout Days";
   static const String SETTINGS_HEADER_WEIGHTS = "Weights";
 
   static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
