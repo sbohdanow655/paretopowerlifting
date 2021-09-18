@@ -67,10 +67,10 @@ class _SettingsTabState extends State<SettingsTab> {
           }
         },
         child: SingleChildScrollView(
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Container(
-                    color: Constants.BACKGROUND_GREY,
+            child: Container(
+                color: Constants.BACKGROUND_GREY,
+                child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
