@@ -96,7 +96,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
         controller: _scrollController,
         child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            color: const Color(0xfff5f5f5),
+            color: Constants.BACKGROUND_GREY,
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,

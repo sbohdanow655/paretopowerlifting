@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 enum Weekday { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
 enum WorkoutType {
@@ -192,4 +194,6 @@ class Constants {
   static const String SETTINGS_HEADER_EXERCISEPHASES = "Exercise Phases";
   static const String SETTINGS_HEADER_WORKOUTDAYS = "Workout Days";
   static const String SETTINGS_HEADER_WEIGHTS = "Weights";
+
+  static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
 }
