@@ -17,7 +17,7 @@ class Model {
             Constants.DB_PASSFAILMAP +
             ' TEXT, ' +
             Constants.DB_FORCEFOURDAYSPLIT +
-            ' TEXT, ' +
+            ' BIT, ' +
             Constants.DB_HAVE_MICROPLATES +
             ' BIT, ' +
             Constants.DB_WEIGHT_UNIT +
