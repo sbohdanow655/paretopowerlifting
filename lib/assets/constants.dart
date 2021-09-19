@@ -182,7 +182,7 @@ class Constants {
   static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
 
   static const String WORKOUTS_HEADER_ONE =
-      "1) Set the starting weights in the Settings.";
+      "1) Set the starting weights in the Settings to A WEIGHT YOU CAN DO 8 REPS FOR.";
   static const String WORKOUTS_HEADER_TWO =
       "2) Switch exercises from FAIL to PASS when you successfully do all the reps.";
   static const String WORKOUTS_HEADER_THREE =
