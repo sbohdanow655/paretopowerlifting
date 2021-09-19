@@ -177,107 +177,37 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 horizontal: 5, vertical: 15),
                                             child: Text(
                                                 Constants
-                                                    .SETTINGS_HEADER_EXERCISEPHASES,
+                                                    .SETTINGS_HEADER_WEIGHTS,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
                                         ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants.SELECTPHASE_SQUAT,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          DropdownButton<int>(
-                                              value: _weeklyExercisePrescription
-                                                  .squatPhase,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_SETTINGS),
-                                              onChanged: (val) =>
-                                                  setSquatPhase(val),
-                                              items: <int>[1, 2, 3]
-                                                  .map<DropdownMenuItem<int>>(
-                                                      (int value) {
-                                                return DropdownMenuItem<int>(
-                                                    value: value,
-                                                    child:
-                                                        Text(value.toString()));
-                                              }).toList()),
-                                        ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants
-                                                    .SELECTPHASE_BENCHPRESS,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          DropdownButton<int>(
-                                              value: _weeklyExercisePrescription
-                                                  .benchPressPhase,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_SETTINGS),
-                                              onChanged: (val) =>
-                                                  setBenchPressPhase(val),
-                                              items: <int>[1, 2, 3, 4]
-                                                  .map<DropdownMenuItem<int>>(
-                                                      (int value) {
-                                                return DropdownMenuItem<int>(
-                                                    value: value,
-                                                    child:
-                                                        Text(value.toString()));
-                                              }).toList()),
-                                        ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants.SELECTPHASE_DEADLIFT,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          DropdownButton<int>(
-                                              value: _weeklyExercisePrescription
-                                                  .deadliftPhase,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_SETTINGS),
-                                              onChanged: (val) =>
-                                                  setDeadliftPhase(val),
-                                              items: <int>[1, 2, 3]
-                                                  .map<DropdownMenuItem<int>>(
-                                                      (int value) {
-                                                return DropdownMenuItem<int>(
-                                                    value: value,
-                                                    child:
-                                                        Text(value.toString()));
-                                              }).toList()),
-                                        ]),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.Squat,
+                                        Constants.EXERCISE_SQUAT),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.BenchPress,
+                                        Constants.EXERCISE_BENCHPRESS),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.Deadlift,
+                                        Constants.EXERCISE_DEADLIFT),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.OverheadPress,
+                                        Constants.EXERCISE_OVERHEADPRESS),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.PendlayRow,
+                                        Constants.EXERCISE_PENDLAYROW),
+                                    EnterWeight(
+                                        _weeklyExercisePrescription,
+                                        Exercise.Skullcrushers,
+                                        Constants.EXERCISE_SKULLCRUSHERS),
                                   ])),
                           Container(
                               alignment: Alignment.center,
@@ -475,37 +405,107 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 horizontal: 5, vertical: 15),
                                             child: Text(
                                                 Constants
-                                                    .SETTINGS_HEADER_WEIGHTS,
+                                                    .SETTINGS_HEADER_EXERCISEPHASES,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
                                         ]),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.Squat,
-                                        Constants.EXERCISE_SQUAT),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.BenchPress,
-                                        Constants.EXERCISE_BENCHPRESS),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.Deadlift,
-                                        Constants.EXERCISE_DEADLIFT),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.OverheadPress,
-                                        Constants.EXERCISE_OVERHEADPRESS),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.PendlayRow,
-                                        Constants.EXERCISE_PENDLAYROW),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.Skullcrushers,
-                                        Constants.EXERCISE_SKULLCRUSHERS),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants.SELECTPHASE_SQUAT,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          DropdownButton<int>(
+                                              value: _weeklyExercisePrescription
+                                                  .squatPhase,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: Constants
+                                                      .FONTSIZE_TAB_SETTINGS),
+                                              onChanged: (val) =>
+                                                  setSquatPhase(val),
+                                              items: <int>[1, 2, 3]
+                                                  .map<DropdownMenuItem<int>>(
+                                                      (int value) {
+                                                return DropdownMenuItem<int>(
+                                                    value: value,
+                                                    child:
+                                                        Text(value.toString()));
+                                              }).toList()),
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants
+                                                    .SELECTPHASE_BENCHPRESS,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          DropdownButton<int>(
+                                              value: _weeklyExercisePrescription
+                                                  .benchPressPhase,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: Constants
+                                                      .FONTSIZE_TAB_SETTINGS),
+                                              onChanged: (val) =>
+                                                  setBenchPressPhase(val),
+                                              items: <int>[1, 2, 3, 4]
+                                                  .map<DropdownMenuItem<int>>(
+                                                      (int value) {
+                                                return DropdownMenuItem<int>(
+                                                    value: value,
+                                                    child:
+                                                        Text(value.toString()));
+                                              }).toList()),
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants.SELECTPHASE_DEADLIFT,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          DropdownButton<int>(
+                                              value: _weeklyExercisePrescription
+                                                  .deadliftPhase,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: Constants
+                                                      .FONTSIZE_TAB_SETTINGS),
+                                              onChanged: (val) =>
+                                                  setDeadliftPhase(val),
+                                              items: <int>[1, 2, 3]
+                                                  .map<DropdownMenuItem<int>>(
+                                                      (int value) {
+                                                return DropdownMenuItem<int>(
+                                                    value: value,
+                                                    child:
+                                                        Text(value.toString()));
+                                              }).toList()),
+                                        ]),
                                   ])),
                         ])))));
   }
