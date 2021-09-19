@@ -110,7 +110,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             textColor: Colors.white,
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(Constants.WORKOUTS_ADVANCE_INKWELL),
+                content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE),
               ));
               setState(() {
                 _weeklyExercisePrescription.advanceWeek();
@@ -122,7 +122,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             textColor: Colors.white,
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(Constants.WORKOUTS_STARTOVER_INKWELL),
+                content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER),
               ));
               setState(() {
                 _weeklyExercisePrescription.resetExercisePhases();

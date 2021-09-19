@@ -205,7 +205,7 @@ class Constants {
 
   static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
 
-  static const String WORKOUTS_ADVANCE_INKWELL =
+  static const String WORKOUTS_SNACKBAR_ADVANCE =
       "Weights, sets, and reps updated.";
-  static const String WORKOUTS_STARTOVER_INKWELL = "Exercise phases reset.";
+  static const String WORKOUTS_SNACKBAR_STARTOVER = "Exercise phases reset.";
 }
