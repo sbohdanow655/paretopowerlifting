@@ -88,7 +88,7 @@ class _GettingStartedState extends State<GettingStarted> {
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => MainPage()),
             );
