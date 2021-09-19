@@ -51,6 +51,15 @@ class WeeklyExercisePrescription {
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
 
+  set forceFourDaySplit(val) {
+    _phases.forceFourDay = val;
+    DBHelper.saveSettingToDB(Constants.DB_FORCEFOURDAYSPLIT, val);
+  }
+
+  get forceFourDaySplit {
+    return _phases.forceFourDay;
+  }
+
   set weightUnit(val) {
     _weightUnit = val;
     DBHelper.saveSettingToDB(Constants.DB_WEIGHT_UNIT, val);
@@ -717,7 +726,11 @@ class WeeklyExercisePrescription {
         exerciseFailureSet.add(Exercise.Squat);
         switch (_phases.squat) {
           case 1:
-            _phases.squat = 2;
+            if (_phases.forceFourDay) {
+              _phases.squat = 3;
+            } else {
+              _phases.squat = 2;
+            }
             break;
           case 2:
             _phases.squat = 3;
@@ -732,7 +745,11 @@ class WeeklyExercisePrescription {
         exerciseFailureSet.add(Exercise.BenchPress);
         switch (_phases.benchPress) {
           case 1:
-            _phases.benchPress = 2;
+            if (_phases.forceFourDay) {
+              _phases.benchPress = 3;
+            } else {
+              _phases.benchPress = 2;
+            }
             break;
           case 2:
             _phases.benchPress = 3;
@@ -750,16 +767,14 @@ class WeeklyExercisePrescription {
         exerciseFailureSet.add(Exercise.Deadlift);
         switch (_phases.deadlift) {
           case 1:
-            _phases.deadlift = 2;
-            if (_phases.benchPress == 1) {
-              _phases.benchPress = 2;
+            if (_phases.forceFourDay) {
+              _phases.deadlift = 3;
+            } else {
+              _phases.deadlift = 2;
             }
             break;
           case 2:
             _phases.deadlift = 3;
-            if (_phases.benchPress == 1) {
-              _phases.benchPress = 2;
-            }
             break;
           default:
             break;

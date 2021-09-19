@@ -30,7 +30,7 @@ class _GettingStartedState extends State<GettingStarted> {
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    Constants.SETTINGS_HEADER_TITLE,
+                    Constants.GETTINGSTARTED_TITLE,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
@@ -39,19 +39,19 @@ class _GettingStartedState extends State<GettingStarted> {
           ),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_ONE)),
+              child: Text(Constants.GETTINGSTARTED_ONE)),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_TWO)),
+              child: Text(Constants.GETTINGSTARTED_TWO)),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_THREE)),
+              child: Text(Constants.GETTINGSTARTED_THREE)),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_FOUR)),
+              child: Text(Constants.GETTINGSTARTED_FOUR)),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_FIVE)),
+              child: Text(Constants.GETTINGSTARTED_FIVE)),
         ]));
 
     contents.add(header);
@@ -68,7 +68,7 @@ class _GettingStartedState extends State<GettingStarted> {
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    Constants.WORKOUTS_HEADER_TITLE_NUTRITION,
+                    Constants.GETTINGSTARTED_TITLE_NUTRITION,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
@@ -97,12 +97,15 @@ class _GettingStartedState extends State<GettingStarted> {
 
     return Scaffold(
         appBar: AppBar(title: Text(Constants.TITLE), centerTitle: true),
-        body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            color: Constants.BACKGROUND_GREY,
-            child: Column(
-                key: UniqueKey(),
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: contents)));
+        backgroundColor: Constants.BACKGROUND_GREY,
+        body: SingleChildScrollView(
+            controller: _scrollController,
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                color: Constants.BACKGROUND_GREY,
+                child: Column(
+                    key: UniqueKey(),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: contents))));
   }
 }

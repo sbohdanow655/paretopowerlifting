@@ -66,6 +66,7 @@ class Constants {
   static const String TAB_HISTORY = "History";
   static const String TAB_SETTINGS = "Settings";
 
+  static const String FORCEFOURDAYSPLIT = "Always 4-Day";
   static const String USE_MICROPLATES = "Microplates for Upper Body";
   static const String SELECT_WEIGHT_UNIT = "Weight Unit";
   static const String SELECTPHASE_SQUAT = "Squat Phase";
@@ -162,6 +163,7 @@ class Constants {
   };
 
   static const String DB_PASSFAILMAP = "passFailMap";
+  static const String DB_FORCEFOURDAYSPLIT = "forceFourDaySplit";
   static const String DB_HAVE_MICROPLATES = "haveMicroplates";
   static const String DB_WEIGHT_UNIT = "weightUnit";
   static const String DB_PHASE_SQUAT = "squatPhase";
@@ -181,23 +183,26 @@ class Constants {
   static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
   static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
 
-  static const String WORKOUTS_HEADER_ONE =
-      "1) Set the starting weights in the Settings to A WEIGHT YOU CAN DO 8 REPS FOR.";
-  static const String WORKOUTS_HEADER_TWO =
-      "2) Switch exercises from FAIL to PASS when you successfully do all the reps.";
-  static const String WORKOUTS_HEADER_THREE =
-      "3) 'Advance to Next Week' after you've attempted the week.";
-  static const String WORKOUTS_HEADER_FOUR =
-      "4) 'Start Over' if you want to reset the exercise phases.";
-  static const String WORKOUTS_HEADER_FIVE =
-      "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when one of the exercise phases in the Settings reaches 3.";
+  static const String GETTINGSTARTED_TITLE = "Getting Started";
 
-  static const String WORKOUTS_HEADER_TITLE_NUTRITION =
+  static const String GETTINGSTARTED_ONE =
+      "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the others to a weight you can do 12 reps for.";
+  static const String GETTINGSTARTED_TWO =
+      "2) Switch exercises from FAIL to PASS when you successfully do all the reps.";
+  static const String GETTINGSTARTED_THREE =
+      "3) 'Advance to Next Week' after you've attempted the week.";
+  static const String GETTINGSTARTED_FOUR =
+      "4) 'Start Over' if you want to reset the exercise phases.";
+  static const String GETTINGSTARTED_FIVE =
+      "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when forced by the setting.";
+
+  static const String GETTINGSTARTED_TITLE_NUTRITION =
       "Nutrition Recommendations";
   static const String NUTRITION_RECOMMOMENDATIONS =
       "Have 2 scoops of protein powder twice per day.";
 
-  static const String SETTINGS_HEADER_TITLE = "Getting Started";
+  static const String SETTINGS_HEADER_FORCEFOURDAYSPLIT =
+      "4-Day Upper/Lower Split";
   static const String SETTINGS_HEADER_PLATES = "Plates";
   static const String SETTINGS_HEADER_EXERCISEPHASES = "Exercise Phases";
   static const String SETTINGS_HEADER_FULLBODYWORKOUTDAYS =

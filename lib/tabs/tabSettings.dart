@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/EnterWeight.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
@@ -20,6 +19,12 @@ class _SettingsTabState extends State<SettingsTab> {
   WeeklyExercisePrescription _weeklyExercisePrescription;
 
   _SettingsTabState(this._weeklyExercisePrescription);
+
+  void setForceFourDaySplit(val) {
+    setState(() {
+      _weeklyExercisePrescription.forceFourDaySplit = val;
+    });
+  }
 
   void setMicroplates(val) {
     setState(() {
@@ -75,6 +80,56 @@ class _SettingsTabState extends State<SettingsTab> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              color: Colors.white,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants
+                                                    .SETTINGS_HEADER_FORCEFOURDAYSPLIT,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants.FORCEFOURDAYSPLIT,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          Checkbox(
+                                              checkColor: Colors.white,
+                                              fillColor: MaterialStateProperty
+                                                  .resolveWith(
+                                                      (val) => Colors.blue),
+                                              value: _weeklyExercisePrescription
+                                                  .forceFourDaySplit,
+                                              onChanged: (bool value) =>
+                                                  setForceFourDaySplit(value))
+                                        ])
+                                  ])),
                           Container(
                               alignment: Alignment.center,
                               margin: EdgeInsets.symmetric(

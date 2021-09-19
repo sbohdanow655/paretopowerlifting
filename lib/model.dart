@@ -16,6 +16,8 @@ class Model {
         await db.execute('CREATE TABLE Settings(id INTEGER PRIMARY KEY, ' +
             Constants.DB_PASSFAILMAP +
             ' TEXT, ' +
+            Constants.DB_FORCEFOURDAYSPLIT +
+            ' TEXT, ' +
             Constants.DB_HAVE_MICROPLATES +
             ' BIT, ' +
             Constants.DB_WEIGHT_UNIT +
@@ -62,6 +64,8 @@ class Model {
             await txn.rawInsert('INSERT INTO Settings(' +
                 Constants.DB_PASSFAILMAP +
                 ', ' +
+                Constants.DB_FORCEFOURDAYSPLIT +
+                ', ' +
                 Constants.DB_HAVE_MICROPLATES +
                 ', ' +
                 Constants.DB_WEIGHT_UNIT +
@@ -98,7 +102,7 @@ class Model {
                 ', ' +
                 Constants.DB_WEIGHT_SKULLCRUSHERS +
                 ') ' +
-                'VALUES("{}", 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45, 45 )');
+                'VALUES("{}", 0, 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45, 45 )');
           });
         }
       });
@@ -119,6 +123,7 @@ class Model {
     Database paretoPowerliftingDB = await openDB();
 
     switch (dbColumnName) {
+      case Constants.DB_FORCEFOURDAYSPLIT:
       case Constants.DB_HAVE_MICROPLATES:
         val = (val ? 1 : 0).toString();
         break;
