@@ -97,14 +97,12 @@ class _GettingStartedState extends State<GettingStarted> {
 
     return Scaffold(
         appBar: AppBar(title: Text(Constants.TITLE), centerTitle: true),
-        body: SingleChildScrollView(
-            controller: _scrollController,
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                color: Constants.BACKGROUND_GREY,
-                child: Column(
-                    key: UniqueKey(),
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: contents))));
+        body: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            color: Constants.BACKGROUND_GREY,
+            child: Column(
+                key: UniqueKey(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: contents)));
   }
 }
