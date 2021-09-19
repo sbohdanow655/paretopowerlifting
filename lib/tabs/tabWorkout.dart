@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
@@ -30,70 +29,6 @@ class _WorkoutTabState extends State<WorkoutTab> {
   @override
   Widget build(BuildContext context) {
     List<Widget> workoutTabList = [];
-
-    Container header = Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    Constants.SETTINGS_HEADER_TITLE,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
-                  ))
-            ],
-          ),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_ONE)),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_TWO)),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_THREE)),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_FOUR)),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.WORKOUTS_HEADER_FIVE)),
-        ]));
-
-    workoutTabList.add(header);
-
-    Container nutritionRecommendations = Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    Constants.WORKOUTS_HEADER_TITLE_NUTRITION,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
-                  ))
-            ],
-          ),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.NUTRITION_RECOMMOMENDATIONS)),
-        ]));
-
-    workoutTabList.add(nutritionRecommendations);
 
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay =

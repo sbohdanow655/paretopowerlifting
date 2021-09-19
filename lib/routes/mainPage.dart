@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> tabViews = [];
 
-  int currentTabIndex = 0;
+  int currentTabIndex = 1;
 
   void navigateToTab(int index) {
     setState(() {
