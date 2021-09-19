@@ -10,6 +10,9 @@ class DBHelper {
     Map settingsMap = await Model.getSettings();
     settingsMap.forEach((key, value) {
       switch (key) {
+        case Constants.DB_FORCEFOURDAYSPLIT:
+          weeklyExercisePrescription.forceFourDaySplit = value == 1;
+          break;
         case Constants.DB_HAVE_MICROPLATES:
           weeklyExercisePrescription.haveMicroplates = value == 1;
           break;
