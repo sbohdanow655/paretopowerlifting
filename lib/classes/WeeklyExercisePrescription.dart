@@ -50,10 +50,30 @@ class WeeklyExercisePrescription {
   PassFail _passFail = PassFail();
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
+  bool _enableCurls = false;
+  bool _enableTriceps = false;
 
   set forceFourDaySplit(val) {
     _phases.forceFourDay = val;
     DBHelper.saveSettingToDB(Constants.DB_FORCEFOURDAYSPLIT, val);
+  }
+
+  get enableCurls {
+    return _enableCurls;
+  }
+
+  set enableCurls(val) {
+    _enableCurls = val;
+    DBHelper.saveSettingToDB(Constants.DB_AESTHETICS_CURLS, val);
+  }
+
+  get enableTriceps {
+    return _enableTriceps;
+  }
+
+  set enableTriceps(val) {
+    _enableTriceps = val;
+    DBHelper.saveSettingToDB(Constants.DB_AESTHETICS_TRICEPS, val);
   }
 
   get forceFourDaySplit {
@@ -228,7 +248,14 @@ class WeeklyExercisePrescription {
             _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
         prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift,
             _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
-
+        if (_enableCurls) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+        if (_enableTriceps) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
         break;
       case WorkoutType.FullBody2:
         switch (_phases.squat) {
@@ -283,6 +310,16 @@ class WeeklyExercisePrescription {
                 8));
             break;
         }
+
+        if (_enableCurls) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+        if (_enableTriceps) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+
         break;
       case WorkoutType.FullBody3:
         switch (_phases.squat) {
@@ -352,6 +389,15 @@ class WeeklyExercisePrescription {
             break;
           default:
             break;
+        }
+
+        if (_enableCurls) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+        if (_enableTriceps) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
 
         break;
@@ -458,6 +504,16 @@ class WeeklyExercisePrescription {
 
             break;
         }
+
+        if (_enableCurls) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+        if (_enableTriceps) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+
         break;
       case WorkoutType.LowerBody2:
         switch (_phases.squat) {
@@ -593,6 +649,16 @@ class WeeklyExercisePrescription {
 
             break;
         }
+
+        if (_enableCurls) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+        if (_enableTriceps) {
+          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
+              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
+        }
+
         break;
       case WorkoutType.RestDay:
         return DailyRestPrescription();

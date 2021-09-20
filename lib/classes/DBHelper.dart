@@ -13,6 +13,12 @@ class DBHelper {
         case Constants.DB_FORCEFOURDAYSPLIT:
           weeklyExercisePrescription.forceFourDaySplit = value == 1;
           break;
+        case Constants.DB_AESTHETICS_CURLS:
+          weeklyExercisePrescription.enableCurls = value == 1;
+          break;
+        case Constants.DB_AESTHETICS_TRICEPS:
+          weeklyExercisePrescription.enableTriceps = value == 1;
+          break;
         case Constants.DB_HAVE_MICROPLATES:
           weeklyExercisePrescription.haveMicroplates = value == 1;
           break;

@@ -80,6 +80,13 @@ class WorkoutDayState extends State<WorkoutDay> {
             prescription.numSets.toString() +
             "x" +
             prescription.numReps.toString();
+
+        if (tuple.exercise == Exercise.Curls ||
+            tuple.exercise == Exercise.Triceps) {
+          prescriptionString = prescription.numSets.toString() +
+              "x" +
+              prescription.numReps.toString();
+        }
         Column prescriptionColumn = Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,20 +103,22 @@ class WorkoutDayState extends State<WorkoutDay> {
 
         bool didPass = _weeklyExercisePrescription.getSinglePassFail(
             _weekday, tuple.exercise);
-
-        rowItems.add(DropdownButton<String>(
-            value: didPass ? Constants.PASS : Constants.FAIL,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
-            onChanged: (val) {
-              setPassFailMap(tuple.exercise, val == Constants.PASS);
-            },
-            items: <String>[Constants.FAIL, Constants.PASS]
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                  value: value, child: Text(value.toString()));
-            }).toList()));
+        if (tuple.exercise != Exercise.Curls &&
+            tuple.exercise != Exercise.Triceps) {
+          rowItems.add(DropdownButton<String>(
+              value: didPass ? Constants.PASS : Constants.FAIL,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
+              onChanged: (val) {
+                setPassFailMap(tuple.exercise, val == Constants.PASS);
+              },
+              items: <String>[Constants.FAIL, Constants.PASS]
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                    value: value, child: Text(value.toString()));
+              }).toList()));
+        }
       }
 
       columnList.add(Padding(

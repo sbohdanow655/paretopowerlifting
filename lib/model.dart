@@ -18,6 +18,10 @@ class Model {
             ' TEXT, ' +
             Constants.DB_FORCEFOURDAYSPLIT +
             ' BIT, ' +
+            Constants.DB_AESTHETICS_CURLS +
+            ' BIT, ' +
+            Constants.DB_AESTHETICS_TRICEPS +
+            ' BIT, ' +
             Constants.DB_HAVE_MICROPLATES +
             ' BIT, ' +
             Constants.DB_WEIGHT_UNIT +
@@ -66,6 +70,10 @@ class Model {
                 ', ' +
                 Constants.DB_FORCEFOURDAYSPLIT +
                 ', ' +
+                Constants.DB_AESTHETICS_CURLS +
+                ', ' +
+                Constants.DB_AESTHETICS_TRICEPS +
+                ', ' +
                 Constants.DB_HAVE_MICROPLATES +
                 ', ' +
                 Constants.DB_WEIGHT_UNIT +
@@ -102,7 +110,7 @@ class Model {
                 ', ' +
                 Constants.DB_WEIGHT_SKULLCRUSHERS +
                 ') ' +
-                'VALUES("{}", 0, 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45, 45 )');
+                'VALUES("{}", 0, 0, 0, 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45, 45 )');
           });
         }
       });
@@ -124,6 +132,8 @@ class Model {
 
     switch (dbColumnName) {
       case Constants.DB_FORCEFOURDAYSPLIT:
+      case Constants.DB_AESTHETICS_CURLS:
+      case Constants.DB_AESTHETICS_TRICEPS:
       case Constants.DB_HAVE_MICROPLATES:
         val = (val ? 1 : 0).toString();
         break;
