@@ -571,12 +571,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                     color: Colors.blue,
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                GettingStarted()),
-                                      );
+                                      Navigator.pushReplacementNamed(context,
+                                          Constants.ROUTE_GETTINGSTARTED);
                                     })
                               ])
                         ])))));
