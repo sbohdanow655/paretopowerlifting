@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/routes/mainPage.dart';
 
 class GettingStarted extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class _GettingStartedState extends State<GettingStarted> {
                     Constants.GETTINGSTARTED_TITLE,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
                   ))
             ],
           ),
@@ -71,7 +70,7 @@ class _GettingStartedState extends State<GettingStarted> {
                     Constants.GETTINGSTARTED_TITLE_NUTRITION,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
                   ))
             ],
           ),

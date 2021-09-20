@@ -29,8 +29,13 @@ class Constants {
 
   static const double FONTSIZE_TITLE = 50;
   static const double FONTSIZE_BUTTON = 30;
+  static const double FONTSIZE_GETTINGSTARTED_TITLE = 18;
+  static const double FONTSIZE_GETTINGSTARTED_BODY = 15;
   static const double FONTSIZE_TAB_SETTINGS = 16;
-  static const double FONTSIZE_TAB_WORKOUTS = 13;
+  static const double FONTSIZE_TAB_WORKOUTS_WEEKDAY = 22;
+  static const double FONTSIZE_TAB_WORKOUTS_EXERCISE = 22;
+  static const double FONTSIZE_TAB_WORKOUTS_PRESCRIPTION = 22;
+  static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 22;
 
   static const double MARGIN_HORIZONTAL = 40;
 

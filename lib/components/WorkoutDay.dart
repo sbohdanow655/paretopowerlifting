@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
@@ -46,7 +47,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         Constants.weekdayStrings[_weekday],
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+            fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY),
       )
     ]));
 
@@ -54,7 +55,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         .getDailyPrescriptionByWeekday(_weekday)
         .toTupleList()
         .forEach((tuple) {
-      List<Widget> children = [];
+      List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
         columnList.add(Padding(
@@ -65,20 +66,42 @@ class WorkoutDayState extends State<WorkoutDay> {
                 Text(tuple.toString(),
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS))
+                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY))
               ],
             )));
       } else {
-        children.add(Text(tuple.toString(),
-            style: TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS)));
+        SingleExercisePrescription prescription =
+            tuple.singleExercisePrescription;
+        String exerciseString =
+            Constants.exerciseStrings[prescription.exercise];
+        String prescriptionString = prescription.weight +
+            prescription.weightUnit +
+            " " +
+            prescription.numSets.toString() +
+            "x" +
+            prescription.numReps.toString();
+        Column prescriptionColumn = Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(exerciseString,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_EXERCISE)),
+              Text(prescriptionString,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PRESCRIPTION)),
+            ]);
+
+        rowItems.add(prescriptionColumn);
 
         bool didPass = _weeklyExercisePrescription.getSinglePassFail(
             _weekday, tuple.exercise);
 
-        children.add(DropdownButton<String>(
+        rowItems.add(DropdownButton<String>(
             value: didPass ? Constants.PASS : Constants.FAIL,
             style: TextStyle(
-                color: Colors.black, fontSize: Constants.FONTSIZE_TAB_WORKOUTS),
+                color: Colors.black,
+                fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
             onChanged: (val) {
               setPassFailMap(tuple.exercise, val == Constants.PASS);
             },
@@ -89,9 +112,11 @@ class WorkoutDayState extends State<WorkoutDay> {
             }).toList()));
       }
 
-      columnList.add(Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: children));
+      columnList.add(Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: rowItems)));
     });
 
     return Container(
