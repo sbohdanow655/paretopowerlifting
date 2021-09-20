@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/EnterWeight.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
+import 'package:pareto_powerlifting/routes/GettingStarted.dart';
 import '../assets/constants.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -562,6 +563,22 @@ class _SettingsTabState extends State<SettingsTab> {
                                               }).toList()),
                                         ]),
                                   ])),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RaisedButton(
+                                    child: Text(Constants.GETTINGSTARTED_TITLE),
+                                    color: Colors.blue,
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                GettingStarted()),
+                                      );
+                                    })
+                              ])
                         ])))));
   }
 }
