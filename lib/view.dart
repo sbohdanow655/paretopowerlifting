@@ -10,10 +10,10 @@ class View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: Constants.ROUTER_GETTINGSTARTED,
+        initialRoute: "/",
         routes: {
           Constants.ROUTE_MAINPAGE: (context) => MainPage(),
-          Constants.ROUTER_GETTINGSTARTED: (context) => GettingStarted(),
+          Constants.ROUTE_GETTINGSTARTED: (context) => GettingStarted(),
         },
         title: Constants.TITLE,
         theme: ThemeData(

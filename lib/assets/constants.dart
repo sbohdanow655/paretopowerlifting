@@ -46,7 +46,7 @@ class Constants {
   static const String FINISH_WORKOUT_WEEK = "Advance to Next Week";
 
   static const String ROUTE_MAINPAGE = "/mainPage";
-  static const String ROUTER_GETTINGSTARTED = "/gettingStarted";
+  static const String ROUTE_GETTINGSTARTED = "/gettingStarted";
 
   static const String GETTINGSTARTED_START = "Start";
 
