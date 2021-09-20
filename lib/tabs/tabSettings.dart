@@ -162,78 +162,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 horizontal: 5, vertical: 15),
                                             child: Text(
                                                 Constants
-                                                    .SETTINGS_HEADER_OPTIONALAESTHETICS,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                        ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(Constants.ENABLE_CURLS,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          Checkbox(
-                                              checkColor: Colors.white,
-                                              fillColor: MaterialStateProperty
-                                                  .resolveWith(
-                                                      (val) => Colors.blue),
-                                              value: _weeklyExercisePrescription
-                                                  .enableCurls,
-                                              onChanged: (bool value) =>
-                                                  setEnableCurls(value))
-                                        ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants.ENABLE_TRICEPS,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          Checkbox(
-                                              checkColor: Colors.white,
-                                              fillColor: MaterialStateProperty
-                                                  .resolveWith(
-                                                      (val) => Colors.blue),
-                                              value: _weeklyExercisePrescription
-                                                  .enableTriceps,
-                                              onChanged: (bool value) =>
-                                                  setEnableTriceps(value))
-                                        ])
-                                  ])),
-                          Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              color: Colors.white,
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants
                                                     .SETTINGS_HEADER_PLATES,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -348,6 +276,78 @@ class _SettingsTabState extends State<SettingsTab> {
                                         _weeklyExercisePrescription,
                                         Exercise.Skullcrushers,
                                         Constants.EXERCISE_SKULLCRUSHERS),
+                                  ])),
+                          Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              color: Colors.white,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants
+                                                    .SETTINGS_HEADER_OPTIONALAESTHETICS,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(Constants.ENABLE_CURLS,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          Checkbox(
+                                              checkColor: Colors.white,
+                                              fillColor: MaterialStateProperty
+                                                  .resolveWith(
+                                                      (val) => Colors.blue),
+                                              value: _weeklyExercisePrescription
+                                                  .enableCurls,
+                                              onChanged: (bool value) =>
+                                                  setEnableCurls(value))
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants.ENABLE_TRICEPS,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          Checkbox(
+                                              checkColor: Colors.white,
+                                              fillColor: MaterialStateProperty
+                                                  .resolveWith(
+                                                      (val) => Colors.blue),
+                                              value: _weeklyExercisePrescription
+                                                  .enableTriceps,
+                                              onChanged: (bool value) =>
+                                                  setEnableTriceps(value))
+                                        ])
                                   ])),
                           Container(
                               alignment: Alignment.center,
