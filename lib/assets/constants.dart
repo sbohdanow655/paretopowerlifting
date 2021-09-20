@@ -214,6 +214,9 @@ class Constants {
   static const String GETTINGSTARTED_FIVE =
       "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when forced by the setting.";
 
+  static const String GETTINGSTARTED_SIX =
+      "6) You can rest between Squat and Deadlift sets for 1 min to 7-10 min, depending on how far along you are. You can rest for Bench Press, Overhead Press, and Pendlay Row for 1 min to 3-5 minutes.";
+
   static const String GETTINGSTARTED_TITLE_NUTRITION =
       "Nutrition Recommendations";
   static const String NUTRITION_RECOMMOMENDATIONS =

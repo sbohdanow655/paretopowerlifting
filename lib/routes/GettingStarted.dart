@@ -51,6 +51,9 @@ class _GettingStartedState extends State<GettingStarted> {
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(Constants.GETTINGSTARTED_FIVE)),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.GETTINGSTARTED_SIX)),
         ]));
 
     contents.add(header);
