@@ -40,7 +40,9 @@ class _WorkoutTabState extends State<WorkoutTab> {
         .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         RaisedButton(
-            child: Text(Constants.FINISH_WORKOUT_WEEK),
+            child: Text(Constants.FINISH_WORKOUT_WEEK,
+                style: TextStyle(
+                    fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
@@ -52,7 +54,9 @@ class _WorkoutTabState extends State<WorkoutTab> {
               });
             }),
         RaisedButton(
-            child: Text(Constants.RESET_EXERCISE_PHASES),
+            child: Text(Constants.RESET_EXERCISE_PHASES,
+                style: TextStyle(
+                    fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
             color: Colors.red[400],
             textColor: Colors.white,
             onPressed: () {

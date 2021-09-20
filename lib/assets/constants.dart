@@ -36,6 +36,7 @@ class Constants {
   static const double FONTSIZE_TAB_WORKOUTS_EXERCISE = 22;
   static const double FONTSIZE_TAB_WORKOUTS_PRESCRIPTION = 22;
   static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 22;
+  static const double FONTSIZE_TAB_WORKOUTS_BUTTON = 22;
 
   static const double MARGIN_HORIZONTAL = 40;
 
