@@ -77,7 +77,7 @@ class Constants {
 
   static const String FORCEFOURDAYSPLIT = "Always 4-Day";
   static const String ENABLE_HIITCONDITIONING = "HIIT Conditioning";
-  static const String ENABLE_CURLS = "Barbell or Dumbbell Curls";
+  static const String ENABLE_CURLS = "Barbell Curls";
   static const String USE_MICROPLATES = "Microplates for Upper Body";
   static const String SELECT_WEIGHT_UNIT = "Weight Unit";
   static const String SELECTPHASE_SQUAT = "Squat Phase";
@@ -106,7 +106,7 @@ class Constants {
   static const String EXERCISE_DEADLIFT = "Deadlift";
   static const String EXERCISE_PENDLAYROW = "Pendlay Row";
   static const String EXERCISE_SKULLCRUSHERS = "Skullcrushers";
-  static const String EXERCISE_CURLS = "Barbell or Dumbbell Curls";
+  static const String EXERCISE_CURLS = "Barbell Curls";
   static const String EXERCISE_HIIT = "HIIT Prowler, Bike, or Sprints";
   static const String EXERCISE_REST = "Rest Day";
 
