@@ -44,7 +44,7 @@ class PassFail {
     Map<String, Map<String, String>> passFailMap = _getInitialPassFailMap();
     Map<String, dynamic> decodedJson1 = json.decode(passFailJson);
     decodedJson1.forEach((String weekdayString, dynamic passFailByExercise) {
-      passFailByExercise.forEach((String exerciseString, String passFail) {
+      passFailByExercise.forEach((String exerciseString, dynamic passFail) {
         passFailMap[weekdayString][exerciseString] = passFail;
       });
     });
