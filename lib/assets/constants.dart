@@ -107,7 +107,7 @@ class Constants {
   static const String EXERCISE_PENDLAYROW = "Pendlay Row";
   static const String EXERCISE_SKULLCRUSHERS = "Skullcrushers";
   static const String EXERCISE_CURLS = "Barbell Curls";
-  static const String EXERCISE_HIIT = "HIIT Prowler, Bike, or Sprints";
+  static const String EXERCISE_HIIT = "Prowler, Bike, or Sprints";
   static const String EXERCISE_REST = "Rest Day";
 
   static const String SUFFIX_WEIGHT = " Weight";

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/EnterWeight.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../assets/constants.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -67,12 +66,6 @@ class _SettingsTabState extends State<SettingsTab> {
     setState(() {
       _weeklyExercisePrescription.deadliftPhase = val;
     });
-  }
-
-  void _openPatreon() async {
-    if (await canLaunch(Constants.PATREON_LINK)) {
-      await launch(Constants.PATREON_LINK);
-    }
   }
 
   @override
@@ -666,17 +659,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Navigator.pushReplacementNamed(context,
                                           Constants.ROUTE_GETTINGSTARTED);
                                     })
-                              ]) /*,
-                          
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RaisedButton(
-                                    child: Text(Constants.DONATE_BUTTON),
-                                    color: Colors.blue[800],
-                                    textColor: Colors.white,
-                                    onPressed: _openPatreon)
-                              ])*/
+                              ])
                         ])))));
   }
 }
