@@ -99,6 +99,7 @@ class WeeklyExercisePrescription {
   }
 
   void resetExercisePhases() {
+    _passFail.reset();
     _phases.reset();
     DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, _phases.squat);
     DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, _phases.benchPress);
@@ -246,7 +247,10 @@ class WeeklyExercisePrescription {
 
     String weight = _weightMap[exercise];
 
-    if (didFailDayOne && !didFailDayTwo) {
+    bool didFailOnlyDayOne = didFailDayOne && !didFailDayTwo;
+    bool didFailOnlyDayTwo = !didFailDayOne && didFailDayTwo;
+
+    if (didFailOnlyDayOne || didFailOnlyDayTwo) {
       weight = incrementWeight(weight, exercise);
     }
 

@@ -33,6 +33,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE),
     ));
+    _rebuildAllWorkoutDays();
     setState(() {
       _weeklyExercisePrescription.advanceWeek();
     });
@@ -93,6 +94,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER),
               ));
+              _rebuildAllWorkoutDays();
               setState(() {
                 _weeklyExercisePrescription.resetExercisePhases();
               });

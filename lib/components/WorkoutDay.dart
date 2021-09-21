@@ -65,10 +65,6 @@ class WorkoutDayState extends State<WorkoutDay> {
       String singlePassFail = _weeklyExercisePrescription.getSinglePassFail(
           _weekday, tuple.exercise);
 
-      if (singlePassFail == Constants.LIFT) {
-        _setIncomplete(_weekday, true);
-      }
-
       List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
@@ -122,6 +118,10 @@ class WorkoutDayState extends State<WorkoutDay> {
 
         if (tuple.exercise != Exercise.HIITConditioning &&
             tuple.exercise != Exercise.Curls) {
+          if (singlePassFail == Constants.LIFT) {
+            _setIncomplete(_weekday, true);
+          }
+
           rowItems.add(DropdownButton<String>(
               value: singlePassFail,
               style: TextStyle(
