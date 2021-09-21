@@ -171,12 +171,12 @@ class WeeklyExercisePrescription {
     }
   }
 
-  bool getSinglePassFail(Weekday weekday, Exercise exercise) {
+  String getSinglePassFail(Weekday weekday, Exercise exercise) {
     return _passFail.getSinglePassFail(weekday, exercise);
   }
 
-  void setSinglePassFail(Weekday weekday, Exercise exercise, bool didPass) {
-    _passFail.setSinglePassFail(weekday, exercise, didPass);
+  void setSinglePassFail(Weekday weekday, Exercise exercise, String passFail) {
+    _passFail.setSinglePassFail(weekday, exercise, passFail);
   }
 
   void setThreeDayWorkoutDay(WorkoutType workoutType, Weekday weekday) {
@@ -226,6 +226,37 @@ class WeeklyExercisePrescription {
     return _fourDaySchedule[workoutType];
   }
 
+  String getDayTwoWeight(Exercise exercise, WorkoutType dayOneWorkoutType) {
+    bool didFailDayOne = getSinglePassFail(
+            getWeekdayFromWorkoutType(dayOneWorkoutType), exercise) ==
+        Constants.FAIL;
+    return didFailDayOne
+        ? _weightMap[exercise]
+        : incrementWeight(_weightMap[exercise], exercise);
+  }
+
+  String getDayThreeWeight(Exercise exercise, WorkoutType dayOneWorkoutType,
+      WorkoutType dayTwoWorkoutType) {
+    bool didFailDayOne = getSinglePassFail(
+            getWeekdayFromWorkoutType(dayOneWorkoutType), exercise) ==
+        Constants.FAIL;
+    bool didFailDayTwo = getSinglePassFail(
+            getWeekdayFromWorkoutType(dayTwoWorkoutType), exercise) ==
+        Constants.FAIL;
+
+    String weight = _weightMap[exercise];
+
+    if (didFailDayOne && !didFailDayTwo) {
+      weight = incrementWeight(weight, exercise);
+    }
+
+    if (!didFailDayOne && !didFailDayTwo) {
+      weight = incrementWeightTwice(weight, exercise);
+    }
+
+    return weight;
+  }
+
   IDailyPrescription getDailyPrescriptionByWeekday(Weekday weekday) {
     WorkoutType workoutType = _getWorkoutTypeFromWeekday(weekday);
     bool isInSchedule = (_phases.isThreeDay() &&
@@ -260,7 +291,7 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Squat,
-                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                getDayTwoWeight(Exercise.Squat, WorkoutType.FullBody1),
                 _weightUnit,
                 3,
                 5));
@@ -273,8 +304,7 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                incrementWeight(
-                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                getDayTwoWeight(Exercise.BenchPress, WorkoutType.FullBody1),
                 _weightUnit,
                 3,
                 5));
@@ -293,8 +323,7 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Deadlift,
-                incrementWeight(
-                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                getDayTwoWeight(Exercise.Deadlift, WorkoutType.FullBody1),
                 _weightUnit,
                 1,
                 5));
@@ -315,8 +344,8 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Squat,
-                incrementWeightTwice(
-                    _weightMap[Exercise.Squat], Exercise.Squat),
+                getDayThreeWeight(Exercise.Squat, WorkoutType.FullBody1,
+                    WorkoutType.FullBody2),
                 _weightUnit,
                 3,
                 5));
@@ -324,7 +353,7 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Squat,
-                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                getDayTwoWeight(Exercise.Squat, WorkoutType.FullBody1),
                 _weightUnit,
                 3,
                 5));
@@ -337,8 +366,8 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                incrementWeightTwice(
-                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                getDayThreeWeight(Exercise.BenchPress, WorkoutType.FullBody1,
+                    WorkoutType.FullBody2),
                 _weightUnit,
                 3,
                 5));
@@ -346,8 +375,7 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                incrementWeight(
-                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                getDayTwoWeight(Exercise.BenchPress, WorkoutType.FullBody1),
                 _weightUnit,
                 3,
                 5));
@@ -361,8 +389,8 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Deadlift,
-                incrementWeightTwice(
-                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                getDayThreeWeight(Exercise.Deadlift, WorkoutType.FullBody1,
+                    WorkoutType.FullBody2),
                 _weightUnit,
                 1,
                 5));
@@ -370,8 +398,7 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Deadlift,
-                incrementWeight(
-                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                getDayTwoWeight(Exercise.Deadlift, WorkoutType.FullBody1),
                 _weightUnit,
                 1,
                 5));
@@ -510,7 +537,7 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Squat,
-                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                getDayTwoWeight(Exercise.Squat, WorkoutType.LowerBody1),
                 _weightUnit,
                 3,
                 5));
@@ -518,7 +545,7 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Squat,
-                incrementWeight(_weightMap[Exercise.Squat], Exercise.Squat),
+                getDayTwoWeight(Exercise.Squat, WorkoutType.LowerBody1),
                 _weightUnit,
                 3,
                 5));
@@ -531,8 +558,7 @@ class WeeklyExercisePrescription {
           case 1:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Deadlift,
-                incrementWeight(
-                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                getDayTwoWeight(Exercise.Deadlift, WorkoutType.LowerBody1),
                 _weightUnit,
                 1,
                 5));
@@ -540,8 +566,7 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Deadlift,
-                incrementWeight(
-                    _weightMap[Exercise.Deadlift], Exercise.Deadlift),
+                getDayTwoWeight(Exercise.Deadlift, WorkoutType.LowerBody1),
                 _weightUnit,
                 1,
                 5));
@@ -580,22 +605,19 @@ class WeeklyExercisePrescription {
           case 2:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                incrementWeight(
-                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                getDayTwoWeight(Exercise.BenchPress, WorkoutType.UpperBody1),
                 _weightUnit,
                 3,
                 5));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.PendlayRow,
-                incrementWeight(
-                    _weightMap[Exercise.PendlayRow], Exercise.PendlayRow),
+                getDayTwoWeight(Exercise.PendlayRow, WorkoutType.UpperBody1),
                 _weightUnit,
                 3,
                 8));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.OverheadPress,
-                incrementWeight(
-                    _weightMap[Exercise.OverheadPress], Exercise.OverheadPress),
+                getDayTwoWeight(Exercise.OverheadPress, WorkoutType.UpperBody1),
                 _weightUnit,
                 3,
                 5));
@@ -604,22 +626,19 @@ class WeeklyExercisePrescription {
           case 3:
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.BenchPress,
-                incrementWeight(
-                    _weightMap[Exercise.BenchPress], Exercise.BenchPress),
+                getDayTwoWeight(Exercise.BenchPress, WorkoutType.UpperBody1),
                 _weightUnit,
                 5,
                 3));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.PendlayRow,
-                incrementWeight(
-                    _weightMap[Exercise.PendlayRow], Exercise.PendlayRow),
+                getDayTwoWeight(Exercise.PendlayRow, WorkoutType.UpperBody1),
                 _weightUnit,
                 3,
                 8));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.OverheadPress,
-                incrementWeight(
-                    _weightMap[Exercise.OverheadPress], Exercise.OverheadPress),
+                getDayTwoWeight(Exercise.OverheadPress, WorkoutType.UpperBody1),
                 _weightUnit,
                 5,
                 3));
@@ -733,7 +752,7 @@ class WeeklyExercisePrescription {
 
     Weekday.values.forEach((weekday) {
       Exercise.values.forEach((exercise) {
-        if (_passFail.getSinglePassFail(weekday, exercise)) {
+        if (_passFail.getSinglePassFail(weekday, exercise) == Constants.PASS) {
           String nextWeight = _weightMap[exercise];
           switch (exercise) {
             case Exercise.Squat:
@@ -783,7 +802,8 @@ class WeeklyExercisePrescription {
 
     weekdays.forEach((weekday) {
       if (!exerciseFailureSet.contains(Exercise.Squat) &&
-          !_passFail.getSinglePassFail(weekday, Exercise.Squat)) {
+          _passFail.getSinglePassFail(weekday, Exercise.Squat) ==
+              Constants.FAIL) {
         exerciseFailureSet.add(Exercise.Squat);
         switch (_phases.squat) {
           case 1:
@@ -802,7 +822,8 @@ class WeeklyExercisePrescription {
       }
 
       if (!exerciseFailureSet.contains(Exercise.BenchPress) &&
-          !_passFail.getSinglePassFail(weekday, Exercise.BenchPress)) {
+          _passFail.getSinglePassFail(weekday, Exercise.BenchPress) ==
+              Constants.FAIL) {
         exerciseFailureSet.add(Exercise.BenchPress);
         switch (_phases.benchPress) {
           case 1:
@@ -824,7 +845,8 @@ class WeeklyExercisePrescription {
       }
 
       if (!exerciseFailureSet.contains(Exercise.Deadlift) &&
-          !_passFail.getSinglePassFail(weekday, Exercise.Deadlift)) {
+          _passFail.getSinglePassFail(weekday, Exercise.Deadlift) ==
+              Constants.FAIL) {
         exerciseFailureSet.add(Exercise.Deadlift);
         switch (_phases.deadlift) {
           case 1:

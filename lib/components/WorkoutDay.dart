@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
   final WeeklyExercisePrescription _weeklyExercisePrescription;
   final Weekday _weekday;
-
-  WorkoutDay(this._weeklyExercisePrescription, this._weekday);
+  final Function _setIncomplete;
+  final Function _rebuildAllWorkoutDays;
+  WorkoutDay(this._weeklyExercisePrescription, this._weekday,
+      this._setIncomplete, this._rebuildAllWorkoutDays);
 
   @override
   State<StatefulWidget> createState() {
-    return WorkoutDayState(this._weeklyExercisePrescription, this._weekday);
+    return WorkoutDayState(this._weeklyExercisePrescription, this._weekday,
+        this._setIncomplete, this._rebuildAllWorkoutDays);
   }
 }
 
 class WorkoutDayState extends State<WorkoutDay> {
-  WorkoutDayState(this._weeklyExercisePrescription, this._weekday);
+  WorkoutDayState(this._weeklyExercisePrescription, this._weekday,
+      this._setIncomplete, this._rebuildAllWorkoutDays);
 
   final WeeklyExercisePrescription _weeklyExercisePrescription;
   final Weekday _weekday;
-
-  void setPassFailMap(Exercise exercise, bool didPass) {
-    setState(() {
-      _weeklyExercisePrescription.setSinglePassFail(
-          _weekday, exercise, didPass);
-    });
+  final Function _setIncomplete;
+  final Function _rebuildAllWorkoutDays;
+  void _setPassFailMap(Exercise exercise, String passFail) {
+    _weeklyExercisePrescription.setSinglePassFail(_weekday, exercise, passFail);
+    _setIncomplete(_weekday, passFail == Constants.LIFT);
+    _rebuildAllWorkoutDays();
   }
 
   @override
@@ -40,6 +45,8 @@ class WorkoutDayState extends State<WorkoutDay> {
 
   @override
   Widget build(BuildContext context) {
+    bool weekdayIsIncomplete = false;
+
     List<Widget> columnList = [];
 
     columnList.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -55,6 +62,13 @@ class WorkoutDayState extends State<WorkoutDay> {
         .getDailyPrescriptionByWeekday(_weekday)
         .toTupleList()
         .forEach((tuple) {
+      String singlePassFail = _weeklyExercisePrescription.getSinglePassFail(
+          _weekday, tuple.exercise);
+
+      if (singlePassFail == Constants.LIFT) {
+        _setIncomplete(_weekday, true);
+      }
+
       List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
@@ -106,22 +120,20 @@ class WorkoutDayState extends State<WorkoutDay> {
 
         rowItems.add(prescriptionColumn);
 
-        bool didPass = _weeklyExercisePrescription.getSinglePassFail(
-            _weekday, tuple.exercise);
         if (tuple.exercise != Exercise.HIITConditioning &&
             tuple.exercise != Exercise.Curls) {
           rowItems.add(DropdownButton<String>(
-              value: didPass ? Constants.PASS : Constants.FAIL,
+              value: singlePassFail,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
               onChanged: (val) {
-                setPassFailMap(tuple.exercise, val == Constants.PASS);
+                _setPassFailMap(tuple.exercise, val);
               },
-              items: <String>[Constants.FAIL, Constants.PASS]
+              items: <String>[Constants.LIFT, Constants.FAIL, Constants.PASS]
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
-                    value: value, child: Text(value.toString()));
+                    value: value, child: Text(value));
               }).toList()));
         }
       }

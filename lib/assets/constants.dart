@@ -48,6 +48,7 @@ class Constants {
 
   static const String PATREON_LINK = "https://www.patreon.com/Scott_bohdanow";
 
+  static const String LIFT = "LIFT";
   static const String PASS = "PASS";
   static const String FAIL = "FAIL";
 
@@ -205,7 +206,7 @@ class Constants {
   static const String GETTINGSTARTED_ONE =
       "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the others to a weight you can do 12 reps for.";
   static const String GETTINGSTARTED_TWO =
-      "2) Switch exercises from FAIL to PASS when you successfully do all the reps.";
+      "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.";
   static const String GETTINGSTARTED_THREE =
       "3) 'Advance to Next Week' after you've attempted the week.";
   static const String GETTINGSTARTED_FOUR =
@@ -234,6 +235,8 @@ class Constants {
 
   static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
 
+  static const String WORKOUTS_SNACKBAR_INCOMPLETE =
+      "You didn't complete the week yet.";
   static const String WORKOUTS_SNACKBAR_ADVANCE =
       "Weights, sets, and reps updated.";
   static const String WORKOUTS_SNACKBAR_STARTOVER = "Exercise phases reset.";

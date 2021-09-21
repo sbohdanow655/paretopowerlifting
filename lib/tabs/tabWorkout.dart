@@ -20,23 +20,44 @@ class _WorkoutTabState extends State<WorkoutTab> {
   _WorkoutTabState(this._weeklyExercisePrescription);
 
   ScrollController _scrollController = ScrollController();
+  Map<Weekday, bool> _workoutDayIncompleteMap = {};
+  List<Widget> _workoutTabList = [];
 
   @override
   void initState() {
+    _rebuildAllWorkoutDays();
     super.initState();
+  }
+
+  void onFinishWorkoutWeek() {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE),
+    ));
+    setState(() {
+      _weeklyExercisePrescription.advanceWeek();
+    });
+  }
+
+  void _setIncomplete(Weekday workdayWeekday, bool workoutDayIncomplete) {
+    _workoutDayIncompleteMap[workdayWeekday] = workoutDayIncomplete;
+  }
+
+  void _rebuildAllWorkoutDays() {
+    List<Widget> workoutTabList = [];
+    Weekday.values.forEach((weekday) {
+      WorkoutDay workoutDay = new WorkoutDay(_weeklyExercisePrescription,
+          weekday, _setIncomplete, _rebuildAllWorkoutDays);
+      workoutTabList.add(workoutDay);
+    });
+
+    setState(() {
+      _workoutTabList = workoutTabList;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> workoutTabList = [];
-
-    Weekday.values.forEach((weekday) {
-      WorkoutDay workoutDay =
-          new WorkoutDay(_weeklyExercisePrescription, weekday);
-      workoutTabList.add(workoutDay);
-    });
-
-    workoutTabList
+    _workoutTabList
         .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         RaisedButton(
@@ -46,12 +67,21 @@ class _WorkoutTabState extends State<WorkoutTab> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE),
-              ));
-              setState(() {
-                _weeklyExercisePrescription.advanceWeek();
+              bool weekIsIncomplete = false;
+              _workoutDayIncompleteMap
+                  .forEach((Weekday weekday, bool isIncomplete) {
+                if (isIncomplete) {
+                  weekIsIncomplete = true;
+                }
               });
+
+              if (weekIsIncomplete) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(Constants.WORKOUTS_SNACKBAR_INCOMPLETE),
+                ));
+              } else {
+                onFinishWorkoutWeek();
+              }
             }),
         RaisedButton(
             child: Text(Constants.RESET_EXERCISE_PHASES,
@@ -78,6 +108,6 @@ class _WorkoutTabState extends State<WorkoutTab> {
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: workoutTabList)));
+                children: _workoutTabList)));
   }
 }
