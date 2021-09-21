@@ -51,11 +51,20 @@ class WeeklyExercisePrescription {
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
   bool _enableCurls = false;
-  bool _enableTriceps = false;
+  bool _enableHIITConditioning = false;
 
   set forceFourDaySplit(val) {
     _phases.forceFourDay = val;
     DBHelper.saveSettingToDB(Constants.DB_FORCEFOURDAYSPLIT, val);
+  }
+
+  get enableHIITConditioning {
+    return _enableHIITConditioning;
+  }
+
+  set enableHIITConditioning(val) {
+    _enableHIITConditioning = val;
+    DBHelper.saveSettingToDB(Constants.DB_OPTIONAL_HIITCONDITIONING, val);
   }
 
   get enableCurls {
@@ -64,16 +73,7 @@ class WeeklyExercisePrescription {
 
   set enableCurls(val) {
     _enableCurls = val;
-    DBHelper.saveSettingToDB(Constants.DB_AESTHETICS_CURLS, val);
-  }
-
-  get enableTriceps {
-    return _enableTriceps;
-  }
-
-  set enableTriceps(val) {
-    _enableTriceps = val;
-    DBHelper.saveSettingToDB(Constants.DB_AESTHETICS_TRICEPS, val);
+    DBHelper.saveSettingToDB(Constants.DB_OPTIONAL_CURLS, val);
   }
 
   get forceFourDaySplit {
@@ -248,14 +248,12 @@ class WeeklyExercisePrescription {
             _weightMap[Exercise.BenchPress], _weightUnit, 3, 5));
         prescriptionList.add(new SingleExercisePrescription(Exercise.Deadlift,
             _weightMap[Exercise.Deadlift], _weightUnit, 1, 5));
+
         if (_enableCurls) {
           prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
               Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
-        if (_enableTriceps) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
-        }
+
         break;
       case WorkoutType.FullBody2:
         switch (_phases.squat) {
@@ -309,15 +307,6 @@ class WeeklyExercisePrescription {
                 3,
                 8));
             break;
-        }
-
-        if (_enableCurls) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
-        }
-        if (_enableTriceps) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
 
         break;
@@ -395,10 +384,6 @@ class WeeklyExercisePrescription {
           prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
               Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
-        if (_enableTriceps) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
-        }
 
         break;
       case WorkoutType.LowerBody1:
@@ -433,6 +418,15 @@ class WeeklyExercisePrescription {
                 2,
                 5));
             break;
+        }
+
+        if (_enableHIITConditioning) {
+          prescriptionList.add(new SingleExercisePrescription(
+              Exercise.HIITConditioning,
+              Constants.EMPTYSTRING,
+              Constants.EMPTYSTRING,
+              5,
+              0));
         }
 
         break;
@@ -509,10 +503,6 @@ class WeeklyExercisePrescription {
           prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
               Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
-        if (_enableTriceps) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
-        }
 
         break;
       case WorkoutType.LowerBody2:
@@ -572,6 +562,15 @@ class WeeklyExercisePrescription {
               _weightUnit,
               5,
               5));
+        }
+
+        if (_enableHIITConditioning) {
+          prescriptionList.add(new SingleExercisePrescription(
+              Exercise.HIITConditioning,
+              Constants.EMPTYSTRING,
+              Constants.EMPTYSTRING,
+              5,
+              0));
         }
 
         break;
@@ -652,10 +651,6 @@ class WeeklyExercisePrescription {
 
         if (_enableCurls) {
           prescriptionList.add(new SingleExercisePrescription(Exercise.Curls,
-              Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
-        }
-        if (_enableTriceps) {
-          prescriptionList.add(new SingleExercisePrescription(Exercise.Triceps,
               Constants.EMPTYSTRING, Constants.EMPTYSTRING, 3, 10));
         }
 

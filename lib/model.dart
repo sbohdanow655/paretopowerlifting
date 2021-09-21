@@ -18,9 +18,9 @@ class Model {
             ' TEXT, ' +
             Constants.DB_FORCEFOURDAYSPLIT +
             ' BIT, ' +
-            Constants.DB_AESTHETICS_CURLS +
+            Constants.DB_OPTIONAL_HIITCONDITIONING +
             ' BIT, ' +
-            Constants.DB_AESTHETICS_TRICEPS +
+            Constants.DB_OPTIONAL_CURLS +
             ' BIT, ' +
             Constants.DB_HAVE_MICROPLATES +
             ' BIT, ' +
@@ -70,9 +70,9 @@ class Model {
                 ', ' +
                 Constants.DB_FORCEFOURDAYSPLIT +
                 ', ' +
-                Constants.DB_AESTHETICS_CURLS +
+                Constants.DB_OPTIONAL_HIITCONDITIONING +
                 ', ' +
-                Constants.DB_AESTHETICS_TRICEPS +
+                Constants.DB_OPTIONAL_CURLS +
                 ', ' +
                 Constants.DB_HAVE_MICROPLATES +
                 ', ' +
@@ -132,8 +132,8 @@ class Model {
 
     switch (dbColumnName) {
       case Constants.DB_FORCEFOURDAYSPLIT:
-      case Constants.DB_AESTHETICS_CURLS:
-      case Constants.DB_AESTHETICS_TRICEPS:
+      case Constants.DB_OPTIONAL_HIITCONDITIONING:
+      case Constants.DB_OPTIONAL_CURLS:
       case Constants.DB_HAVE_MICROPLATES:
         val = (val ? 1 : 0).toString();
         break;

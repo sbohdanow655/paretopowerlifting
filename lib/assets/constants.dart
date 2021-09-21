@@ -22,7 +22,6 @@ enum Exercise {
   Skullcrushers,
   HIITConditioning,
   Curls,
-  Triceps,
   Rest
 }
 
@@ -77,8 +76,8 @@ class Constants {
   static const String TAB_SETTINGS = "Settings";
 
   static const String FORCEFOURDAYSPLIT = "Always 4-Day";
+  static const String ENABLE_HIITCONDITIONING = "HIIT Conditioning";
   static const String ENABLE_CURLS = "Barbell or Dumbbell Curls";
-  static const String ENABLE_TRICEPS = "Dumbbell or Rope Triceps";
   static const String USE_MICROPLATES = "Microplates for Upper Body";
   static const String SELECT_WEIGHT_UNIT = "Weight Unit";
   static const String SELECTPHASE_SQUAT = "Squat Phase";
@@ -108,8 +107,7 @@ class Constants {
   static const String EXERCISE_PENDLAYROW = "Pendlay Row";
   static const String EXERCISE_SKULLCRUSHERS = "Skullcrushers";
   static const String EXERCISE_CURLS = "Barbell or Dumbbell Curls";
-  static const String EXERCISE_TRICEPS = "Dumbbell or Rope Triceps";
-  static const String EXERCISE_HIIT = "HIIT Conditioning";
+  static const String EXERCISE_HIIT = "HIIT Prowler, Bike, or Sprints";
   static const String EXERCISE_REST = "Rest Day";
 
   static const String SUFFIX_WEIGHT = " Weight";
@@ -162,7 +160,6 @@ class Constants {
     Exercise.PendlayRow: EXERCISE_PENDLAYROW,
     Exercise.Skullcrushers: EXERCISE_SKULLCRUSHERS,
     Exercise.Curls: EXERCISE_CURLS,
-    Exercise.Triceps: EXERCISE_TRICEPS,
     Exercise.HIITConditioning: EXERCISE_HIIT,
     Exercise.Rest: EXERCISE_REST
   };
@@ -176,14 +173,13 @@ class Constants {
     Exercise.Skullcrushers.toString(): Exercise.Skullcrushers,
     Exercise.HIITConditioning.toString(): Exercise.HIITConditioning,
     Exercise.Curls.toString(): Exercise.Curls,
-    Exercise.Triceps.toString(): Exercise.Triceps,
     Exercise.Rest.toString(): Exercise.Rest
   };
 
   static const String DB_PASSFAILMAP = "passFailMap";
   static const String DB_FORCEFOURDAYSPLIT = "forceFourDaySplit";
-  static const String DB_AESTHETICS_CURLS = "doCurls";
-  static const String DB_AESTHETICS_TRICEPS = "doTriceps";
+  static const String DB_OPTIONAL_CURLS = "doCurls";
+  static const String DB_OPTIONAL_HIITCONDITIONING = "doHIIT";
   static const String DB_HAVE_MICROPLATES = "haveMicroplates";
   static const String DB_WEIGHT_UNIT = "weightUnit";
   static const String DB_PHASE_SQUAT = "squatPhase";
@@ -234,8 +230,7 @@ class Constants {
   static const String SETTINGS_HEADER_UPPERLOWERWORKOUTDAYS =
       "Upper/Lower Workout Days";
   static const String SETTINGS_HEADER_WEIGHTS = "Weights";
-  static const String SETTINGS_HEADER_OPTIONALAESTHETICS =
-      "Optional Aesthetics";
+  static const String SETTINGS_HEADER_OPTIONALEXERCISES = "Optional Exercises";
 
   static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
 

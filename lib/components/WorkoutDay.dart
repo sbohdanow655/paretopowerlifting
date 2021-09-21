@@ -81,12 +81,17 @@ class WorkoutDayState extends State<WorkoutDay> {
             "x" +
             prescription.numReps.toString();
 
-        if (tuple.exercise == Exercise.Curls ||
-            tuple.exercise == Exercise.Triceps) {
+        if (tuple.exercise == Exercise.HIITConditioning) {
+          prescriptionString =
+              prescription.numSets.toString() + "x 15s/45s Intervals";
+        }
+
+        if (tuple.exercise == Exercise.Curls) {
           prescriptionString = prescription.numSets.toString() +
               "x" +
               prescription.numReps.toString();
         }
+
         Column prescriptionColumn = Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,8 +108,8 @@ class WorkoutDayState extends State<WorkoutDay> {
 
         bool didPass = _weeklyExercisePrescription.getSinglePassFail(
             _weekday, tuple.exercise);
-        if (tuple.exercise != Exercise.Curls &&
-            tuple.exercise != Exercise.Triceps) {
+        if (tuple.exercise != Exercise.HIITConditioning &&
+            tuple.exercise != Exercise.Curls) {
           rowItems.add(DropdownButton<String>(
               value: didPass ? Constants.PASS : Constants.FAIL,
               style: TextStyle(

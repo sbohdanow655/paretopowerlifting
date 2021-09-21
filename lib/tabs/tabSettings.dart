@@ -33,9 +33,9 @@ class _SettingsTabState extends State<SettingsTab> {
     });
   }
 
-  void setEnableTriceps(val) {
+  void setEnableHIITConditioning(val) {
     setState(() {
-      _weeklyExercisePrescription.enableTriceps = val;
+      _weeklyExercisePrescription.enableHIITConditioning = val;
     });
   }
 
@@ -302,12 +302,37 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 horizontal: 5, vertical: 15),
                                             child: Text(
                                                 Constants
-                                                    .SETTINGS_HEADER_OPTIONALAESTHETICS,
+                                                    .SETTINGS_HEADER_OPTIONALEXERCISES,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: Constants
                                                         .FONTSIZE_TAB_SETTINGS)),
                                           ),
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 15),
+                                            child: Text(
+                                                Constants
+                                                    .ENABLE_HIITCONDITIONING,
+                                                style: TextStyle(
+                                                    fontSize: Constants
+                                                        .FONTSIZE_TAB_SETTINGS)),
+                                          ),
+                                          Checkbox(
+                                              checkColor: Colors.white,
+                                              fillColor: MaterialStateProperty
+                                                  .resolveWith(
+                                                      (val) => Colors.blue),
+                                              value: _weeklyExercisePrescription
+                                                  .enableHIITConditioning,
+                                              onChanged: (bool value) =>
+                                                  setEnableHIITConditioning(
+                                                      value))
                                         ]),
                                     Row(
                                         mainAxisAlignment:
@@ -330,29 +355,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                                   .enableCurls,
                                               onChanged: (bool value) =>
                                                   setEnableCurls(value))
-                                        ]),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 15),
-                                            child: Text(
-                                                Constants.ENABLE_TRICEPS,
-                                                style: TextStyle(
-                                                    fontSize: Constants
-                                                        .FONTSIZE_TAB_SETTINGS)),
-                                          ),
-                                          Checkbox(
-                                              checkColor: Colors.white,
-                                              fillColor: MaterialStateProperty
-                                                  .resolveWith(
-                                                      (val) => Colors.blue),
-                                              value: _weeklyExercisePrescription
-                                                  .enableTriceps,
-                                              onChanged: (bool value) =>
-                                                  setEnableTriceps(value))
                                         ])
                                   ])),
                           Container(
