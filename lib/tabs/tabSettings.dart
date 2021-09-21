@@ -666,7 +666,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                       Navigator.pushReplacementNamed(context,
                                           Constants.ROUTE_GETTINGSTARTED);
                                     })
-                              ]),
+                              ]) /*,
+                          
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -675,7 +676,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                     color: Colors.blue[800],
                                     textColor: Colors.white,
                                     onPressed: _openPatreon)
-                              ])
+                              ])*/
                         ])))));
   }
 }
