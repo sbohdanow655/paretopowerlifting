@@ -47,6 +47,8 @@ class Constants {
 
   static const String TITLE = "Pareto Powerlifting";
 
+  static const String PATREON_LINK = "https://www.patreon.com/Scott_bohdanow";
+
   static const String PASS = "PASS";
   static const String FAIL = "FAIL";
 
@@ -201,6 +203,7 @@ class Constants {
   static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
   static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
 
+  static const String DONATE_BUTTON = "Donate to my Patreon";
   static const String GETTINGSTARTED_TITLE = "Getting Started";
 
   static const String GETTINGSTARTED_ONE =
