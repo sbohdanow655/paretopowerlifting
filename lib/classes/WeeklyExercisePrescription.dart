@@ -10,7 +10,7 @@ import 'DailyRestPrescription.dart';
 import 'IDailyPrescription.dart';
 
 class WeeklyExercisePrescription {
-  Map<Weekday, DailyExercisePrescription> _presciptionCache = {};
+  Map<Weekday, DailyExercisePrescription> _prescriptionCache = {};
 
   Phases _phases = Phases();
 
@@ -282,7 +282,7 @@ class WeeklyExercisePrescription {
         : DailyRestPrescription();
 
     if (dailyPrescription.runtimeType == DailyExercisePrescription) {
-      _presciptionCache[weekday] = dailyPrescription;
+      _prescriptionCache[weekday] = dailyPrescription;
     }
 
     return dailyPrescription;
@@ -912,25 +912,27 @@ class WeeklyExercisePrescription {
     return workoutType;
   }
 
-  void _emptyPresciptionCache() {
-    _presciptionCache = {};
+  void _emptyPrescriptionCache() {
+    _prescriptionCache = {};
   }
 
   void _savePrescriptionsAndPassFailsToDB() {
-    _presciptionCache
+    _prescriptionCache
         .forEach((Weekday weekday, IDailyPrescription dailyPrescription) {
       if (dailyPrescription.runtimeType == DailyExercisePrescription) {
+        List<ExercisePrescriptionTuple> tupleList =
+            dailyPrescription.toTupleList();
         Map<String, String> passFails =
             _passFail.getPassFailsFromWeekday(weekday);
         passFails.forEach((String exerciseString, String passFail) {
           bool didPass = passFail == Constants.PASS;
-          dailyPrescription
-              .toTupleList()
-              .forEach((ExercisePrescriptionTuple tuple) {
-            ExerciseLog prescription =
-                ExerciseLog.fromSingleExercisePrescription(
-                    tuple.singleExercisePrescription, didPass);
-            DBHelper.insertExerciseLog(prescription);
+          tupleList.forEach((tuple) {
+            if (tuple.exercise.toString() == exerciseString) {
+              ExerciseLog prescription =
+                  ExerciseLog.fromSingleExercisePrescription(
+                      tuple.singleExercisePrescription, didPass);
+              DBHelper.insertExerciseLog(prescription);
+            }
           });
         });
       }
@@ -939,7 +941,7 @@ class WeeklyExercisePrescription {
 
   void advanceWeek() {
     _savePrescriptionsAndPassFailsToDB();
-    _emptyPresciptionCache();
+    _emptyPrescriptionCache();
     _advancePhases();
     _advanceWeights();
     _passFail.reset();

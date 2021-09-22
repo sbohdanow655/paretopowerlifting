@@ -14,18 +14,19 @@ class DBHelper {
 
   static Future<List<ExerciseLog>> getExerciseLogsFromDB(
       Exercise exercise) async {
-    List<ExerciseLog> singleExercisePrescriptionWithPassFails = [];
+    List<ExerciseLog> exerciseLogList = [];
 
     List<Map> exerciseLogsMapList =
         await ExerciseLogModel.getLogsByExercise(exercise);
-    String weight;
-    String weightUnit;
-    int numSets;
-    int numReps;
-    bool didPass;
 
     exerciseLogsMapList.forEach((exerciseLogsMap) {
-      ExerciseLog singleExercisePrescriptionWithPassFail;
+      ExerciseLog exerciseLog;
+
+      String weight;
+      String weightUnit;
+      int numSets;
+      int numReps;
+      bool didPass;
 
       exerciseLogsMap.forEach((dbColumn, value) {
         switch (dbColumn) {
@@ -51,14 +52,13 @@ class DBHelper {
             break;
         }
       });
-      singleExercisePrescriptionWithPassFail =
+      exerciseLog =
           ExerciseLog(exercise, weight, weightUnit, numSets, numReps, didPass);
 
-      singleExercisePrescriptionWithPassFails
-          .add(singleExercisePrescriptionWithPassFail);
+      exerciseLogList.add(exerciseLog);
     });
 
-    return singleExercisePrescriptionWithPassFails;
+    return exerciseLogList;
   }
 
   static Future updateWeeklyExercisePrescriptionFromDB(

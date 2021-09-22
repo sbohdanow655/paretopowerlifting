@@ -96,22 +96,25 @@ class _HistoryTabState extends State<HistoryTab> {
                                           ))
                                     ]
                                   : _exerciseLogList.map((exerciseLog) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                              exerciseLog
-                                                  .toPrescriptionString(),
-                                              style: TextStyle(
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_HISTORY_EXERCISELOG)),
-                                          Text(exerciseLog.passFailString,
-                                              style: TextStyle(
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_HISTORY_EXERCISELOG))
-                                        ],
-                                      );
+                                      return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 15),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                  exerciseLog
+                                                      .toPrescriptionString(),
+                                                  style: TextStyle(
+                                                      fontSize: Constants
+                                                          .FONTSIZE_TAB_HISTORY_EXERCISELOG)),
+                                              Text(exerciseLog.passFailString,
+                                                  style: TextStyle(
+                                                      fontSize: Constants
+                                                          .FONTSIZE_TAB_HISTORY_EXERCISELOG))
+                                            ],
+                                          ));
                                     }).toList()),
                         ])))));
   }
