@@ -3,17 +3,20 @@ import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/Phases.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
+import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
 
 import 'DailyExercisePresciption.dart';
 import 'DailyRestPrescription.dart';
 import 'IDailyPrescription.dart';
 
 class WeeklyExercisePrescription {
+  Map<Weekday, DailyExercisePrescription> _presciptionCache = {};
+
   Phases _phases = Phases();
 
   set squatPhase(val) {
     _phases.squat = val;
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, val);
   }
 
   get squatPhase {
@@ -22,7 +25,7 @@ class WeeklyExercisePrescription {
 
   set benchPressPhase(val) {
     _phases.benchPress = val;
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_BENCHPRESS, val);
   }
 
   get benchPressPhase {
@@ -31,7 +34,7 @@ class WeeklyExercisePrescription {
 
   set deadliftPhase(val) {
     _phases.deadlift = val;
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_DEADLIFT, val);
   }
 
   get deadliftPhase {
@@ -55,7 +58,7 @@ class WeeklyExercisePrescription {
 
   set forceFourDaySplit(val) {
     _phases.forceFourDay = val;
-    DBHelper.saveSettingToDB(Constants.DB_FORCEFOURDAYSPLIT, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_FORCEFOURDAYSPLIT, val);
   }
 
   get enableHIITConditioning {
@@ -64,7 +67,8 @@ class WeeklyExercisePrescription {
 
   set enableHIITConditioning(val) {
     _enableHIITConditioning = val;
-    DBHelper.saveSettingToDB(Constants.DB_OPTIONAL_HIITCONDITIONING, val);
+    DBHelper.saveSettingToDB(
+        Constants.SettingsDB_OPTIONAL_HIITCONDITIONING, val);
   }
 
   get enableCurls {
@@ -73,7 +77,7 @@ class WeeklyExercisePrescription {
 
   set enableCurls(val) {
     _enableCurls = val;
-    DBHelper.saveSettingToDB(Constants.DB_OPTIONAL_CURLS, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_OPTIONAL_CURLS, val);
   }
 
   get forceFourDaySplit {
@@ -82,7 +86,7 @@ class WeeklyExercisePrescription {
 
   set weightUnit(val) {
     _weightUnit = val;
-    DBHelper.saveSettingToDB(Constants.DB_WEIGHT_UNIT, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_WEIGHT_UNIT, val);
   }
 
   get weightUnit {
@@ -91,7 +95,7 @@ class WeeklyExercisePrescription {
 
   set haveMicroplates(val) {
     _haveMicroplates = val;
-    DBHelper.saveSettingToDB(Constants.DB_HAVE_MICROPLATES, val);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_HAVE_MICROPLATES, val);
   }
 
   get haveMicroplates {
@@ -101,9 +105,11 @@ class WeeklyExercisePrescription {
   void resetExercisePhases() {
     _passFail.reset();
     _phases.reset();
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, _phases.squat);
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, _phases.benchPress);
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, _phases.deadlift);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, _phases.squat);
+    DBHelper.saveSettingToDB(
+        Constants.SettingsDB_PHASE_BENCHPRESS, _phases.benchPress);
+    DBHelper.saveSettingToDB(
+        Constants.SettingsDB_PHASE_DEADLIFT, _phases.deadlift);
   }
 
   set passFail(val) {
@@ -148,24 +154,28 @@ class WeeklyExercisePrescription {
     _weightMap[exercise] = weightString;
     switch (exercise) {
       case Exercise.Squat:
-        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_SQUAT, weightString);
+        DBHelper.saveSettingToDB(
+            Constants.SettingsDB_WEIGHT_SQUAT, weightString);
         break;
       case Exercise.BenchPress:
-        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_BENCHPRESS, weightString);
+        DBHelper.saveSettingToDB(
+            Constants.SettingsDB_WEIGHT_BENCHPRESS, weightString);
         break;
       case Exercise.Deadlift:
-        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_DEADLIFT, weightString);
+        DBHelper.saveSettingToDB(
+            Constants.SettingsDB_WEIGHT_DEADLIFT, weightString);
         break;
       case Exercise.OverheadPress:
         DBHelper.saveSettingToDB(
-            Constants.DB_WEIGHT_OVERHEADPRESS, weightString);
+            Constants.SettingsDB_WEIGHT_OVERHEADPRESS, weightString);
         break;
       case Exercise.PendlayRow:
-        DBHelper.saveSettingToDB(Constants.DB_WEIGHT_PENDLAYROW, weightString);
+        DBHelper.saveSettingToDB(
+            Constants.SettingsDB_WEIGHT_PENDLAYROW, weightString);
         break;
       case Exercise.Skullcrushers:
         DBHelper.saveSettingToDB(
-            Constants.DB_WEIGHT_SKULLCRUSHERS, weightString);
+            Constants.SettingsDB_WEIGHT_SKULLCRUSHERS, weightString);
         break;
       default:
         break;
@@ -185,13 +195,13 @@ class WeeklyExercisePrescription {
 
     switch (workoutType) {
       case WorkoutType.FullBody1:
-        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_ONE, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_FULLBODY_ONE, weekday);
         break;
       case WorkoutType.FullBody2:
-        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_TWO, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_FULLBODY_TWO, weekday);
         break;
       case WorkoutType.FullBody3:
-        DBHelper.saveSettingToDB(Constants.DB_FULLBODY_THREE, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_FULLBODY_THREE, weekday);
         break;
       default:
         break;
@@ -203,16 +213,16 @@ class WeeklyExercisePrescription {
 
     switch (workoutType) {
       case WorkoutType.LowerBody1:
-        DBHelper.saveSettingToDB(Constants.DB_LOWERBODY_ONE, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_LOWERBODY_ONE, weekday);
         break;
       case WorkoutType.UpperBody1:
-        DBHelper.saveSettingToDB(Constants.DB_UPPERBODY_ONE, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_UPPERBODY_ONE, weekday);
         break;
       case WorkoutType.LowerBody2:
-        DBHelper.saveSettingToDB(Constants.DB_LOWERBODY_TWO, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_LOWERBODY_TWO, weekday);
         break;
       case WorkoutType.UpperBody2:
-        DBHelper.saveSettingToDB(Constants.DB_UPPERBODY_TWO, weekday);
+        DBHelper.saveSettingToDB(Constants.SettingsDB_UPPERBODY_TWO, weekday);
         break;
       default:
         break;
@@ -267,9 +277,15 @@ class WeeklyExercisePrescription {
             _threeDaySchedule.containsKey(workoutType)) ||
         (!_phases.isThreeDay() && _fourDaySchedule.containsKey(workoutType));
 
-    return isInSchedule
+    IDailyPrescription dailyPrescription = isInSchedule
         ? _getDailyPrescription(workoutType)
         : DailyRestPrescription();
+
+    if (dailyPrescription.runtimeType == DailyExercisePrescription) {
+      _presciptionCache[weekday] = dailyPrescription;
+    }
+
+    return dailyPrescription;
   }
 
   IDailyPrescription _getDailyPrescription(WorkoutType workoutType) {
@@ -869,9 +885,11 @@ class WeeklyExercisePrescription {
       }
     });
 
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_SQUAT, _phases.squat);
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_BENCHPRESS, _phases.benchPress);
-    DBHelper.saveSettingToDB(Constants.DB_PHASE_DEADLIFT, _phases.deadlift);
+    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, _phases.squat);
+    DBHelper.saveSettingToDB(
+        Constants.SettingsDB_PHASE_BENCHPRESS, _phases.benchPress);
+    DBHelper.saveSettingToDB(
+        Constants.SettingsDB_PHASE_DEADLIFT, _phases.deadlift);
   }
 
   WorkoutType _getWorkoutTypeFromWeekday(Weekday weekday) {
@@ -894,7 +912,34 @@ class WeeklyExercisePrescription {
     return workoutType;
   }
 
+  void _emptyPresciptionCache() {
+    _presciptionCache = {};
+  }
+
+  void _savePrescriptionsAndPassFailsToDB() {
+    _presciptionCache
+        .forEach((Weekday weekday, IDailyPrescription dailyPrescription) {
+      if (dailyPrescription.runtimeType == DailyExercisePrescription) {
+        Map<String, String> passFails =
+            _passFail.getPassFailsFromWeekday(weekday);
+        passFails.forEach((String exerciseString, String passFail) {
+          bool didPass = passFail == Constants.PASS;
+          dailyPrescription
+              .toTupleList()
+              .forEach((ExercisePrescriptionTuple tuple) {
+            ExerciseLog prescription =
+                ExerciseLog.fromSingleExercisePrescription(
+                    tuple.singleExercisePrescription, didPass);
+            DBHelper.insertExerciseLog(prescription);
+          });
+        });
+      }
+    });
+  }
+
   void advanceWeek() {
+    _savePrescriptionsAndPassFailsToDB();
+    _emptyPresciptionCache();
     _advancePhases();
     _advanceWeights();
     _passFail.reset();

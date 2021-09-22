@@ -1,84 +1,140 @@
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/models/modelExerciseLog.dart';
 
-import '../model.dart';
+import '../models/modelSettings.dart';
 import 'PassFail.dart';
 
 class DBHelper {
+  static void insertExerciseLog(
+      ExerciseLog singleExercisePrescriptionWithPassFail) {
+    ExerciseLogModel.insertExerciseLog(singleExercisePrescriptionWithPassFail);
+  }
+
+  static Future<List<ExerciseLog>> getExerciseLogsFromDB(
+      Exercise exercise) async {
+    List<ExerciseLog> singleExercisePrescriptionWithPassFails = [];
+
+    List<Map> exerciseLogsMapList =
+        await ExerciseLogModel.getLogsByExercise(exercise);
+    String weight;
+    String weightUnit;
+    int numSets;
+    int numReps;
+    bool didPass;
+
+    exerciseLogsMapList.forEach((exerciseLogsMap) {
+      ExerciseLog singleExercisePrescriptionWithPassFail;
+
+      exerciseLogsMap.forEach((dbColumn, value) {
+        switch (dbColumn) {
+          case Constants.ExerciseLogDB_EXERCISE:
+            exercise = Constants.exerciseByToString[value];
+            break;
+          case Constants.ExerciseLogDB_WEIGHT:
+            weight = value;
+            break;
+          case Constants.ExerciseLogDB_WEIGHT_UNIT:
+            weightUnit = value;
+            break;
+          case Constants.ExerciseLogDB_SETS:
+            numSets = value;
+            break;
+          case Constants.ExerciseLogDB_REPS:
+            numReps = value;
+            break;
+          case Constants.ExerciseLogDB_DIDPASS:
+            didPass = value == 1;
+            break;
+          default:
+            break;
+        }
+      });
+      singleExercisePrescriptionWithPassFail =
+          ExerciseLog(exercise, weight, weightUnit, numSets, numReps, didPass);
+
+      singleExercisePrescriptionWithPassFails
+          .add(singleExercisePrescriptionWithPassFail);
+    });
+
+    return singleExercisePrescriptionWithPassFails;
+  }
+
   static Future updateWeeklyExercisePrescriptionFromDB(
       WeeklyExercisePrescription weeklyExercisePrescription) async {
-    Map settingsMap = await Model.getSettings();
+    Map settingsMap = await SettingsModel.getSettings();
     settingsMap.forEach((key, value) {
       switch (key) {
-        case Constants.DB_FORCEFOURDAYSPLIT:
+        case Constants.SettingsDB_FORCEFOURDAYSPLIT:
           weeklyExercisePrescription.forceFourDaySplit = value == 1;
           break;
-        case Constants.DB_OPTIONAL_HIITCONDITIONING:
+        case Constants.SettingsDB_OPTIONAL_HIITCONDITIONING:
           weeklyExercisePrescription.enableHIITConditioning = value == 1;
           break;
-        case Constants.DB_OPTIONAL_CURLS:
+        case Constants.SettingsDB_OPTIONAL_CURLS:
           weeklyExercisePrescription.enableCurls = value == 1;
           break;
-        case Constants.DB_HAVE_MICROPLATES:
+        case Constants.SettingsDB_HAVE_MICROPLATES:
           weeklyExercisePrescription.haveMicroplates = value == 1;
           break;
-        case Constants.DB_WEIGHT_UNIT:
+        case Constants.SettingsDB_WEIGHT_UNIT:
           weeklyExercisePrescription.weightUnit = value;
           break;
-        case Constants.DB_PHASE_SQUAT:
+        case Constants.SettingsDB_PHASE_SQUAT:
           weeklyExercisePrescription.squatPhase = value;
           break;
-        case Constants.DB_PHASE_BENCHPRESS:
+        case Constants.SettingsDB_PHASE_BENCHPRESS:
           weeklyExercisePrescription.benchPressPhase = value;
           break;
-        case Constants.DB_PHASE_DEADLIFT:
+        case Constants.SettingsDB_PHASE_DEADLIFT:
           weeklyExercisePrescription.deadliftPhase = value;
           break;
-        case Constants.DB_FULLBODY_ONE:
+        case Constants.SettingsDB_FULLBODY_ONE:
           weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody1, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_FULLBODY_TWO:
+        case Constants.SettingsDB_FULLBODY_TWO:
           weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody2, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_FULLBODY_THREE:
+        case Constants.SettingsDB_FULLBODY_THREE:
           weeklyExercisePrescription.setThreeDayWorkoutDay(
               WorkoutType.FullBody3, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_LOWERBODY_ONE:
+        case Constants.SettingsDB_LOWERBODY_ONE:
           weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.LowerBody1, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_UPPERBODY_ONE:
+        case Constants.SettingsDB_UPPERBODY_ONE:
           weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.UpperBody1, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_LOWERBODY_TWO:
+        case Constants.SettingsDB_LOWERBODY_TWO:
           weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.LowerBody2, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_UPPERBODY_TWO:
+        case Constants.SettingsDB_UPPERBODY_TWO:
           weeklyExercisePrescription.setFourDayWorkoutDay(
               WorkoutType.UpperBody2, Constants.weekdayByString[value]);
           break;
-        case Constants.DB_WEIGHT_SQUAT:
+        case Constants.SettingsDB_WEIGHT_SQUAT:
           weeklyExercisePrescription.setNextWeight(Exercise.Squat, value);
           break;
-        case Constants.DB_WEIGHT_BENCHPRESS:
+        case Constants.SettingsDB_WEIGHT_BENCHPRESS:
           weeklyExercisePrescription.setNextWeight(Exercise.BenchPress, value);
           break;
-        case Constants.DB_WEIGHT_DEADLIFT:
+        case Constants.SettingsDB_WEIGHT_DEADLIFT:
           weeklyExercisePrescription.setNextWeight(Exercise.Deadlift, value);
           break;
-        case Constants.DB_WEIGHT_OVERHEADPRESS:
+        case Constants.SettingsDB_WEIGHT_OVERHEADPRESS:
           weeklyExercisePrescription.setNextWeight(
               Exercise.OverheadPress, value);
           break;
-        case Constants.DB_WEIGHT_PENDLAYROW:
+        case Constants.SettingsDB_WEIGHT_PENDLAYROW:
           weeklyExercisePrescription.setNextWeight(Exercise.PendlayRow, value);
           break;
-        case Constants.DB_WEIGHT_SKULLCRUSHERS:
+        case Constants.SettingsDB_WEIGHT_SKULLCRUSHERS:
           weeklyExercisePrescription.setNextWeight(
               Exercise.Skullcrushers, value);
           break;
@@ -89,14 +145,14 @@ class DBHelper {
   }
 
   static void saveSettingToDB(String dbColumnName, val) {
-    Model.updateSetting(dbColumnName, val);
+    SettingsModel.updateSetting(dbColumnName, val);
   }
 
   static void savePassFailMapToDB(PassFail passFail) async {
-    Model.savePassFailToDB(passFail);
+    SettingsModel.savePassFailToDB(passFail);
   }
 
   static Future updatePassFailFromDB(PassFail passFail) async {
-    await Model.updatePassFailFromDB(passFail);
+    await SettingsModel.updatePassFailFromDB(passFail);
   }
 }

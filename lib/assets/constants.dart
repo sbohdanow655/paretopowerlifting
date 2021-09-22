@@ -25,8 +25,21 @@ enum Exercise {
   Rest
 }
 
+enum MainExercise {
+  Squat,
+  BenchPress,
+  Deadlift,
+  OverheadPress,
+  PendlayRow,
+  Skullcrushers
+}
+
 class Constants {
   static const String EMPTYSTRING = "";
+
+  static const String paretoPowerliftingDBString = "paretoPowerlifting.db";
+  static const String tableNameSettings = "Settings";
+  static const String tableNameExerciseLogs = "ExerciseLogs";
 
   static const double FONTSIZE_TITLE = 50;
   static const double FONTSIZE_BUTTON = 30;
@@ -38,6 +51,7 @@ class Constants {
   static const double FONTSIZE_TAB_WORKOUTS_PRESCRIPTION = 22;
   static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 22;
   static const double FONTSIZE_TAB_WORKOUTS_BUTTON = 22;
+  static const double FONTSIZE_TAB_HISTORY_EXERCISELOG = 22;
 
   static const double MARGIN_HORIZONTAL = 40;
 
@@ -165,6 +179,18 @@ class Constants {
     Exercise.Rest: EXERCISE_REST
   };
 
+  static Map<String, Exercise> exerciseByString = {
+    EXERCISE_SQUAT: Exercise.Squat,
+    EXERCISE_BENCHPRESS: Exercise.BenchPress,
+    EXERCISE_DEADLIFT: Exercise.Deadlift,
+    EXERCISE_OVERHEADPRESS: Exercise.OverheadPress,
+    EXERCISE_PENDLAYROW: Exercise.PendlayRow,
+    EXERCISE_SKULLCRUSHERS: Exercise.Skullcrushers,
+    EXERCISE_CURLS: Exercise.Curls,
+    EXERCISE_HIIT: Exercise.HIITConditioning,
+    EXERCISE_REST: Exercise.Rest
+  };
+
   static Map<String, Exercise> exerciseByToString = {
     Exercise.Squat.toString(): Exercise.Squat,
     Exercise.BenchPress.toString(): Exercise.BenchPress,
@@ -177,28 +203,53 @@ class Constants {
     Exercise.Rest.toString(): Exercise.Rest
   };
 
-  static const String DB_PASSFAILMAP = "passFailMap";
-  static const String DB_FORCEFOURDAYSPLIT = "forceFourDaySplit";
-  static const String DB_OPTIONAL_CURLS = "doCurls";
-  static const String DB_OPTIONAL_HIITCONDITIONING = "doHIIT";
-  static const String DB_HAVE_MICROPLATES = "haveMicroplates";
-  static const String DB_WEIGHT_UNIT = "weightUnit";
-  static const String DB_PHASE_SQUAT = "squatPhase";
-  static const String DB_PHASE_BENCHPRESS = "benchPressPhase";
-  static const String DB_PHASE_DEADLIFT = "deadliftPhase";
-  static const String DB_FULLBODY_ONE = "fullbody1";
-  static const String DB_FULLBODY_TWO = "fullbody2";
-  static const String DB_FULLBODY_THREE = "fullbody3";
-  static const String DB_LOWERBODY_ONE = "lowerbody1";
-  static const String DB_UPPERBODY_ONE = "upperbody1";
-  static const String DB_LOWERBODY_TWO = "lowerbody2";
-  static const String DB_UPPERBODY_TWO = "upperbody2";
-  static const String DB_WEIGHT_SQUAT = "squatWeight";
-  static const String DB_WEIGHT_BENCHPRESS = "benchPressWeight";
-  static const String DB_WEIGHT_DEADLIFT = "deadliftWeight";
-  static const String DB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
-  static const String DB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
-  static const String DB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
+  static const Map<MainExercise, Exercise> exerciseByMainExercise = {
+    MainExercise.Squat: Exercise.Squat,
+    MainExercise.BenchPress: Exercise.BenchPress,
+    MainExercise.Deadlift: Exercise.Deadlift,
+    MainExercise.OverheadPress: Exercise.OverheadPress,
+    MainExercise.PendlayRow: Exercise.PendlayRow,
+    MainExercise.Skullcrushers: Exercise.Skullcrushers
+  };
+
+  static Map<String, Exercise> exerciseByMainExerciseString = {
+    MainExercise.Squat.toString(): Exercise.Squat,
+    MainExercise.BenchPress.toString(): Exercise.BenchPress,
+    MainExercise.Deadlift.toString(): Exercise.Deadlift,
+    MainExercise.OverheadPress.toString(): Exercise.OverheadPress,
+    MainExercise.PendlayRow.toString(): Exercise.PendlayRow,
+    MainExercise.Skullcrushers.toString(): Exercise.Skullcrushers
+  };
+
+  static const String SettingsDB_PASSFAILMAP = "passFailMap";
+  static const String SettingsDB_FORCEFOURDAYSPLIT = "forceFourDaySplit";
+  static const String SettingsDB_OPTIONAL_CURLS = "doCurls";
+  static const String SettingsDB_OPTIONAL_HIITCONDITIONING = "doHIIT";
+  static const String SettingsDB_HAVE_MICROPLATES = "haveMicroplates";
+  static const String SettingsDB_WEIGHT_UNIT = "weightUnit";
+  static const String SettingsDB_PHASE_SQUAT = "squatPhase";
+  static const String SettingsDB_PHASE_BENCHPRESS = "benchPressPhase";
+  static const String SettingsDB_PHASE_DEADLIFT = "deadliftPhase";
+  static const String SettingsDB_FULLBODY_ONE = "fullbody1";
+  static const String SettingsDB_FULLBODY_TWO = "fullbody2";
+  static const String SettingsDB_FULLBODY_THREE = "fullbody3";
+  static const String SettingsDB_LOWERBODY_ONE = "lowerbody1";
+  static const String SettingsDB_UPPERBODY_ONE = "upperbody1";
+  static const String SettingsDB_LOWERBODY_TWO = "lowerbody2";
+  static const String SettingsDB_UPPERBODY_TWO = "upperbody2";
+  static const String SettingsDB_WEIGHT_SQUAT = "squatWeight";
+  static const String SettingsDB_WEIGHT_BENCHPRESS = "benchPressWeight";
+  static const String SettingsDB_WEIGHT_DEADLIFT = "deadliftWeight";
+  static const String SettingsDB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
+  static const String SettingsDB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
+  static const String SettingsDB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
+
+  static const String ExerciseLogDB_EXERCISE = "exercise";
+  static const String ExerciseLogDB_WEIGHT_UNIT = "weightUnit";
+  static const String ExerciseLogDB_WEIGHT = "weight";
+  static const String ExerciseLogDB_SETS = "numSets";
+  static const String ExerciseLogDB_REPS = "numReps";
+  static const String ExerciseLogDB_DIDPASS = "didPass";
 
   static const String DONATE_BUTTON = "Donate to my Patreon";
   static const String GETTINGSTARTED_TITLE = "Getting Started";
@@ -240,4 +291,7 @@ class Constants {
   static const String WORKOUTS_SNACKBAR_ADVANCE =
       "Weights, sets, and reps updated.";
   static const String WORKOUTS_SNACKBAR_STARTOVER = "Exercise phases reset.";
+
+  static const String HISTORY_NOHISTORY =
+      "There is no history for this exercise yet.";
 }

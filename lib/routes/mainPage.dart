@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/tabs/tabHistory.dart';
 import '../assets/constants.dart';
 import '../tabs/tabWorkout.dart';
 import '../tabs/tabSettings.dart';
@@ -19,7 +20,7 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> tabViews = [];
 
-  int currentTabIndex = 1;
+  int currentTabIndex = 2;
 
   void navigateToTab(int index) {
     setState(() {
@@ -38,7 +39,7 @@ class _MainPageState extends State<MainPage> {
             .then((value) {
           tabViews = [
             WorkoutTab(weeklyExercisePrescription),
-            // HistoryTab(),
+            HistoryTab(),
             SettingsTab(weeklyExercisePrescription)
           ];
 
@@ -72,13 +73,14 @@ class _MainPageState extends State<MainPage> {
             onTap: navigateToTab,
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.fitness_center), title: Text("Workouts")),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.history),
-              //   title: Text("History")
-              // ),
+                  icon: Icon(Icons.fitness_center),
+                  title: Text(Constants.TAB_WORKOUTS)),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), title: Text("Settings"))
+                  icon: Icon(Icons.history),
+                  title: Text(Constants.TAB_HISTORY)),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  title: Text(Constants.TAB_SETTINGS))
             ]));
   }
 }
