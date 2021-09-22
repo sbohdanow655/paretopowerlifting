@@ -66,6 +66,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
         appBar: AppBar(title: Text(Constants.TITLE), centerTitle: true),
         body: tabViews[currentTabIndex],
+        backgroundColor: Constants.BACKGROUND_GREY,
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.white,
             backgroundColor: Colors.blue,
