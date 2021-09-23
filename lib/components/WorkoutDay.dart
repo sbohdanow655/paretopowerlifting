@@ -117,9 +117,7 @@ class WorkoutDayState extends State<WorkoutDay> {
 
         rowItems.add(prescriptionColumn);
 
-        if (tuple.exercise != Exercise.HIITConditioning &&
-            tuple.exercise != Exercise.Curls &&
-            tuple.exercise != Exercise.Skullcrushers) {
+        if (Constants.exerciseByMainExercise.containsValue(tuple.exercise)) {
           if (singlePassFail == Constants.LIFT) {
             _setIncomplete(_weekday, true);
           }
