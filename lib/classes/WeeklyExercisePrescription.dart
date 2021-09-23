@@ -536,7 +536,7 @@ class WeeklyExercisePrescription {
                 _weightMap[Exercise.PendlayRow],
                 _weightUnit,
                 3,
-                8));
+                5));
 
             break;
         }
