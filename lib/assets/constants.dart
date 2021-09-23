@@ -236,7 +236,7 @@ class Constants {
   static const String GETTINGSTARTED_TITLE = "Getting Started";
 
   static const String GETTINGSTARTED_ONE =
-      "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the others to a weight you can do 12 reps for.";
+      "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the Pendlay Row to a weight you can do 12 reps for.";
   static const String GETTINGSTARTED_TWO =
       "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.";
   static const String GETTINGSTARTED_THREE =
