@@ -96,7 +96,8 @@ class WorkoutDayState extends State<WorkoutDay> {
               prescription.numSets.toString() + "x 15s/45s Intervals";
         }
 
-        if (tuple.exercise == Exercise.Curls) {
+        if (tuple.exercise == Exercise.Curls ||
+            tuple.exercise == Exercise.Skullcrushers) {
           prescriptionString = prescription.numSets.toString() +
               "x" +
               prescription.numReps.toString();
@@ -117,7 +118,8 @@ class WorkoutDayState extends State<WorkoutDay> {
         rowItems.add(prescriptionColumn);
 
         if (tuple.exercise != Exercise.HIITConditioning &&
-            tuple.exercise != Exercise.Curls) {
+            tuple.exercise != Exercise.Curls &&
+            tuple.exercise != Exercise.Skullcrushers) {
           if (singlePassFail == Constants.LIFT) {
             _setIncomplete(_weekday, true);
           }

@@ -47,7 +47,6 @@ class WeeklyExercisePrescription {
     Exercise.Deadlift: "45",
     Exercise.OverheadPress: "45",
     Exercise.PendlayRow: "45",
-    Exercise.Skullcrushers: "45",
   };
 
   PassFail _passFail = PassFail();
@@ -172,10 +171,6 @@ class WeeklyExercisePrescription {
       case Exercise.PendlayRow:
         DBHelper.saveSettingToDB(
             Constants.SettingsDB_WEIGHT_PENDLAYROW, weightString);
-        break;
-      case Exercise.Skullcrushers:
-        DBHelper.saveSettingToDB(
-            Constants.SettingsDB_WEIGHT_SKULLCRUSHERS, weightString);
         break;
       default:
         break;
@@ -680,8 +675,8 @@ class WeeklyExercisePrescription {
                 5));
             prescriptionList.add(new SingleExercisePrescription(
                 Exercise.Skullcrushers,
-                _weightMap[Exercise.Skullcrushers],
-                _weightUnit,
+                Constants.EMPTYSTRING,
+                Constants.EMPTYSTRING,
                 3,
                 8));
 
@@ -708,8 +703,7 @@ class WeeklyExercisePrescription {
     double weightIncrement;
     bool isUpperBody = exercise == Exercise.BenchPress ||
         exercise == Exercise.OverheadPress ||
-        exercise == Exercise.PendlayRow ||
-        exercise == Exercise.Skullcrushers;
+        exercise == Exercise.PendlayRow;
     bool isBenchPressPhase3 = _phases.benchPress >= 3;
     bool useMicroplates = _haveMicroplates && isUpperBody && isBenchPressPhase3;
     if (useMicroplates) {

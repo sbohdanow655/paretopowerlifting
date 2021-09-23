@@ -271,10 +271,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                         _weeklyExercisePrescription,
                                         Exercise.PendlayRow,
                                         Constants.EXERCISE_PENDLAYROW),
-                                    EnterWeight(
-                                        _weeklyExercisePrescription,
-                                        Exercise.Skullcrushers,
-                                        Constants.EXERCISE_SKULLCRUSHERS),
                                   ])),
                           Container(
                               alignment: Alignment.center,

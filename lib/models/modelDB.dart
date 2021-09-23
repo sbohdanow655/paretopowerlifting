@@ -58,8 +58,6 @@ class Model {
             Constants.SettingsDB_WEIGHT_OVERHEADPRESS +
             ' TEXT, ' +
             Constants.SettingsDB_WEIGHT_PENDLAYROW +
-            ' TEXT, ' +
-            Constants.SettingsDB_WEIGHT_SKULLCRUSHERS +
             ' TEXT)');
 
         await db.execute('CREATE TABLE ' +
@@ -126,10 +124,8 @@ class Model {
                 Constants.SettingsDB_WEIGHT_OVERHEADPRESS +
                 ', ' +
                 Constants.SettingsDB_WEIGHT_PENDLAYROW +
-                ', ' +
-                Constants.SettingsDB_WEIGHT_SKULLCRUSHERS +
                 ') ' +
-                'VALUES("{}", 0, 0, 0, 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45, 45 )');
+                'VALUES("{}", 0, 0, 0, 0, "lbs", 1, 1, 1, "Monday", "Wednesday", "Friday", "Monday", "Tuesday", "Thursday", "Friday", 45, 45, 45, 45, 45 )');
           });
         }
       });

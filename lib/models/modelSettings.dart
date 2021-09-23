@@ -36,7 +36,6 @@ class SettingsModel {
       case Constants.SettingsDB_WEIGHT_DEADLIFT:
       case Constants.SettingsDB_WEIGHT_OVERHEADPRESS:
       case Constants.SettingsDB_WEIGHT_PENDLAYROW:
-      case Constants.SettingsDB_WEIGHT_SKULLCRUSHERS:
         break;
     }
 

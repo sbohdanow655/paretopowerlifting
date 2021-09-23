@@ -25,14 +25,7 @@ enum Exercise {
   Rest
 }
 
-enum MainExercise {
-  Squat,
-  BenchPress,
-  Deadlift,
-  OverheadPress,
-  PendlayRow,
-  Skullcrushers
-}
+enum MainExercise { Squat, BenchPress, Deadlift, OverheadPress, PendlayRow }
 
 class Constants {
   static const String EMPTYSTRING = "";
@@ -105,15 +98,6 @@ class Constants {
   static const String SELECTWORKOUTDAY_UPPERBODY_ONE = "Upper Day 1";
   static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Day 2";
   static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Day 2";
-
-  static const String ENTERWEIGHT_SQUAT = "Next Squat Intensity Weight";
-  static const String ENTERWEIGHT_BENCHPRESS =
-      "Next Bench Press Intensity Weight";
-  static const String ENTERWEIGHT_DEADLIFT = "Next Deadlift Intensity Weight";
-  static const String ENTERWEIGHT_OVERHEADPRESS =
-      "Next Overhead Press Intensity Weight";
-  static const String ENTERWEIGHT_PENDLAYROW = "Next Pendlay Row Weight";
-  static const String ENTERWEIGHT_SKULLCRUSHERS = "Next Skullcrushers Weight";
 
   static const String EXERCISE_SQUAT = "Squat";
   static const String EXERCISE_BENCHPRESS = "Bench Press";
@@ -208,8 +192,7 @@ class Constants {
     MainExercise.BenchPress: Exercise.BenchPress,
     MainExercise.Deadlift: Exercise.Deadlift,
     MainExercise.OverheadPress: Exercise.OverheadPress,
-    MainExercise.PendlayRow: Exercise.PendlayRow,
-    MainExercise.Skullcrushers: Exercise.Skullcrushers
+    MainExercise.PendlayRow: Exercise.PendlayRow
   };
 
   static Map<String, Exercise> exerciseByMainExerciseString = {
@@ -217,8 +200,7 @@ class Constants {
     MainExercise.BenchPress.toString(): Exercise.BenchPress,
     MainExercise.Deadlift.toString(): Exercise.Deadlift,
     MainExercise.OverheadPress.toString(): Exercise.OverheadPress,
-    MainExercise.PendlayRow.toString(): Exercise.PendlayRow,
-    MainExercise.Skullcrushers.toString(): Exercise.Skullcrushers
+    MainExercise.PendlayRow.toString(): Exercise.PendlayRow
   };
 
   static const String SettingsDB_PASSFAILMAP = "passFailMap";
@@ -242,7 +224,6 @@ class Constants {
   static const String SettingsDB_WEIGHT_DEADLIFT = "deadliftWeight";
   static const String SettingsDB_WEIGHT_OVERHEADPRESS = "overheadPressWeight";
   static const String SettingsDB_WEIGHT_PENDLAYROW = "pendlayRowWeight";
-  static const String SettingsDB_WEIGHT_SKULLCRUSHERS = "skullcrusherWeight";
 
   static const String ExerciseLogDB_EXERCISE = "exercise";
   static const String ExerciseLogDB_WEIGHT_UNIT = "weightUnit";

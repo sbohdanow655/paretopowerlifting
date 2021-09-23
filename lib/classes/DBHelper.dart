@@ -134,10 +134,6 @@ class DBHelper {
         case Constants.SettingsDB_WEIGHT_PENDLAYROW:
           weeklyExercisePrescription.setNextWeight(Exercise.PendlayRow, value);
           break;
-        case Constants.SettingsDB_WEIGHT_SKULLCRUSHERS:
-          weeklyExercisePrescription.setNextWeight(
-              Exercise.Skullcrushers, value);
-          break;
         default:
           break;
       }
