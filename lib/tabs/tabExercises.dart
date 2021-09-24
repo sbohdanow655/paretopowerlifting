@@ -61,18 +61,15 @@ class _ExercisesTabState extends State<ExercisesTab> {
                                     onChanged: (exerciseString) =>
                                         _setSelectedExercise(Constants
                                             .exerciseByString[exerciseString]),
-                                    items: MainExercise.values
+                                    items: Constants.MAP_HOWTO.keys
                                         .map<DropdownMenuItem<String>>(
-                                            (MainExercise mainExercise) {
+                                            (Exercise exercise) {
                                       return DropdownMenuItem<String>(
-                                          value: Constants.exerciseStrings[
-                                              Constants.exerciseByMainExercise[
-                                                  mainExercise]],
+                                          value: Constants
+                                              .exerciseStrings[exercise],
                                           child: Text(
                                               Constants
-                                                  .exerciseStrings[Constants
-                                                      .exerciseByMainExercise[
-                                                  mainExercise]],
+                                                  .exerciseStrings[exercise],
                                               style: TextStyle(
                                                   fontSize: Constants
                                                       .FONTSIZE_TAB_EXERCISES)));

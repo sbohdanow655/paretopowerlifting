@@ -286,18 +286,18 @@ class Constants {
       "2) Step under the bar, placing the bar below your shoulders on your back.",
       "3) Unrack the bar and step back.",
       "4) Flex your knees and hips at the same time and squat down in a controlled descent, pushing your knees outward and not letting your knees slide in front of your toes.",
-      "5) Keep descending until your upper thighs become parallel witt the floor.",
+      "5) Keep descending until your upper thighs become parallel with the floor.",
       "6) Drive up with your hips until your knees lockout."
     ],
     Exercise.BenchPress: [
-      "1) Lay down on the bench, eyes an inch behind the bar, feet on the floor",
+      "1) Lay down on the bench, eyes an inch behind the bar, feet on the floor.",
       "2) Pinch your shoulder blades together to create an arch in your back. Grab the bar with a wide grip and look at a fixed point on the ceiling.",
       "3) Still looking at the point on the ceiling, unrack the bar and hold it directly over your shoulders. Take a deep breathe and hold it during the lift.",
       "4) Lower the bar to your chest and touch your chest.",
       "5) Push the bar up and back over your shoulder joint, then exhale at the top."
     ],
     Exercise.Deadlift: [
-      "1) Place the bar over midfoot",
+      "1) Place the bar over midfoot.",
       "2) Grab the bar without bending your knees.",
       "3) Bend your knees until your shins touch the barbell.",
       "4) Push your chest forward and flatten your back without dropping your hips.",
@@ -313,7 +313,12 @@ class Constants {
       "1) Load the bar on the floor and step up in front of it so it is an inch in front of midfoot.",
       "2) Grab the bar slightly out of shoulder width, leaving your back rounded and bending your knees as little as possible.",
       "3) Flatten your back and pull the bar up to touch your chest in one powerful jerk.",
-      "4) Return the bar back to the ground, back to the starting position an inch in front of midfoot"
+      "4) Return the bar back to the ground, back to the starting position an inch in front of midfoot."
+    ],
+    Exercise.Skullcrushers: [
+      "1) Lay down on a bench, feet on the floor, head at the edge of the bench, with the bar held over your shoulder joint.",
+      "2) Flex your elbows and bring the bar down and behind your head.",
+      "3) Throw the bar back over your head to return to the starting position over your shoulder joint."
     ]
   };
 }
