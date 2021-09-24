@@ -88,20 +88,28 @@ class _WorkoutTabState extends State<WorkoutTab> {
               }
             }),
         RaisedButton(
-            child: Text(Constants.RESET_EXERCISE_PHASES,
-                style: TextStyle(
-                    fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
-            color: Colors.red[400],
-            textColor: Colors.white,
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER),
-              ));
-              _rebuildAllWorkoutDays();
-              setState(() {
-                _weeklyExercisePrescription.resetExercisePhases();
-              });
-            })
+          child: Text(Constants.RESET_EXERCISE_PHASES,
+              style:
+                  TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
+          color: Colors.red[400],
+          textColor: Colors.white,
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER_PRESSED,
+                  style: TextStyle(fontSize: Constants.FONTSIZE_SNACKBAR)),
+            ));
+          },
+          onLongPress: () {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER_LONGPRESSED,
+                  style: TextStyle(fontSize: Constants.FONTSIZE_SNACKBAR)),
+            ));
+            _rebuildAllWorkoutDays();
+            setState(() {
+              _weeklyExercisePrescription.resetExercisePhases();
+            });
+          },
+        )
       ])
     ]));
 

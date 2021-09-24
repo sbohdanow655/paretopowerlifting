@@ -271,7 +271,10 @@ class Constants {
       "You didn't complete the week yet.";
   static const String WORKOUTS_SNACKBAR_ADVANCE =
       "Weights, sets, and reps updated.";
-  static const String WORKOUTS_SNACKBAR_STARTOVER = "Exercise phases reset.";
+  static const String WORKOUTS_SNACKBAR_STARTOVER_LONGPRESSED =
+      "Exercise phases reset.";
+  static const String WORKOUTS_SNACKBAR_STARTOVER_PRESSED =
+      "Hold to reset exercise phases.";
 
   static const String HISTORY_NOHISTORY =
       "There is no history for this exercise yet.";
