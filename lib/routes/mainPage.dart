@@ -64,7 +64,10 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-        appBar: AppBar(title: Text(Constants.TITLE), centerTitle: true),
+        appBar: AppBar(
+            title: Text(Constants.TITLE,
+                style: TextStyle(fontSize: Constants.FONTSIZE_TITLE)),
+            centerTitle: true),
         body: tabViews[currentTabIndex],
         backgroundColor: Constants.BACKGROUND_GREY,
         bottomNavigationBar: BottomNavigationBar(
@@ -75,13 +78,16 @@ class _MainPageState extends State<MainPage> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.fitness_center),
-                  title: Text(Constants.TAB_WORKOUTS)),
+                  title: Text(Constants.TAB_WORKOUTS,
+                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE))),
               BottomNavigationBarItem(
                   icon: Icon(Icons.history),
-                  title: Text(Constants.TAB_HISTORY)),
+                  title: Text(Constants.TAB_HISTORY,
+                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE))),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  title: Text(Constants.TAB_SETTINGS))
+                  title: Text(Constants.TAB_SETTINGS,
+                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE)))
             ]));
   }
 }

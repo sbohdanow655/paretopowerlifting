@@ -648,7 +648,10 @@ class _SettingsTabState extends State<SettingsTab> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 RaisedButton(
-                                    child: Text(Constants.GETTINGSTARTED_TITLE),
+                                    child: Text(Constants.GETTINGSTARTED_TITLE,
+                                        style: TextStyle(
+                                            fontSize: Constants
+                                                .FONTSIZE_GETTINGSTARTED_TITLE)),
                                     color: Colors.blue,
                                     textColor: Colors.white,
                                     onPressed: () {

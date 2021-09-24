@@ -31,7 +31,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
 
   void onFinishWorkoutWeek() {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE),
+      content: Text(Constants.WORKOUTS_SNACKBAR_ADVANCE,
+          style: TextStyle(fontSize: Constants.FONTSIZE_SNACKBAR)),
     ));
     _rebuildAllWorkoutDays();
     setState(() {
@@ -64,7 +65,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
         RaisedButton(
             child: Text(Constants.FINISH_WORKOUT_WEEK,
                 style: TextStyle(
-                    fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
+                  fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON,
+                )),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
@@ -78,7 +80,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
 
               if (weekIsIncomplete) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text(Constants.WORKOUTS_SNACKBAR_INCOMPLETE),
+                  content: Text(Constants.WORKOUTS_SNACKBAR_INCOMPLETE,
+                      style: TextStyle(fontSize: Constants.FONTSIZE_SNACKBAR)),
                 ));
               } else {
                 onFinishWorkoutWeek();

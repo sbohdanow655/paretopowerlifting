@@ -38,22 +38,34 @@ class _GettingStartedState extends State<GettingStarted> {
           ),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_ONE)),
+              child: Text(Constants.GETTINGSTARTED_ONE,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_TWO)),
+              child: Text(Constants.GETTINGSTARTED_TWO,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_THREE)),
+              child: Text(Constants.GETTINGSTARTED_THREE,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_FOUR)),
+              child: Text(Constants.GETTINGSTARTED_FOUR,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_FIVE)),
+              child: Text(Constants.GETTINGSTARTED_FIVE,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_SIX)),
+              child: Text(Constants.GETTINGSTARTED_SIX,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
         ]));
 
     contents.add(header);
@@ -79,14 +91,19 @@ class _GettingStartedState extends State<GettingStarted> {
           ),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.NUTRITION_RECOMMOMENDATIONS)),
+              child: Text(Constants.NUTRITION_RECOMMOMENDATIONS,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
         ]));
 
     contents.add(nutritionRecommendations);
 
     contents.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       RaisedButton(
-          child: Text(Constants.GETTINGSTARTED_START),
+          child: Text(
+            Constants.GETTINGSTARTED_START,
+            style: TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
+          ),
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
@@ -98,7 +115,11 @@ class _GettingStartedState extends State<GettingStarted> {
     ]));
 
     return Scaffold(
-        appBar: AppBar(title: Text(Constants.TITLE), centerTitle: true),
+        appBar: AppBar(
+            title: Text(Constants.TITLE,
+                style: TextStyle(
+                    fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE)),
+            centerTitle: true),
         backgroundColor: Constants.BACKGROUND_GREY,
         body: SingleChildScrollView(
             controller: _scrollController,

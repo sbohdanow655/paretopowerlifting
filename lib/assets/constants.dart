@@ -34,6 +34,8 @@ class Constants {
   static const String tableNameSettings = "Settings";
   static const String tableNameExerciseLogs = "ExerciseLogs";
 
+  static const double FONTSIZE_TITLE = 18;
+  static const double FONTSIZE_SNACKBAR = 18;
   static const double FONTSIZE_GETTINGSTARTED_TITLE = 18;
   static const double FONTSIZE_GETTINGSTARTED_BODY = 18;
   static const double FONTSIZE_TAB_SETTINGS = 18;
