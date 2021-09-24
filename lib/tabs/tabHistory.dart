@@ -54,6 +54,14 @@ class _HistoryTabState extends State<HistoryTab> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                Text(Constants.TAB_HISTORY,
+                                    style: TextStyle(
+                                        fontSize: Constants.FONTSIZE_TAB_TITLE,
+                                        fontWeight: FontWeight.bold))
+                              ]),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 DropdownButton<String>(
                                     value: Constants
                                         .exerciseStrings[_selectedExercise],

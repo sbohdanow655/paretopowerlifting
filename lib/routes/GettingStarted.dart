@@ -36,36 +36,14 @@ class _GettingStartedState extends State<GettingStarted> {
                   ))
             ],
           ),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_ONE,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_TWO,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_THREE,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_FOUR,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_FIVE,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(Constants.GETTINGSTARTED_SIX,
-                  style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
+          Column(
+              children: Constants.GETTINGSTARTED_BODY.map((text) {
+            return Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY)));
+          }).toList()),
         ]));
 
     contents.add(header);

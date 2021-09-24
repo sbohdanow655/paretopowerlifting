@@ -35,6 +35,8 @@ class Constants {
   static const String tableNameExerciseLogs = "ExerciseLogs";
 
   static const double FONTSIZE_TITLE = 18;
+  static const double FONTSIZE_TAB_TITLE = 18;
+
   static const double FONTSIZE_SNACKBAR = 18;
   static const double FONTSIZE_GETTINGSTARTED_TITLE = 18;
   static const double FONTSIZE_GETTINGSTARTED_BODY = 18;
@@ -45,6 +47,7 @@ class Constants {
   static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 18;
   static const double FONTSIZE_TAB_WORKOUTS_BUTTON = 18;
   static const double FONTSIZE_TAB_HISTORY_EXERCISELOG = 18;
+  static const double FONTSIZE_TAB_EXERCISES = 18;
 
   static const double MARGIN_HORIZONTAL = 40;
 
@@ -81,6 +84,7 @@ class Constants {
 
   static const String TAB_WORKOUTS = "Workouts";
   static const String TAB_HISTORY = "History";
+  static const String TAB_EXERCISES = "Exercises";
   static const String TAB_SETTINGS = "Settings";
 
   static const String FORCEFOURDAYSPLIT = "Always 4-Day";
@@ -235,19 +239,14 @@ class Constants {
   static const String DONATE_BUTTON = "Donate to my Patreon";
   static const String GETTINGSTARTED_TITLE = "Getting Started";
 
-  static const String GETTINGSTARTED_ONE =
-      "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the Pendlay Row to a weight you can do 12 reps for.";
-  static const String GETTINGSTARTED_TWO =
-      "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.";
-  static const String GETTINGSTARTED_THREE =
-      "3) 'Advance to Next Week' after you've attempted the week.";
-  static const String GETTINGSTARTED_FOUR =
-      "4) 'Start Over' if you want to reset the exercise phases.";
-  static const String GETTINGSTARTED_FIVE =
-      "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when forced by the setting.";
-
-  static const String GETTINGSTARTED_SIX =
-      "6) You can rest between Squat and Deadlift sets for 1 min to 7-10 min, depending on how far along you are. You can rest for Bench Press, Overhead Press, and Pendlay Row for 1 min to 3-5 minutes.";
+  static const List<String> GETTINGSTARTED_BODY = [
+    "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the Pendlay Row to a weight you can do 12 reps for.",
+    "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.",
+    "3) 'Advance to Next Week' after you've attempted the week.",
+    "4) 'Start Over' if you want to reset the exercise phases.",
+    "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when forced by the setting.",
+    "6) You can rest between Squat and Deadlift sets for 1 min to 7-10 min, depending on how far along you are. You can rest for Bench Press, Overhead Press, and Pendlay Row for 1 min to 3-5 minutes."
+  ];
 
   static const String GETTINGSTARTED_TITLE_NUTRITION =
       "Nutrition Recommendations";
@@ -278,4 +277,43 @@ class Constants {
 
   static const String HISTORY_NOHISTORY =
       "There is no history for this exercise yet.";
+
+  static const String TAB_EXERCISES_PREFIX = "How To ";
+
+  static const Map<Exercise, List<String>> MAP_HOWTO = {
+    Exercise.Squat: [
+      "1) Wrap your hands around the bar, thumbs over it.",
+      "2) Step under the bar, placing the bar below your shoulders on your back.",
+      "3) Unrack the bar and step back.",
+      "4) Flex your knees and hips at the same time and squat down in a controlled descent, pushing your knees outward and not letting your knees slide in front of your toes.",
+      "5) Keep descending until your upper thighs become parallel witt the floor.",
+      "6) Drive up with your hips until your knees lockout."
+    ],
+    Exercise.BenchPress: [
+      "1) Lay down on the bench, eyes an inch behind the bar, feet on the floor",
+      "2) Pinch your shoulder blades together to create an arch in your back. Grab the bar with a wide grip and look at a fixed point on the ceiling.",
+      "3) Still looking at the point on the ceiling, unrack the bar and hold it directly over your shoulders. Take a deep breathe and hold it during the lift.",
+      "4) Lower the bar to your chest and touch your chest.",
+      "5) Push the bar up and back over your shoulder joint, then exhale at the top."
+    ],
+    Exercise.Deadlift: [
+      "1) Place the bar over midfoot",
+      "2) Grab the bar without bending your knees.",
+      "3) Bend your knees until your shins touch the barbell.",
+      "4) Push your chest forward and flatten your back without dropping your hips.",
+      "5) Pull straight up until your knees and hips lockout."
+    ],
+    Exercise.OverheadPress: [
+      "1) Go up to the bar, tilt your hands slightly inwards, and grip the bar at a narrow shoulder width.",
+      "2) Unrack the bar with your elbows slightly in front of the bar.",
+      "3) Press the bar overhead, keeping the bar path as straight as possible, narrowly passing your nose.",
+      "4) Bring the bar back down, moving your head out of the way, returning to the start position with elbows slightly in front of the bar."
+    ],
+    Exercise.PendlayRow: [
+      "1) Load the bar on the floor and step up in front of it so it is an inch in front of midfoot.",
+      "2) Grab the bar slightly out of shoulder width, leaving your back rounded and bending your knees as little as possible.",
+      "3) Flatten your back and pull the bar up to touch your chest in one powerful jerk.",
+      "4) Return the bar back to the ground, back to the starting position an inch in front of midfoot"
+    ]
+  };
 }

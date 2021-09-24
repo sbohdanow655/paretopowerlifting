@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/tabs/tabExercises.dart';
 import 'package:pareto_powerlifting/tabs/tabHistory.dart';
 import '../assets/constants.dart';
 import '../tabs/tabWorkout.dart';
@@ -20,7 +21,7 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> tabViews = [];
 
-  int currentTabIndex = 2;
+  int currentTabIndex = 3;
 
   void navigateToTab(int index) {
     setState(() {
@@ -40,6 +41,7 @@ class _MainPageState extends State<MainPage> {
           tabViews = [
             WorkoutTab(weeklyExercisePrescription),
             HistoryTab(),
+            ExercisesTab(),
             SettingsTab(weeklyExercisePrescription)
           ];
 
@@ -71,6 +73,7 @@ class _MainPageState extends State<MainPage> {
         body: tabViews[currentTabIndex],
         backgroundColor: Constants.BACKGROUND_GREY,
         bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
             backgroundColor: Colors.blue,
             currentIndex: currentTabIndex,
@@ -79,15 +82,22 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.fitness_center),
                   title: Text(Constants.TAB_WORKOUTS,
-                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE))),
+                      style:
+                          TextStyle(fontSize: Constants.FONTSIZE_TAB_TITLE))),
               BottomNavigationBarItem(
                   icon: Icon(Icons.history),
                   title: Text(Constants.TAB_HISTORY,
-                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE))),
+                      style:
+                          TextStyle(fontSize: Constants.FONTSIZE_TAB_TITLE))),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.accessibility),
+                  title: Text(Constants.TAB_EXERCISES,
+                      style:
+                          TextStyle(fontSize: Constants.FONTSIZE_TAB_TITLE))),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   title: Text(Constants.TAB_SETTINGS,
-                      style: TextStyle(fontSize: Constants.FONTSIZE_TITLE)))
+                      style: TextStyle(fontSize: Constants.FONTSIZE_TAB_TITLE)))
             ]));
   }
 }
