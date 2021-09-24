@@ -34,16 +34,14 @@ class Constants {
   static const String tableNameSettings = "Settings";
   static const String tableNameExerciseLogs = "ExerciseLogs";
 
-  static const double FONTSIZE_TITLE = 50;
-  static const double FONTSIZE_BUTTON = 30;
   static const double FONTSIZE_GETTINGSTARTED_TITLE = 18;
-  static const double FONTSIZE_GETTINGSTARTED_BODY = 15;
-  static const double FONTSIZE_TAB_SETTINGS = 16;
-  static const double FONTSIZE_TAB_WORKOUTS_WEEKDAY = 22;
-  static const double FONTSIZE_TAB_WORKOUTS_EXERCISE = 22;
-  static const double FONTSIZE_TAB_WORKOUTS_PRESCRIPTION = 22;
-  static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 22;
-  static const double FONTSIZE_TAB_WORKOUTS_BUTTON = 22;
+  static const double FONTSIZE_GETTINGSTARTED_BODY = 18;
+  static const double FONTSIZE_TAB_SETTINGS = 18;
+  static const double FONTSIZE_TAB_WORKOUTS_WEEKDAY = 18;
+  static const double FONTSIZE_TAB_WORKOUTS_EXERCISE = 18;
+  static const double FONTSIZE_TAB_WORKOUTS_PRESCRIPTION = 18;
+  static const double FONTSIZE_TAB_WORKOUTS_PASSFAIL = 18;
+  static const double FONTSIZE_TAB_WORKOUTS_BUTTON = 18;
   static const double FONTSIZE_TAB_HISTORY_EXERCISELOG = 18;
 
   static const double MARGIN_HORIZONTAL = 40;
