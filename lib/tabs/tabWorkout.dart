@@ -38,6 +38,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     setState(() {
       _weeklyExercisePrescription.advanceWeek();
     });
+    _scrollToTop();
   }
 
   void _setIncomplete(Weekday workdayWeekday, bool workoutDayIncomplete) {
@@ -55,6 +56,11 @@ class _WorkoutTabState extends State<WorkoutTab> {
     setState(() {
       _workoutTabList = workoutTabList;
     });
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(_scrollController.position.minScrollExtent,
+        duration: Duration(seconds: 2), curve: Curves.ease);
   }
 
   @override
@@ -108,6 +114,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
             setState(() {
               _weeklyExercisePrescription.resetExercisePhases();
             });
+            _scrollToTop();
           },
         )
       ])
