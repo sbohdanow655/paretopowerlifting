@@ -28,10 +28,9 @@ class _ExercisesTabState extends State<ExercisesTab> {
         child: Container(
             color: Constants.BACKGROUND_GREY,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(
                     alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     color: Colors.white,
                     child: Column(
@@ -78,17 +77,20 @@ class _ExercisesTabState extends State<ExercisesTab> {
                           Column(
                               children: Constants.MAP_HOWTO[_selectedExercise]
                                   .map((String text) {
-                            return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 15),
-                                child: Container(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      text,
-                                      style: TextStyle(
-                                          fontSize:
-                                              Constants.FONTSIZE_TAB_EXERCISES),
-                                    )));
+                            return Column(children: [
+                              Divider(color: Constants.DIVIDER_GREY),
+                              Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Container(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        text,
+                                        style: TextStyle(
+                                            fontSize: Constants
+                                                .FONTSIZE_TAB_EXERCISES),
+                                      )))
+                            ]);
                           }).toList())
                         ])))));
   }

@@ -26,8 +26,12 @@ class ExerciseLog extends SingleExercisePrescription {
     return singleExercisePrescriptionWithPassFail;
   }
 
+  String toExerciseString() {
+    return super.toExerciseString();
+  }
+
   String toPrescriptionString() {
-    return super.toString();
+    return super.toPrescriptionString();
   }
 
   get passFailString {

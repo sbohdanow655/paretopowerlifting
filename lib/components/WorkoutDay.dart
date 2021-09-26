@@ -54,7 +54,8 @@ class WorkoutDayState extends State<WorkoutDay> {
         Constants.weekdayStrings[_weekday],
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY),
+            fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
+            color: Constants.PRIMARY_TEXT),
       )
     ]));
 
@@ -68,15 +69,17 @@ class WorkoutDayState extends State<WorkoutDay> {
       List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
+        columnList.add(Divider(color: Constants.DIVIDER_GREY));
         columnList.add(Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+            padding: EdgeInsets.only(top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(tuple.toString(),
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
-                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY))
+                        fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
+                        color: Constants.PRIMARY_TEXT))
               ],
             )));
       } else {
@@ -109,10 +112,12 @@ class WorkoutDayState extends State<WorkoutDay> {
             children: [
               Text(exerciseString,
                   style: TextStyle(
-                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_EXERCISE)),
+                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_EXERCISE,
+                      color: Constants.PRIMARY_TEXT)),
               Text(prescriptionString,
                   style: TextStyle(
-                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PRESCRIPTION)),
+                      fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PRESCRIPTION,
+                      color: Constants.SECONDARY_TEXT)),
             ]);
 
         rowItems.add(prescriptionColumn);
@@ -125,7 +130,7 @@ class WorkoutDayState extends State<WorkoutDay> {
           rowItems.add(DropdownButton<String>(
               value: singlePassFail,
               style: TextStyle(
-                  color: Colors.black,
+                  color: Constants.PRIMARY_TEXT,
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
               onChanged: (val) {
                 _setPassFailMap(tuple.exercise, val);
@@ -136,6 +141,10 @@ class WorkoutDayState extends State<WorkoutDay> {
                     value: value, child: Text(value));
               }).toList()));
         }
+      }
+
+      if (tuple.exercise != Exercise.Rest) {
+        columnList.add(Divider(color: Constants.DIVIDER_GREY));
       }
 
       columnList.add(Padding(

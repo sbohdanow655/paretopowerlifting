@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
-            backgroundColor: Colors.blue,
+            backgroundColor: Constants.LIGHT_PRIMARY,
             currentIndex: currentTabIndex,
             onTap: navigateToTab,
             items: [

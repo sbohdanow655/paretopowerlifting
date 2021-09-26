@@ -42,10 +42,12 @@ class SingleExercisePrescription {
     _numReps = numReps;
   }
 
-  String toString() {
-    return Constants.exerciseStrings[exercise] +
-        " " +
-        weight +
+  String toExerciseString() {
+    return Constants.exerciseStrings[exercise];
+  }
+
+  String toPrescriptionString() {
+    return weight +
         _weightUnit +
         " " +
         _numSets.toString() +

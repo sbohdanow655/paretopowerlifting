@@ -73,7 +73,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
                 style: TextStyle(
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON,
                 )),
-            color: Colors.blue,
+            color: Constants.LIGHT_PRIMARY,
             textColor: Colors.white,
             onPressed: () {
               bool weekIsIncomplete = false;
@@ -123,7 +123,6 @@ class _WorkoutTabState extends State<WorkoutTab> {
     return SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             color: Constants.BACKGROUND_GREY,
             child: Column(
                 key: UniqueKey(),

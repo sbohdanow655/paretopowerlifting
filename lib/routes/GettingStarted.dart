@@ -82,7 +82,7 @@ class _GettingStartedState extends State<GettingStarted> {
             Constants.GETTINGSTARTED_START,
             style: TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
           ),
-          color: Colors.blue,
+          color: Constants.LIGHT_PRIMARY,
           textColor: Colors.white,
           onPressed: () {
             Navigator.pushReplacementNamed(
@@ -102,7 +102,7 @@ class _GettingStartedState extends State<GettingStarted> {
         body: SingleChildScrollView(
             controller: _scrollController,
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 color: Constants.BACKGROUND_GREY,
                 child: Column(
                     key: UniqueKey(),

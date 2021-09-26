@@ -37,14 +37,53 @@ class _HistoryTabState extends State<HistoryTab> {
 
   @override
   Widget build(BuildContext context) {
+    Widget placeholderNoHistory = Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+        child: Text(Constants.HISTORY_NOHISTORY,
+            style: TextStyle(
+                fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
+
+    Widget exerciseLogsColumn = Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: _exerciseLogList.map((exerciseLog) {
+          return Column(children: [
+            Divider(color: Constants.DIVIDER_GREY),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(exerciseLog.toExerciseString(),
+                            style: TextStyle(
+                                fontSize:
+                                    Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
+                                color: Constants.PRIMARY_TEXT)),
+                        Text(" " + exerciseLog.toPrescriptionString(),
+                            style: TextStyle(
+                                fontSize:
+                                    Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
+                                color: Constants.SECONDARY_TEXT)),
+                      ],
+                    ),
+                    Text(exerciseLog.passFailString,
+                        style: TextStyle(
+                            fontSize:
+                                Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG))
+                  ],
+                ))
+          ]);
+        }).toList());
+
     return SingleChildScrollView(
         child: Container(
             color: Constants.BACKGROUND_GREY,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(
                     alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     color: Colors.white,
                     child: Column(
@@ -86,41 +125,9 @@ class _HistoryTabState extends State<HistoryTab> {
                                                       .FONTSIZE_TAB_HISTORY_EXERCISELOG)));
                                     }).toList())
                               ]),
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: _exerciseLogList.length == 0
-                                  ? [
-                                      Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5, vertical: 15),
-                                          child: Text(
-                                            Constants.HISTORY_NOHISTORY,
-                                            style: TextStyle(
-                                                fontSize: Constants
-                                                    .FONTSIZE_TAB_HISTORY_EXERCISELOG),
-                                          ))
-                                    ]
-                                  : _exerciseLogList.map((exerciseLog) {
-                                      return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5, vertical: 15),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                  exerciseLog
-                                                      .toPrescriptionString(),
-                                                  style: TextStyle(
-                                                      fontSize: Constants
-                                                          .FONTSIZE_TAB_HISTORY_EXERCISELOG)),
-                                              Text(exerciseLog.passFailString,
-                                                  style: TextStyle(
-                                                      fontSize: Constants
-                                                          .FONTSIZE_TAB_HISTORY_EXERCISELOG))
-                                            ],
-                                          ));
-                                    }).toList()),
+                          _exerciseLogList.length == 0
+                              ? placeholderNoHistory
+                              : exerciseLogsColumn
                         ])))));
   }
 }
