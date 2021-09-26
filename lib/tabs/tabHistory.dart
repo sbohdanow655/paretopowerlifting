@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
-import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
 
 class HistoryTab extends StatefulWidget {
@@ -12,19 +11,19 @@ class HistoryTab extends StatefulWidget {
 }
 
 class _HistoryTabState extends State<HistoryTab> {
-  Exercise _selectedExercise = Exercise.Squat;
+  MainExercise _selectedExercise = MainExercise.All;
   List<ExerciseLog> _exerciseLogList = [];
 
-  void _setSelectedExercise(Exercise exercise) async {
-    await _getExercisePrescriptions(exercise);
+  void _setSelectedExercise(MainExercise mainExercise) async {
+    await _getExercisePrescriptions(mainExercise);
     setState(() {
-      _selectedExercise = exercise;
+      _selectedExercise = mainExercise;
     });
   }
 
-  Future _getExercisePrescriptions(Exercise exercise) async {
+  Future _getExercisePrescriptions(MainExercise mainExercise) async {
     List<ExerciseLog> exerciseLogList =
-        await DBHelper.getExerciseLogsFromDB(exercise);
+        await DBHelper.getExerciseLogs(mainExercise);
     setState(() {
       _exerciseLogList = exerciseLogList;
     });
@@ -64,26 +63,24 @@ class _HistoryTabState extends State<HistoryTab> {
                               children: [
                                 DropdownButton<String>(
                                     value: Constants
-                                        .exerciseStrings[_selectedExercise],
+                                        .mainExerciseStrings[_selectedExercise],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize:
                                             Constants.FONTSIZE_TAB_SETTINGS),
-                                    onChanged: (exerciseString) =>
-                                        _setSelectedExercise(Constants
-                                            .exerciseByString[exerciseString]),
+                                    onChanged: (mainExerciseString) =>
+                                        _setSelectedExercise(
+                                            Constants.mainExerciseByString[
+                                                mainExerciseString]),
                                     items: MainExercise.values
                                         .map<DropdownMenuItem<String>>(
                                             (MainExercise mainExercise) {
                                       return DropdownMenuItem<String>(
-                                          value: Constants.exerciseStrings[
-                                              Constants.exerciseByMainExercise[
-                                                  mainExercise]],
+                                          value: Constants.mainExerciseStrings[
+                                              mainExercise],
                                           child: Text(
-                                              Constants
-                                                  .exerciseStrings[Constants
-                                                      .exerciseByMainExercise[
-                                                  mainExercise]],
+                                              Constants.mainExerciseStrings[
+                                                  mainExercise],
                                               style: TextStyle(
                                                   fontSize: Constants
                                                       .FONTSIZE_TAB_HISTORY_EXERCISELOG)));

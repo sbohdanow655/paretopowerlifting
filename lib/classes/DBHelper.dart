@@ -12,16 +12,21 @@ class DBHelper {
     ExerciseLogModel.insertExerciseLog(singleExercisePrescriptionWithPassFail);
   }
 
-  static Future<List<ExerciseLog>> getExerciseLogsFromDB(
-      Exercise exercise) async {
+  static Future<List<ExerciseLog>> getExerciseLogs(
+      MainExercise mainExercise) async {
+    bool getAllLogs = mainExercise == MainExercise.All;
+
     List<ExerciseLog> exerciseLogList = [];
 
-    List<Map> exerciseLogsMapList =
-        await ExerciseLogModel.getLogsByExercise(exercise);
+    List<Map> exerciseLogsMapList = getAllLogs
+        ? await ExerciseLogModel.getAllLogs()
+        : await ExerciseLogModel.getLogsByExercise(
+            Constants.exerciseByMainExercise[mainExercise]);
 
     exerciseLogsMapList.forEach((exerciseLogsMap) {
       ExerciseLog exerciseLog;
 
+      Exercise exercise;
       String weight;
       String weightUnit;
       int numSets;

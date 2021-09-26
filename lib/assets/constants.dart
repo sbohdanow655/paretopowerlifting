@@ -25,7 +25,14 @@ enum Exercise {
   Rest
 }
 
-enum MainExercise { Squat, BenchPress, Deadlift, OverheadPress, PendlayRow }
+enum MainExercise {
+  All,
+  Squat,
+  BenchPress,
+  Deadlift,
+  OverheadPress,
+  PendlayRow
+}
 
 class Constants {
   static const String EMPTYSTRING = "";
@@ -103,6 +110,7 @@ class Constants {
   static const String SELECTWORKOUTDAY_LOWERBODY_TWO = "Lower Day 2";
   static const String SELECTWORKOUTDAY_UPPERBODY_TWO = "Upper Day 2";
 
+  static const String EXERCISE_ALL = "All";
   static const String EXERCISE_SQUAT = "Squat";
   static const String EXERCISE_BENCHPRESS = "Bench Press";
   static const String EXERCISE_OVERHEADPRESS = "Overhead Press";
@@ -167,6 +175,14 @@ class Constants {
     Exercise.Rest: EXERCISE_REST
   };
 
+  static const Map<MainExercise, String> mainExerciseStrings = {
+    MainExercise.All: EXERCISE_ALL,
+    MainExercise.Squat: EXERCISE_SQUAT,
+    MainExercise.BenchPress: EXERCISE_BENCHPRESS,
+    MainExercise.Deadlift: EXERCISE_DEADLIFT,
+    MainExercise.OverheadPress: EXERCISE_OVERHEADPRESS,
+    MainExercise.PendlayRow: EXERCISE_PENDLAYROW,
+  };
   static Map<String, Exercise> exerciseByString = {
     EXERCISE_SQUAT: Exercise.Squat,
     EXERCISE_BENCHPRESS: Exercise.BenchPress,
@@ -179,6 +195,14 @@ class Constants {
     EXERCISE_REST: Exercise.Rest
   };
 
+  static Map<String, MainExercise> mainExerciseByString = {
+    EXERCISE_ALL: MainExercise.All,
+    EXERCISE_SQUAT: MainExercise.Squat,
+    EXERCISE_BENCHPRESS: MainExercise.BenchPress,
+    EXERCISE_DEADLIFT: MainExercise.Deadlift,
+    EXERCISE_OVERHEADPRESS: MainExercise.OverheadPress,
+    EXERCISE_PENDLAYROW: MainExercise.PendlayRow
+  };
   static Map<String, Exercise> exerciseByToString = {
     Exercise.Squat.toString(): Exercise.Squat,
     Exercise.BenchPress.toString(): Exercise.BenchPress,

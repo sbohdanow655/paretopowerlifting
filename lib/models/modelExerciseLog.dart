@@ -58,4 +58,20 @@ class ExerciseLogModel {
 
     return [];
   }
+
+  static Future<List<Map>> getAllLogs() async {
+    Database paretoPowerliftingDB = await Model.openDB();
+
+    try {
+      List<Map> exerciseLogsMapList = await paretoPowerliftingDB.rawQuery(
+          'SELECT * FROM ' +
+              Constants.tableNameExerciseLogs +
+              ' ORDER BY id DESC');
+      return exerciseLogsMapList;
+    } catch (e) {
+      print(e);
+    }
+
+    return [];
+  }
 }
