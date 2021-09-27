@@ -641,21 +641,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                           }).toList()),
                                     ]),
                               ])),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RaisedButton(
-                                child: Text(Constants.GETTINGSTARTED_TITLE,
-                                    style: TextStyle(
-                                        fontSize: Constants
-                                            .FONTSIZE_GETTINGSTARTED_TITLE)),
-                                color: Constants.LIGHT_PRIMARY,
-                                textColor: Colors.white,
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, Constants.ROUTE_GETTINGSTARTED);
-                                })
-                          ])
                     ]))));
   }
 }

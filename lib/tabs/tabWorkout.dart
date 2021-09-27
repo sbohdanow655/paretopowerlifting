@@ -47,6 +47,19 @@ class _WorkoutTabState extends State<WorkoutTab> {
 
   void _rebuildAllWorkoutDays() {
     List<Widget> workoutTabList = [];
+    workoutTabList
+        .add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      RaisedButton(
+          child: Text(Constants.GETTINGSTARTED_TITLE,
+              style:
+                  TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE)),
+          color: Constants.LIGHT_PRIMARY,
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.pushReplacementNamed(
+                context, Constants.ROUTE_GETTINGSTARTED);
+          })
+    ]));
     Weekday.values.forEach((weekday) {
       WorkoutDay workoutDay = new WorkoutDay(_weeklyExercisePrescription,
           weekday, _setIncomplete, _rebuildAllWorkoutDays);
