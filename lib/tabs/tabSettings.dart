@@ -190,81 +190,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                             horizontal: 5, vertical: 15),
                                         child: Text(
                                             Constants
-                                                .SETTINGS_HEADER_OPTIONALEXERCISES,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: Constants
-                                                    .FONTSIZE_TAB_SETTINGS)),
-                                      ),
-                                    ]),
-                                Divider(color: Constants.DIVIDER_GREY),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 15),
-                                        child: Text(
-                                            Constants.ENABLE_HIITCONDITIONING,
-                                            style: TextStyle(
-                                                fontSize: Constants
-                                                    .FONTSIZE_TAB_SETTINGS)),
-                                      ),
-                                      Checkbox(
-                                          checkColor: Colors.white,
-                                          fillColor:
-                                              MaterialStateProperty.resolveWith(
-                                                  (val) =>
-                                                      Constants.LIGHT_PRIMARY),
-                                          value: _weeklyExercisePrescription
-                                              .enableHIITConditioning,
-                                          onChanged: (bool value) =>
-                                              setEnableHIITConditioning(value))
-                                    ]),
-                                Divider(color: Constants.DIVIDER_GREY),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 15),
-                                        child: Text(Constants.ENABLE_CURLS,
-                                            style: TextStyle(
-                                                fontSize: Constants
-                                                    .FONTSIZE_TAB_SETTINGS)),
-                                      ),
-                                      Checkbox(
-                                          checkColor: Colors.white,
-                                          fillColor:
-                                              MaterialStateProperty.resolveWith(
-                                                  (val) =>
-                                                      Constants.LIGHT_PRIMARY),
-                                          value: _weeklyExercisePrescription
-                                              .enableCurls,
-                                          onChanged: (bool value) =>
-                                              setEnableCurls(value))
-                                    ])
-                              ])),
-                      Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          color: Colors.white,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 15),
-                                        child: Text(
-                                            Constants
                                                 .SETTINGS_HEADER_FULLBODYWORKOUTDAYS,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -474,7 +399,82 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.UpperBody2,
                                           _weeklyExercisePrescription)
                                     ]),
-                              ]))
+                              ])),
+                      Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          color: Colors.white,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 15),
+                                        child: Text(
+                                            Constants
+                                                .SETTINGS_HEADER_OPTIONALEXERCISES,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: Constants
+                                                    .FONTSIZE_TAB_SETTINGS)),
+                                      ),
+                                    ]),
+                                Divider(color: Constants.DIVIDER_GREY),
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 15),
+                                        child: Text(
+                                            Constants.ENABLE_HIITCONDITIONING,
+                                            style: TextStyle(
+                                                fontSize: Constants
+                                                    .FONTSIZE_TAB_SETTINGS)),
+                                      ),
+                                      Checkbox(
+                                          checkColor: Colors.white,
+                                          fillColor:
+                                              MaterialStateProperty.resolveWith(
+                                                  (val) =>
+                                                      Constants.LIGHT_PRIMARY),
+                                          value: _weeklyExercisePrescription
+                                              .enableHIITConditioning,
+                                          onChanged: (bool value) =>
+                                              setEnableHIITConditioning(value))
+                                    ]),
+                                Divider(color: Constants.DIVIDER_GREY),
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 15),
+                                        child: Text(Constants.ENABLE_CURLS,
+                                            style: TextStyle(
+                                                fontSize: Constants
+                                                    .FONTSIZE_TAB_SETTINGS)),
+                                      ),
+                                      Checkbox(
+                                          checkColor: Colors.white,
+                                          fillColor:
+                                              MaterialStateProperty.resolveWith(
+                                                  (val) =>
+                                                      Constants.LIGHT_PRIMARY),
+                                          value: _weeklyExercisePrescription
+                                              .enableCurls,
+                                          onChanged: (bool value) =>
+                                              setEnableCurls(value))
+                                    ])
+                              ])),
                     ]))));
   }
 }
