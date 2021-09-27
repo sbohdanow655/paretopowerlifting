@@ -272,12 +272,12 @@ class Constants {
   static const String GETTINGSTARTED_TITLE = "Getting Started";
 
   static const List<String> GETTINGSTARTED_BODY = [
-    "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR. Set the Pendlay Row to a weight you can do 12 reps for.",
+    "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR.",
     "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.",
     "3) 'Advance to Next Week' after you've attempted the week.",
     "4) 'Start Over' if you want to reset the exercise phases.",
     "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when the 'Always 4-day' setting is selected.",
-    "6) You can rest between Squat and Deadlift sets for 1 min to 7-10 min, depending on how far along you are. You can rest for Bench Press, Overhead Press, and Pendlay Row for 1 min to 3-5 minutes."
+    "6) Rest between sets as long as you need."
   ];
 
   static const String GETTINGSTARTED_TITLE_NUTRITION =
