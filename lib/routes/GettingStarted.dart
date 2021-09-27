@@ -100,6 +100,7 @@ class _GettingStartedState extends State<GettingStarted> {
                   ))
             ],
           ),
+          Divider(color: Constants.DIVIDER_GREY),
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(Constants.NUTRITION_RECOMMOMENDATIONS,
