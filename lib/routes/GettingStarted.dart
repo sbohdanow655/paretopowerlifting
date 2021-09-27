@@ -28,22 +28,25 @@ class _GettingStartedState extends State<GettingStarted> {
             children: [
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    Constants.GETTINGSTARTED_TITLE,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
-                  ))
+                  child: Text(Constants.GETTINGSTARTED_TITLE,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE,
+                          color: Constants.PRIMARY_TEXT)))
             ],
           ),
           Column(
               children: Constants.GETTINGSTARTED_BODY.map((text) {
-            return Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Text(text,
-                    style: TextStyle(
-                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY)));
-          }).toList()),
+            return Column(children: [
+              Divider(color: Constants.DIVIDER_GREY),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(text,
+                      style: TextStyle(
+                          fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,
+                          color: Constants.PRIMARY_TEXT)))
+            ]);
+          }).toList())
         ]));
 
     contents.add(header);
@@ -63,7 +66,8 @@ class _GettingStartedState extends State<GettingStarted> {
                     Constants.GETTINGSTARTED_TITLE_NUTRITION,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
+                        fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE,
+                        color: Constants.PRIMARY_TEXT),
                   ))
             ],
           ),
@@ -71,7 +75,8 @@ class _GettingStartedState extends State<GettingStarted> {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(Constants.NUTRITION_RECOMMOMENDATIONS,
                   style: TextStyle(
-                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY))),
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,
+                      color: Constants.PRIMARY_TEXT)))
         ]));
 
     contents.add(nutritionRecommendations);
