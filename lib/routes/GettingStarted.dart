@@ -17,7 +17,36 @@ class _GettingStartedState extends State<GettingStarted> {
   Widget build(BuildContext context) {
     List<Widget> contents = [];
 
-    Container header = Container(
+    Container missionStatement = Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        color: Colors.white,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(Constants.MISSIONSTATEMENT_TITLE,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE,
+                          color: Constants.PRIMARY_TEXT))),
+            ],
+          ),
+          Divider(color: Constants.DIVIDER_GREY),
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(Constants.MISSIONSTATEMENT_BODY,
+                  style: TextStyle(
+                      fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,
+                      color: Constants.PRIMARY_TEXT)))
+        ]));
+
+    contents.add(missionStatement);
+
+    Container gettingStarted = Container(
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -49,7 +78,7 @@ class _GettingStartedState extends State<GettingStarted> {
           }).toList())
         ]));
 
-    contents.add(header);
+    contents.add(gettingStarted);
 
     Container nutritionRecommendations = Container(
         alignment: Alignment.center,
