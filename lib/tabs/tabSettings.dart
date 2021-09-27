@@ -38,12 +38,6 @@ class _SettingsTabState extends State<SettingsTab> {
     });
   }
 
-  void setMicroplates(val) {
-    setState(() {
-      _weeklyExercisePrescription.haveMicroplates = val;
-    });
-  }
-
   void setWeightUnit(val) {
     setState(() {
       _weeklyExercisePrescription.weightUnit = val;
@@ -95,30 +89,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                                 fontSize: Constants
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
-                                    ]),
-                                Divider(color: Constants.DIVIDER_GREY),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 15),
-                                        child: Text(Constants.USE_MICROPLATES,
-                                            style: TextStyle(
-                                                fontSize: Constants
-                                                    .FONTSIZE_TAB_SETTINGS)),
-                                      ),
-                                      Checkbox(
-                                          checkColor: Colors.white,
-                                          fillColor:
-                                              MaterialStateProperty.resolveWith(
-                                                  (val) =>
-                                                      Constants.LIGHT_PRIMARY),
-                                          value: _weeklyExercisePrescription
-                                              .haveMicroplates,
-                                          onChanged: (bool value) =>
-                                              setMicroplates(value))
                                     ]),
                                 Divider(color: Constants.DIVIDER_GREY),
                                 Row(
