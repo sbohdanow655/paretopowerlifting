@@ -4,8 +4,7 @@ import '../assets/constants.dart';
 import 'modelDB.dart';
 
 class ExerciseLogModel {
-  static void insertExerciseLog(
-      ExerciseLog singleExercisePrescriptionWithPassFail) async {
+  static void insertExerciseLog(ExerciseLog exerciseLog) async {
     Database paretoPowerliftingDB = await Model.openDB();
 
     await paretoPowerliftingDB.rawQuery('INSERT INTO ' +
@@ -22,20 +21,23 @@ class ExerciseLogModel {
         Constants.ExerciseLogDB_REPS +
         ', ' +
         Constants.ExerciseLogDB_DIDPASS +
+        ', ' +
+        Constants.ExerciseLogDB_DATESTRING +
         ') ' +
         'VALUES(' +
-        Model.wrapString(
-            singleExercisePrescriptionWithPassFail.exercise.toString()) +
+        Model.wrapString(exerciseLog.exercise.toString()) +
         ', ' +
-        Model.wrapString(singleExercisePrescriptionWithPassFail.weightUnit) +
+        Model.wrapString(exerciseLog.weightUnit) +
         ', ' +
-        Model.wrapString(singleExercisePrescriptionWithPassFail.weight) +
+        Model.wrapString(exerciseLog.weight) +
         ', ' +
-        singleExercisePrescriptionWithPassFail.numSets.toString() +
+        exerciseLog.numSets.toString() +
         ', ' +
-        singleExercisePrescriptionWithPassFail.numReps.toString() +
+        exerciseLog.numReps.toString() +
         ', ' +
-        (singleExercisePrescriptionWithPassFail.didPass ? '1' : '0') +
+        (exerciseLog.didPass ? '1' : '0') +
+        ', ' +
+        Model.wrapString(exerciseLog.savedDateString) +
         ');');
   }
 

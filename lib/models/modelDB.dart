@@ -74,7 +74,9 @@ class Model {
             Constants.ExerciseLogDB_REPS +
             ' INTEGER, ' +
             Constants.ExerciseLogDB_DIDPASS +
-            ' BIT) ');
+            ' BIT, ' +
+            Constants.ExerciseLogDB_DATESTRING +
+            ' TEXT)');
       });
 
       paretoPowerliftingDB.transaction((txn) async {

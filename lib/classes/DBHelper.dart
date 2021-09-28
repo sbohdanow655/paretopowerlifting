@@ -7,9 +7,8 @@ import '../models/modelSettings.dart';
 import 'PassFail.dart';
 
 class DBHelper {
-  static void insertExerciseLog(
-      ExerciseLog singleExercisePrescriptionWithPassFail) {
-    ExerciseLogModel.insertExerciseLog(singleExercisePrescriptionWithPassFail);
+  static void insertExerciseLog(ExerciseLog exerciseLog) {
+    ExerciseLogModel.insertExerciseLog(exerciseLog);
   }
 
   static Future<List<ExerciseLog>> getExerciseLogs(
@@ -32,6 +31,7 @@ class DBHelper {
       int numSets;
       int numReps;
       bool didPass;
+      String savedDateString;
 
       exerciseLogsMap.forEach((dbColumn, value) {
         switch (dbColumn) {
@@ -53,12 +53,15 @@ class DBHelper {
           case Constants.ExerciseLogDB_DIDPASS:
             didPass = value == 1;
             break;
+          case Constants.ExerciseLogDB_DATESTRING:
+            savedDateString = value;
+            break;
           default:
             break;
         }
       });
-      exerciseLog =
-          ExerciseLog(exercise, weight, weightUnit, numSets, numReps, didPass);
+      exerciseLog = ExerciseLog(exercise, weight, weightUnit, numSets, numReps,
+          didPass, savedDateString);
 
       exerciseLogList.add(exerciseLog);
     });

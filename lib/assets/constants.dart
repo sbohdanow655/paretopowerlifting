@@ -261,6 +261,7 @@ class Constants {
   static const String ExerciseLogDB_SETS = "numSets";
   static const String ExerciseLogDB_REPS = "numReps";
   static const String ExerciseLogDB_DIDPASS = "didPass";
+  static const String ExerciseLogDB_DATESTRING = "dateString";
 
   static const String DONATE_BUTTON = "Donate to my Patreon";
 
@@ -373,4 +374,6 @@ class Constants {
       "3) Throw the bar back over your head to return to the starting position over your shoulder joint."
     ]
   };
+
+  static const String DATESTRING_PREFIX_WEEKOF = "Week of ";
 }

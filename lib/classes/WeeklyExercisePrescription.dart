@@ -910,7 +910,7 @@ class WeeklyExercisePrescription {
     _prescriptionCache = {};
   }
 
-  void _savePrescriptionsAndPassFailsToDB() {
+  void _saveExerciseLogToDB(DateTime savedDateTime) {
     _prescriptionCache
         .forEach((Weekday weekday, IDailyPrescription dailyPrescription) {
       if (dailyPrescription.runtimeType == DailyExercisePrescription) {
@@ -922,10 +922,10 @@ class WeeklyExercisePrescription {
           bool didPass = passFail == Constants.PASS;
           tupleList.forEach((tuple) {
             if (tuple.exercise.toString() == exerciseString) {
-              ExerciseLog prescription =
+              ExerciseLog exerciseLog =
                   ExerciseLog.fromSingleExercisePrescription(
-                      tuple.singleExercisePrescription, didPass);
-              DBHelper.insertExerciseLog(prescription);
+                      tuple.singleExercisePrescription, didPass, savedDateTime);
+              DBHelper.insertExerciseLog(exerciseLog);
             }
           });
         });
@@ -934,7 +934,7 @@ class WeeklyExercisePrescription {
   }
 
   void advanceWeek() {
-    _savePrescriptionsAndPassFailsToDB();
+    _saveExerciseLogToDB(DateTime.now());
     _emptyPrescriptionCache();
     _advancePhases();
     _advanceWeights();

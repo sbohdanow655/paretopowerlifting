@@ -43,14 +43,32 @@ class _HistoryTabState extends State<HistoryTab> {
             style: TextStyle(
                 fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
 
+    String currentDateString = "";
+
     Widget exerciseLogsColumn = Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: _exerciseLogList.map((exerciseLog) {
-          return Column(children: [
-            Divider(color: Constants.DIVIDER_GREY),
-            Padding(
+          List<Widget> logColumnChildren = [];
+
+          if (currentDateString != exerciseLog.savedDateString) {
+            currentDateString = exerciseLog.savedDateString;
+            logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
+            logColumnChildren.add(Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
+                      style: TextStyle(
+                          fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
+                          color: Constants.PRIMARY_TEXT,
+                          fontWeight: FontWeight.bold))
+                ])));
+          }
+
+          logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
+          logColumnChildren.add(Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
@@ -72,9 +90,9 @@ class _HistoryTabState extends State<HistoryTab> {
                         style: TextStyle(
                             fontSize:
                                 Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG))
-                  ],
-                ))
-          ]);
+                  ])));
+
+          return Column(children: logColumnChildren);
         }).toList());
 
     return SingleChildScrollView(
