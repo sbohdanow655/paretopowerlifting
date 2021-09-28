@@ -16,7 +16,6 @@ class WeeklyExercisePrescription {
 
   set squatPhase(val) {
     _phases.squat = val;
-    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, val);
   }
 
   get squatPhase {
@@ -25,7 +24,6 @@ class WeeklyExercisePrescription {
 
   set benchPressPhase(val) {
     _phases.benchPress = val;
-    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_BENCHPRESS, val);
   }
 
   get benchPressPhase {
@@ -34,7 +32,6 @@ class WeeklyExercisePrescription {
 
   set deadliftPhase(val) {
     _phases.deadlift = val;
-    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_DEADLIFT, val);
   }
 
   get deadliftPhase {
@@ -101,14 +98,24 @@ class WeeklyExercisePrescription {
     return _haveMicroplates;
   }
 
+  double _increaseWeightToMin(String weightUnit, double weight) {
+    if (weightUnit == Constants.WEIGHTUNIT_LBS &&
+        weight < Constants.MIN_WEIGHT_LBS) {
+      return Constants.MIN_WEIGHT_LBS;
+    }
+
+    if (weightUnit == Constants.WEIGHTUNIT_KG &&
+        weight < Constants.MIN_WEIGHT_KG) {
+      return Constants.MIN_WEIGHT_KG;
+    }
+
+    return weight;
+  }
+
   void resetExercisePhases() {
     _passFail.reset();
     _phases.reset();
-    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, _phases.squat);
-    DBHelper.saveSettingToDB(
-        Constants.SettingsDB_PHASE_BENCHPRESS, _phases.benchPress);
-    DBHelper.saveSettingToDB(
-        Constants.SettingsDB_PHASE_DEADLIFT, _phases.deadlift);
+    _dropAllWeightsTwentyPercent();
   }
 
   set passFail(val) {
@@ -737,8 +744,19 @@ class WeeklyExercisePrescription {
   }
 
   String _getVolumeDayWeightFromIntensityDay(
-      String intensityDayWeight, bool useMicroplates) {
-    double weight = double.parse(intensityDayWeight);
+      String intensityDayWeightString, bool useMicroplates) {
+    return _dropWeightTwentyPercent(intensityDayWeightString, useMicroplates);
+  }
+
+  void _dropAllWeightsTwentyPercent() {
+    _weightMap.forEach((Exercise exercise, String weightString) {
+      setNextWeight(
+          exercise, _dropWeightTwentyPercent(weightString, _haveMicroplates));
+    });
+  }
+
+  String _dropWeightTwentyPercent(String weightString, bool useMicroplates) {
+    double weight = double.parse(weightString);
     double weightIncrement;
     if (useMicroplates) {
       if (_weightUnit == Constants.WEIGHTUNIT_LBS) {
@@ -755,6 +773,8 @@ class WeeklyExercisePrescription {
     }
     double newWeight =
         (0.8 * weight / weightIncrement).round() * weightIncrement;
+    newWeight = _increaseWeightToMin(_weightUnit, newWeight);
+
     return _getFormattedWeightString(newWeight.toString());
   }
 
@@ -878,12 +898,6 @@ class WeeklyExercisePrescription {
         }
       }
     });
-
-    DBHelper.saveSettingToDB(Constants.SettingsDB_PHASE_SQUAT, _phases.squat);
-    DBHelper.saveSettingToDB(
-        Constants.SettingsDB_PHASE_BENCHPRESS, _phases.benchPress);
-    DBHelper.saveSettingToDB(
-        Constants.SettingsDB_PHASE_DEADLIFT, _phases.deadlift);
   }
 
   WorkoutType _getWorkoutTypeFromWeekday(Weekday weekday) {

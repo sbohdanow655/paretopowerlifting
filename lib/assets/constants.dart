@@ -276,7 +276,7 @@ class Constants {
     "1) Set the Squat, Bench Press, Deadlift, and Overhead Press starting weights to A WEIGHT YOU CAN DO 8 REPS FOR.",
     "2) Switch exercises from LIFT to PASS when you successfully do all the reps, or otherwise to FAIL.",
     "3) 'Advance to Next Week' after you've attempted the week.",
-    "4) 'Start Over' if you want to reset the exercise phases.",
+    "4) 'Start Over' if you want to reset the exercise phases and drop the weights 20%.",
     "5) The week will go from a 3-day fullbody workout to a 4-day upper/lower split when it is appropriate or when the 'Always 4-day' setting is selected.",
     "6) Rest between sets as long as you need."
   ];
@@ -376,4 +376,7 @@ class Constants {
   };
 
   static const String DATESTRING_PREFIX_WEEKOF = "Week of ";
+
+  static const double MIN_WEIGHT_LBS = 45;
+  static const double MIN_WEIGHT_KG = 20;
 }
