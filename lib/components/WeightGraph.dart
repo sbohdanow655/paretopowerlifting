@@ -20,7 +20,7 @@ class WeightGraph extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Container(
           height: 300,
-          width: 400,
+          width: 300,
           padding: EdgeInsets.all(10),
           child: LineChart(LineChartData(
               minX: 1,
