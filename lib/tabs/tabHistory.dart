@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
+import 'package:pareto_powerlifting/components/WeightGraph.dart';
 
 class HistoryTab extends StatefulWidget {
   @override
@@ -37,11 +38,16 @@ class _HistoryTabState extends State<HistoryTab> {
 
   @override
   Widget build(BuildContext context) {
-    Widget placeholderNoHistory = Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-        child: Text(Constants.HISTORY_NOHISTORY,
-            style: TextStyle(
-                fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
+    Widget placeholderNoHistory =
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+          child: Text(Constants.HISTORY_NOHISTORY,
+              style: TextStyle(
+                  fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)))
+    ]);
+
+    Widget placeHolderNoGraph = Center();
 
     String currentDateString = "";
 
@@ -143,6 +149,9 @@ class _HistoryTabState extends State<HistoryTab> {
                                                       .FONTSIZE_TAB_HISTORY_EXERCISELOG)));
                                     }).toList())
                               ]),
+                          _selectedExercise == MainExercise.All
+                              ? placeHolderNoGraph
+                              : WeightGraph(_exerciseLogList),
                           _exerciseLogList.length == 0
                               ? placeholderNoHistory
                               : exerciseLogsColumn
