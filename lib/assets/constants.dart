@@ -331,7 +331,7 @@ class Constants {
   static const String HISTORY_NOHISTORY =
       "There is no history for this exercise yet.";
 
-  static const String TAB_EXERCISES_PREFIX = "How To ";
+  static const String TAB_EXERCISES_TITLE = "How To";
 
   static const Map<Exercise, List<String>> MAP_HOWTO = {
     Exercise.Squat: [
@@ -375,6 +375,13 @@ class Constants {
     ]
   };
 
+  static const Map<Exercise, String> MAP_DIAGRAM_IMAGES = {
+    Exercise.Squat: "lib/assets/diagrams/squat.jpeg",
+    Exercise.BenchPress: "lib/assets/diagrams/benchPress.jpeg",
+    Exercise.Deadlift: "lib/assets/diagrams/deadlift.jpeg",
+    Exercise.OverheadPress: "lib/assets/diagrams/overheadPress.jpeg",
+    Exercise.PendlayRow: "lib/assets/diagrams/pendlayRow.jpeg"
+  };
   static const String DATESTRING_PREFIX_WEEKOF = "Week of ";
 
   static const double MIN_WEIGHT_LBS = 45;

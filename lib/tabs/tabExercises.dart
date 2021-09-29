@@ -40,7 +40,7 @@ class _ExercisesTabState extends State<ExercisesTab> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  (Constants.TAB_EXERCISES_PREFIX),
+                                  Constants.TAB_EXERCISES_TITLE,
                                   style: TextStyle(
                                       fontSize:
                                           Constants.FONTSIZE_TAB_EXERCISES,
@@ -74,6 +74,12 @@ class _ExercisesTabState extends State<ExercisesTab> {
                                                       .FONTSIZE_TAB_EXERCISES)));
                                     }).toList())
                               ]),
+                          Constants.MAP_DIAGRAM_IMAGES
+                                  .containsKey(_selectedExercise)
+                              ? Image(
+                                  image: AssetImage(Constants
+                                      .MAP_DIAGRAM_IMAGES[_selectedExercise]))
+                              : Center(),
                           Column(
                               children: Constants.MAP_HOWTO[_selectedExercise]
                                   .map((String text) {
