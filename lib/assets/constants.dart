@@ -297,28 +297,6 @@ class Constants {
   static const String SETTINGS_HEADER_WEIGHTS = "Weights";
   static const String SETTINGS_HEADER_OPTIONALEXERCISES = "Optional Exercises";
 
-  static const MaterialColor lightPrimaryColor = const MaterialColor(
-    0xFF2196F3,
-    const <int, Color>{
-      50: LIGHT_PRIMARY,
-      100: LIGHT_PRIMARY,
-      200: LIGHT_PRIMARY,
-      300: LIGHT_PRIMARY,
-      400: LIGHT_PRIMARY,
-      500: LIGHT_PRIMARY,
-      600: LIGHT_PRIMARY,
-      700: LIGHT_PRIMARY,
-      800: LIGHT_PRIMARY,
-      900: LIGHT_PRIMARY
-    },
-  );
-
-  static const Color BACKGROUND_GREY = Color(0xfff5f5f5);
-  static const Color LIGHT_PRIMARY = Color(0xff2196F3);
-  static const Color DIVIDER_GREY = Color(0xffBDBDBD);
-  static const Color PRIMARY_TEXT = Color(0xff212121);
-  static const Color SECONDARY_TEXT = Color(0xff757575);
-
   static const String WORKOUTS_SNACKBAR_INCOMPLETE =
       "You didn't complete the week yet.";
   static const String WORKOUTS_SNACKBAR_ADVANCE =

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 
 class ExercisesTab extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _ExercisesTabState extends State<ExercisesTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Container(
-            color: Constants.BACKGROUND_GREY,
+            color: ThemeManager.getInstance().getContainerBackgroundColor(),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(
@@ -84,7 +85,9 @@ class _ExercisesTabState extends State<ExercisesTab> {
                               children: Constants.MAP_HOWTO[_selectedExercise]
                                   .map((String text) {
                             return Column(children: [
-                              Divider(color: Constants.DIVIDER_GREY),
+                              Divider(
+                                  color: ThemeManager.getInstance()
+                                      .getDividerColor()),
                               Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 10),

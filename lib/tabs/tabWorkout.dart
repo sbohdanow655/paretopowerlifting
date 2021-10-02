@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class WorkoutTab extends StatefulWidget {
-  WeeklyExercisePrescription _weeklyExercisePrescription;
-
-  WorkoutTab(this._weeklyExercisePrescription);
+  WorkoutTab();
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutTabState(this._weeklyExercisePrescription);
+    return _WorkoutTabState(WeeklyExercisePrescription.getInstance());
   }
 }
 
@@ -53,7 +52,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
           child: Text(Constants.GETTINGSTARTED_TITLE,
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE)),
-          color: Constants.LIGHT_PRIMARY,
+          color: ThemeManager.getInstance().getPrimaryColor(),
           textColor: Colors.white,
           onPressed: () {
             Navigator.pushReplacementNamed(
@@ -86,7 +85,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
                 style: TextStyle(
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON,
                 )),
-            color: Constants.LIGHT_PRIMARY,
+            color: ThemeManager.getInstance().getPrimaryColor(),
             textColor: Colors.white,
             onPressed: () {
               bool weekIsIncomplete = false;
@@ -136,7 +135,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     return SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-            color: Constants.BACKGROUND_GREY,
+            color: ThemeManager.getInstance().getContainerBackgroundColor(),
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,

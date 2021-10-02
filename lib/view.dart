@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/routes/GettingStarted.dart';
 import 'assets/constants.dart';
 
+import 'classes/ThemeManager.dart';
 import 'routes/mainPage.dart';
 
 class View extends StatelessWidget {
@@ -26,7 +27,7 @@ class View extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Constants.lightPrimaryColor,
+          primarySwatch: ThemeManager.getInstance().getMaterialPrimaryColor(),
         ),
         home: GettingStarted());
   }
