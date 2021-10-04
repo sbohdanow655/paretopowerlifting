@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/EnterWeight.dart';
 import 'package:pareto_powerlifting/components/WeekdayDropdown.dart';
 import '../assets/constants.dart';
 
 class SettingsTab extends StatefulWidget {
-  SettingsTab();
+  WeeklyExercisePrescription _weeklyExercisePrescription;
+
+  SettingsTab(this._weeklyExercisePrescription);
 
   @override
   State<StatefulWidget> createState() {
-    return _SettingsTabState(WeeklyExercisePrescription.getInstance());
+    return _SettingsTabState(this._weeklyExercisePrescription);
   }
 }
 
@@ -60,7 +61,7 @@ class _SettingsTabState extends State<SettingsTab> {
         },
         child: SingleChildScrollView(
             child: Container(
-                color: ThemeManager.getInstance().getContainerBackgroundColor(),
+                color: Constants.BACKGROUND_GREY,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,9 +90,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -149,35 +148,25 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 EnterWeight(_weeklyExercisePrescription,
                                     Exercise.Squat, Constants.EXERCISE_SQUAT),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 EnterWeight(
                                     _weeklyExercisePrescription,
                                     Exercise.BenchPress,
                                     Constants.EXERCISE_BENCHPRESS),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 EnterWeight(
                                     _weeklyExercisePrescription,
                                     Exercise.Deadlift,
                                     Constants.EXERCISE_DEADLIFT),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 EnterWeight(
                                     _weeklyExercisePrescription,
                                     Exercise.OverheadPress,
                                     Constants.EXERCISE_OVERHEADPRESS),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 EnterWeight(
                                     _weeklyExercisePrescription,
                                     Exercise.PendlayRow,
@@ -208,9 +197,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -228,9 +215,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.FullBody1,
                                           _weeklyExercisePrescription)
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -248,9 +233,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.FullBody2,
                                           _weeklyExercisePrescription)
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -294,9 +277,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -314,8 +295,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>
-                                                      ThemeManager.getInstance()
-                                                          .getDividerColor()),
+                                                      Constants.LIGHT_PRIMARY),
                                           value: _weeklyExercisePrescription
                                               .forceFourDaySplit,
                                           onChanged: (bool value) =>
@@ -347,9 +327,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -367,9 +345,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.LowerBody1,
                                           _weeklyExercisePrescription)
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -387,9 +363,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.UpperBody1,
                                           _weeklyExercisePrescription)
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -407,9 +381,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                       WeekdayDropdown(WorkoutType.LowerBody2,
                                           _weeklyExercisePrescription)
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -453,9 +425,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -474,16 +444,13 @@ class _SettingsTabState extends State<SettingsTab> {
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>
-                                                      ThemeManager.getInstance()
-                                                          .getDividerColor()),
+                                                      Constants.LIGHT_PRIMARY),
                                           value: _weeklyExercisePrescription
                                               .enableHIITConditioning,
                                           onChanged: (bool value) =>
                                               setEnableHIITConditioning(value))
                                     ]),
-                                Divider(
-                                    color: ThemeManager.getInstance()
-                                        .getDividerColor()),
+                                Divider(color: Constants.DIVIDER_GREY),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -501,8 +468,7 @@ class _SettingsTabState extends State<SettingsTab> {
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>
-                                                      ThemeManager.getInstance()
-                                                          .getPrimaryColor()),
+                                                      Constants.LIGHT_PRIMARY),
                                           value: _weeklyExercisePrescription
                                               .enableCurls,
                                           onChanged: (bool value) =>

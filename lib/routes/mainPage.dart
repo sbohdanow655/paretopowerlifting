@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
-import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/tabs/tabExercises.dart';
 import 'package:pareto_powerlifting/tabs/tabHistory.dart';
@@ -16,6 +15,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  WeeklyExercisePrescription _weeklyExercisePrescription;
+
   _MainPageState();
 
   List<Widget> tabViews = [];
@@ -28,15 +29,39 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  void fetchFromDB() async {
+    if (_weeklyExercisePrescription == null) {
+      WeeklyExercisePrescription weeklyExercisePrescription =
+          WeeklyExercisePrescription();
+      DBHelper.updateWeeklyExercisePrescriptionFromDB(
+              weeklyExercisePrescription)
+          .then((value) {
+        DBHelper.updatePassFailFromDB(weeklyExercisePrescription.passFail)
+            .then((value) {
+          tabViews = [
+            WorkoutTab(weeklyExercisePrescription),
+            HistoryTab(),
+            ExercisesTab(),
+            SettingsTab(weeklyExercisePrescription)
+          ];
+
+          setState(() {
+            _weeklyExercisePrescription = weeklyExercisePrescription;
+          });
+        });
+      });
+    }
+  }
+
   @override
   void initState() {
-    tabViews = [WorkoutTab(), HistoryTab(), ExercisesTab(), SettingsTab()];
+    fetchFromDB();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (WeeklyExercisePrescription.getInstance() == null) {
+    if (_weeklyExercisePrescription == null) {
       return Center();
     }
 
@@ -46,11 +71,11 @@ class _MainPageState extends State<MainPage> {
                 style: TextStyle(fontSize: Constants.FONTSIZE_TITLE)),
             centerTitle: true),
         body: tabViews[currentTabIndex],
-        backgroundColor: ThemeManager.getInstance().getBackgroundColor(),
+        backgroundColor: Constants.BACKGROUND_GREY,
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
-            backgroundColor: ThemeManager.getInstance().getPrimaryColor(),
+            backgroundColor: Constants.LIGHT_PRIMARY,
             currentIndex: currentTabIndex,
             onTap: navigateToTab,
             items: [

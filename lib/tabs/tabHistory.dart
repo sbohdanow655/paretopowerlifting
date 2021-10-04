@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
-import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/components/WeightGraph.dart';
 
 class HistoryTab extends StatefulWidget {
@@ -59,8 +58,7 @@ class _HistoryTabState extends State<HistoryTab> {
 
           if (currentDateString != exerciseLog.savedDateString) {
             currentDateString = exerciseLog.savedDateString;
-            logColumnChildren.add(
-                Divider(color: ThemeManager.getInstance().getDividerColor()));
+            logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
             logColumnChildren.add(Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child:
@@ -68,14 +66,12 @@ class _HistoryTabState extends State<HistoryTab> {
                   Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
                       style: TextStyle(
                           fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                          color:
-                              ThemeManager.getInstance().getPrimaryTextColor(),
+                          color: Constants.PRIMARY_TEXT,
                           fontWeight: FontWeight.bold))
                 ])));
           }
 
-          logColumnChildren.add(
-              Divider(color: ThemeManager.getInstance().getDividerColor()));
+          logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
           logColumnChildren.add(Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
@@ -88,14 +84,12 @@ class _HistoryTabState extends State<HistoryTab> {
                             style: TextStyle(
                                 fontSize:
                                     Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                                color: ThemeManager.getInstance()
-                                    .getPrimaryTextColor())),
+                                color: Constants.PRIMARY_TEXT)),
                         Text(" " + exerciseLog.toPrescriptionString(),
                             style: TextStyle(
                                 fontSize:
                                     Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                                color: ThemeManager.getInstance()
-                                    .getSecondaryTextColor())),
+                                color: Constants.SECONDARY_TEXT)),
                       ],
                     ),
                     Text(exerciseLog.passFailString,
@@ -109,7 +103,7 @@ class _HistoryTabState extends State<HistoryTab> {
 
     return SingleChildScrollView(
         child: Container(
-            color: ThemeManager.getInstance().getContainerBackgroundColor(),
+            color: Constants.BACKGROUND_GREY,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(

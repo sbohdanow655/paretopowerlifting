@@ -10,27 +10,6 @@ import 'DailyRestPrescription.dart';
 import 'IDailyPrescription.dart';
 
 class WeeklyExercisePrescription {
-  static WeeklyExercisePrescription _instance;
-
-  static WeeklyExercisePrescription getInstance() {
-    if (_instance == null) {
-      _fetchFromDB();
-    }
-    return _instance;
-  }
-
-  static void _fetchFromDB() async {
-    WeeklyExercisePrescription weeklyExercisePrescription =
-        WeeklyExercisePrescription();
-    DBHelper.updateWeeklyExercisePrescriptionFromDB(weeklyExercisePrescription)
-        .then((value) {
-      DBHelper.updatePassFailFromDB(weeklyExercisePrescription.passFail)
-          .then((value) {
-        _instance = weeklyExercisePrescription;
-      });
-    });
-  }
-
   Map<Weekday, DailyExercisePrescription> _prescriptionCache = {};
 
   Phases _phases = Phases();

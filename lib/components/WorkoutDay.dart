@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
-import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class WorkoutDay extends StatefulWidget {
@@ -55,7 +55,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
-            color: ThemeManager.getInstance().getPrimaryTextColor()),
+            color: Constants.PRIMARY_TEXT),
       )
     ]));
 
@@ -69,8 +69,7 @@ class WorkoutDayState extends State<WorkoutDay> {
       List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
-        columnList
-            .add(Divider(color: ThemeManager.getInstance().getDividerColor()));
+        columnList.add(Divider(color: Constants.DIVIDER_GREY));
         columnList.add(Padding(
             padding: EdgeInsets.only(top: 10),
             child: Row(
@@ -80,8 +79,7 @@ class WorkoutDayState extends State<WorkoutDay> {
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
-                        color:
-                            ThemeManager.getInstance().getPrimaryTextColor()))
+                        color: Constants.PRIMARY_TEXT))
               ],
             )));
       } else {
@@ -115,12 +113,11 @@ class WorkoutDayState extends State<WorkoutDay> {
               Text(exerciseString,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_TAB_WORKOUTS_EXERCISE,
-                      color: ThemeManager.getInstance().getPrimaryTextColor())),
+                      color: Constants.PRIMARY_TEXT)),
               Text(prescriptionString,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PRESCRIPTION,
-                      color:
-                          ThemeManager.getInstance().getSecondaryTextColor())),
+                      color: Constants.SECONDARY_TEXT)),
             ]);
 
         rowItems.add(prescriptionColumn);
@@ -133,7 +130,7 @@ class WorkoutDayState extends State<WorkoutDay> {
           rowItems.add(DropdownButton<String>(
               value: singlePassFail,
               style: TextStyle(
-                  color: ThemeManager.getInstance().getPrimaryTextColor(),
+                  color: Constants.PRIMARY_TEXT,
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
               onChanged: (val) {
                 _setPassFailMap(tuple.exercise, val);
@@ -147,8 +144,7 @@ class WorkoutDayState extends State<WorkoutDay> {
       }
 
       if (tuple.exercise != Exercise.Rest) {
-        columnList
-            .add(Divider(color: ThemeManager.getInstance().getDividerColor()));
+        columnList.add(Divider(color: Constants.DIVIDER_GREY));
       }
 
       columnList.add(Padding(
