@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/routes/GettingStarted.dart';
 import 'assets/constants.dart';
 
+import 'classes/DBHelper.dart';
 import 'classes/ThemeManager.dart';
 import 'routes/mainPage.dart';
 

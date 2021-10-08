@@ -134,10 +134,8 @@ class WorkoutDayState extends State<WorkoutDay> {
           rowItems.add(RadioButtonGroup(
               [Constants.LIFT, Constants.FAIL, Constants.PASS], singlePassFail,
               (val) {
-            _setPassFailMap(tuple.exercise, val);
-          }));
-        }
-      }
+                _setPassFailMap(tuple.exercise, val);
+              }));
 
       if (tuple.exercise != Exercise.Rest) {
         columnList

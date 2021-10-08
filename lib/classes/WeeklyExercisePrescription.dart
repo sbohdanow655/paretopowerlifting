@@ -13,22 +13,11 @@ class WeeklyExercisePrescription {
   static WeeklyExercisePrescription _instance;
 
   static WeeklyExercisePrescription getInstance() {
-    if (_instance == null) {
-      _fetchFromDB();
-    }
     return _instance;
   }
 
-  static void _fetchFromDB() async {
-    WeeklyExercisePrescription weeklyExercisePrescription =
-        WeeklyExercisePrescription();
-    DBHelper.updateWeeklyExercisePrescriptionFromDB(weeklyExercisePrescription)
-        .then((value) {
-      DBHelper.updatePassFailFromDB(weeklyExercisePrescription.passFail)
-          .then((value) {
-        _instance = weeklyExercisePrescription;
-      });
-    });
+  static void init(WeeklyExercisePrescription weeklyExercisePrescription) {
+    _instance = weeklyExercisePrescription;
   }
 
   Map<Weekday, DailyExercisePrescription> _prescriptionCache = {};
@@ -68,10 +57,20 @@ class WeeklyExercisePrescription {
   };
 
   PassFail _passFail = PassFail();
+  bool _isDarkMode = false;
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
   bool _enableCurls = false;
   bool _enableHIITConditioning = false;
+
+  set darkMode(val) {
+    _isDarkMode = val;
+    DBHelper.saveSettingToDB(Constants.SettingsDB_DARKMODE, val);
+  }
+
+  get darkMode {
+    return _isDarkMode;
+  }
 
   set forceFourDaySplit(val) {
     _phases.forceFourDay = val;

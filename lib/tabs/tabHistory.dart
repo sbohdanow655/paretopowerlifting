@@ -39,14 +39,11 @@ class _HistoryTabState extends State<HistoryTab> {
 
   @override
   Widget build(BuildContext context) {
-    Widget placeholderNoHistory =
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-          child: Text(Constants.HISTORY_NOHISTORY,
-              style: TextStyle(
-                  fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)))
-    ]);
+    Widget placeholderNoHistory = Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+        child: Text(Constants.HISTORY_NOHISTORY,
+            style: TextStyle(
+                fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
 
     Widget placeHolderNoGraph = Center();
 
@@ -109,7 +106,7 @@ class _HistoryTabState extends State<HistoryTab> {
 
     return SingleChildScrollView(
         child: Container(
-            color: ThemeManager.getInstance().getContainerBackgroundColor(),
+            color: ThemeManager.getInstance().getBackgroundColor(),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(

@@ -60,7 +60,7 @@ class _SettingsTabState extends State<SettingsTab> {
         },
         child: SingleChildScrollView(
             child: Container(
-                color: ThemeManager.getInstance().getContainerBackgroundColor(),
+                color: ThemeManager.getInstance().getBackgroundColor(),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -131,7 +132,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -189,7 +191,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -275,7 +278,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -310,12 +314,13 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                       Checkbox(
-                                          checkColor: Colors.white,
+                                          checkColor: ThemeManager.getInstance()
+                                              .getPrimaryColor(),
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>
                                                       ThemeManager.getInstance()
-                                                          .getDividerColor()),
+                                                          .getPrimaryColor()),
                                           value: _weeklyExercisePrescription
                                               .forceFourDaySplit,
                                           onChanged: (bool value) =>
@@ -328,7 +333,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -434,7 +440,8 @@ class _SettingsTabState extends State<SettingsTab> {
                               horizontal: 10, vertical: 10),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          color: Colors.white,
+                          color: ThemeManager.getInstance()
+                              .getContainerBackgroundColor(),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -470,12 +477,13 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                       Checkbox(
-                                          checkColor: Colors.white,
+                                          checkColor: ThemeManager.getInstance()
+                                              .getPrimaryColor(),
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>
                                                       ThemeManager.getInstance()
-                                                          .getDividerColor()),
+                                                          .getPrimaryColor()),
                                           value: _weeklyExercisePrescription
                                               .enableHIITConditioning,
                                           onChanged: (bool value) =>
@@ -497,7 +505,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                                     .FONTSIZE_TAB_SETTINGS)),
                                       ),
                                       Checkbox(
-                                          checkColor: Colors.white,
+                                          checkColor: ThemeManager.getInstance()
+                                              .getPrimaryColor(),
                                           fillColor:
                                               MaterialStateProperty.resolveWith(
                                                   (val) =>

@@ -135,7 +135,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     return SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-            color: ThemeManager.getInstance().getContainerBackgroundColor(),
+            color: ThemeManager.getInstance().getBackgroundColor(),
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,

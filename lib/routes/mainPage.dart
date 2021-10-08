@@ -36,10 +36,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (WeeklyExercisePrescription.getInstance() == null) {
-      return Center();
-    }
-
     return Scaffold(
         appBar: AppBar(
             title: Text(Constants.TITLE,

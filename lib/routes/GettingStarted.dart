@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/ThemeManager.dart';
+import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 
 class GettingStarted extends StatefulWidget {
   @override
@@ -13,6 +15,28 @@ class _GettingStartedState extends State<GettingStarted> {
   _GettingStartedState();
 
   ScrollController _scrollController = ScrollController();
+  bool _isDarkMode = false;
+
+  void _fetchWeeklyPrescriptionFromDB() async {
+    WeeklyExercisePrescription weeklyExercisePrescription =
+        WeeklyExercisePrescription();
+    DBHelper.updateWeeklyExercisePrescriptionFromDB(weeklyExercisePrescription)
+        .then((value) {
+      DBHelper.updatePassFailFromDB(weeklyExercisePrescription.passFail)
+          .then((value) {
+        WeeklyExercisePrescription.init(weeklyExercisePrescription);
+        setState(() {
+          _isDarkMode = weeklyExercisePrescription.darkMode;
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    _fetchWeeklyPrescriptionFromDB();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +46,7 @@ class _GettingStartedState extends State<GettingStarted> {
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
+        color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +76,7 @@ class _GettingStartedState extends State<GettingStarted> {
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
+        color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +112,7 @@ class _GettingStartedState extends State<GettingStarted> {
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
+        color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +146,7 @@ class _GettingStartedState extends State<GettingStarted> {
             Constants.GETTINGSTARTED_START,
             style: TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
           ),
-          color: ThemeManager.getInstance().getPrimaryTextColor(),
+          color: ThemeManager.getInstance().getPrimaryColor(),
           textColor: Colors.white,
           onPressed: () {
             Navigator.pushReplacementNamed(
@@ -143,7 +167,7 @@ class _GettingStartedState extends State<GettingStarted> {
             controller: _scrollController,
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                color: ThemeManager.getInstance().getContainerBackgroundColor(),
+                color: ThemeManager.getInstance().getBackgroundColor(),
                 child: Column(
                     key: UniqueKey(),
                     crossAxisAlignment: CrossAxisAlignment.start,

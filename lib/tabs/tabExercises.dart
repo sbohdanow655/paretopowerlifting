@@ -27,7 +27,7 @@ class _ExercisesTabState extends State<ExercisesTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Container(
-            color: ThemeManager.getInstance().getContainerBackgroundColor(),
+            color: ThemeManager.getInstance().getBackgroundColor(),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Container(
