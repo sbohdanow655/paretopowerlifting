@@ -3,6 +3,7 @@ import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
 import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/components/RadioButtonGroup.dart';
 
 class WorkoutDay extends StatefulWidget {
   final WeeklyExercisePrescription _weeklyExercisePrescription;
@@ -130,19 +131,11 @@ class WorkoutDayState extends State<WorkoutDay> {
             _setIncomplete(_weekday, true);
           }
 
-          rowItems.add(DropdownButton<String>(
-              value: singlePassFail,
-              style: TextStyle(
-                  color: ThemeManager.getInstance().getPrimaryTextColor(),
-                  fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
-              onChanged: (val) {
-                _setPassFailMap(tuple.exercise, val);
-              },
-              items: <String>[Constants.LIFT, Constants.FAIL, Constants.PASS]
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                    value: value, child: Text(value));
-              }).toList()));
+          rowItems.add(RadioButtonGroup(
+              [Constants.LIFT, Constants.FAIL, Constants.PASS], singlePassFail,
+              (val) {
+            _setPassFailMap(tuple.exercise, val);
+          }));
         }
       }
 
