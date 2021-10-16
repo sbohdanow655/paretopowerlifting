@@ -29,9 +29,9 @@ class _ExercisesTabState extends State<ExercisesTab> {
         child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.symmetric(
-                horizontal: Constants.MARGIN_HORIZONTAL, vertical: 10),
+                horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
             padding: EdgeInsets.symmetric(
-                horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
+                horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
             color: Colors.white,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -73,7 +73,7 @@ class _ExercisesTabState extends State<ExercisesTab> {
                   Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: Constants.PADDING_HORIZONTAL,
-                          vertical: 10),
+                          vertical: 5),
                       child: Container(
                           alignment: Alignment.topLeft,
                           child: Text(

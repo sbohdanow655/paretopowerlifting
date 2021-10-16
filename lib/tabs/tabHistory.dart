@@ -61,7 +61,7 @@ class _HistoryTabState extends State<HistoryTab> {
                 Divider(color: ThemeManager.getInstance().getDividerColor()));
             logColumnChildren.add(Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                   Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
@@ -77,7 +77,7 @@ class _HistoryTabState extends State<HistoryTab> {
               Divider(color: ThemeManager.getInstance().getDividerColor()));
           logColumnChildren.add(Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
+                  horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -112,11 +112,11 @@ class _HistoryTabState extends State<HistoryTab> {
             color: ThemeManager.getInstance().getBackgroundColor(),
             child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(
-                        horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
+                        horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                     color: Colors.white,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

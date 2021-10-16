@@ -69,10 +69,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -136,10 +136,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -199,10 +199,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -296,10 +296,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -357,10 +357,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -476,10 +476,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 10),
+                              vertical: 5),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
