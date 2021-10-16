@@ -109,60 +109,43 @@ class _HistoryTabState extends State<HistoryTab> {
 
     return SingleChildScrollView(
         child: Container(
-            color: ThemeManager.getInstance().getBackgroundColor(),
-            child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
-                child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
-                    color: Colors.white,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(Constants.TAB_HISTORY,
-                                    style: TextStyle(
-                                        fontSize: Constants.FONTSIZE_TAB_TITLE,
-                                        fontWeight: FontWeight.bold))
-                              ]),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                DropdownButton<String>(
-                                    value: Constants
-                                        .mainExerciseStrings[_selectedExercise],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize:
-                                            Constants.FONTSIZE_TAB_SETTINGS),
-                                    onChanged: (mainExerciseString) =>
-                                        _setSelectedExercise(
-                                            Constants.mainExerciseByString[
-                                                mainExerciseString]),
-                                    items: MainExercise.values
-                                        .map<DropdownMenuItem<String>>(
-                                            (MainExercise mainExercise) {
-                                      return DropdownMenuItem<String>(
-                                          value: Constants.mainExerciseStrings[
-                                              mainExercise],
-                                          child: Text(
-                                              Constants.mainExerciseStrings[
-                                                  mainExercise],
-                                              style: TextStyle(
-                                                  fontSize: Constants
-                                                      .FONTSIZE_TAB_HISTORY_EXERCISELOG)));
-                                    }).toList())
-                              ]),
-                          _selectedExercise == MainExercise.All
-                              ? placeHolderNoGraph
-                              : WeightGraph(_exerciseLogList),
-                          _exerciseLogList.length == 0
-                              ? placeholderNoHistory
-                              : exerciseLogsColumn
-                        ])))));
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(
+                horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            color: Colors.white,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text(Constants.TAB_HISTORY,
+                    style: TextStyle(
+                        fontSize: Constants.FONTSIZE_TAB_TITLE,
+                        fontWeight: FontWeight.bold))
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                DropdownButton<String>(
+                    value: Constants.mainExerciseStrings[_selectedExercise],
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: Constants.FONTSIZE_TAB_SETTINGS),
+                    onChanged: (mainExerciseString) => _setSelectedExercise(
+                        Constants.mainExerciseByString[mainExerciseString]),
+                    items: MainExercise.values.map<DropdownMenuItem<String>>(
+                        (MainExercise mainExercise) {
+                      return DropdownMenuItem<String>(
+                          value: Constants.mainExerciseStrings[mainExercise],
+                          child: Text(
+                              Constants.mainExerciseStrings[mainExercise],
+                              style: TextStyle(
+                                  fontSize: Constants
+                                      .FONTSIZE_TAB_HISTORY_EXERCISELOG)));
+                    }).toList())
+              ]),
+              _selectedExercise == MainExercise.All
+                  ? placeHolderNoGraph
+                  : WeightGraph(_exerciseLogList),
+              _exerciseLogList.length == 0
+                  ? placeholderNoHistory
+                  : exerciseLogsColumn
+            ])));
   }
 }
