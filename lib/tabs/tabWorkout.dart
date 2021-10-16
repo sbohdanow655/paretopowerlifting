@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
+import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
 import 'package:pareto_powerlifting/components/WorkoutDay.dart';
 
 class WorkoutTab extends StatefulWidget {
-  WeeklyExercisePrescription _weeklyExercisePrescription;
-
-  WorkoutTab(this._weeklyExercisePrescription);
+  WorkoutTab();
 
   @override
   State<StatefulWidget> createState() {
-    return _WorkoutTabState(this._weeklyExercisePrescription);
+    return _WorkoutTabState(WeeklyExercisePrescription.getInstance());
   }
 }
 
@@ -53,8 +52,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
           child: Text(Constants.GETTINGSTARTED_TITLE,
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE)),
-          color: Constants.LIGHT_PRIMARY,
-          textColor: Colors.white,
+          color: ThemeManager.getInstance().getPrimaryColor(),
+          textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             Navigator.pushReplacementNamed(
                 context, Constants.ROUTE_GETTINGSTARTED);
@@ -86,8 +85,8 @@ class _WorkoutTabState extends State<WorkoutTab> {
                 style: TextStyle(
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON,
                 )),
-            color: Constants.LIGHT_PRIMARY,
-            textColor: Colors.white,
+            color: ThemeManager.getInstance().getPrimaryColor(),
+            textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
             onPressed: () {
               bool weekIsIncomplete = false;
               _workoutDayIncompleteMap
@@ -111,7 +110,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
           color: Colors.red[400],
-          textColor: Colors.white,
+          textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER_PRESSED,
@@ -136,7 +135,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
     return SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-            color: Constants.BACKGROUND_GREY,
+            color: ThemeManager.getInstance().getBackgroundColor(),
             child: Column(
                 key: UniqueKey(),
                 crossAxisAlignment: CrossAxisAlignment.start,

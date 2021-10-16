@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
 import 'package:pareto_powerlifting/classes/DBHelper.dart';
 import 'package:pareto_powerlifting/classes/ExerciseLog.dart';
+import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/components/WeightGraph.dart';
 
 class HistoryTab extends StatefulWidget {
@@ -38,14 +39,12 @@ class _HistoryTabState extends State<HistoryTab> {
 
   @override
   Widget build(BuildContext context) {
-    Widget placeholderNoHistory =
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-          child: Text(Constants.HISTORY_NOHISTORY,
-              style: TextStyle(
-                  fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)))
-    ]);
+    Widget placeholderNoHistory = Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 15),
+        child: Text(Constants.HISTORY_NOHISTORY,
+            style: TextStyle(
+                fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
 
     Widget placeHolderNoGraph = Center();
 
@@ -58,22 +57,27 @@ class _HistoryTabState extends State<HistoryTab> {
 
           if (currentDateString != exerciseLog.savedDateString) {
             currentDateString = exerciseLog.savedDateString;
-            logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
+            logColumnChildren.add(
+                Divider(color: ThemeManager.getInstance().getDividerColor()));
             logColumnChildren.add(Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                   Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
                       style: TextStyle(
                           fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                          color: Constants.PRIMARY_TEXT,
+                          color:
+                              ThemeManager.getInstance().getPrimaryTextColor(),
                           fontWeight: FontWeight.bold))
                 ])));
           }
 
-          logColumnChildren.add(Divider(color: Constants.DIVIDER_GREY));
+          logColumnChildren.add(
+              Divider(color: ThemeManager.getInstance().getDividerColor()));
           logColumnChildren.add(Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -84,12 +88,14 @@ class _HistoryTabState extends State<HistoryTab> {
                             style: TextStyle(
                                 fontSize:
                                     Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                                color: Constants.PRIMARY_TEXT)),
+                                color: ThemeManager.getInstance()
+                                    .getPrimaryTextColor())),
                         Text(" " + exerciseLog.toPrescriptionString(),
                             style: TextStyle(
                                 fontSize:
                                     Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG,
-                                color: Constants.SECONDARY_TEXT)),
+                                color: ThemeManager.getInstance()
+                                    .getSecondaryTextColor())),
                       ],
                     ),
                     Text(exerciseLog.passFailString,
@@ -103,12 +109,14 @@ class _HistoryTabState extends State<HistoryTab> {
 
     return SingleChildScrollView(
         child: Container(
-            color: Constants.BACKGROUND_GREY,
+            color: ThemeManager.getInstance().getBackgroundColor(),
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                 child: Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
                     color: Colors.white,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -46,6 +46,7 @@ class Constants {
   static const double FONTSIZE_TITLE = 18;
   static const double FONTSIZE_TAB_TITLE = 18;
 
+  static const double FONTSIZE_RADIOBUTTON = 18;
   static const double FONTSIZE_SNACKBAR = 18;
   static const double FONTSIZE_GETTINGSTARTED_TITLE = 18;
   static const double FONTSIZE_GETTINGSTARTED_BODY = 18;
@@ -58,10 +59,10 @@ class Constants {
   static const double FONTSIZE_TAB_HISTORY_EXERCISELOG = 18;
   static const double FONTSIZE_TAB_EXERCISES = 18;
 
-  static const double MARGIN_HORIZONTAL = 40;
+  static const double MARGIN_HORIZONTAL = 0;
 
   static const double PADDING_VERTICAL = 10;
-  static const double PADDING_HORIZONTAL = 20;
+  static const double PADDING_HORIZONTAL = 10;
 
   static const String TITLE = "Pareto Powerlifting";
 
@@ -97,6 +98,7 @@ class Constants {
   static const String TAB_SETTINGS = "Settings";
 
   static const String FORCEFOURDAYSPLIT = "Always 4-Day";
+  static const String ENABLE_DARKMODE = "Dark Theme";
   static const String ENABLE_HIITCONDITIONING = "HIIT Conditioning";
   static const String ENABLE_CURLS = "Barbell Curls";
   static const String USE_MICROPLATES = "Microplates for Upper Body";
@@ -234,6 +236,7 @@ class Constants {
   };
 
   static const String SettingsDB_PASSFAILMAP = "passFailMap";
+  static const String SettingsDB_DARKMODE = "darkMode";
   static const String SettingsDB_FORCEFOURDAYSPLIT = "forceFourDaySplit";
   static const String SettingsDB_OPTIONAL_CURLS = "doCurls";
   static const String SettingsDB_OPTIONAL_HIITCONDITIONING = "doHIIT";
@@ -285,7 +288,7 @@ class Constants {
       "Nutrition Recommendations";
   static const String NUTRITION_RECOMMOMENDATIONS =
       "Have 2 scoops of protein powder twice per day.";
-
+  static const String SETTINGS_HEADER_DARKMODE = "Dark Theme";
   static const String SETTINGS_HEADER_FORCEFOURDAYSPLIT =
       "4-Day Upper/Lower Split";
   static const String SETTINGS_HEADER_PLATES = "Plates";

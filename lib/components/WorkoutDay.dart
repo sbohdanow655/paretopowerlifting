@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pareto_powerlifting/assets/constants.dart';
-import 'package:pareto_powerlifting/classes/PassFail.dart';
 import 'package:pareto_powerlifting/classes/SingleExercisePrescription.dart';
+import 'package:pareto_powerlifting/classes/ThemeManager.dart';
 import 'package:pareto_powerlifting/classes/WeeklyExercisePrescription.dart';
+import 'package:pareto_powerlifting/components/RadioButtonGroup.dart';
 
 class WorkoutDay extends StatefulWidget {
   final WeeklyExercisePrescription _weeklyExercisePrescription;
@@ -55,7 +56,7 @@ class WorkoutDayState extends State<WorkoutDay> {
         style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
-            color: Constants.PRIMARY_TEXT),
+            color: ThemeManager.getInstance().getPrimaryTextColor()),
       )
     ]));
 
@@ -69,7 +70,8 @@ class WorkoutDayState extends State<WorkoutDay> {
       List<Widget> rowItems = [];
 
       if (tuple.exercise == Exercise.Rest) {
-        columnList.add(Divider(color: Constants.DIVIDER_GREY));
+        columnList
+            .add(Divider(color: ThemeManager.getInstance().getDividerColor()));
         columnList.add(Padding(
             padding: EdgeInsets.only(top: 10),
             child: Row(
@@ -79,7 +81,8 @@ class WorkoutDayState extends State<WorkoutDay> {
                     style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: Constants.FONTSIZE_TAB_WORKOUTS_WEEKDAY,
-                        color: Constants.PRIMARY_TEXT))
+                        color:
+                            ThemeManager.getInstance().getPrimaryTextColor()))
               ],
             )));
       } else {
@@ -113,11 +116,12 @@ class WorkoutDayState extends State<WorkoutDay> {
               Text(exerciseString,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_TAB_WORKOUTS_EXERCISE,
-                      color: Constants.PRIMARY_TEXT)),
+                      color: ThemeManager.getInstance().getPrimaryTextColor())),
               Text(prescriptionString,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PRESCRIPTION,
-                      color: Constants.SECONDARY_TEXT)),
+                      color:
+                          ThemeManager.getInstance().getSecondaryTextColor())),
             ]);
 
         rowItems.add(prescriptionColumn);
@@ -127,28 +131,22 @@ class WorkoutDayState extends State<WorkoutDay> {
             _setIncomplete(_weekday, true);
           }
 
-          rowItems.add(DropdownButton<String>(
-              value: singlePassFail,
-              style: TextStyle(
-                  color: Constants.PRIMARY_TEXT,
-                  fontSize: Constants.FONTSIZE_TAB_WORKOUTS_PASSFAIL),
-              onChanged: (val) {
-                _setPassFailMap(tuple.exercise, val);
-              },
-              items: <String>[Constants.LIFT, Constants.FAIL, Constants.PASS]
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                    value: value, child: Text(value));
-              }).toList()));
+          rowItems.add(RadioButtonGroup(
+              [Constants.LIFT, Constants.FAIL, Constants.PASS], singlePassFail,
+              (val) {
+            _setPassFailMap(tuple.exercise, val);
+          }));
         }
       }
 
       if (tuple.exercise != Exercise.Rest) {
-        columnList.add(Divider(color: Constants.DIVIDER_GREY));
+        columnList
+            .add(Divider(color: ThemeManager.getInstance().getDividerColor()));
       }
 
       columnList.add(Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: EdgeInsets.symmetric(
+              horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: rowItems)));
@@ -156,8 +154,10 @@ class WorkoutDayState extends State<WorkoutDay> {
 
     return Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: EdgeInsets.symmetric(
+            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
         color: Colors.white,
         child: Column(children: columnList));
   }

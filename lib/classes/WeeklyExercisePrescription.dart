@@ -10,6 +10,16 @@ import 'DailyRestPrescription.dart';
 import 'IDailyPrescription.dart';
 
 class WeeklyExercisePrescription {
+  static WeeklyExercisePrescription _instance;
+
+  static WeeklyExercisePrescription getInstance() {
+    return _instance;
+  }
+
+  static void init(WeeklyExercisePrescription weeklyExercisePrescription) {
+    _instance = weeklyExercisePrescription;
+  }
+
   Map<Weekday, DailyExercisePrescription> _prescriptionCache = {};
 
   Phases _phases = Phases();
@@ -47,10 +57,20 @@ class WeeklyExercisePrescription {
   };
 
   PassFail _passFail = PassFail();
+  bool _isDarkMode = false;
   String _weightUnit = Constants.WEIGHTUNIT_LBS;
   bool _haveMicroplates = false;
   bool _enableCurls = false;
   bool _enableHIITConditioning = false;
+
+  set darkMode(val) {
+    _isDarkMode = val;
+    DBHelper.saveSettingToDB(Constants.SettingsDB_DARKMODE, val);
+  }
+
+  get darkMode {
+    return _isDarkMode;
+  }
 
   set forceFourDaySplit(val) {
     _phases.forceFourDay = val;
