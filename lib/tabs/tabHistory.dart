@@ -40,7 +40,8 @@ class _HistoryTabState extends State<HistoryTab> {
   @override
   Widget build(BuildContext context) {
     Widget placeholderNoHistory = Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 15),
         child: Text(Constants.HISTORY_NOHISTORY,
             style: TextStyle(
                 fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
@@ -59,7 +60,8 @@ class _HistoryTabState extends State<HistoryTab> {
             logColumnChildren.add(
                 Divider(color: ThemeManager.getInstance().getDividerColor()));
             logColumnChildren.add(Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                   Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
@@ -74,7 +76,8 @@ class _HistoryTabState extends State<HistoryTab> {
           logColumnChildren.add(
               Divider(color: ThemeManager.getInstance().getDividerColor()));
           logColumnChildren.add(Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -108,10 +111,12 @@ class _HistoryTabState extends State<HistoryTab> {
         child: Container(
             color: ThemeManager.getInstance().getBackgroundColor(),
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
                 child: Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
                     color: Colors.white,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

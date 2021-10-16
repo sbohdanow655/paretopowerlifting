@@ -53,7 +53,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE)),
           color: ThemeManager.getInstance().getPrimaryColor(),
-          textColor: Colors.white,
+          textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             Navigator.pushReplacementNamed(
                 context, Constants.ROUTE_GETTINGSTARTED);
@@ -86,7 +86,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
                   fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON,
                 )),
             color: ThemeManager.getInstance().getPrimaryColor(),
-            textColor: Colors.white,
+            textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
             onPressed: () {
               bool weekIsIncomplete = false;
               _workoutDayIncompleteMap
@@ -110,7 +110,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
           color: Colors.red[400],
-          textColor: Colors.white,
+          textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text(Constants.WORKOUTS_SNACKBAR_STARTOVER_PRESSED,

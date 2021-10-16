@@ -44,8 +44,10 @@ class _GettingStartedState extends State<GettingStarted> {
 
     Container missionStatement = Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: EdgeInsets.symmetric(
+            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
@@ -74,8 +76,10 @@ class _GettingStartedState extends State<GettingStarted> {
 
     Container gettingStarted = Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: EdgeInsets.symmetric(
+            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
@@ -110,8 +114,10 @@ class _GettingStartedState extends State<GettingStarted> {
 
     Container nutritionRecommendations = Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: EdgeInsets.symmetric(
+            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
@@ -147,7 +153,7 @@ class _GettingStartedState extends State<GettingStarted> {
             style: TextStyle(fontSize: Constants.FONTSIZE_GETTINGSTARTED_TITLE),
           ),
           color: ThemeManager.getInstance().getPrimaryColor(),
-          textColor: Colors.white,
+          textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             Navigator.pushReplacementNamed(
               context,
@@ -166,7 +172,8 @@ class _GettingStartedState extends State<GettingStarted> {
         body: SingleChildScrollView(
             controller: _scrollController,
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 10),
                 color: ThemeManager.getInstance().getBackgroundColor(),
                 child: Column(
                     key: UniqueKey(),
