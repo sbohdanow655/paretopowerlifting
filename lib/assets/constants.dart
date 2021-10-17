@@ -271,7 +271,7 @@ class Constants {
   static const String MISSIONSTATEMENT_TITLE = "What is this?";
 
   static const String MISSIONSTATEMENT_BODY =
-      "This app allows you to make fast progress on the Squat, Bench Press, and Deadlift and is automated in a way that adapts to your strengths and weaknesses.";
+      "This app allows you to gain strength and muscle fast, and even for a long time. It is automated in a way that adapts to your strengths and weaknesses.";
 
   static const String GETTINGSTARTED_TITLE = "Getting Started";
 
