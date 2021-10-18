@@ -109,7 +109,7 @@ class _WorkoutTabState extends State<WorkoutTab> {
           child: Text(Constants.RESET_EXERCISE_PHASES,
               style:
                   TextStyle(fontSize: Constants.FONTSIZE_TAB_WORKOUTS_BUTTON)),
-          color: Colors.red[400],
+          color: ThemeManager.getInstance().getAlertColor(),
           textColor: ThemeManager.getInstance().getContainerBackgroundColor(),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

@@ -34,6 +34,7 @@ class ThemeManager {
   static const Color LIGHT_BACKGROUND = Color(0xfff5f5f5);
   static const Color LIGHT_CONTAINER_BACKGROUND = Colors.white;
   static const Color LIGHT_PRIMARY = Color(0xff2196F3);
+  static Color LIGHT_ALERT = Colors.red.shade400;
   static const Color LIGHT_DIVIDER = Color(0xffBDBDBD);
   static const Color LIGHT_PRIMARY_TEXT = Color(0xff212121);
   static const Color LIGHT_SECONDARY_TEXT = Color(0xff757575);
@@ -57,6 +58,7 @@ class ThemeManager {
   static const Color DARK_BACKGROUND = Color(0xfff5f5f5);
   static const Color DARK_CONTAINER_BACKGROUND = Colors.white;
   static const Color DARK_PRIMARY = Color(0xff2196F3);
+  static Color DARK_ALERT = Colors.red.shade400;
   static const Color DARK_DIVIDER = Color(0xffBDBDBD);
   static const Color DARK_PRIMARY_TEXT = Color(0xff212121);
   static const Color DARK_SECONDARY_TEXT = Color(0xff757575);
@@ -83,6 +85,14 @@ class ThemeManager {
     }
 
     return LIGHT_PRIMARY;
+  }
+
+  Color getAlertColor() {
+    if (_isDarkMode) {
+      return DARK_ALERT;
+    }
+
+    return LIGHT_ALERT;
   }
 
   Color getDividerColor() {
