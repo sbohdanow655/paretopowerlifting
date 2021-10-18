@@ -146,7 +146,8 @@ class WorkoutDayState extends State<WorkoutDay> {
 
       columnList.add(Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+              horizontal: Constants.PADDING_HORIZONTAL,
+              vertical: Constants.PADDING_VERTICAL),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: rowItems)));
@@ -155,9 +156,11 @@ class WorkoutDayState extends State<WorkoutDay> {
     return Container(
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(
-            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
+            horizontal: Constants.MARGIN_HORIZONTAL,
+            vertical: Constants.MARGIN_VERTICAL),
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         color: Colors.white,
         child: Column(children: columnList));
   }

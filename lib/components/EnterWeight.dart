@@ -25,7 +25,8 @@ class EnterWeight extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         child: Text(_exerciseString + Constants.SUFFIX_WEIGHT,
             style: TextStyle(fontSize: Constants.FONTSIZE_TAB_SETTINGS)),
       ),

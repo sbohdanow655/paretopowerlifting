@@ -41,7 +41,8 @@ class _HistoryTabState extends State<HistoryTab> {
   Widget build(BuildContext context) {
     Widget placeholderNoHistory = Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 15),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         child: Text(Constants.HISTORY_NOHISTORY,
             style: TextStyle(
                 fontSize: Constants.FONTSIZE_TAB_HISTORY_EXERCISELOG)));
@@ -61,7 +62,8 @@ class _HistoryTabState extends State<HistoryTab> {
                 Divider(color: ThemeManager.getInstance().getDividerColor()));
             logColumnChildren.add(Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+                    horizontal: Constants.PADDING_HORIZONTAL,
+                    vertical: Constants.PADDING_VERTICAL),
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                   Text(Constants.DATESTRING_PREFIX_WEEKOF + currentDateString,
@@ -77,7 +79,8 @@ class _HistoryTabState extends State<HistoryTab> {
               Divider(color: ThemeManager.getInstance().getDividerColor()));
           logColumnChildren.add(Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+                  horizontal: Constants.PADDING_HORIZONTAL,
+                  vertical: Constants.PADDING_VERTICAL),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -111,7 +114,8 @@ class _HistoryTabState extends State<HistoryTab> {
         child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(
-                horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+                horizontal: Constants.PADDING_HORIZONTAL,
+                vertical: Constants.PADDING_VERTICAL),
             color: Colors.white,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

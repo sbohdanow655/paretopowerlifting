@@ -45,16 +45,19 @@ class _GettingStartedState extends State<GettingStarted> {
     Container missionStatement = Container(
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(
-            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
+            horizontal: Constants.MARGIN_HORIZONTAL,
+            vertical: Constants.MARGIN_VERTICAL),
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Constants.PADDING_VERTICAL),
                   child: Text(Constants.MISSIONSTATEMENT_TITLE,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -65,7 +68,8 @@ class _GettingStartedState extends State<GettingStarted> {
           ),
           Divider(color: ThemeManager.getInstance().getDividerColor()),
           Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
+              padding:
+                  EdgeInsets.symmetric(vertical: Constants.PADDING_VERTICAL),
               child: Text(Constants.MISSIONSTATEMENT_BODY,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,
@@ -77,16 +81,19 @@ class _GettingStartedState extends State<GettingStarted> {
     Container gettingStarted = Container(
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(
-            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
+            horizontal: Constants.MARGIN_HORIZONTAL,
+            vertical: Constants.MARGIN_VERTICAL),
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Constants.PADDING_VERTICAL),
                   child: Text(Constants.GETTINGSTARTED_TITLE,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -100,7 +107,8 @@ class _GettingStartedState extends State<GettingStarted> {
             return Column(children: [
               Divider(color: ThemeManager.getInstance().getDividerColor()),
               Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Constants.PADDING_VERTICAL),
                   child: Text(text,
                       style: TextStyle(
                           fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,
@@ -115,16 +123,19 @@ class _GettingStartedState extends State<GettingStarted> {
     Container nutritionRecommendations = Container(
         alignment: Alignment.center,
         margin: EdgeInsets.symmetric(
-            horizontal: Constants.MARGIN_HORIZONTAL, vertical: 5),
+            horizontal: Constants.MARGIN_HORIZONTAL,
+            vertical: Constants.MARGIN_VERTICAL),
         padding: EdgeInsets.symmetric(
-            horizontal: Constants.PADDING_HORIZONTAL, vertical: 5),
+            horizontal: Constants.PADDING_HORIZONTAL,
+            vertical: Constants.PADDING_VERTICAL),
         color: ThemeManager.getInstance().getContainerBackgroundColor(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Constants.PADDING_VERTICAL),
                   child: Text(
                     Constants.GETTINGSTARTED_TITLE_NUTRITION,
                     style: TextStyle(
@@ -137,7 +148,8 @@ class _GettingStartedState extends State<GettingStarted> {
           ),
           Divider(color: ThemeManager.getInstance().getDividerColor()),
           Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
+              padding:
+                  EdgeInsets.symmetric(vertical: Constants.PADDING_VERTICAL),
               child: Text(Constants.NUTRITION_RECOMMOMENDATIONS,
                   style: TextStyle(
                       fontSize: Constants.FONTSIZE_GETTINGSTARTED_BODY,

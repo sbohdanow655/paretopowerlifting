@@ -69,10 +69,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -85,7 +85,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants.SETTINGS_HEADER_PLATES,
                                             style: TextStyle(
@@ -105,7 +106,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants.SELECT_WEIGHT_UNIT,
                                             style: TextStyle(
@@ -136,10 +138,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -152,7 +154,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants.SETTINGS_HEADER_WEIGHTS,
                                             style: TextStyle(
@@ -199,10 +202,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -215,7 +218,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.MARGIN_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SETTINGS_HEADER_FULLBODYWORKOUTDAYS,
@@ -236,7 +240,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_FULLBODY_ONE,
@@ -258,7 +263,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_FULLBODY_TWO,
@@ -280,7 +286,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_FULLBODY_THREE,
@@ -296,10 +303,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -312,7 +319,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.MARGIN_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SETTINGS_HEADER_FORCEFOURDAYSPLIT,
@@ -333,7 +341,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(Constants.FORCEFOURDAYSPLIT,
                                             style: TextStyle(
                                                 fontSize: Constants
@@ -357,10 +366,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -373,7 +382,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SETTINGS_HEADER_UPPERLOWERWORKOUTDAYS,
@@ -394,7 +404,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_LOWERBODY_ONE,
@@ -416,7 +427,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_UPPERBODY_ONE,
@@ -438,7 +450,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_LOWERBODY_TWO,
@@ -460,7 +473,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.MARGIN_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SELECTWORKOUTDAY_UPPERBODY_TWO,
@@ -476,10 +490,10 @@ class _SettingsTabState extends State<SettingsTab> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.symmetric(
                               horizontal: Constants.MARGIN_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.MARGIN_VERTICAL),
                           padding: EdgeInsets.symmetric(
                               horizontal: Constants.PADDING_HORIZONTAL,
-                              vertical: 5),
+                              vertical: Constants.PADDING_VERTICAL),
                           color: ThemeManager.getInstance()
                               .getContainerBackgroundColor(),
                           child: Column(
@@ -492,7 +506,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants
                                                 .SETTINGS_HEADER_OPTIONALEXERCISES,
@@ -513,7 +528,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(
                                             Constants.ENABLE_HIITCONDITIONING,
                                             style: TextStyle(
@@ -544,7 +560,8 @@ class _SettingsTabState extends State<SettingsTab> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal:
                                                 Constants.PADDING_HORIZONTAL,
-                                            vertical: 15),
+                                            vertical:
+                                                Constants.PADDING_VERTICAL),
                                         child: Text(Constants.ENABLE_CURLS,
                                             style: TextStyle(
                                                 fontSize: Constants

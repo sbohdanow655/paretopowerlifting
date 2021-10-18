@@ -59,9 +59,10 @@ class Constants {
   static const double FONTSIZE_TAB_HISTORY_EXERCISELOG = 18;
   static const double FONTSIZE_TAB_EXERCISES = 18;
 
+  static const double MARGIN_VERTICAL = 5;
   static const double MARGIN_HORIZONTAL = 0;
 
-  static const double PADDING_VERTICAL = 10;
+  static const double PADDING_VERTICAL = 5;
   static const double PADDING_HORIZONTAL = 10;
 
   static const String TITLE = "Pareto Powerlifting";
